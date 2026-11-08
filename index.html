@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindCare — Student Wellbeing Research | Varendra University</title>
+  <title>VU Research — Context-Aware Depression Screening Platform | Varendra University</title>
 
   <!-- Google Fonts: Fraunces, Outfit, Noto Serif Bengali, Plus Jakarta Sans, Material Symbols -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,112 +84,165 @@
         <!-- ============================================== -->
     <!-- NAV - MindCare Brand Navigation (Mockup Screen 1) -->
     <!-- ============================================== -->
-    <nav id="mindcare-nav" aria-label="Main Navigation"
-      class="sticky top-3 z-50 bg-[#FFFFFF]/95 backdrop-blur-md rounded-full px-4 sm:px-6 py-2.5 sm:py-3 border border-[#D8E3D5] shadow-[0_8px_24px_-4px_rgba(36,55,37,0.08)] flex items-center justify-between gap-4 transition-all duration-300">
-      
-      <!-- Brand Logo + Tagline -->
-      <a href="#hero-banner" class="flex items-center gap-2.5 sm:gap-3 group select-none">
-        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#EEF2E8] border border-[#CBDAC8] flex items-center justify-center text-[#3E7245] shrink-0 shadow-xs group-hover:scale-105 transition-transform">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C11.5 4 9.5 7.5 7 9C4.5 10.5 2 11 2 12C2 15 5 18 12 21C19 18 22 15 22 12C22 11 19.5 10.5 17 9C14.5 7.5 12.5 4 12 2M12 5.5C13.5 7.8 15.5 10 18.5 11.2C19.5 11.6 20 12.2 20 12.5C19.5 14.5 16.5 16.8 12 19C7.5 16.8 4.5 14.5 4 12.5C4 12.2 4.5 11.6 5.5 11.2C8.5 10 10.5 7.8 12 5.5Z"/>
-          </svg>
-        </div>
-        <div>
-          <div class="text-base sm:text-lg font-bold text-[#243725] leading-none tracking-tight flex items-center gap-1.5">
-            MindCare
-          </div>
-          <span class="text-[10px] sm:text-[11px] font-medium text-[#657C69] tracking-normal leading-tight block">
-            Student Wellbeing Research
-          </span>
-        </div>
-      </a>
+        <!-- ============================================== -->
+    <!-- NAV - Compact Garden Module Navigator (Previous Version) -->
+    <!-- ============================================== -->
+    <nav id="garden-nav" aria-label="Garden Stations"
+      class="relative md:sticky md:top-4 z-40 bg-[#FFFFFF]/95 backdrop-blur-md rounded-full px-3 py-2 sm:px-4 sm:py-2.5 border border-[#D8E3D5] shadow-[0_8px_24px_-4px_rgba(36,55,37,0.08)] flex items-center justify-between gap-3 transition-all duration-300">
 
-      <!-- Desktop Nav Links -->
-      <div class="hidden md:flex items-center gap-1.5 lg:gap-2">
-        <a href="#hero-banner" class="px-3 py-1.5 rounded-full text-xs font-semibold text-[#243725] hover:bg-[#EEF2E8] transition-colors flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm text-[#3E7245]">home</span>
-          Home
-        </a>
-        <button type="button" id="nav-about-btn" class="px-3 py-1.5 rounded-full text-xs font-semibold text-[#415745] hover:text-[#243725] hover:bg-[#EEF2E8] transition-colors">
-          About
+      <!-- ============================================== -->
+      <!-- MOBILE VIEW (< md): │ [Logo] │ all module › │ ▦ │ -->
+      <!-- ============================================== -->
+      <div class="flex md:hidden items-center justify-between w-full h-[38px] px-0.5">
+        <!-- [Logo] -->
+        <div class="flex items-center">
+          <div
+            class="w-8 h-8 rounded-full bg-[#EEF2E8] border border-[#CBDAC8] flex items-center justify-center text-[#3E7245] shrink-0 shadow-xs">
+            <span class="material-symbols-outlined text-[17px]">spa</span>
+          </div>
+        </div>
+
+        <!-- all module › -->
+        <button type="button" id="mobile-module-trigger" aria-label="Open survey module directory"
+          class="flex items-center gap-1 text-xs font-semibold text-[#243725] hover:text-[#3E7245] transition-colors py-1.5 px-3.5 rounded-full bg-[#EEF2E8] border border-[#D8E3D5] active:scale-95 shadow-xs">
+          <span id="mobile-current-module-name">all module</span>
+          <span class="material-symbols-outlined text-[15px] text-[#3E7245] leading-none">chevron_right</span>
         </button>
-        <button type="button" id="nav-privacy-btn" class="px-3 py-1.5 rounded-full text-xs font-semibold text-[#415745] hover:text-[#243725] hover:bg-[#EEF2E8] transition-colors">
-          Privacy
-        </button>
-        <button type="button" id="nav-resources-btn" class="px-3 py-1.5 rounded-full text-xs font-semibold text-[#415745] hover:text-[#243725] hover:bg-[#EEF2E8] transition-colors">
-          Resources
-        </button>
-        <button type="button" id="nav-contact-btn" class="px-3 py-1.5 rounded-full text-xs font-semibold text-[#415745] hover:text-[#243725] hover:bg-[#EEF2E8] transition-colors">
-          Contact
+
+        <!-- ▦ Grid Menu Button -->
+        <button type="button" id="mobile-grid-btn" aria-label="Open all survey sections"
+          class="w-8 h-8 rounded-xl bg-[#EEF2E8] hover:bg-[#EEF2E8] text-[#415745] border border-[#D8E3D5] flex items-center justify-center transition-all active:scale-95 shadow-xs">
+          <span class="material-symbols-outlined text-[18px]">grid_view</span>
         </button>
       </div>
 
-      <!-- Right: Bilingual Language Toggle (English | বাংলা) -->
-      <div class="flex items-center gap-2">
-        <div class="inline-flex items-center p-1 rounded-full bg-[#EEF2E8] border border-[#D8E3D5] text-xs">
-          <button type="button" id="lang-btn-en" aria-label="Switch to English"
-            class="lang-toggle-btn active px-3 py-1 rounded-full text-[11px] font-bold text-white bg-[#243725] transition-all duration-200 shadow-xs">
-            English
-          </button>
-          <button type="button" id="lang-btn-bn" aria-label="Switch to Bengali"
-            class="lang-toggle-btn px-3 py-1 rounded-full text-[11px] font-bold text-[#415745] hover:text-[#243725] transition-all duration-200">
-            বাংলা
-          </button>
+      <!-- ============================================== -->
+      <!-- DESKTOP / TABLET VIEW (>= md): ◈ MODULES + 7 Compact Buttons -->
+      <!-- ============================================== -->
+      <div class="hidden md:flex items-center justify-between gap-3 w-full h-[38px]">
+        <!-- Left: ◈ MODULES -->
+        <div class="flex items-center gap-2 pl-1 shrink-0">
+          <div
+            class="w-6 h-6 rounded-full bg-[#EEF2E8] text-[#3E7245] flex items-center justify-center text-[11px] font-bold shadow-xs">
+            ◈
+          </div>
+          <span class="text-xs uppercase font-bold tracking-wider text-[#243725]">MODULES</span>
         </div>
 
-        <!-- Mobile Menu Trigger -->
-        <button type="button" id="mobile-nav-toggle" aria-label="Open Navigation Menu"
-          class="flex md:hidden w-8 h-8 rounded-full bg-[#EEF2E8] border border-[#D8E3D5] items-center justify-center text-[#243725] hover:bg-[#EEF2E8] transition-all">
-          <span class="material-symbols-outlined text-lg">menu</span>
-        </button>
+        <!-- Right: 7 Structured Module Buttons (34-38px height, 8-10px gap) -->
+        <div class="flex items-center flex-wrap gap-2 justify-end">
+          <a href="#module-a" data-module="a"
+            class="waypoint-link pebble-btn flex items-center gap-1.5 px-3 h-[36px] rounded-full text-[13px] font-medium state-active whitespace-nowrap transition-all duration-200">
+            <span
+              class="module-letter-badge w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold">A</span>
+            <span class="module-name">Demographics</span>
+          </a>
+
+          <a href="#module-b" data-module="b"
+            class="waypoint-link pebble-btn flex items-center gap-1.5 px-3 h-[36px] rounded-full text-[13px] font-medium state-pending whitespace-nowrap transition-all duration-200">
+            <span
+              class="module-letter-badge w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold">B</span>
+            <span class="module-name">PHQ-9</span>
+          </a>
+
+          <a href="#module-c" data-module="c"
+            class="waypoint-link pebble-btn flex items-center gap-1.5 px-3 h-[36px] rounded-full text-[13px] font-medium state-pending whitespace-nowrap transition-all duration-200">
+            <span
+              class="module-letter-badge w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold">C</span>
+            <span class="module-name">Academic</span>
+          </a>
+
+          <a href="#module-d" data-module="d"
+            class="waypoint-link pebble-btn flex items-center gap-1.5 px-3 h-[36px] rounded-full text-[13px] font-medium state-pending whitespace-nowrap transition-all duration-200">
+            <span
+              class="module-letter-badge w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold">D</span>
+            <span class="module-name">Future &amp; AI</span>
+          </a>
+
+          <a href="#module-e" data-module="e"
+            class="waypoint-link pebble-btn flex items-center gap-1.5 px-3 h-[36px] rounded-full text-[13px] font-medium state-pending whitespace-nowrap transition-all duration-200">
+            <span
+              class="module-letter-badge w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold">E</span>
+            <span class="module-name">Rest &amp; Vitality</span>
+          </a>
+
+          <a href="#module-f" data-module="f"
+            class="waypoint-link pebble-btn flex items-center gap-1.5 px-3 h-[36px] rounded-full text-[13px] font-medium state-pending whitespace-nowrap transition-all duration-200">
+            <span
+              class="module-letter-badge w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold">F</span>
+            <span class="module-name">Social Support</span>
+          </a>
+
+          <a href="#module-g" data-module="g"
+            class="waypoint-link pebble-btn flex items-center gap-1.5 px-3 h-[36px] rounded-full text-[13px] font-medium state-pending whitespace-nowrap transition-all duration-200">
+            <span
+              class="module-letter-badge w-4 h-4 rounded-full flex items-center justify-center text-[10px] font-bold">G</span>
+            <span class="module-name">Earth &amp; Hearth</span>
+          </a>
+        </div>
       </div>
     </nav>
 
     <!-- ============================================== -->
-    <!-- HERO - "You deserve to be heard." (Mockup Screen 1) -->
+    <!-- HERO - Research Protocol Portal (Previous Research Version) -->
     <!-- ============================================== -->
     <header id="hero-banner"
-      class="bg-gradient-to-br from-[#FFFFFF] via-[#F4F7F2] to-[#EEF2E8]/60 border border-[#D8E3D5] rounded-[36px] sm:rounded-[44px] p-6 sm:p-10 md:p-12 shadow-bento relative overflow-hidden transition-all duration-300">
+      class="bg-gradient-to-br from-[#FFFFFF] via-[#F4F7F2] to-[#EEF2E8]/60 border border-[#D8E3D5] rounded-[32px] sm:rounded-[36px] p-6 sm:p-8 md:p-10 shadow-bento relative overflow-hidden transition-all duration-300">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-        <!-- Left Column: Copy & CTAs -->
-        <div class="lg:col-span-7 space-y-6">
-          <!-- Kicker Tag -->
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEF2E8] border border-[#CBDAC8] text-[#3E7245] text-xs font-bold tracking-wide">
-            <span class="material-symbols-outlined text-sm">nature_people</span>
-            <span>Student Wellbeing Research</span>
-          </div>
+      <!-- Top Badges / Nature Vibes (Previous Version) -->
+      <div class="hidden sm:flex flex-wrap items-center gap-2 sm:gap-2.5 text-xs mb-4 sm:mb-5">
+        <span
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#243725] text-white font-medium tracking-[0.2px] text-[11px] sm:text-xs shadow-xs">
+          <span class="material-symbols-outlined text-[14px] leading-none">spa</span>
+          Mindful Biophilic Sanctuary
+        </span>
+        <span
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EEF2E8] text-[#3E7245] border border-[#CBDAC8] font-medium text-[11px] sm:text-xs">
+          <span class="material-symbols-outlined text-[14px] leading-none text-[#3E7245]">lock_clock</span>
+          Encrypted &amp; Non-Judgmental Space
+        </span>
+        <span
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FFFFFF] text-[#415745] border border-[#D8E3D5] font-medium text-[11px]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#3E7245] animate-ping"></span>
+          8–10 Min Restorative Flow
+        </span>
+      </div>
 
-          <!-- Main Title matching design -->
-          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-extrabold text-[#243725] tracking-tight leading-[1.12]">
-            You deserve<br>to be <span class="text-[#3E7245] underline decoration-[#3E7245]/30 underline-offset-8">heard.</span>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center mb-6">
+        <!-- Left Column: Previous Research Name + Description + CTAs -->
+        <div class="lg:col-span-8 space-y-4">
+          <!-- Main Protocol Title from Previous Version -->
+          <h1
+            class="text-xl sm:text-2xl md:text-[28px] lg:text-[32px] xl:text-[34px] leading-[1.32] sm:leading-[1.35] font-serif font-normal text-[#243725] tracking-tight w-full">
+            An Explainable Machine Learning Framework for <span
+              class="italic font-serif text-[#3E7245]">Context-Aware Depression Screening</span> and Personalized Student Support among University Students in Bangladesh
           </h1>
 
-          <!-- Subtitle -->
-          <p class="text-sm sm:text-base md:text-lg text-[#415745] leading-relaxed max-w-xl">
-            A safe space to share how you've been feeling. Your responses help us understand student wellbeing and create compassionate support systems.
+          <!-- Gentle Guidance Subtitle -->
+          <p class="text-xs sm:text-sm md:text-base text-[#415745] leading-relaxed max-w-2xl">
+            A safe space to share your academic and emotional journey. Your responses help us understand student wellbeing and create compassionate support systems.
           </p>
 
-          <!-- 3 Trust Badges (Horizontal Row on Tablet/Desktop) -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 max-w-xl">
-            <div class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-white border border-[#D8E3D5] text-xs font-semibold text-[#243725] shadow-xs">
-              <span class="w-6 h-6 rounded-full bg-[#EEF2E8] text-[#3E7245] flex items-center justify-center font-bold text-xs shrink-0">✓</span>
-              <span class="leading-tight">Your responses are confidential</span>
+          <!-- 3 Trust Badges -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 max-w-2xl pt-1">
+            <div class="flex items-center gap-2 px-3 py-2 rounded-2xl bg-white border border-[#D8E3D5] text-[11px] font-semibold text-[#243725] shadow-xs">
+              <span class="w-5 h-5 rounded-full bg-[#EEF2E8] text-[#3E7245] flex items-center justify-center font-bold text-xs shrink-0">✓</span>
+              <span class="leading-tight">Confidential &amp; Anonymous</span>
             </div>
-            <div class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-white border border-[#D8E3D5] text-xs font-semibold text-[#243725] shadow-xs">
-              <span class="w-6 h-6 rounded-full bg-[#EEF2E8] text-[#3E7245] flex items-center justify-center text-xs shrink-0 font-bold">⏱</span>
-              <span class="leading-tight">Takes about 5–10 minutes</span>
+            <div class="flex items-center gap-2 px-3 py-2 rounded-2xl bg-white border border-[#D8E3D5] text-[11px] font-semibold text-[#243725] shadow-xs">
+              <span class="w-5 h-5 rounded-full bg-[#EEF2E8] text-[#3E7245] flex items-center justify-center text-xs shrink-0 font-bold">⏱</span>
+              <span class="leading-tight">Takes 5–10 minutes</span>
             </div>
-            <div class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-white border border-[#D8E3D5] text-xs font-semibold text-[#243725] shadow-xs">
-              <span class="w-6 h-6 rounded-full bg-[#EEF2E8] text-[#3E7245] flex items-center justify-center text-xs shrink-0 font-bold">♡</span>
+            <div class="flex items-center gap-2 px-3 py-2 rounded-2xl bg-white border border-[#D8E3D5] text-[11px] font-semibold text-[#243725] shadow-xs">
+              <span class="w-5 h-5 rounded-full bg-[#EEF2E8] text-[#3E7245] flex items-center justify-center text-xs shrink-0 font-bold">♡</span>
               <span class="leading-tight">No right or wrong answers</span>
             </div>
           </div>
 
           <!-- CTAs -->
-          <div class="flex flex-wrap items-center gap-3.5 pt-2">
+          <div class="flex flex-wrap items-center gap-3 pt-2">
             <button type="button" id="start-questionnaire-btn"
-              class="px-8 py-3.5 rounded-full bg-[#243725] hover:bg-[#1B2B1C] text-white text-sm font-bold flex items-center gap-2.5 shadow-md hover:shadow-lg transition-all active:scale-95 group">
+              class="px-7 py-3 rounded-full bg-[#243725] hover:bg-[#1B2B1C] text-white text-xs sm:text-sm font-bold flex items-center gap-2 shadow-md hover:shadow-lg transition-all active:scale-95 group">
               <span>Start Questionnaire</span>
               <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </button>
@@ -201,59 +254,56 @@
           </div>
         </div>
 
-        <!-- Right Column: Cropped Hero Illustration -->
-        <div class="lg:col-span-5 flex justify-center">
-          <div class="relative max-w-sm sm:max-w-md w-full">
+        <!-- Right Column: Student Mindful Illustration -->
+        <div class="lg:col-span-4 flex justify-center">
+          <div class="relative max-w-[280px] sm:max-w-[320px] w-full">
             <img src="assets/mindcare-hero-illustration.jpg" alt="Student in a quiet mindful moment with nature"
               class="w-full h-auto rounded-3xl object-cover shadow-[0_12px_32px_-8px_rgba(36,55,37,0.14)] border border-[#D8E3D5]">
           </div>
         </div>
       </div>
 
-      <!-- Bottom Sub-Banner -->
-      <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-[#657C69] pt-6 mt-8 border-t border-[#D8E3D5]/80 gap-2">
-        <div class="flex items-center gap-2 font-medium">
-          <span class="material-symbols-outlined text-sm text-[#3E7245]">school</span>
-          <span>MindCare • Student Mental Health Screening</span>
+      <!-- Institutional Governance & Informed Consent Box (Previous Version) -->
+      <div class="bg-[#FFFFFF] rounded-2xl sm:rounded-3xl p-4 sm:p-5 border border-[#D8E3D5] shadow-xs space-y-3.5">
+        <!-- Icon & Heading -->
+        <div class="flex items-center gap-3">
+          <div
+            class="w-9 h-9 rounded-xl bg-[#EEF2E8] border border-[#CBDAC8] flex items-center justify-center shrink-0 text-[#3E7245] shadow-sm">
+            <span class="material-symbols-outlined text-xl">gavel</span>
+          </div>
+          <div>
+            <h3 class="text-base sm:text-[18px] font-bold text-[#243725] leading-tight">
+              Institutional Governance
+            </h3>
+            <span class="text-xs font-semibold text-[#3E7245]">
+              CIR Protocol #VU/ERC/2026/042
+            </span>
+          </div>
         </div>
-        <div class="text-[11px] font-semibold text-[#415745]">
-          Research Project • Varendra University
+
+        <!-- Full-Width Body Paragraph -->
+        <p class="text-[14px] sm:text-[15px] text-[#415745] leading-[1.55] w-full">
+          This questionnaire is part of an undergraduate research project at Varendra University (VU), conducted with
+          official clearance from the Center for Interdisciplinary Research (CIR), VU. CIR Reference No.: <span
+            class="font-semibold text-[#3E7245]">VU/ERC/2026/042</span>. Your responses are cryptographically hashed,
+          strictly confidential, and utilized purely for academic research. Participation is completely voluntary.
+        </p>
+
+        <!-- Subtle Divider & Aligned Bilingual Consent Checkbox -->
+        <div class="border-t border-[#D8E3D5]/60 pt-3.5">
+          <label for="consent-checkbox" class="flex items-start gap-3.5 cursor-pointer select-none group">
+            <input type="checkbox" id="consent-checkbox" class="custom-checkbox shrink-0 mt-0.5" checked>
+            <p class="text-[13px] sm:text-[14px] leading-relaxed text-[#243725]">
+              <span class="font-medium group-hover:text-[#3E7245] transition-colors">I have read and understood the
+                terms and voluntarily consent to participate.</span>
+              <span class="font-bengali text-[#657C69] ml-1.5">আমি উপরোক্ত শর্তাবলী পড়েছি এবং এই গবেষণায় স্বেচ্ছায়
+                অংশগ্রহণ করতে সম্মত।</span>
+            </p>
+          </label>
         </div>
       </div>
     </header>
 
-    <!-- Institutional Governance & Voluntary Consent Card -->
-    <div class="bg-[#FFFFFF] rounded-3xl p-5 sm:p-6 border border-[#D8E3D5] shadow-xs space-y-3.5">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-xl bg-[#EEF2E8] border border-[#CBDAC8] flex items-center justify-center shrink-0 text-[#3E7245] shadow-xs">
-          <span class="material-symbols-outlined text-xl">gavel</span>
-        </div>
-        <div>
-          <h3 class="text-sm sm:text-base font-bold text-[#243725] leading-tight">
-            Institutional Research Governance &amp; Ethics
-          </h3>
-          <span class="text-xs font-semibold text-[#3E7245]">
-            CIR Protocol Reference: VU/ERC/2026/042
-          </span>
-        </div>
-      </div>
-      <p class="text-xs sm:text-sm text-[#415745] leading-relaxed">
-        This research study is conducted with official ethical approval from the Center for Interdisciplinary Research (CIR), Varendra University. Your responses are cryptographically hashed, strictly confidential, and analyzed in aggregate for academic modeling. Participation is completely voluntary.
-      </p>
-      <div class="border-t border-[#D8E3D5]/60 pt-3">
-        <label for="consent-checkbox" class="flex items-start gap-3 cursor-pointer select-none group">
-          <input type="checkbox" id="consent-checkbox" class="custom-checkbox shrink-0 mt-0.5" checked>
-          <p class="text-xs sm:text-sm leading-relaxed text-[#243725]">
-            <span class="font-medium group-hover:text-[#3E7245] transition-colors">I voluntarily consent to participate in this confidential wellbeing screening study.</span>
-            <span class="font-bengali text-[#657C69] ml-1">(আমি এই গোপনীয় সুস্থতা স্ক্রীনিং গবেষণায় স্বেচ্ছায় অংশগ্রহণ করতে সম্মত।)</span>
-          </p>
-        </label>
-      </div>
-    </div>
-
-    <!-- ============================================== -->
-    <!-- STEPPED QUESTIONNAIRE TRACKER BAR (Mockup Screen 2) -->
-    <!-- ============================================== -->
     <div id="questionnaire-tracker"
       class="sticky top-[72px] z-40 bg-[#FFFFFF]/95 backdrop-blur-md rounded-3xl p-4 sm:p-5 border border-[#D8E3D5] shadow-[0_8px_20px_-4px_rgba(36,55,37,0.06)] transition-all duration-300">
       
@@ -2811,6 +2861,114 @@
       </div>
     </div>
   </div>
+
+  <!-- ============================================== -->
+  <!-- MOBILE MODULE DIRECTORY DRAWER (inside ▦) -->
+  <!-- ============================================== -->
+  <div id="mobile-module-drawer"
+    class="fixed inset-0 z-50 bg-[#243725]/60 backdrop-blur-xs hidden items-end sm:items-center justify-center p-0 sm:p-4 no-print transition-all duration-300"
+    role="dialog" aria-modal="true" aria-labelledby="mobile-drawer-title">
+
+    <!-- Backdrop overlay -->
+    <div id="mobile-drawer-backdrop" class="absolute inset-0"></div>
+
+    <!-- Drawer Content Box -->
+    <div
+      class="relative z-10 bg-[#FFFFFF] rounded-t-[32px] sm:rounded-3xl max-w-md w-full p-5 sm:p-6 border border-[#D8E3D5] shadow-2xl space-y-4 animate-scale-up max-h-[85vh] overflow-y-auto">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between border-b border-[#D8E3D5]/70 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div
+            class="w-8 h-8 rounded-xl bg-[#EEF2E8] border border-[#CBDAC8] flex items-center justify-center text-[#3E7245] shadow-xs">
+            <span class="material-symbols-outlined text-[18px]">grid_view</span>
+          </div>
+          <div>
+            <h3 id="mobile-drawer-title" class="text-sm font-bold text-[#243725]">Survey Modules</h3>
+            <p class="text-[11px] text-[#657C69]">Jump directly to any section</p>
+          </div>
+        </div>
+        <button type="button" id="close-mobile-drawer" aria-label="Close directory"
+          class="w-8 h-8 rounded-full bg-[#EEF2E8] flex items-center justify-center text-[#657C69] hover:bg-[#D8E3D5] transition-all">
+          <span class="material-symbols-outlined text-base">close</span>
+        </button>
+      </div>
+
+      <!-- Module Section Links -->
+      <nav class="space-y-2" aria-label="Mobile Survey Sections">
+        <a href="#module-a"
+          class="mobile-waypoint-link flex items-center justify-between p-3 rounded-2xl border border-[#D8E3D5] state-pending transition-all"
+          data-module="a">
+          <div class="flex items-center gap-3">
+            <span class="module-badge w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">A</span>
+            <span class="module-name text-xs sm:text-[13px] font-bold">Demographic</span>
+          </div>
+          <span class="module-status text-[11px] font-medium text-[#657C69]">Incomplete</span>
+        </a>
+
+        <a href="#module-b"
+          class="mobile-waypoint-link flex items-center justify-between p-3 rounded-2xl border border-[#D8E3D5] state-pending transition-all"
+          data-module="b">
+          <div class="flex items-center gap-3">
+            <span class="module-badge w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">B</span>
+            <span class="module-name text-xs sm:text-[13px] font-bold">PHQ-9</span>
+          </div>
+          <span class="module-status text-[11px] font-medium text-[#657C69]">Incomplete</span>
+        </a>
+
+        <a href="#module-c"
+          class="mobile-waypoint-link flex items-center justify-between p-3 rounded-2xl border border-[#D8E3D5] state-pending transition-all"
+          data-module="c">
+          <div class="flex items-center gap-3">
+            <span class="module-badge w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">C</span>
+            <span class="module-name text-xs sm:text-[13px] font-bold">Academic</span>
+          </div>
+          <span class="module-status text-[11px] font-medium text-[#657C69]">Incomplete</span>
+        </a>
+
+        <a href="#module-d"
+          class="mobile-waypoint-link flex items-center justify-between p-3 rounded-2xl border border-[#D8E3D5] state-pending transition-all"
+          data-module="d">
+          <div class="flex items-center gap-3">
+            <span class="module-badge w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">D</span>
+            <span class="module-name text-xs sm:text-[13px] font-bold">Future &amp; AI</span>
+          </div>
+          <span class="module-status text-[11px] font-medium text-[#657C69]">Incomplete</span>
+        </a>
+
+        <a href="#module-e"
+          class="mobile-waypoint-link flex items-center justify-between p-3 rounded-2xl border border-[#D8E3D5] state-pending transition-all"
+          data-module="e">
+          <div class="flex items-center gap-3">
+            <span class="module-badge w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">E</span>
+            <span class="module-name text-xs sm:text-[13px] font-bold">Rest &amp; Vitality</span>
+          </div>
+          <span class="module-status text-[11px] font-medium text-[#657C69]">Incomplete</span>
+        </a>
+
+        <a href="#module-f"
+          class="mobile-waypoint-link flex items-center justify-between p-3 rounded-2xl border border-[#D8E3D5] state-pending transition-all"
+          data-module="f">
+          <div class="flex items-center gap-3">
+            <span class="module-badge w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">F</span>
+            <span class="module-name text-xs sm:text-[13px] font-bold">Social Support</span>
+          </div>
+          <span class="module-status text-[11px] font-medium text-[#657C69]">Incomplete</span>
+        </a>
+
+        <a href="#module-g"
+          class="mobile-waypoint-link flex items-center justify-between p-3 rounded-2xl border border-[#D8E3D5] state-pending transition-all"
+          data-module="g">
+          <div class="flex items-center gap-3">
+            <span class="module-badge w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">G</span>
+            <span class="module-name text-xs sm:text-[13px] font-bold">Earth &amp; Hearth</span>
+          </div>
+          <span class="module-status text-[11px] font-medium text-[#657C69]">Incomplete</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+
 </body>
 
 </html>

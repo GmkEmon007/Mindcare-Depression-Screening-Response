@@ -1269,17 +1269,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (index >= stepModuleIds.length) index = stepModuleIds.length - 1;
     currentStepIndex = index;
     updateStepUI();
+    if (typeof updateNavigationModules === 'function') {
+      updateNavigationModules(stepModuleIds[currentStepIndex]);
+    }
 
     if (shouldScroll) {
+      const targetSec = document.getElementById(stepModuleIds[currentStepIndex]);
       const tracker = document.getElementById('questionnaire-tracker');
-      if (tracker) {
-        const topOffset = tracker.getBoundingClientRect().top + window.pageYOffset - 90;
+      const target = isStepMode ? tracker : targetSec;
+      if (target) {
+        const topOffset = target.getBoundingClientRect().top + window.pageYOffset - 90;
         window.scrollTo({ top: topOffset, behavior: 'smooth' });
       }
     }
   }
 
   function setupStepNavigation() {
+    // Waypoint links in Garden Navbar
+    document.querySelectorAll('.waypoint-link, .mobile-waypoint-link').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const modKey = link.getAttribute('data-module');
+        if (modKey) {
+          const modId = `module-${modKey}`;
+          const targetStepIdx = stepModuleIds.indexOf(modId);
+          if (targetStepIdx !== -1) {
+            goToStep(targetStepIdx, true);
+          }
+        }
+      });
+    });
+
     // Start Questionnaire CTA Button in Hero
     const heroStartBtn = document.getElementById('start-questionnaire-btn');
     if (heroStartBtn) {
