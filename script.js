@@ -252,25 +252,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     let severity = 'Minimal (নগণ্য)';
-    let badgeClass = 'bg-[#F0F7FF] text-[#0284C7] border border-[#BAE6FD]';
-    let severityColor = '#0284C7';
+    let badgeClass = 'bg-[#DCE8D5] text-[#34483A] border border-[#C6D8BE]';
+    let severityColor = '#71866B';
 
     if (total >= 20) {
       severity = 'Severe Depression (তীব্র বিষণ্নতা)';
-      badgeClass = 'bg-[#FEE2E2] text-[#991B1B] border border-[#FECACA]';
-      severityColor = '#DC2626';
+      badgeClass = 'bg-[#F9E7E4] text-[#A63529] border border-[#F2C1BC]';
+      severityColor = '#A63529';
     } else if (total >= 15) {
       severity = 'Mod. Severe (মাঝারি তীব্র)';
-      badgeClass = 'bg-[#FFEDD5] text-[#C2410C] border border-[#FED7AA]';
-      severityColor = '#EA580C';
+      badgeClass = 'bg-[#FCECE4] text-[#B85736] border border-[#F5D0C0]';
+      severityColor = '#B85736';
     } else if (total >= 10) {
       severity = 'Moderate (মাঝারি)';
-      badgeClass = 'bg-[#FEF3C7] text-[#D97706] border border-[#FDE68A]';
-      severityColor = '#E08738';
+      badgeClass = 'bg-[#F9EED9] text-[#8C6228] border border-[#EED7B0]';
+      severityColor = '#8C6228';
     } else if (total >= 5) {
       severity = 'Mild (মৃদু)';
-      badgeClass = 'bg-[#F0FDFA] text-[#0D9488] border border-[#99F6E4]';
-      severityColor = '#0D9488';
+      badgeClass = 'bg-[#EAECE0] text-[#556345] border border-[#D4D9C4]';
+      severityColor = '#556345';
     }
 
     // Update Header HUD
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isActive) {
           mobLink.classList.add('state-active');
           if (statusSpan) {
-            statusSpan.className = 'module-status text-[11px] font-bold text-[#2563EB]';
+            statusSpan.className = 'module-status text-[11px] font-bold text-[#71866B]';
             statusSpan.textContent = isCompleted ? 'Active (Completed ✓)' : 'Active Section';
           }
         } else if (isCompleted) {
@@ -453,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           mobLink.classList.add('state-pending');
           if (statusSpan) {
-            statusSpan.className = 'module-status text-[11px] font-medium text-[#64748B]';
+            statusSpan.className = 'module-status text-[11px] font-medium text-[#7F9386]';
             statusSpan.textContent = 'Incomplete';
           }
         }
@@ -706,8 +706,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (statusText) statusText.textContent = 'Courtyard Rain Active (432Hz Ambient Soundscape)';
         if (waveIndicator) waveIndicator.classList.remove('hidden');
-        if (btn) btn.classList.add('bg-[#F1F5F9]', 'border-[#2563EB]');
-        if (floatingBtn) floatingBtn.classList.add('bg-[#2563EB]', 'text-white');
+        if (btn) btn.classList.add('bg-[#DCE8D5]', 'border-[#71866B]');
+        if (floatingBtn) floatingBtn.classList.add('bg-[#71866B]', 'text-white');
         showToast('Ambient 432Hz Courtyard Rain Started');
       } catch (err) {
         console.error('Audio init error:', err);
@@ -728,8 +728,8 @@ document.addEventListener('DOMContentLoaded', () => {
       isPlayingSound = false;
       if (statusText) statusText.textContent = 'Soft Courtyard Rain Soundscape (432Hz ambient frequency)';
       if (waveIndicator) waveIndicator.classList.add('hidden');
-      if (btn) btn.classList.remove('bg-[#F1F5F9]', 'border-[#2563EB]');
-      if (floatingBtn) floatingBtn.classList.remove('bg-[#2563EB]', 'text-white');
+      if (btn) btn.classList.remove('bg-[#DCE8D5]', 'border-[#71866B]');
+      if (floatingBtn) floatingBtn.classList.remove('bg-[#71866B]', 'text-white');
       showToast('Soundscape Paused');
     }
   }
@@ -1130,7 +1130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!toast) {
       toast = document.createElement('div');
       toast.id = 'zen-toast';
-      toast.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[#0F172A] text-white px-5 py-2.5 rounded-full text-xs font-medium shadow-xl transition-all duration-300 opacity-0 pointer-events-none border border-[#334155]';
+      toast.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[#34483A] text-white px-5 py-2.5 rounded-full text-xs font-medium shadow-xl transition-all duration-300 opacity-0 pointer-events-none border border-[#5A6F60]';
       document.body.appendChild(toast);
     }
     toast.textContent = msg;

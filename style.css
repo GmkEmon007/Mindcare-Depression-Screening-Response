@@ -7,29 +7,30 @@
    1. Design Tokens & CSS Custom Properties
    -------------------------------------------------------------------------- */
 :root {
-  --color-canvas-bg: #F0F4F8;         /* Soft Mist Canvas */
-  --color-section-bg: #FFFFFF;        /* Pure White Bento Section */
-  --color-card-surface: #F8FAFC;      /* Soft Cloud Question Card */
-  --color-border-subtle: #E2E8F0;     /* Slate Mist Border */
-  --color-text-primary: #0F172A;      /* Deep Midnight Slate */
-  --color-text-secondary: #475569;    /* Balanced Slate Guidance */
-  --color-text-muted: #64748B;        /* Cool Slate Subtitles */
-  --color-calm-primary: #2563EB;      /* Serene Royal Blue */
-  --color-calm-hover: #1D4ED8;        /* Deep Ocean Blue */
-  --color-calm-soft: #EFF6FF;         /* Soft Sky Mist */
-  --color-warm-accent: #E08738;       /* Soft Golden Apricot */
-  --color-warm-soft: #FEF3C7;         /* Warm Sun Glow */
+  --color-canvas-bg: #F7F6EF;         /* Warm Calming Ivory/Linen */
+  --color-section-bg: #FFFFFF;        /* Pure White Surface */
+  --color-card-surface: #FAF9F3;      /* Soft Ivory Tint Question Card */
+  --color-border-subtle: #E3E5DC;     /* Gentle Botanical Sand Border */
+  --color-border-active: #A8B99A;     /* Secondary Sage Focus Border */
+  --color-text-primary: #34483A;      /* Deep Forest Slate */
+  --color-text-secondary: #5A6F60;    /* Muted Forest Guidance */
+  --color-text-muted: #7F9386;        /* Sage Slate Subtitles */
+  --color-primary: #71866B;           /* Primary Restorative Sage */
+  --color-primary-hover: #5D7258;     /* Deep Sage */
+  --color-secondary: #A8B99A;         /* Secondary Soft Moss */
+  --color-soft-accent: #DCE8D5;       /* Soft Celadon Accent */
+  --color-accent-border: #C6D8BE;     /* Celadon Border */
 
-  /* Aliases for compatibility */
-  --color-sandstone: #F0F4F8;
+  /* Legacy aliases for compatibility */
+  --color-sandstone: #F7F6EF;
   --color-parchment: #FFFFFF;
-  --color-linen-border: #E2E8F0;
-  --color-terracotta-accent: #2563EB;
-  --color-terracotta-primary: #2563EB;
-  --color-terracotta-soft: #EFF6FF;
-  --color-espresso: #0F172A;
-  --color-espresso-subtle: #64748B;
-  --color-espresso-text: #0F172A;
+  --color-linen-border: #E3E5DC;
+  --color-terracotta-accent: #71866B;
+  --color-terracotta-primary: #71866B;
+  --color-terracotta-soft: #DCE8D5;
+  --color-espresso: #34483A;
+  --color-espresso-subtle: #7F9386;
+  --color-espresso-text: #34483A;
 }
 
 /* --------------------------------------------------------------------------
@@ -50,7 +51,14 @@ html {
 
 body {
   font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
-  background-color: var(--color-sandstone);
+  background-color: #F7F6EF;
+  background-image:
+    radial-gradient(100% 60% at 50% 0%, rgba(220, 232, 213, 0.55) 0%, rgba(247, 246, 239, 0.4) 60%, transparent 100%),
+    radial-gradient(80% 50% at 100% 25%, rgba(232, 239, 229, 0.50) 0%, transparent 70%),
+    radial-gradient(70% 50% at 0% 65%, rgba(243, 239, 230, 0.60) 0%, transparent 70%),
+    radial-gradient(80% 60% at 85% 90%, rgba(220, 232, 213, 0.40) 0%, transparent 70%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: var(--color-espresso-text);
   max-width: 100%;
   overflow-x: clip;
@@ -82,13 +90,13 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: #CBD6C6;
   border-radius: 9999px;
   border: 2px solid var(--color-sandstone);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: #A8B99A;
 }
 
 #zen-progress-bar {
@@ -107,16 +115,16 @@ body {
   cursor: pointer;
   outline: none;
   background-color: #FFFFFF !important;
-  border: 1px solid #CBD5E1 !important;
-  color: #1E293B !important;
+  border: 1px solid #E3E5DC !important;
+  color: #34483A !important;
 }
 
 .pebble-btn:hover {
   transform: translateY(-1.5px);
-  border-color: #38BDF8 !important;
-  background-color: #F0F9FF !important;
-  color: #0284C7 !important;
-  box-shadow: 0 4px 12px -2px rgba(56, 189, 248, 0.22) !important;
+  border-color: #A8B99A !important;
+  background-color: #F3F7F1 !important;
+  color: #71866B !important;
+  box-shadow: 0 4px 12px -2px rgba(113, 134, 107, 0.2) !important;
 }
 
 .pebble-btn:active {
@@ -124,24 +132,25 @@ body {
 }
 
 .pebble-btn:focus-visible {
-  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.25);
+  box-shadow: 0 0 0 3px rgba(113, 134, 107, 0.25) !important;
 }
 
-/* Active Pebble State (Serene Oasis: Coastal Royal Blue #2563EB) */
+/* Active Pebble State (Botanical Sage #71866B) */
 .pebble-btn.active {
-  background-color: #2563EB !important;
+  background-color: #71866B !important;
   color: #FFFFFF !important;
-  border-color: #1D4ED8 !important;
-  box-shadow: 0 4px 14px -1px rgba(37, 99, 235, 0.35) !important;
+  border-color: #5D7258 !important;
+  box-shadow: 0 4px 14px -1px rgba(113, 134, 107, 0.35) !important;
 }
 
 .pebble-btn.active span,
-.pebble-btn.active p {
+.pebble-btn.active p,
+.pebble-btn.active strong {
   color: #FFFFFF !important;
 }
 
 .pebble-btn.active .font-bengali {
-  color: #DBEAFE !important;
+  color: #EAF1E7 !important;
 }
 
 /* Ripple Micro-Interaction */
@@ -166,17 +175,17 @@ body {
    -------------------------------------------------------------------------- */
 .question-card {
   transition: all 0.25s ease;
-  background-color: #F8FAFC !important;
-  border: 1px solid #E2E8F0 !important;
+  background-color: #FAF9F3 !important;
+  border: 1px solid #E3E5DC !important;
 }
 
 .question-card:hover {
-  border-color: #CBD5E1 !important;
+  border-color: #CBD6C6 !important;
 }
 
 .question-card.answered {
-  border-color: #93C5FD !important;
-  box-shadow: 0 4px 16px -2px rgba(37, 99, 235, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.03) !important;
+  border-color: #71866B !important;
+  box-shadow: 0 4px 16px -2px rgba(113, 134, 107, 0.12), 0 2px 6px -1px rgba(52, 72, 58, 0.03) !important;
 }
 
 .question-card.answered .answered-badge {
@@ -215,11 +224,11 @@ body {
 }
 
 .guide-card.active {
-  background-color: #2B6CB0 !important;
+  background-color: #71866B !important;
   color: #FFFFFF !important;
-  border-color: #2B6CB0 !important;
+  border-color: #5D7258 !important;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px -2px rgba(43, 108, 176, 0.35);
+  box-shadow: 0 6px 16px -2px rgba(113, 134, 107, 0.35);
 }
 
 .guide-card.active * {
@@ -290,13 +299,13 @@ body {
 
 /* 1. Active State: Dark brown background with white text (Unmistakable) */
 .waypoint-link.state-active {
-  background-color: #0F172A !important;
+  background-color: #34483A !important;
   color: #FFFFFF !important;
-  border-color: #0F172A !important;
+  border-color: #34483A !important;
   box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.28) !important;
 }
 .waypoint-link.state-active .module-letter-badge {
-  background-color: #2563EB !important;
+  background-color: #71866B !important;
   color: #FFFFFF !important;
 }
 
@@ -321,12 +330,12 @@ body {
   border-color: #E6DED1 !important;
 }
 .waypoint-link.state-pending .module-letter-badge {
-  background-color: #F1F5F9 !important;
-  color: #64748B !important;
+  background-color: #FAF9F3 !important;
+  color: #7F9386 !important;
 }
 .waypoint-link.state-pending:hover {
-  background-color: #F8FAFC !important;
-  border-color: #CBD5E1 !important;
+  background-color: #FAF9F3 !important;
+  border-color: #CBD6C6 !important;
 }
 
 /* Mobile Drawer Links */
@@ -335,12 +344,12 @@ body {
 }
 
 .mobile-waypoint-link.state-active {
-  background-color: #0F172A !important;
+  background-color: #34483A !important;
   color: #FFFFFF !important;
-  border-color: #0F172A !important;
+  border-color: #34483A !important;
 }
 .mobile-waypoint-link.state-active .module-badge {
-  background-color: #2563EB !important;
+  background-color: #71866B !important;
   color: #FFFFFF !important;
 }
 .mobile-waypoint-link.state-active .module-name {
@@ -348,23 +357,23 @@ body {
 }
 
 .mobile-waypoint-link.state-completed {
-  background-color: #F0F7FF !important;
-  color: #1E4E8C !important;
-  border-color: #BAE6FD !important;
+  background-color: #DCE8D5 !important;
+  color: #34483A !important;
+  border-color: #C6D8BE !important;
 }
 .mobile-waypoint-link.state-completed .module-badge {
-  background-color: #E0F2FE !important;
-  color: #0284C7 !important;
+  background-color: #C6D8BE !important;
+  color: #34483A !important;
 }
 
 .mobile-waypoint-link.state-pending {
   background-color: #FFFFFF !important;
-  color: #334155 !important;
-  border-color: #E2E8F0 !important;
+  color: #5A6F60 !important;
+  border-color: #E3E5DC !important;
 }
 .mobile-waypoint-link.state-pending .module-badge {
-  background-color: #F1F5F9 !important;
-  color: #64748B !important;
+  background-color: #FAF9F3 !important;
+  color: #7F9386 !important;
 }
   50% {
     transform: translateY(3.5px) scale(0.992);
@@ -379,10 +388,10 @@ body {
    -------------------------------------------------------------------------- */
 input.zen-input,
 .zen-input {
-  background-color: var(--color-sandstone) !important;
-  border: 1.5px solid var(--color-linen-border) !important;
+  background-color: #FFFFFF !important;
+  border: 1.5px solid #E3E5DC !important;
   border-radius: 20px !important;
-  color: var(--color-espresso-text) !important;
+  color: #34483A !important;
   font-weight: 500;
   font-size: 15px;
   height: 52px !important;
@@ -399,28 +408,28 @@ input.zen-input,
 
 input.zen-input:hover,
 .zen-input:hover {
-  border-color: #CBD5E1 !important;
+  border-color: #CBD6C6 !important;
   background-color: #FFFFFF !important;
 }
 
 input.zen-input:focus,
 .zen-input:focus {
   background-color: #FFFFFF !important;
-  border-color: var(--color-terracotta-accent) !important;
-  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.15) !important;
+  border-color: #71866B !important;
+  box-shadow: 0 0 0 3px rgba(113, 134, 107, 0.18) !important;
   outline: none !important;
 }
 
 .zen-input::placeholder {
-  color: #94A3B8;
+  color: #9AA89D;
   font-weight: 400;
 }
 
 .zen-unit-badge {
-  background-color: var(--color-sandstone) !important;
-  border: 1.5px solid var(--color-linen-border) !important;
+  background-color: #FAF9F3 !important;
+  border: 1.5px solid #E3E5DC !important;
   border-radius: 20px !important;
-  color: #64748B !important;
+  color: #5A6F60 !important;
   font-weight: 500;
   font-size: 13.5px;
   height: 52px !important;
@@ -436,27 +445,27 @@ input.zen-input:focus,
 }
 
 .zen-unit-badge:hover {
-  background-color: #FFFFFF !important;
-  border-color: #CBD5E1 !important;
+  background-color: #EFEFE5 !important;
+  border-color: #CBD6C6 !important;
 }
 
 /* PHQ-9 Instruction Prompt Highlight Effect (Task 5) */
 .phq-instruction-highlight {
   position: relative;
   display: inline-block;
-  background: linear-gradient(135deg, #EFF6FF 0%, #E0F2FE 100%);
-  border: 1.5px solid #BAE6FD;
-  border-left: 4px solid var(--color-terracotta-accent);
+  background: linear-gradient(135deg, #F3F7F1 0%, #DCE8D5 100%);
+  border: 1.5px solid #C6D8BE;
+  border-left: 4px solid #71866B;
   border-radius: 18px;
   padding: 12px 18px;
-  box-shadow: 0 4px 14px -3px rgba(43, 108, 176, 0.12);
+  box-shadow: 0 4px 14px -3px rgba(113, 134, 107, 0.12);
   transition: all 0.25s ease;
 }
 
 .phq-instruction-highlight:hover {
-  border-color: #DD956C;
-  border-left-color: #7B3217;
-  box-shadow: 0 6px 20px -3px rgba(138, 69, 0, 0.16);
+  border-color: #A8B99A;
+  border-left-color: #5D7258;
+  box-shadow: 0 6px 20px -3px rgba(113, 134, 107, 0.18);
   transform: translateY(-1px);
 }
 
@@ -464,7 +473,7 @@ input.zen-input:focus,
   appearance: none;
   width: 22px;
   height: 22px;
-  border: 2px solid var(--color-terracotta-accent);
+  border: 2px solid #71866B;
   border-radius: 7px;
   outline: none;
   cursor: pointer;
@@ -475,13 +484,13 @@ input.zen-input:focus,
 }
 
 .custom-checkbox:hover {
-  border-color: var(--color-espresso);
+  border-color: #5D7258;
   transform: scale(1.05);
 }
 
 .custom-checkbox:checked {
-  background-color: var(--color-terracotta-accent);
-  border-color: var(--color-terracotta-accent);
+  background-color: #71866B;
+  border-color: #71866B;
 }
 
 .custom-checkbox:checked::before {
@@ -494,23 +503,24 @@ input.zen-input:focus,
 }
 
 .custom-checkbox:focus-visible {
-  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.25);
+  box-shadow: 0 0 0 3px rgba(113, 134, 107, 0.25);
 }
 
 /* --------------------------------------------------------------------------
    7. Micro-Animations, Soundscape & Floating HUD
    -------------------------------------------------------------------------- */
 @keyframes ambientGlow {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: scale(1) translate(0, 0);
     opacity: 0.45;
   }
-
-  50% {
-    transform: scale(1.08) translate(10px, -15px);
+  33% {
+    transform: scale(1.08) translate(15px, -20px);
     opacity: 0.65;
+  }
+  66% {
+    transform: scale(0.96) translate(-10px, 12px);
+    opacity: 0.50;
   }
 }
 

@@ -27,17 +27,18 @@ final q/
 
 ---
 
-## 🎨 Design System: Serene Oasis (Clinical Trust & Emotional Stability)
+## 🎨 Design System: Botanical Sanctuary
 
-- **Canvas Background (#F8FAFC - Soft Cloud Gray):** Airy, clean, modern canvas that eliminates visual clutter and clinical glare.
-- **Card Surface (#FFFFFF Pure White) & Borders (#E2E8F0 Slate Mist):** Crisp contrast and subtle separation reducing cognitive fatigue.
-- **Primary Calm Anchor (#2B6CB0 Coastal Slate Blue):** Clinically trusted tone that lowers anxiety, promotes focus, and anchors interaction.
-- **Warm Accent (#E08738 Soft Golden Apricot):** Gentle optimism and clear visual hierarchy for progress and action items.
-- **Typography (#0F172A Deep Midnight Slate & #64748B Cool Slate):** High-contrast, photophobia-friendly typography for bilingual legibility (strictly exceeding WCAG 2.1 AAA ratios).
+- **Background (`#F7F6EF` - Warm Calming Linen):** Organic, comforting parchment canvas that removes clinical glare.
+- **Surface (`#FFFFFF` - Pure White):** Clean, crisp floating bento cards that maximize focus and readability.
+- **Primary (`#71866B` - Restorative Botanical Sage):** Natural, regenerative biophilic tone for interactive elements and anchors.
+- **Secondary (`#A8B99A` - Soft Moss):** Harmonious supportive tone for progress indicators and hover states.
+- **Text (`#34483A` - Deep Forest Slate):** High-contrast, gentle on eyes, photophobia-friendly typography (strictly exceeding WCAG 2.1 AAA ratios).
+- **Soft Accent (`#DCE8D5` - Pale Celadon):** Calming, non-alarmist pill badges, highlight containers, and icon backgrounds.
 - **Typography Families:**
-  - Fraunces & Noto Serif Bengali for serene editorial titles, quotes, and research headings.
-  - Outfit & Plus Jakarta Sans for clean, readable form controls and numerical metrics.
-  - Material Symbols Outlined for mindful and clinical iconography.
+  - `Fraunces` & `Noto Serif Bengali` for serene editorial titles, quotes, and research headings.
+  - `Outfit` & `Plus Jakarta Sans` for clean, readable form controls and numerical metrics.
+  - `Material Symbols Outlined` for mindful and clinical iconography.
 
 ---
 
