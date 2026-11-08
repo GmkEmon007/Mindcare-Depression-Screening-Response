@@ -1,14 +1,15 @@
-# VU Research — Warm Terracotta Sanctuary (Figma Auto-Layout Master)
+# Context-Aware Depression Screening Response
 
 > **Center for Interdisciplinary Research (CIR), Varendra University**  
 > **Institutional Research Ethics Clearance:** `Protocol #VU/ERC/2026/042`  
-> **Project:** *An Explainable Machine Learning Framework for Context-Aware Depression Screening and Personalized Student Support among University Students in Bangladesh*
+> **Thesis:** *An Explainable Machine Learning Framework for Context-Aware Depression Screening and Personalized Student Support among University Students in Bangladesh*
 
 ---
+### Githuh page: https://gmkemon007.github.io/Depression-Screening-Response/
 
-## 🏛️ Overview
+## 🏛️ Overview-
 
-This web platform implements the **Warm Terracotta Sanctuary** UI/UX design (Figma Auto-Layout Master, Node `187:2` and Mobile Node `187:1964`) into a production-grade, highly responsive, accessible, and interactive clinical screening interface using semantic **HTML5**, modern **CSS3**, and **vanilla JavaScript**.
+This web platform implements the **Warm Terracotta Sanctuary** UI/UX design in Figma then convert into a production-grade, highly responsive, accessible, and interactive clinical screening interface using semantic **HTML5**, modern **CSS3**, and **vanilla JavaScript**.
 
 The aesthetic integrates the academic rigor of an institutional research publication with the warm, reassuring dignity of biophilic healthcare spaces.
 
@@ -26,15 +27,17 @@ final q/
 
 ---
 
-## 🎨 Design System: Warm Terracotta & Linen
+## 🎨 Design System: Serene Oasis (Clinical Trust & Emotional Stability)
 
-- **Terracotta & Sienna Accents (`#C2653E`, `#9A3412`, `#8A4500`):** Earthy grounding tones symbolizing emotional warmth and focus.
-- **Linen & Sandstone (`#FAF6F0`, `#F3EDE2`):** Low-strain, natural paper-like background that eliminates clinical glare.
-- **Deep Espresso (`#241812`, `#1C140E`):** High-contrast typography for bilingual legibility (strictly exceeding WCAG 2.1 AA ratios).
-- **Typography:**
-  - `Fraunces` & `Noto Serif Bengali` for serene editorial titles, quotes, and research headings.
-  - `Outfit` & `Plus Jakarta Sans` for clean, readable form controls and numerical metrics.
-  - `Material Symbols Outlined` for nature and mindful iconography.
+- **Canvas Background (#F8FAFC - Soft Cloud Gray):** Airy, clean, modern canvas that eliminates visual clutter and clinical glare.
+- **Card Surface (#FFFFFF Pure White) & Borders (#E2E8F0 Slate Mist):** Crisp contrast and subtle separation reducing cognitive fatigue.
+- **Primary Calm Anchor (#2B6CB0 Coastal Slate Blue):** Clinically trusted tone that lowers anxiety, promotes focus, and anchors interaction.
+- **Warm Accent (#E08738 Soft Golden Apricot):** Gentle optimism and clear visual hierarchy for progress and action items.
+- **Typography (#0F172A Deep Midnight Slate & #64748B Cool Slate):** High-contrast, photophobia-friendly typography for bilingual legibility (strictly exceeding WCAG 2.1 AAA ratios).
+- **Typography Families:**
+  - Fraunces & Noto Serif Bengali for serene editorial titles, quotes, and research headings.
+  - Outfit & Plus Jakarta Sans for clean, readable form controls and numerical metrics.
+  - Material Symbols Outlined for mindful and clinical iconography.
 
 ---
 

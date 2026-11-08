@@ -252,25 +252,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     let severity = 'Minimal (নগণ্য)';
-    let badgeClass = 'bg-[#FAF6F0] text-[#1C140E] border border-[#E6DED1]';
-    let severityColor = '#BAA994';
+    let badgeClass = 'bg-[#F0F7FF] text-[#0284C7] border border-[#BAE6FD]';
+    let severityColor = '#0284C7';
 
     if (total >= 20) {
       severity = 'Severe Depression (তীব্র বিষণ্নতা)';
-      badgeClass = 'bg-[#5A1E0B] text-white';
-      severityColor = '#5A1E0B';
+      badgeClass = 'bg-[#FEE2E2] text-[#991B1B] border border-[#FECACA]';
+      severityColor = '#DC2626';
     } else if (total >= 15) {
       severity = 'Mod. Severe (মাঝারি তীব্র)';
-      badgeClass = 'bg-[#7C2D12] text-white';
-      severityColor = '#7C2D12';
+      badgeClass = 'bg-[#FFEDD5] text-[#C2410C] border border-[#FED7AA]';
+      severityColor = '#EA580C';
     } else if (total >= 10) {
       severity = 'Moderate (মাঝারি)';
-      badgeClass = 'bg-[#C2410C] text-white';
-      severityColor = '#C2410C';
+      badgeClass = 'bg-[#FEF3C7] text-[#D97706] border border-[#FDE68A]';
+      severityColor = '#E08738';
     } else if (total >= 5) {
       severity = 'Mild (মৃদু)';
-      badgeClass = 'bg-[#DD956C] text-[#1C140E]';
-      severityColor = '#DD956C';
+      badgeClass = 'bg-[#F0FDFA] text-[#0D9488] border border-[#99F6E4]';
+      severityColor = '#0D9488';
     }
 
     // Update Header HUD
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isActive) {
           mobLink.classList.add('state-active');
           if (statusSpan) {
-            statusSpan.className = 'module-status text-[11px] font-bold text-[#DD956C]';
+            statusSpan.className = 'module-status text-[11px] font-bold text-[#2563EB]';
             statusSpan.textContent = isCompleted ? 'Active (Completed ✓)' : 'Active Section';
           }
         } else if (isCompleted) {
@@ -453,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           mobLink.classList.add('state-pending');
           if (statusSpan) {
-            statusSpan.className = 'module-status text-[11px] font-medium text-[#524032]';
+            statusSpan.className = 'module-status text-[11px] font-medium text-[#64748B]';
             statusSpan.textContent = 'Incomplete';
           }
         }
@@ -461,21 +461,80 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 7b. Check If Question Card Is Completed
+  function isCardAnswered(card) {
+    if (!card) return true;
+
+    // 1. Pebble Button Group
+    const group = card.querySelector('[data-pebble-group]');
+    if (group) {
+      return group.querySelector('.pebble-btn.active') !== null;
+    }
+
+    // 2. Input A1 (Age)
+    const ageInput = card.querySelector('#input-age');
+    if (ageInput) {
+      return ageInput.value.trim() !== '';
+    }
+
+    // 3. Input A2 (Height: ft or in)
+    const ftInput = card.querySelector('#input-height-ft');
+    const inInput = card.querySelector('#input-height-in');
+    if (ftInput || inInput) {
+      return (ftInput && ftInput.value.trim() !== '') || (inInput && inInput.value.trim() !== '');
+    }
+
+    // 4. Input A4 (Weight)
+    const weightInput = card.querySelector('#input-weight');
+    if (weightInput) {
+      return weightInput.value.trim() !== '';
+    }
+
+    // 5. Input G2 (Income)
+    const incomeInput = card.querySelector('#input-income');
+    if (incomeInput) {
+      return incomeInput.value.trim() !== '';
+    }
+
+    // Generic fallback for any other text/number input or select inside card
+    const anyInput = card.querySelector('input:not([type="checkbox"]), select');
+    if (anyInput) {
+      return anyInput.value.trim() !== '';
+    }
+
+    return true;
+  }
+
+  // Get all currently unanswered question cards in document order
+  function getUnansweredCards() {
+    const allCards = document.querySelectorAll('.question-card');
+    const unanswered = [];
+    allCards.forEach(card => {
+      if (!isCardAnswered(card)) {
+        unanswered.push(card);
+      }
+    });
+    return unanswered;
+  }
+
   // 8. Smart "Next Unanswered" Navigation
   function jumpToNextUnanswered() {
-    const allGroups = document.querySelectorAll('[data-pebble-group]');
-    for (const g of allGroups) {
-      if (!g.querySelector('.pebble-btn.active')) {
-        const card = g.closest('.question-card') || g;
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        card.classList.add('highlight-unanswered');
-        setTimeout(() => card.classList.remove('highlight-unanswered'), 3000);
-        showToast('Jumped to next unanswered question');
-        return;
+    const unanswered = getUnansweredCards();
+    if (unanswered.length > 0) {
+      const card = unanswered[0];
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      card.classList.add('highlight-unanswered');
+      setTimeout(() => card.classList.remove('highlight-unanswered'), 3000);
+      const focusable = card.querySelector('input:not([type="checkbox"]), select, .pebble-btn');
+      if (focusable) {
+        setTimeout(() => focusable.focus(), 400);
       }
+      showToast(`Jumped to unanswered question (${unanswered.length} remaining)`);
+      return;
     }
     showToast('All 54 questions completed! Ready to submit.');
-    document.getElementById('submission-card').scrollIntoView({ behavior: 'smooth' });
+    const subCard = document.getElementById('submission-card');
+    if (subCard) subCard.scrollIntoView({ behavior: 'smooth' });
   }
 
   // 9. Sticky Nav Elevation, Scroll-Spy & Mobile Directory
@@ -647,8 +706,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (statusText) statusText.textContent = 'Courtyard Rain Active (432Hz Ambient Soundscape)';
         if (waveIndicator) waveIndicator.classList.remove('hidden');
-        if (btn) btn.classList.add('bg-[#FAF6F0]', 'border-[#8A4500]');
-        if (floatingBtn) floatingBtn.classList.add('bg-[#8A4500]', 'text-white');
+        if (btn) btn.classList.add('bg-[#F1F5F9]', 'border-[#2563EB]');
+        if (floatingBtn) floatingBtn.classList.add('bg-[#2563EB]', 'text-white');
         showToast('Ambient 432Hz Courtyard Rain Started');
       } catch (err) {
         console.error('Audio init error:', err);
@@ -669,8 +728,8 @@ document.addEventListener('DOMContentLoaded', () => {
       isPlayingSound = false;
       if (statusText) statusText.textContent = 'Soft Courtyard Rain Soundscape (432Hz ambient frequency)';
       if (waveIndicator) waveIndicator.classList.add('hidden');
-      if (btn) btn.classList.remove('bg-[#FAF6F0]', 'border-[#8A4500]');
-      if (floatingBtn) floatingBtn.classList.remove('bg-[#8A4500]', 'text-white');
+      if (btn) btn.classList.remove('bg-[#F1F5F9]', 'border-[#2563EB]');
+      if (floatingBtn) floatingBtn.classList.remove('bg-[#2563EB]', 'text-white');
       showToast('Soundscape Paused');
     }
   }
@@ -862,10 +921,31 @@ document.addEventListener('DOMContentLoaded', () => {
   async function submitQuestionnaire() {
     const consentCheck = document.getElementById('consent-checkbox');
     if (consentCheck && !consentCheck.checked) {
-      showToast('অনুগ্রহ করে সম্মতি বক্সে টিক দিন (Please agree to consent)');
+      showToast('অনুগ্রহ করে সম্মতি বক্সে টিক দিন (Please agree to voluntary consent)');
       consentCheck.focus();
-      consentCheck.parentElement.classList.add('ring-2', 'ring-red-400', 'p-1', 'rounded-lg');
-      setTimeout(() => consentCheck.parentElement.classList.remove('ring-2', 'ring-red-400', 'p-1', 'rounded-lg'), 2500);
+      const consentParent = consentCheck.closest('.consent-box') || consentCheck.parentElement;
+      consentParent.classList.add('ring-2', 'ring-red-400', 'p-1', 'rounded-lg');
+      consentParent.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => consentParent.classList.remove('ring-2', 'ring-red-400', 'p-1', 'rounded-lg'), 2500);
+      return;
+    }
+
+    // STRICT VALIDATION: The participant must answer every single question before submitting
+    const unansweredCards = getUnansweredCards();
+    if (unansweredCards.length > 0) {
+      const remainingCount = unansweredCards.length;
+      const firstUnanswered = unansweredCards[0];
+
+      showToast(`⚠️ অনুগ্রহ করে সব প্রশ্নের উত্তর দিন (Please answer all questions before submitting — ${remainingCount} remaining)`);
+      
+      firstUnanswered.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstUnanswered.classList.add('highlight-unanswered');
+      setTimeout(() => firstUnanswered.classList.remove('highlight-unanswered'), 3500);
+
+      const focusable = firstUnanswered.querySelector('input:not([type="checkbox"]), select, .pebble-btn');
+      if (focusable) {
+        setTimeout(() => focusable.focus(), 400);
+      }
       return;
     }
 
@@ -905,7 +985,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (submitBtn) {
       submitBtn.innerHTML = '<span class="material-symbols-outlined text-sm">check_circle</span> Submitted';
-      submitBtn.classList.remove('bg-[#241812]');
+      submitBtn.classList.remove('bg-[#2563EB]', 'bg-[#2D3A28]', 'bg-[#0F172A]');
       submitBtn.classList.add('bg-emerald-900');
     }
 
@@ -1050,7 +1130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!toast) {
       toast = document.createElement('div');
       toast.id = 'zen-toast';
-      toast.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[#241812] text-white px-5 py-2.5 rounded-full text-xs font-medium shadow-xl transition-all duration-300 opacity-0 pointer-events-none border border-[#8A4500]/40';
+      toast.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[#0F172A] text-white px-5 py-2.5 rounded-full text-xs font-medium shadow-xl transition-all duration-300 opacity-0 pointer-events-none border border-[#334155]';
       document.body.appendChild(toast);
     }
     toast.textContent = msg;

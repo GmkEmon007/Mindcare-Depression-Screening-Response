@@ -7,15 +7,29 @@
    1. Design Tokens & CSS Custom Properties
    -------------------------------------------------------------------------- */
 :root {
-  --color-sandstone: #FAF6F0;
-  --color-parchment: #F3EDE2;
-  --color-linen-border: #E6DED1;
-  --color-terracotta-accent: #8A4500;
-  --color-terracotta-primary: #C2653E;
-  --color-terracotta-soft: #FBECE3;
-  --color-espresso: #241812;
-  --color-espresso-subtle: #524032;
-  --color-espresso-text: #1C140E;
+  --color-canvas-bg: #F0F4F8;         /* Soft Mist Canvas */
+  --color-section-bg: #FFFFFF;        /* Pure White Bento Section */
+  --color-card-surface: #F8FAFC;      /* Soft Cloud Question Card */
+  --color-border-subtle: #E2E8F0;     /* Slate Mist Border */
+  --color-text-primary: #0F172A;      /* Deep Midnight Slate */
+  --color-text-secondary: #475569;    /* Balanced Slate Guidance */
+  --color-text-muted: #64748B;        /* Cool Slate Subtitles */
+  --color-calm-primary: #2563EB;      /* Serene Royal Blue */
+  --color-calm-hover: #1D4ED8;        /* Deep Ocean Blue */
+  --color-calm-soft: #EFF6FF;         /* Soft Sky Mist */
+  --color-warm-accent: #E08738;       /* Soft Golden Apricot */
+  --color-warm-soft: #FEF3C7;         /* Warm Sun Glow */
+
+  /* Aliases for compatibility */
+  --color-sandstone: #F0F4F8;
+  --color-parchment: #FFFFFF;
+  --color-linen-border: #E2E8F0;
+  --color-terracotta-accent: #2563EB;
+  --color-terracotta-primary: #2563EB;
+  --color-terracotta-soft: #EFF6FF;
+  --color-espresso: #0F172A;
+  --color-espresso-subtle: #64748B;
+  --color-espresso-text: #0F172A;
 }
 
 /* --------------------------------------------------------------------------
@@ -68,13 +82,13 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D5C9B8;
+  background: #CBD5E1;
   border-radius: 9999px;
   border: 2px solid var(--color-sandstone);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #BAA994;
+  background: #94A3B8;
 }
 
 #zen-progress-bar {
@@ -88,16 +102,21 @@ body {
 .pebble-btn {
   position: relative;
   overflow: hidden;
-  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   user-select: none;
   cursor: pointer;
   outline: none;
+  background-color: #FFFFFF !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #1E293B !important;
 }
 
 .pebble-btn:hover {
   transform: translateY(-1.5px);
-  border-color: #BAA994;
-  box-shadow: 0 4px 14px -2px rgba(41, 30, 22, 0.1);
+  border-color: #38BDF8 !important;
+  background-color: #F0F9FF !important;
+  color: #0284C7 !important;
+  box-shadow: 0 4px 12px -2px rgba(56, 189, 248, 0.22) !important;
 }
 
 .pebble-btn:active {
@@ -105,20 +124,24 @@ body {
 }
 
 .pebble-btn:focus-visible {
-  box-shadow: 0 0 0 3px rgba(138, 69, 0, 0.35);
+  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.25);
 }
 
-/* Active Pebble State (Figma Exact: Dark Espresso #241812) */
+/* Active Pebble State (Serene Oasis: Coastal Royal Blue #2563EB) */
 .pebble-btn.active {
-  background-color: var(--color-espresso) !important;
+  background-color: #2563EB !important;
   color: #FFFFFF !important;
-  border-color: var(--color-espresso) !important;
-  box-shadow: 0 6px 18px -3px rgba(36, 24, 18, 0.32) !important;
+  border-color: #1D4ED8 !important;
+  box-shadow: 0 4px 14px -1px rgba(37, 99, 235, 0.35) !important;
 }
 
 .pebble-btn.active span,
 .pebble-btn.active p {
   color: #FFFFFF !important;
+}
+
+.pebble-btn.active .font-bengali {
+  color: #DBEAFE !important;
 }
 
 /* Ripple Micro-Interaction */
@@ -143,11 +166,17 @@ body {
    -------------------------------------------------------------------------- */
 .question-card {
   transition: all 0.25s ease;
+  background-color: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+}
+
+.question-card:hover {
+  border-color: #CBD5E1 !important;
 }
 
 .question-card.answered {
-  border-color: var(--color-terracotta-primary);
-  box-shadow: 0 4px 18px -4px rgba(221, 149, 108, 0.18), 0 2px 6px -1px rgba(41, 30, 22, 0.04);
+  border-color: #93C5FD !important;
+  box-shadow: 0 4px 16px -2px rgba(37, 99, 235, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.03) !important;
 }
 
 .question-card.answered .answered-badge {
@@ -186,11 +215,11 @@ body {
 }
 
 .guide-card.active {
-  background-color: var(--color-terracotta-accent) !important;
+  background-color: #2B6CB0 !important;
   color: #FFFFFF !important;
-  border-color: var(--color-terracotta-accent) !important;
+  border-color: #2B6CB0 !important;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px -2px rgba(138, 69, 0, 0.35);
+  box-shadow: 0 6px 16px -2px rgba(43, 108, 176, 0.35);
 }
 
 .guide-card.active * {
@@ -217,7 +246,7 @@ body {
     transform: none !important;
     padding: 6px 12px !important;
     border-radius: 9999px !important;
-    box-shadow: 0 4px 16px -2px rgba(41, 30, 22, 0.08) !important;
+    box-shadow: 0 4px 16px -2px rgba(35, 48, 30, 0.08) !important;
   }
 }
 
@@ -236,8 +265,8 @@ body {
     transform: translateY(2px) scale(0.995);
     box-shadow: 0 16px 36px -6px rgba(41, 30, 22, 0.14),
                 0 4px 12px -2px rgba(138, 69, 0, 0.08) !important;
-    background-color: rgba(255, 253, 249, 0.98) !important;
-    border-color: #D5C9B8 !important;
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    border-color: #E2E8F0 !important;
     animation: navFloatIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 }
@@ -261,14 +290,14 @@ body {
 
 /* 1. Active State: Dark brown background with white text (Unmistakable) */
 .waypoint-link.state-active {
-  background-color: #241812 !important;
+  background-color: #0F172A !important;
   color: #FFFFFF !important;
-  border-color: #241812 !important;
-  box-shadow: 0 4px 14px -2px rgba(36, 24, 18, 0.28) !important;
+  border-color: #0F172A !important;
+  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.28) !important;
 }
 .waypoint-link.state-active .module-letter-badge {
-  background-color: #DD956C !important;
-  color: #241812 !important;
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
 }
 
 /* 2. Completed State: Light background with small green checkmark */
@@ -292,12 +321,12 @@ body {
   border-color: #E6DED1 !important;
 }
 .waypoint-link.state-pending .module-letter-badge {
-  background-color: #F3EDE2 !important;
-  color: #524032 !important;
+  background-color: #F1F5F9 !important;
+  color: #64748B !important;
 }
 .waypoint-link.state-pending:hover {
-  background-color: #FAF6F0 !important;
-  border-color: #D5C9B8 !important;
+  background-color: #F8FAFC !important;
+  border-color: #CBD5E1 !important;
 }
 
 /* Mobile Drawer Links */
@@ -306,36 +335,36 @@ body {
 }
 
 .mobile-waypoint-link.state-active {
-  background-color: #241812 !important;
+  background-color: #0F172A !important;
   color: #FFFFFF !important;
-  border-color: #241812 !important;
+  border-color: #0F172A !important;
 }
 .mobile-waypoint-link.state-active .module-badge {
-  background-color: #DD956C !important;
-  color: #241812 !important;
+  background-color: #2563EB !important;
+  color: #FFFFFF !important;
 }
 .mobile-waypoint-link.state-active .module-name {
   color: #FFFFFF !important;
 }
 
 .mobile-waypoint-link.state-completed {
-  background-color: #F0F7F2 !important;
-  color: #1E3A24 !important;
-  border-color: #C5DDC9 !important;
+  background-color: #F0F7FF !important;
+  color: #1E4E8C !important;
+  border-color: #BAE6FD !important;
 }
 .mobile-waypoint-link.state-completed .module-badge {
-  background-color: #D8ECD9 !important;
-  color: #1B4323 !important;
+  background-color: #E0F2FE !important;
+  color: #0284C7 !important;
 }
 
 .mobile-waypoint-link.state-pending {
-  background-color: #FFFDF9 !important;
-  color: #3D2F24 !important;
-  border-color: #E6DED1 !important;
+  background-color: #FFFFFF !important;
+  color: #334155 !important;
+  border-color: #E2E8F0 !important;
 }
 .mobile-waypoint-link.state-pending .module-badge {
-  background-color: #F3EDE2 !important;
-  color: #524032 !important;
+  background-color: #F1F5F9 !important;
+  color: #64748B !important;
 }
   50% {
     transform: translateY(3.5px) scale(0.992);
@@ -370,20 +399,20 @@ input.zen-input,
 
 input.zen-input:hover,
 .zen-input:hover {
-  border-color: #D5C9B8 !important;
-  background-color: #FDFCFA !important;
+  border-color: #CBD5E1 !important;
+  background-color: #FFFFFF !important;
 }
 
 input.zen-input:focus,
 .zen-input:focus {
   background-color: #FFFFFF !important;
   border-color: var(--color-terracotta-accent) !important;
-  box-shadow: 0 0 0 3px rgba(138, 69, 0, 0.12) !important;
+  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.15) !important;
   outline: none !important;
 }
 
 .zen-input::placeholder {
-  color: #9C8E82;
+  color: #94A3B8;
   font-weight: 400;
 }
 
@@ -391,7 +420,7 @@ input.zen-input:focus,
   background-color: var(--color-sandstone) !important;
   border: 1.5px solid var(--color-linen-border) !important;
   border-radius: 20px !important;
-  color: #524032 !important;
+  color: #64748B !important;
   font-weight: 500;
   font-size: 13.5px;
   height: 52px !important;
@@ -407,20 +436,20 @@ input.zen-input:focus,
 }
 
 .zen-unit-badge:hover {
-  background-color: #FDFCFA !important;
-  border-color: #D5C9B8 !important;
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
 }
 
 /* PHQ-9 Instruction Prompt Highlight Effect (Task 5) */
 .phq-instruction-highlight {
   position: relative;
   display: inline-block;
-  background: linear-gradient(135deg, rgba(251, 236, 227, 0.95) 0%, rgba(246, 215, 195, 0.85) 100%);
-  border: 1.5px solid rgba(221, 149, 108, 0.65);
+  background: linear-gradient(135deg, #EFF6FF 0%, #E0F2FE 100%);
+  border: 1.5px solid #BAE6FD;
   border-left: 4px solid var(--color-terracotta-accent);
   border-radius: 18px;
   padding: 12px 18px;
-  box-shadow: 0 4px 14px -3px rgba(138, 69, 0, 0.1);
+  box-shadow: 0 4px 14px -3px rgba(43, 108, 176, 0.12);
   transition: all 0.25s ease;
 }
 
@@ -465,7 +494,7 @@ input.zen-input:focus,
 }
 
 .custom-checkbox:focus-visible {
-  box-shadow: 0 0 0 3px rgba(138, 69, 0, 0.3);
+  box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.25);
 }
 
 /* --------------------------------------------------------------------------
