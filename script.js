@@ -252,8 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     let severity = 'Minimal (নগণ্য)';
-    let badgeClass = 'bg-[#DCE8D5] text-[#243725] border border-[#CBDAC8]';
-    let severityColor = '#3E7245';
+    let badgeClass = 'bg-[#DCE8D5] text-[#152418] border border-[#C8DCCF]';
+    let severityColor = '#2D6A4F';
 
     if (total >= 20) {
       severity = 'Severe Depression (তীব্র বিষণ্নতা)';
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isActive) {
           mobLink.classList.add('state-active');
           if (statusSpan) {
-            statusSpan.className = 'module-status text-[11px] font-bold text-[#3E7245]';
+            statusSpan.className = 'module-status text-[11px] font-bold text-[#2D6A4F]';
             statusSpan.textContent = isCompleted ? 'Active (Completed ✓)' : 'Active Section';
           }
         } else if (isCompleted) {
@@ -453,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           mobLink.classList.add('state-pending');
           if (statusSpan) {
-            statusSpan.className = 'module-status text-[11px] font-medium text-[#657C69]';
+            statusSpan.className = 'module-status text-[11px] font-medium text-[#6B8070]';
             statusSpan.textContent = 'Incomplete';
           }
         }
@@ -714,8 +714,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (statusText) statusText.textContent = 'Courtyard Rain Active (432Hz Ambient Soundscape)';
         if (waveIndicator) waveIndicator.classList.remove('hidden');
-        if (btn) btn.classList.add('bg-[#DCE8D5]', 'border-[#3E7245]');
-        if (floatingBtn) floatingBtn.classList.add('bg-[#3E7245]', 'text-white');
+        if (btn) btn.classList.add('bg-[#DCE8D5]', 'border-[#2D6A4F]');
+        if (floatingBtn) floatingBtn.classList.add('bg-[#2D6A4F]', 'text-white');
         showToast('Ambient 432Hz Courtyard Rain Started');
       } catch (err) {
         console.error('Audio init error:', err);
@@ -736,8 +736,8 @@ document.addEventListener('DOMContentLoaded', () => {
       isPlayingSound = false;
       if (statusText) statusText.textContent = 'Soft Courtyard Rain Soundscape (432Hz ambient frequency)';
       if (waveIndicator) waveIndicator.classList.add('hidden');
-      if (btn) btn.classList.remove('bg-[#DCE8D5]', 'border-[#3E7245]');
-      if (floatingBtn) floatingBtn.classList.remove('bg-[#3E7245]', 'text-white');
+      if (btn) btn.classList.remove('bg-[#DCE8D5]', 'border-[#2D6A4F]');
+      if (floatingBtn) floatingBtn.classList.remove('bg-[#2D6A4F]', 'text-white');
       showToast('Soundscape Paused');
     }
   }
@@ -1146,7 +1146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!toast) {
       toast = document.createElement('div');
       toast.id = 'zen-toast';
-      toast.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[#243725] text-white px-5 py-2.5 rounded-full text-xs font-medium shadow-xl transition-all duration-300 opacity-0 pointer-events-none border border-[#3E7245]';
+      toast.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[#152418] text-white px-5 py-2.5 rounded-full text-xs font-medium shadow-xl transition-all duration-300 opacity-0 pointer-events-none border border-[#2D6A4F]';
       document.body.appendChild(toast);
     }
     toast.textContent = msg;
@@ -1340,19 +1340,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (langBtnEn && langBtnBn) {
       langBtnEn.addEventListener('click', () => {
-        langBtnEn.classList.add('active', 'bg-[#243725]', 'text-white');
-        langBtnEn.classList.remove('text-[#415745]');
-        langBtnBn.classList.remove('active', 'bg-[#243725]', 'text-white');
-        langBtnBn.classList.add('text-[#415745]');
+        langBtnEn.classList.add('active', 'bg-[#152418]', 'text-white');
+        langBtnEn.classList.remove('text-[#3A4F3F]');
+        langBtnBn.classList.remove('active', 'bg-[#152418]', 'text-white');
+        langBtnBn.classList.add('text-[#3A4F3F]');
         document.documentElement.lang = 'en';
         showToast('Language set to English');
       });
 
       langBtnBn.addEventListener('click', () => {
-        langBtnBn.classList.add('active', 'bg-[#243725]', 'text-white');
-        langBtnBn.classList.remove('text-[#415745]');
-        langBtnEn.classList.remove('active', 'bg-[#243725]', 'text-white');
-        langBtnEn.classList.add('text-[#415745]');
+        langBtnBn.classList.add('active', 'bg-[#152418]', 'text-white');
+        langBtnBn.classList.remove('text-[#3A4F3F]');
+        langBtnEn.classList.remove('active', 'bg-[#152418]', 'text-white');
+        langBtnEn.classList.add('text-[#3A4F3F]');
         document.documentElement.lang = 'bn';
         showToast('বাংলা ভাষা সক্রিয় করা হয়েছে');
       });

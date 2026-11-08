@@ -1,36 +1,38 @@
 /* ==========================================================================
-   MindCare — Student Wellbeing Research Platform
-   Figma Auto-Layout Master Design System & UI/UX Engine
+   MindCare — Clinical Research & Student Wellbeing Platform
+   Figma Auto-Layout Master Design System & Premium UI/UX Engine
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    1. Design Tokens & CSS Custom Properties
    -------------------------------------------------------------------------- */
 :root {
-  --color-canvas-bg: #F4F7F2;         /* MindCare Soft Calming Sage Canvas */
-  --color-section-bg: #FFFFFF;        /* Pure White Surface */
-  --color-card-surface: #EEF2E8;      /* Soft Celadon Question Card */
-  --color-border-subtle: #D8E3D5;     /* Gentle Botanical Border */
-  --color-border-active: #3E7245;     /* Active Vibrant Green */
-  --color-text-primary: #243725;      /* Deep Forest Slate / Charcoal */
-  --color-text-secondary: #415745;    /* Muted Forest Guidance */
-  --color-text-muted: #657C69;        /* Sage Slate Subtitles */
-  --color-primary: #243725;           /* Primary Dark Forest Green */
-  --color-primary-hover: #1B2B1C;     /* Deep Night Forest */
-  --color-accent: #3E7245;            /* MindCare Vibrant Green Accent */
-  --color-accent-soft: #EEF2E8;       /* Soft Mint Mist */
-  --color-accent-border: #CBDAC8;     /* Mint Border */
+  --color-canvas-bg: #F8FAF7;         /* Crisp Airy Porcelain Ivory */
+  --color-section-bg: #FFFFFF;        /* Pure Floating White Surface */
+  --color-card-surface: #FFFFFF;      /* Clean Pure White Question Card */
+  --color-card-tint: #F3F7F2;         /* Soft Celadon Highlight Tint */
+  --color-border-subtle: #E2E8DF;     /* Razor-thin Whisper Border */
+  --color-border-hover: #C5D4C2;      /* Gentle Sage Hover Border */
+  --color-border-active: #2D6A4F;     /* Rich Emerald Active Border */
+  --color-text-primary: #152418;      /* Deep Midnight Forest Slate */
+  --color-text-secondary: #3A4F3F;    /* Refined Forest Sage */
+  --color-text-muted: #6B8070;        /* Subdued Legible Hints */
+  --color-primary: #152418;           /* Primary Dark Forest Slate */
+  --color-primary-hover: #0D1710;     /* Deep Night Forest */
+  --color-accent: #2D6A4F;            /* MindCare Healing Emerald Green */
+  --color-accent-soft: #EAF2EC;       /* Soft Mint Celadon Tint */
+  --color-accent-border: #C8DCCF;     /* Celadon Border */
 
-  /* Aliases for backwards compatibility */
-  --color-sandstone: #F4F7F2;
+  /* Backwards compatibility aliases */
+  --color-sandstone: #F8FAF7;
   --color-parchment: #FFFFFF;
-  --color-linen-border: #D8E3D5;
-  --color-terracotta-accent: #3E7245;
-  --color-terracotta-primary: #243725;
-  --color-terracotta-soft: #EEF2E8;
-  --color-espresso: #243725;
-  --color-espresso-subtle: #657C69;
-  --color-espresso-text: #243725;
+  --color-linen-border: #E2E8DF;
+  --color-terracotta-accent: #2D6A4F;
+  --color-terracotta-primary: #152418;
+  --color-terracotta-soft: #EAF2EC;
+  --color-espresso: #152418;
+  --color-espresso-subtle: #6B8070;
+  --color-espresso-text: #152418;
 }
 
 /* --------------------------------------------------------------------------
@@ -44,25 +46,27 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+  scroll-padding-top: 90px;
   max-width: 100%;
   overflow-x: clip;
 }
 
 body {
-  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
-  background-color: #F4F7F2;
+  font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  background-color: #F8FAF7;
   background-image:
-    radial-gradient(100% 60% at 50% 0%, rgba(220, 235, 215, 0.60) 0%, rgba(244, 247, 242, 0.4) 60%, transparent 100%),
-    radial-gradient(80% 50% at 100% 25%, rgba(230, 240, 226, 0.50) 0%, transparent 70%),
-    radial-gradient(70% 50% at 0% 65%, rgba(240, 245, 238, 0.60) 0%, transparent 70%),
-    radial-gradient(80% 60% at 85% 90%, rgba(220, 235, 215, 0.40) 0%, transparent 70%);
+    radial-gradient(120% 80% at 50% -20%, rgba(216, 235, 219, 0.45) 0%, rgba(248, 250, 247, 0.4) 60%, transparent 100%),
+    radial-gradient(90% 60% at 100% 20%, rgba(230, 242, 233, 0.35) 0%, transparent 70%),
+    radial-gradient(80% 60% at 0% 60%, rgba(235, 245, 238, 0.40) 0%, transparent 70%),
+    radial-gradient(90% 70% at 85% 95%, rgba(220, 238, 225, 0.30) 0%, transparent 70%);
   background-attachment: fixed;
   background-repeat: no-repeat;
-  color: var(--color-espresso-text);
+  color: var(--color-text-primary);
   max-width: 100%;
   overflow-x: clip;
   -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
@@ -72,40 +76,219 @@ body {
 }
 
 .font-bengali {
-  font-family: 'Noto Serif Bengali', 'Outfit', serif;
+  font-family: 'Noto Serif Bengali', 'Plus Jakarta Sans', serif;
   line-height: 1.55;
   letter-spacing: 0.01em;
 }
 
 /* --------------------------------------------------------------------------
-   3. Custom Zen Scrollbar & Slim Top Progress Bar
+   3. Custom Minimalist Scrollbar
    -------------------------------------------------------------------------- */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-sandstone);
+  background: #F8FAF7;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #CBDAC8;
   border-radius: 9999px;
-  border: 2px solid var(--color-sandstone);
+  border: 2px solid #F8FAF7;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3E7245;
-}
-
-#zen-progress-bar {
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: width;
+  background: #2D6A4F;
 }
 
 /* --------------------------------------------------------------------------
-   4. Pebble Buttons & Interactive Radio Elements
+   4. High-End Floating Navbar (#garden-nav)
+   -------------------------------------------------------------------------- */
+#garden-nav {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.25s ease,
+              border-color 0.25s ease;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #E2E8DF;
+  box-shadow: 0 4px 20px -2px rgba(21, 36, 24, 0.06);
+}
+
+@media (max-width: 767px) {
+  #garden-nav {
+    position: sticky !important;
+    top: 0.5rem !important;
+    z-index: 45 !important;
+    padding: 6px 14px !important;
+    border-radius: 9999px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  #garden-nav {
+    position: sticky !important;
+    top: 1rem !important;
+    z-index: 45 !important;
+    padding: 8px 18px !important;
+    border-radius: 9999px !important;
+  }
+
+  #garden-nav.nav-scrolled {
+    transform: translateY(2px) scale(0.995);
+    box-shadow: 0 12px 32px -4px rgba(21, 36, 24, 0.12) !important;
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    border-color: #CBDAC8 !important;
+  }
+}
+
+/* Waypoint Station Buttons */
+.waypoint-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 14px;
+  height: 34px;
+  border-radius: 9999px;
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.waypoint-link .module-letter-badge {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+/* Active State */
+.waypoint-link.state-active,
+.waypoint-link.active {
+  background-color: #152418 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #0D1710 !important;
+  box-shadow: 0 4px 12px -2px rgba(21, 36, 24, 0.3) !important;
+}
+
+.waypoint-link.state-active .module-letter-badge,
+.waypoint-link.active .module-letter-badge {
+  background-color: #2D6A4F !important;
+  color: #FFFFFF !important;
+}
+
+/* Completed State */
+.waypoint-link.state-completed {
+  background-color: #EAF2EC !important;
+  color: #2D6A4F !important;
+  border: 1px solid #C8DCCF !important;
+}
+
+.waypoint-link.state-completed .module-letter-badge {
+  background-color: #2D6A4F !important;
+  color: #FFFFFF !important;
+}
+
+.waypoint-link.state-completed:hover {
+  background-color: #DCEADE !important;
+}
+
+/* Pending State */
+.waypoint-link.state-pending {
+  background-color: #FFFFFF !important;
+  color: #3A4F3F !important;
+  border: 1px solid #E2E8DF !important;
+}
+
+.waypoint-link.state-pending .module-letter-badge {
+  background-color: #F0F5EE !important;
+  color: #6B8070 !important;
+}
+
+.waypoint-link.state-pending:hover {
+  background-color: #F8FAF7 !important;
+  border-color: #2D6A4F !important;
+  color: #152418 !important;
+}
+
+/* Mobile Drawer Links */
+.mobile-waypoint-link {
+  transition: all 0.2s ease;
+}
+
+.mobile-waypoint-link.state-active {
+  background-color: #152418 !important;
+  color: #FFFFFF !important;
+  border-color: #152418 !important;
+}
+
+.mobile-waypoint-link.state-active .module-badge {
+  background-color: #2D6A4F !important;
+  color: #FFFFFF !important;
+}
+
+.mobile-waypoint-link.state-active .module-name {
+  color: #FFFFFF !important;
+}
+
+.mobile-waypoint-link.state-completed {
+  background-color: #EAF2EC !important;
+  color: #2D6A4F !important;
+  border-color: #C8DCCF !important;
+}
+
+.mobile-waypoint-link.state-completed .module-badge {
+  background-color: #2D6A4F !important;
+  color: #FFFFFF !important;
+}
+
+.mobile-waypoint-link.state-pending {
+  background-color: #FFFFFF !important;
+  color: #3A4F3F !important;
+  border-color: #E2E8DF !important;
+}
+
+.mobile-waypoint-link.state-pending .module-badge {
+  background-color: #F0F5EE !important;
+  color: #6B8070 !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Question Cards (Crisp Floating White Surfaces)
+   -------------------------------------------------------------------------- */
+.question-card {
+  background-color: #FFFFFF !important;
+  border: 1px solid #E2E8DF !important;
+  border-radius: 20px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 8px 24px -4px rgba(21, 36, 24, 0.04) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.question-card:hover {
+  border-color: #C5D4C2 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02), 0 12px 30px -4px rgba(21, 36, 24, 0.07) !important;
+  transform: translateY(-1px);
+}
+
+.question-card.answered {
+  border-color: #2D6A4F !important;
+  box-shadow: 0 0 0 1px #2D6A4F, 0 8px 24px -4px rgba(45, 106, 79, 0.12) !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Pebble Buttons & Form Options
    -------------------------------------------------------------------------- */
 .pebble-btn {
   position: relative;
@@ -114,17 +297,18 @@ body {
   user-select: none;
   cursor: pointer;
   outline: none;
-  background-color: #FFFFFF !important;
-  border: 1.5px solid #CBDAC8 !important;
-  color: #243725 !important;
+  background-color: #FFFFFF;
+  border: 1.5px solid #E2E8DF;
+  color: #152418;
+  font-weight: 500;
 }
 
 .pebble-btn:hover {
   transform: translateY(-1.5px);
-  border-color: #3E7245 !important;
-  background-color: #F7FAF5 !important;
-  color: #3E7245 !important;
-  box-shadow: 0 4px 12px -2px rgba(62, 114, 69, 0.18) !important;
+  border-color: #2D6A4F;
+  background-color: #F6FAF7;
+  color: #2D6A4F;
+  box-shadow: 0 4px 12px -2px rgba(45, 106, 79, 0.15);
 }
 
 .pebble-btn:active {
@@ -132,15 +316,15 @@ body {
 }
 
 .pebble-btn:focus-visible {
-  box-shadow: 0 0 0 3px rgba(62, 114, 69, 0.25) !important;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.25);
 }
 
-/* Active Pebble State (MindCare Forest Green #243725) */
+/* Active Pebble State (MindCare Deep Forest #152418) */
 .pebble-btn.active {
-  background-color: #243725 !important;
+  background-color: #152418 !important;
   color: #FFFFFF !important;
-  border-color: #1B2B1C !important;
-  box-shadow: 0 4px 14px -1px rgba(36, 55, 37, 0.32) !important;
+  border-color: #0D1710 !important;
+  box-shadow: 0 4px 14px -1px rgba(21, 36, 24, 0.3) !important;
 }
 
 .pebble-btn.active span,
@@ -150,15 +334,40 @@ body {
 }
 
 .pebble-btn.active .font-bengali {
-  color: #DCE8D5 !important;
+  color: #EAF2EC !important;
 }
 
-.pebble-btn.active .pebble-radio-dot {
+/* Dedicated Radio Dot Indicator for PHQ-9 and Structured Questions */
+[data-phq] .pebble-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+  padding: 10px 14px !important;
+  border-radius: 14px !important;
+}
+
+[data-phq] .pebble-btn::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  border: 2px solid #C8DCCF;
+  display: inline-block;
+  margin-right: 10px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  background-color: #FFFFFF;
+}
+
+[data-phq] .pebble-btn:hover::before {
+  border-color: #2D6A4F;
+}
+
+[data-phq] .pebble-btn.active::before {
   border-color: #FFFFFF !important;
-}
-
-.pebble-btn.active .pebble-radio-inner {
   background-color: #FFFFFF !important;
+  box-shadow: inset 0 0 0 3px #152418 !important;
 }
 
 /* Ripple Micro-Interaction */
@@ -179,247 +388,34 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   5. Question Cards & Scoring Guides
-   -------------------------------------------------------------------------- */
-.question-card {
-  transition: all 0.25s ease;
-  background-color: #EEF2E8 !important;
-  border: 1px solid #D8E3D5 !important;
-  border-radius: 24px !important;
-}
-
-.question-card:hover {
-  border-color: #CBDAC8 !important;
-}
-
-.question-card.answered {
-  border-color: #3E7245 !important;
-  box-shadow: 0 4px 16px -2px rgba(62, 114, 69, 0.12), 0 2px 6px -1px rgba(36, 55, 37, 0.03) !important;
-}
-
-.question-card.answered .answered-badge {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.answered-badge {
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Unanswered Alert Pulse */
-@keyframes unansweredPulse {
-
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(194, 65, 12, 0.4);
-    border-color: #C2410C;
-  }
-
-  50% {
-    box-shadow: 0 0 0 6px rgba(194, 65, 12, 0);
-    border-color: #DD956C;
-  }
-}
-
-.highlight-unanswered {
-  animation: unansweredPulse 1.2s ease-in-out 3;
-}
-
-/* Active Highlight for Scoring Guide */
-.guide-card {
-  transition: all 0.25s ease;
-}
-
-.guide-card.active {
-  background-color: #3E7245 !important;
-  color: #FFFFFF !important;
-  border-color: #5D7258 !important;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px -2px rgba(113, 134, 107, 0.35);
-}
-
-.guide-card.active * {
-  color: #FFFFFF !important;
-}
-
-/* --------------------------------------------------------------------------
-   5b. Header & Sticky Garden Navigation (Desktop / Tablet Scroll Animation)
-   -------------------------------------------------------------------------- */
-/* Garden Stations Navigation Bar (Previous Version) */
-#garden-nav {
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              background-color 0.3s ease,
-              border-color 0.3s ease;
-}
-
-@media (max-width: 767px) {
-  #garden-nav {
-    position: -webkit-sticky !important;
-    position: sticky !important;
-    top: 0.5rem !important;
-    z-index: 45 !important;
-    transform: none !important;
-    padding: 6px 12px !important;
-    border-radius: 9999px !important;
-    box-shadow: 0 4px 16px -2px rgba(36, 55, 37, 0.08) !important;
-  }
-}
-
-@media (min-width: 768px) {
-  #garden-nav {
-    position: -webkit-sticky !important;
-    position: sticky !important;
-    top: 1rem !important;
-    z-index: 45 !important;
-    padding: 8px 16px !important;
-    border-radius: 9999px !important;
-  }
-
-  #garden-nav.nav-scrolled {
-    transform: translateY(2px) scale(0.995);
-    box-shadow: 0 16px 36px -6px rgba(36, 55, 37, 0.14),
-                0 4px 12px -2px rgba(62, 114, 69, 0.08) !important;
-    background-color: rgba(255, 255, 255, 0.98) !important;
-    border-color: #D8E3D5 !important;
-    animation: navFloatIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-}
-
-@keyframes navFloatIn {
-  0% {
-    box-shadow: 0 8px 24px -4px rgba(41, 30, 22, 0.08);
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(3.5px) scale(0.992);
-  }
-  100% {
-    transform: translateY(2px) scale(0.995);
-  }
-}
-
-/* ==========================================================================
-   Module Navigation: Distinct States (Desktop & Mobile)
-   ========================================================================== */
-
-/* 1. Active State: Dark brown background with white text (Unmistakable) */
-.waypoint-link.state-active {
-  background-color: #243725 !important;
-  color: #FFFFFF !important;
-  border-color: #243725 !important;
-  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.28) !important;
-}
-.waypoint-link.state-active .module-letter-badge {
-  background-color: #3E7245 !important;
-  color: #FFFFFF !important;
-}
-
-/* 2. Completed State: Light background with small green checkmark */
-.waypoint-link.state-completed {
-  background-color: #F0F7F2 !important;
-  color: #1E3A24 !important;
-  border-color: #C5DDC9 !important;
-}
-.waypoint-link.state-completed .module-letter-badge {
-  background-color: #D8ECD9 !important;
-  color: #1B4323 !important;
-}
-.waypoint-link.state-completed:hover {
-  background-color: #E3EFE6 !important;
-}
-
-/* 3. Not Completed / Pending: White/subtle background with subtle border */
-.waypoint-link.state-pending {
-  background-color: #FFFDF9 !important;
-  color: #3D2F24 !important;
-  border-color: #E6DED1 !important;
-}
-.waypoint-link.state-pending .module-letter-badge {
-  background-color: #EEF2E8 !important;
-  color: #657C69 !important;
-}
-.waypoint-link.state-pending:hover {
-  background-color: #EEF2E8 !important;
-  border-color: #CBDAC8 !important;
-}
-
-/* Mobile Drawer Links */
-.mobile-waypoint-link {
-  transition: all 0.2s ease;
-}
-
-.mobile-waypoint-link.state-active {
-  background-color: #243725 !important;
-  color: #FFFFFF !important;
-  border-color: #243725 !important;
-}
-.mobile-waypoint-link.state-active .module-badge {
-  background-color: #3E7245 !important;
-  color: #FFFFFF !important;
-}
-.mobile-waypoint-link.state-active .module-name {
-  color: #FFFFFF !important;
-}
-
-.mobile-waypoint-link.state-completed {
-  background-color: #DCE8D5 !important;
-  color: #243725 !important;
-  border-color: #CBDAC8 !important;
-}
-.mobile-waypoint-link.state-completed .module-badge {
-  background-color: #CBDAC8 !important;
-  color: #243725 !important;
-}
-
-.mobile-waypoint-link.state-pending {
-  background-color: #FFFFFF !important;
-  color: #415745 !important;
-  border-color: #D8E3D5 !important;
-}
-.mobile-waypoint-link.state-pending .module-badge {
-  background-color: #EEF2E8 !important;
-  color: #657C69 !important;
-}
-
-
-/* --------------------------------------------------------------------------
-   6. Form Controls & Custom Inputs
+   7. Form Controls & Precision Inputs
    -------------------------------------------------------------------------- */
 input.zen-input,
 .zen-input {
   background-color: #FFFFFF !important;
-  border: 1.5px solid #D8E3D5 !important;
-  border-radius: 20px !important;
-  color: #243725 !important;
+  border: 1.5px solid #E2E8DF !important;
+  border-radius: 16px !important;
+  color: #152418 !important;
   font-weight: 500;
-  font-size: 15px;
-  height: 52px !important;
-  padding: 0 18px !important;
+  font-size: 14.5px;
+  height: 48px !important;
+  padding: 0 16px !important;
   width: 100%;
   min-width: 0;
-  transition: all 0.22s ease;
+  transition: all 0.2s ease;
   outline: none;
   box-sizing: border-box;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
 }
 
 input.zen-input:hover,
 .zen-input:hover {
-  border-color: #CBDAC8 !important;
-  background-color: #FFFFFF !important;
+  border-color: #C5D4C2 !important;
 }
 
 input.zen-input:focus,
 .zen-input:focus {
-  background-color: #FFFFFF !important;
-  border-color: #3E7245 !important;
-  box-shadow: 0 0 0 3px rgba(113, 134, 107, 0.18) !important;
-  outline: none !important;
+  border-color: #2D6A4F !important;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.18) !important;
 }
 
 .zen-input::placeholder {
@@ -428,55 +424,28 @@ input.zen-input:focus,
 }
 
 .zen-unit-badge {
-  background-color: #EEF2E8 !important;
-  border: 1.5px solid #D8E3D5 !important;
-  border-radius: 20px !important;
-  color: #415745 !important;
-  font-weight: 500;
-  font-size: 13.5px;
-  height: 52px !important;
-  padding: 0 18px !important;
+  background-color: #F0F5EE !important;
+  border: 1.5px solid #E2E8DF !important;
+  border-radius: 16px !important;
+  color: #3A4F3F !important;
+  font-weight: 600;
+  font-size: 13px;
+  height: 48px !important;
+  padding: 0 16px !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
   user-select: none;
   flex-shrink: 0;
-  transition: all 0.2s ease;
-  box-sizing: border-box;
-}
-
-.zen-unit-badge:hover {
-  background-color: #EFEFE5 !important;
-  border-color: #CBDAC8 !important;
-}
-
-/* PHQ-9 Instruction Prompt Highlight Effect (Task 5) */
-.phq-instruction-highlight {
-  position: relative;
-  display: inline-block;
-  background: linear-gradient(135deg, #F3F7F1 0%, #DCE8D5 100%);
-  border: 1.5px solid #CBDAC8;
-  border-left: 4px solid #3E7245;
-  border-radius: 18px;
-  padding: 12px 18px;
-  box-shadow: 0 4px 14px -3px rgba(113, 134, 107, 0.12);
-  transition: all 0.25s ease;
-}
-
-.phq-instruction-highlight:hover {
-  border-color: #3E7245;
-  border-left-color: #5D7258;
-  box-shadow: 0 6px 20px -3px rgba(113, 134, 107, 0.18);
-  transform: translateY(-1px);
 }
 
 .custom-checkbox {
   appearance: none;
-  width: 22px;
-  height: 22px;
-  border: 2px solid #3E7245;
-  border-radius: 7px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #2D6A4F;
+  border-radius: 6px;
   outline: none;
   cursor: pointer;
   background-color: #FFFFFF;
@@ -486,91 +455,36 @@ input.zen-input:focus,
 }
 
 .custom-checkbox:hover {
-  border-color: #5D7258;
+  border-color: #1B4332;
   transform: scale(1.05);
 }
 
 .custom-checkbox:checked {
-  background-color: #3E7245;
-  border-color: #3E7245;
+  background-color: #2D6A4F;
+  border-color: #2D6A4F;
 }
 
 .custom-checkbox:checked::before {
   content: "";
-  width: 10px;
-  height: 6px;
+  width: 9px;
+  height: 5px;
   border-left: 2.5px solid #FFFFFF;
   border-bottom: 2.5px solid #FFFFFF;
   transform: rotate(-45deg) translate(1px, -1px);
 }
 
 .custom-checkbox:focus-visible {
-  box-shadow: 0 0 0 3px rgba(113, 134, 107, 0.25);
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.25);
 }
 
 /* --------------------------------------------------------------------------
-   7. Micro-Animations, Soundscape & Floating HUD
+   8. Animation & Modals
    -------------------------------------------------------------------------- */
-@keyframes ambientGlow {
-  0%, 100% {
-    transform: scale(1) translate(0, 0);
-    opacity: 0.45;
-  }
-  33% {
-    transform: scale(1.08) translate(15px, -20px);
-    opacity: 0.65;
-  }
-  66% {
-    transform: scale(0.96) translate(-10px, 12px);
-    opacity: 0.50;
-  }
-}
-
-.animate-ambient {
-  animation: ambientGlow 14s ease-in-out infinite alternate;
-}
-
-@keyframes soundwave {
-
-  0%,
-  100% {
-    height: 4px;
-  }
-
-  50% {
-    height: 16px;
-  }
-}
-
-.soundwave-bar {
-  animation: soundwave 1.2s ease-in-out infinite;
-}
-
-.soundwave-bar:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.soundwave-bar:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-.floating-hud {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.floating-hud:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px -5px rgba(41, 30, 22, 0.18);
-}
-
 @keyframes modalScaleIn {
   from {
     opacity: 0;
-    transform: scale(0.95) translateY(12px);
+    transform: scale(0.96) translateY(10px);
   }
-
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -581,145 +495,25 @@ input.zen-input:focus,
   animation: modalScaleIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.severity-bar {
-  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease;
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-/* --------------------------------------------------------------------------
-   8. Responsive Layout & Mobile Breakpoints (≤640px)
-   -------------------------------------------------------------------------- */
-@media (max-width: 640px) {
-  body {
-    padding-bottom: 76px;
-  }
-
-  /* Hero Banner Header */
-  #hero-banner {
-    padding: 20px 16px;
-    border-radius: 24px;
-  }
-
-  #hero-banner h1 {
-    font-size: 1.75rem;
-    line-height: 1.2;
-  }
-
-  /* Section cards */
-  section[id^="module-"],
-  #submission-card {
-    padding: 18px 14px;
-    border-radius: 24px;
-  }
-
-  /* Question cards */
-  .question-card {
-    padding: 14px 12px;
-    border-radius: 16px;
-  }
-
-  .question-card h3 {
-    font-size: 13px;
-    line-height: 1.4;
-  }
-
-  /* Form Inputs on Mobile */
-  input.zen-input,
-  .zen-input {
-    height: 48px !important;
-    font-size: 14px;
-    border-radius: 20px !important;
-    padding: 0 14px !important;
-  }
-
-  .zen-unit-badge {
-    height: 48px !important;
-    font-size: 12.5px;
-    border-radius: 20px !important;
-    padding: 0 14px !important;
-  }
-
-  .phq-instruction-highlight {
-    padding: 10px 14px;
-    border-radius: 14px;
-  }
-
-  /* Touch targets & button sizing */
-  .pebble-btn {
-    min-height: 44px;
-  }
-
-  [data-phq] .pebble-btn {
-    min-height: 50px;
-    padding: 8px 6px;
-    font-size: 11px;
-    word-break: break-word;
-  }
-
-  [data-phq] .pebble-btn .font-bengali {
-    font-size: 10px;
-    line-height: 1.45;
-  }
-
-  .grid-cols-7 .pebble-btn {
-    padding: 8px 2px;
-    font-size: 11px;
-    min-height: 42px;
-  }
-
-  /* Garden navigation bar is responsive */
-
-
-}
-
-/* --------------------------------------------------------------------------
-   Extra-Small Mobile Breakpoint (≤380px)
-   -------------------------------------------------------------------------- */
-@media (max-width: 380px) {
-  #hero-banner {
-    padding: 16px 12px;
-  }
-
-  #hero-banner h1 {
-    font-size: 1.5rem;
-  }
-
-  section[id^="module-"] {
-    padding: 14px 10px;
-  }
-
-  .question-card {
-    padding: 12px 10px;
-  }
-
-  [data-phq] .pebble-btn {
-    padding: 6px 4px;
-    font-size: 10px;
-    min-height: 46px;
-  }
-
-  .grid-cols-5 .pebble-btn {
-    padding: 6px 2px;
-    font-size: 10px;
-  }
-
-  .grid-cols-7 .pebble-btn {
-    padding: 6px 1px;
-    font-size: 10px;
-    min-height: 38px;
-  }
-
-
+.lang-toggle-btn.active {
+  background-color: #152418 !important;
+  color: #FFFFFF !important;
 }
 
 /* --------------------------------------------------------------------------
    9. Print Styles
    -------------------------------------------------------------------------- */
 @media print {
-
   .no-print,
   #garden-nav,
-  #zen-progress-bar,
-  .floating-hud,
   .md\\:hidden {
     display: none !important;
   }
@@ -729,122 +523,8 @@ input.zen-input:focus,
     color: #000000 !important;
   }
 
-  .shadow-bento,
-  .shadow-sm,
-  .shadow-md,
-  .shadow-lg {
-    box-shadow: none !important;
-  }
-
   section {
     break-inside: avoid;
     page-break-inside: avoid;
   }
-}
-/* MindCare Stepped Questionnaire Flow */
-.module-step-hidden {
-  display: none !important;
-}
-
-.step-fade-in {
-  animation: stepFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes stepFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-/* ==========================================================================
-   MindCare Stepped Questionnaire & Radio Indicator System
-   ========================================================================== */
-.step-nav-pill {
-  border: 1.5px solid #CBDAC8;
-  background-color: #FFFFFF;
-  color: #415745;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-  user-select: none;
-}
-
-.step-nav-pill:hover {
-  background-color: #EEF2E8;
-  color: #243725;
-  border-color: #3E7245;
-}
-
-.step-nav-pill.active {
-  background-color: #243725 !important;
-  color: #FFFFFF !important;
-  border-color: #1B2B1C !important;
-  box-shadow: 0 4px 12px -2px rgba(36, 55, 37, 0.25) !important;
-}
-
-.step-nav-pill.active .pill-dot {
-  background-color: #FFFFFF !important;
-}
-
-.step-nav-pill.completed {
-  background-color: #EEF2E8 !important;
-  color: #3E7245 !important;
-  border-color: #CBDAC8 !important;
-}
-
-.step-nav-pill.completed .pill-dot {
-  background-color: #3E7245 !important;
-}
-
-/* Radio circle inside options in questionnaire (Screen 2) */
-.question-card .pebble-btn::before {
-  content: '';
-  width: 15px;
-  height: 15px;
-  border-radius: 9999px;
-  border: 2px solid #CBDAC8;
-  display: inline-block;
-  margin-right: 8px;
-  flex-shrink: 0;
-  transition: all 0.2s ease;
-  background-color: transparent;
-}
-
-.question-card .pebble-btn:hover::before {
-  border-color: #3E7245;
-}
-
-.question-card .pebble-btn.active::before {
-  border-color: #FFFFFF !important;
-  background-color: #FFFFFF !important;
-  box-shadow: inset 0 0 0 3px #243725 !important;
-}
-
-/* In Likert 5-point and 7-point grids (SD D N A SA or 1-7), hide radio dots */
-.grid-cols-5 .pebble-btn::before,
-.grid-cols-7 .pebble-btn::before,
-.grid-cols-8 .pebble-btn::before {
-  display: none !important;
-}
-
-
-
-/* Utility: Hide scrollbar on step pills horizontal scroll */
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Language toggle active state */
-.lang-toggle-btn.active {
-  background-color: #243725 !important;
-  color: #FFFFFF !important;
 }
