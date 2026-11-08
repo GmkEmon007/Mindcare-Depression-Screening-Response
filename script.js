@@ -1,5 +1,5 @@
 /**
- * VU Research — Warm Terracotta Sanctuary
+ * MindCare — Student Wellbeing Research Platform
  * High-Performance UI/UX Engine:
  * - Real-time Progress Tracker & Checklist
  * - Tactile Pebble Ripple & Keyboard Accessibility (WCAG 2.1 AA)
@@ -252,8 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     let severity = 'Minimal (নগণ্য)';
-    let badgeClass = 'bg-[#DCE8D5] text-[#34483A] border border-[#C6D8BE]';
-    let severityColor = '#71866B';
+    let badgeClass = 'bg-[#DCE8D5] text-[#243725] border border-[#CBDAC8]';
+    let severityColor = '#3E7245';
 
     if (total >= 20) {
       severity = 'Severe Depression (তীব্র বিষণ্নতা)';
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isActive) {
           mobLink.classList.add('state-active');
           if (statusSpan) {
-            statusSpan.className = 'module-status text-[11px] font-bold text-[#71866B]';
+            statusSpan.className = 'module-status text-[11px] font-bold text-[#3E7245]';
             statusSpan.textContent = isCompleted ? 'Active (Completed ✓)' : 'Active Section';
           }
         } else if (isCompleted) {
@@ -453,7 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           mobLink.classList.add('state-pending');
           if (statusSpan) {
-            statusSpan.className = 'module-status text-[11px] font-medium text-[#7F9386]';
+            statusSpan.className = 'module-status text-[11px] font-medium text-[#657C69]';
             statusSpan.textContent = 'Incomplete';
           }
         }
@@ -714,8 +714,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (statusText) statusText.textContent = 'Courtyard Rain Active (432Hz Ambient Soundscape)';
         if (waveIndicator) waveIndicator.classList.remove('hidden');
-        if (btn) btn.classList.add('bg-[#DCE8D5]', 'border-[#71866B]');
-        if (floatingBtn) floatingBtn.classList.add('bg-[#71866B]', 'text-white');
+        if (btn) btn.classList.add('bg-[#DCE8D5]', 'border-[#3E7245]');
+        if (floatingBtn) floatingBtn.classList.add('bg-[#3E7245]', 'text-white');
         showToast('Ambient 432Hz Courtyard Rain Started');
       } catch (err) {
         console.error('Audio init error:', err);
@@ -736,8 +736,8 @@ document.addEventListener('DOMContentLoaded', () => {
       isPlayingSound = false;
       if (statusText) statusText.textContent = 'Soft Courtyard Rain Soundscape (432Hz ambient frequency)';
       if (waveIndicator) waveIndicator.classList.add('hidden');
-      if (btn) btn.classList.remove('bg-[#DCE8D5]', 'border-[#71866B]');
-      if (floatingBtn) floatingBtn.classList.remove('bg-[#71866B]', 'text-white');
+      if (btn) btn.classList.remove('bg-[#DCE8D5]', 'border-[#3E7245]');
+      if (floatingBtn) floatingBtn.classList.remove('bg-[#3E7245]', 'text-white');
       showToast('Soundscape Paused');
     }
   }
@@ -1146,7 +1146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!toast) {
       toast = document.createElement('div');
       toast.id = 'zen-toast';
-      toast.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[#34483A] text-white px-5 py-2.5 rounded-full text-xs font-medium shadow-xl transition-all duration-300 opacity-0 pointer-events-none border border-[#5A6F60]';
+      toast.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[#243725] text-white px-5 py-2.5 rounded-full text-xs font-medium shadow-xl transition-all duration-300 opacity-0 pointer-events-none border border-[#3E7245]';
       document.body.appendChild(toast);
     }
     toast.textContent = msg;

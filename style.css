@@ -1,5 +1,5 @@
 /* ==========================================================================
-   VU Research — Warm Terracotta Sanctuary
+   MindCare — Student Wellbeing Research Platform
    Figma Auto-Layout Master Design System & UI/UX Engine
    ========================================================================== */
 
@@ -233,7 +233,7 @@ body {
 }
 
 .guide-card.active {
-  background-color: #71866B !important;
+  background-color: #3E7245 !important;
   color: #FFFFFF !important;
   border-color: #5D7258 !important;
   transform: translateY(-2px);
@@ -247,46 +247,12 @@ body {
 /* --------------------------------------------------------------------------
    5b. Header & Sticky Garden Navigation (Desktop / Tablet Scroll Animation)
    -------------------------------------------------------------------------- */
-#garden-nav {
+/* MindCare Navigation Bar */
+#mindcare-nav {
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               background-color 0.3s ease,
               border-color 0.3s ease;
-}
-
-/* Mobile: Sticky Compact Pill Header */
-@media (max-width: 767px) {
-  #garden-nav {
-    position: -webkit-sticky !important;
-    position: sticky !important;
-    top: 0.5rem !important;
-    z-index: 45 !important;
-    transform: none !important;
-    padding: 6px 12px !important;
-    border-radius: 9999px !important;
-    box-shadow: 0 4px 16px -2px rgba(35, 48, 30, 0.08) !important;
-  }
-}
-
-/* Desktop & Tablet: Sticky Header with Zen Float Scroll Animation */
-@media (min-width: 768px) {
-  #garden-nav {
-    position: -webkit-sticky !important;
-    position: sticky !important;
-    top: 1rem !important;
-    z-index: 45 !important;
-    padding: 8px 16px !important;
-    border-radius: 9999px !important;
-  }
-
-  #garden-nav.nav-scrolled {
-    transform: translateY(2px) scale(0.995);
-    box-shadow: 0 16px 36px -6px rgba(41, 30, 22, 0.14),
-                0 4px 12px -2px rgba(138, 69, 0, 0.08) !important;
-    background-color: rgba(255, 255, 255, 0.98) !important;
-    border-color: #E2E8F0 !important;
-    animation: navFloatIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
 }
 
 @keyframes navFloatIn {
@@ -308,13 +274,13 @@ body {
 
 /* 1. Active State: Dark brown background with white text (Unmistakable) */
 .waypoint-link.state-active {
-  background-color: #34483A !important;
+  background-color: #243725 !important;
   color: #FFFFFF !important;
-  border-color: #34483A !important;
+  border-color: #243725 !important;
   box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.28) !important;
 }
 .waypoint-link.state-active .module-letter-badge {
-  background-color: #71866B !important;
+  background-color: #3E7245 !important;
   color: #FFFFFF !important;
 }
 
@@ -339,12 +305,12 @@ body {
   border-color: #E6DED1 !important;
 }
 .waypoint-link.state-pending .module-letter-badge {
-  background-color: #FAF9F3 !important;
-  color: #7F9386 !important;
+  background-color: #EEF2E8 !important;
+  color: #657C69 !important;
 }
 .waypoint-link.state-pending:hover {
-  background-color: #FAF9F3 !important;
-  border-color: #CBD6C6 !important;
+  background-color: #EEF2E8 !important;
+  border-color: #CBDAC8 !important;
 }
 
 /* Mobile Drawer Links */
@@ -353,12 +319,12 @@ body {
 }
 
 .mobile-waypoint-link.state-active {
-  background-color: #34483A !important;
+  background-color: #243725 !important;
   color: #FFFFFF !important;
-  border-color: #34483A !important;
+  border-color: #243725 !important;
 }
 .mobile-waypoint-link.state-active .module-badge {
-  background-color: #71866B !important;
+  background-color: #3E7245 !important;
   color: #FFFFFF !important;
 }
 .mobile-waypoint-link.state-active .module-name {
@@ -367,30 +333,24 @@ body {
 
 .mobile-waypoint-link.state-completed {
   background-color: #DCE8D5 !important;
-  color: #34483A !important;
-  border-color: #C6D8BE !important;
+  color: #243725 !important;
+  border-color: #CBDAC8 !important;
 }
 .mobile-waypoint-link.state-completed .module-badge {
-  background-color: #C6D8BE !important;
-  color: #34483A !important;
+  background-color: #CBDAC8 !important;
+  color: #243725 !important;
 }
 
 .mobile-waypoint-link.state-pending {
   background-color: #FFFFFF !important;
-  color: #5A6F60 !important;
-  border-color: #E3E5DC !important;
+  color: #415745 !important;
+  border-color: #D8E3D5 !important;
 }
 .mobile-waypoint-link.state-pending .module-badge {
-  background-color: #FAF9F3 !important;
-  color: #7F9386 !important;
+  background-color: #EEF2E8 !important;
+  color: #657C69 !important;
 }
-  50% {
-    transform: translateY(3.5px) scale(0.992);
-  }
-  100% {
-    transform: translateY(2px) scale(0.995);
-  }
-}
+
 
 /* --------------------------------------------------------------------------
    6. Form Controls & Custom Inputs
@@ -398,9 +358,9 @@ body {
 input.zen-input,
 .zen-input {
   background-color: #FFFFFF !important;
-  border: 1.5px solid #E3E5DC !important;
+  border: 1.5px solid #D8E3D5 !important;
   border-radius: 20px !important;
-  color: #34483A !important;
+  color: #243725 !important;
   font-weight: 500;
   font-size: 15px;
   height: 52px !important;
@@ -417,14 +377,14 @@ input.zen-input,
 
 input.zen-input:hover,
 .zen-input:hover {
-  border-color: #CBD6C6 !important;
+  border-color: #CBDAC8 !important;
   background-color: #FFFFFF !important;
 }
 
 input.zen-input:focus,
 .zen-input:focus {
   background-color: #FFFFFF !important;
-  border-color: #71866B !important;
+  border-color: #3E7245 !important;
   box-shadow: 0 0 0 3px rgba(113, 134, 107, 0.18) !important;
   outline: none !important;
 }
@@ -435,10 +395,10 @@ input.zen-input:focus,
 }
 
 .zen-unit-badge {
-  background-color: #FAF9F3 !important;
-  border: 1.5px solid #E3E5DC !important;
+  background-color: #EEF2E8 !important;
+  border: 1.5px solid #D8E3D5 !important;
   border-radius: 20px !important;
-  color: #5A6F60 !important;
+  color: #415745 !important;
   font-weight: 500;
   font-size: 13.5px;
   height: 52px !important;
@@ -455,7 +415,7 @@ input.zen-input:focus,
 
 .zen-unit-badge:hover {
   background-color: #EFEFE5 !important;
-  border-color: #CBD6C6 !important;
+  border-color: #CBDAC8 !important;
 }
 
 /* PHQ-9 Instruction Prompt Highlight Effect (Task 5) */
@@ -463,8 +423,8 @@ input.zen-input:focus,
   position: relative;
   display: inline-block;
   background: linear-gradient(135deg, #F3F7F1 0%, #DCE8D5 100%);
-  border: 1.5px solid #C6D8BE;
-  border-left: 4px solid #71866B;
+  border: 1.5px solid #CBDAC8;
+  border-left: 4px solid #3E7245;
   border-radius: 18px;
   padding: 12px 18px;
   box-shadow: 0 4px 14px -3px rgba(113, 134, 107, 0.12);
@@ -472,7 +432,7 @@ input.zen-input:focus,
 }
 
 .phq-instruction-highlight:hover {
-  border-color: #A8B99A;
+  border-color: #3E7245;
   border-left-color: #5D7258;
   box-shadow: 0 6px 20px -3px rgba(113, 134, 107, 0.18);
   transform: translateY(-1px);
@@ -482,7 +442,7 @@ input.zen-input:focus,
   appearance: none;
   width: 22px;
   height: 22px;
-  border: 2px solid #71866B;
+  border: 2px solid #3E7245;
   border-radius: 7px;
   outline: none;
   cursor: pointer;
@@ -498,8 +458,8 @@ input.zen-input:focus,
 }
 
 .custom-checkbox:checked {
-  background-color: #71866B;
-  border-color: #71866B;
+  background-color: #3E7245;
+  border-color: #3E7245;
 }
 
 .custom-checkbox:checked::before {
@@ -600,17 +560,15 @@ input.zen-input:focus,
     padding-bottom: 76px;
   }
 
-  /* Sanctuary Portal Header */
-  #sanctuary-portal {
+  /* Hero Banner Header */
+  #hero-banner {
     padding: 20px 16px;
     border-radius: 24px;
   }
 
-  #sanctuary-portal h1 {
-    font-size: 1.35rem;
-    line-height: 1.35;
-    word-break: break-word;
-    overflow-wrap: anywhere;
+  #hero-banner h1 {
+    font-size: 1.75rem;
+    line-height: 1.2;
   }
 
   /* Section cards */
@@ -677,35 +635,19 @@ input.zen-input:focus,
 
   /* Garden navigation bar is responsive */
 
-  /* Soundscape toggle */
-  #soundscape-toggle {
-    max-width: 100%;
-    text-align: left;
-    font-size: 11px;
-  }
 
-  #soundscape-status {
-    display: inline-block;
-    max-width: 200px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    vertical-align: middle;
-  }
-
-  /* Floating HUD is unified across mobile and desktop */
 }
 
 /* --------------------------------------------------------------------------
    Extra-Small Mobile Breakpoint (≤380px)
    -------------------------------------------------------------------------- */
 @media (max-width: 380px) {
-  #sanctuary-portal {
+  #hero-banner {
     padding: 16px 12px;
   }
 
-  #sanctuary-portal h1 {
-    font-size: 1.2rem;
+  #hero-banner h1 {
+    font-size: 1.5rem;
   }
 
   section[id^="module-"] {
@@ -733,9 +675,7 @@ input.zen-input:focus,
     min-height: 38px;
   }
 
-  #soundscape-status {
-    max-width: 150px;
-  }
+
 }
 
 /* --------------------------------------------------------------------------
@@ -859,22 +799,19 @@ input.zen-input:focus,
   display: none !important;
 }
 
-/* Stepper transition animation */
-.module-step-hidden {
-  display: none !important;
+
+
+/* Utility: Hide scrollbar on step pills horizontal scroll */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-.step-fade-in {
-  animation: stepFadeIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-@keyframes stepFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Language toggle active state */
+.lang-toggle-btn.active {
+  background-color: #243725 !important;
+  color: #FFFFFF !important;
 }
