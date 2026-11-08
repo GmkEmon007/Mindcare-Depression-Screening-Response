@@ -1194,72 +1194,14 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   let currentStepIndex = 0;
-  let isStepMode = true;
+  let isStepMode = false;
 
   function updateStepUI() {
-    const totalSteps = stepModuleIds.length;
-    const stepNumber = currentStepIndex + 1;
-    const progressPercent = Math.round((stepNumber / totalSteps) * 100);
-
-    // Update Counter & Title
-    const stepCounterEl = document.getElementById('step-counter-text');
-    if (stepCounterEl) {
-      stepCounterEl.textContent = `Step ${stepNumber} of ${totalSteps}`;
-    }
-
-    const stepTitleEl = document.getElementById('step-module-title');
-    if (stepTitleEl) {
-      stepTitleEl.textContent = `• ${stepModuleTitles[currentStepIndex]}`;
-    }
-
-    const percentEl = document.getElementById('step-progress-percent');
-    if (percentEl) {
-      percentEl.textContent = `${progressPercent}%`;
-    }
-
-    const fillBarEl = document.getElementById('step-progress-fill');
-    if (fillBarEl) {
-      fillBarEl.style.width = `${progressPercent}%`;
-    }
-
-    // Update Step Navigation Pills
-    const pills = document.querySelectorAll('.step-nav-pill');
-    pills.forEach((pill, idx) => {
-      pill.classList.remove('active', 'completed', 'pending');
-      const dot = pill.querySelector('.pill-dot');
-      if (idx === currentStepIndex) {
-        pill.classList.add('active');
-        if (dot) {
-          dot.className = 'pill-dot w-2 h-2 rounded-full bg-white';
-        }
-      } else if (idx < currentStepIndex) {
-        pill.classList.add('completed');
-        if (dot) {
-          dot.className = 'pill-dot w-2 h-2 rounded-full bg-[#3E7245]';
-        }
-      } else {
-        pill.classList.add('pending');
-        if (dot) {
-          dot.className = 'pill-dot w-2 h-2 rounded-full bg-[#CBDAC8]';
-        }
-      }
-    });
-
-    // Update Section Visibility in Step Mode
-    stepModuleIds.forEach((modId, idx) => {
+    // Ensure all sections are visible for smooth continuous scrolling
+    stepModuleIds.forEach(modId => {
       const section = document.getElementById(modId);
-      if (!section) return;
-
-      if (!isStepMode) {
+      if (section) {
         section.classList.remove('module-step-hidden');
-      } else {
-        if (idx === currentStepIndex) {
-          section.classList.remove('module-step-hidden');
-          section.classList.add('step-fade-in');
-          setTimeout(() => section.classList.remove('step-fade-in'), 400);
-        } else {
-          section.classList.add('module-step-hidden');
-        }
       }
     });
   }
@@ -1275,10 +1217,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (shouldScroll) {
       const targetSec = document.getElementById(stepModuleIds[currentStepIndex]);
-      const tracker = document.getElementById('questionnaire-tracker');
-      const target = isStepMode ? tracker : targetSec;
-      if (target) {
-        const topOffset = target.getBoundingClientRect().top + window.pageYOffset - 90;
+      if (targetSec) {
+        const topOffset = targetSec.getBoundingClientRect().top + window.pageYOffset - 80;
         window.scrollTo({ top: topOffset, behavior: 'smooth' });
       }
     }
