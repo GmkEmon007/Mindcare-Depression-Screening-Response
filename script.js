@@ -522,6 +522,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const unanswered = getUnansweredCards();
     if (unanswered.length > 0) {
       const card = unanswered[0];
+      const parentModule = card.closest('section');
+      if (parentModule && isStepMode) {
+        const modId = parentModule.getAttribute('id');
+        const targetStepIdx = stepModuleIds.indexOf(modId);
+        if (targetStepIdx !== -1) {
+          goToStep(targetStepIdx, false);
+        }
+      }
       card.scrollIntoView({ behavior: 'smooth', block: 'center' });
       card.classList.add('highlight-unanswered');
       setTimeout(() => card.classList.remove('highlight-unanswered'), 3000);
@@ -539,7 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 9. Sticky Nav Elevation, Scroll-Spy & Mobile Directory
   function setupScrollSpy() {
-    const gardenNav = document.getElementById('garden-nav');
+    const gardenNav = document.getElementById('mindcare-nav') || document.getElementById('garden-nav');
     const sections = moduleDefs.map(m => document.getElementById(`module-${m.id}`)).filter(Boolean);
 
     let ticking = false;
@@ -938,6 +946,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       showToast(`⚠️ অনুগ্রহ করে সব প্রশ্নের উত্তর দিন (Please answer all questions before submitting — ${remainingCount} remaining)`);
       
+      const parentModule = firstUnanswered.closest('section');
+      if (parentModule && isStepMode) {
+        const modId = parentModule.getAttribute('id');
+        const targetStepIdx = stepModuleIds.indexOf(modId);
+        if (targetStepIdx !== -1) {
+          goToStep(targetStepIdx, false);
+        }
+      }
       firstUnanswered.scrollIntoView({ behavior: 'smooth', block: 'center' });
       firstUnanswered.classList.add('highlight-unanswered');
       setTimeout(() => firstUnanswered.classList.remove('highlight-unanswered'), 3500);
@@ -1162,7 +1178,233 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  // ==========================================================================
+  // MINDCARE STEPPED QUESTIONNAIRE & INTERACTION SYSTEM (Mockup Screen 1, 2, 3)
+  // ==========================================================================
+  const stepModuleIds = ['module-a', 'module-b', 'module-c', 'module-d', 'module-e', 'module-f', 'module-g'];
+  const stepModuleTitles = [
+    'Demographic & Background Information',
+    'PHQ-9 Mental Wellbeing Screening',
+    'Academic Experience & Study Environment',
+    'Future Outlook & AI Sentiment',
+    'Rest, Sleep & Vitality',
+    'Social Support & Connections (MSPSS)',
+    'Living Environment, Earth & Hearth'
+  ];
+
+  let currentStepIndex = 0;
+  let isStepMode = true;
+
+  function updateStepUI() {
+    const totalSteps = stepModuleIds.length;
+    const stepNumber = currentStepIndex + 1;
+    const progressPercent = Math.round((stepNumber / totalSteps) * 100);
+
+    // Update Counter & Title
+    const stepCounterEl = document.getElementById('step-counter-text');
+    if (stepCounterEl) {
+      stepCounterEl.textContent = `Step ${stepNumber} of ${totalSteps}`;
+    }
+
+    const stepTitleEl = document.getElementById('step-module-title');
+    if (stepTitleEl) {
+      stepTitleEl.textContent = `• ${stepModuleTitles[currentStepIndex]}`;
+    }
+
+    const percentEl = document.getElementById('step-progress-percent');
+    if (percentEl) {
+      percentEl.textContent = `${progressPercent}%`;
+    }
+
+    const fillBarEl = document.getElementById('step-progress-fill');
+    if (fillBarEl) {
+      fillBarEl.style.width = `${progressPercent}%`;
+    }
+
+    // Update Step Navigation Pills
+    const pills = document.querySelectorAll('.step-nav-pill');
+    pills.forEach((pill, idx) => {
+      pill.classList.remove('active', 'completed', 'pending');
+      const dot = pill.querySelector('.pill-dot');
+      if (idx === currentStepIndex) {
+        pill.classList.add('active');
+        if (dot) {
+          dot.className = 'pill-dot w-2 h-2 rounded-full bg-white';
+        }
+      } else if (idx < currentStepIndex) {
+        pill.classList.add('completed');
+        if (dot) {
+          dot.className = 'pill-dot w-2 h-2 rounded-full bg-[#3E7245]';
+        }
+      } else {
+        pill.classList.add('pending');
+        if (dot) {
+          dot.className = 'pill-dot w-2 h-2 rounded-full bg-[#CBDAC8]';
+        }
+      }
+    });
+
+    // Update Section Visibility in Step Mode
+    stepModuleIds.forEach((modId, idx) => {
+      const section = document.getElementById(modId);
+      if (!section) return;
+
+      if (!isStepMode) {
+        section.classList.remove('module-step-hidden');
+      } else {
+        if (idx === currentStepIndex) {
+          section.classList.remove('module-step-hidden');
+          section.classList.add('step-fade-in');
+          setTimeout(() => section.classList.remove('step-fade-in'), 400);
+        } else {
+          section.classList.add('module-step-hidden');
+        }
+      }
+    });
+  }
+
+  function goToStep(index, shouldScroll = true) {
+    if (index < 0) index = 0;
+    if (index >= stepModuleIds.length) index = stepModuleIds.length - 1;
+    currentStepIndex = index;
+    updateStepUI();
+
+    if (shouldScroll) {
+      const tracker = document.getElementById('questionnaire-tracker');
+      if (tracker) {
+        const topOffset = tracker.getBoundingClientRect().top + window.pageYOffset - 90;
+        window.scrollTo({ top: topOffset, behavior: 'smooth' });
+      }
+    }
+  }
+
+  function setupStepNavigation() {
+    // Start Questionnaire CTA Button in Hero
+    const heroStartBtn = document.getElementById('start-questionnaire-btn');
+    if (heroStartBtn) {
+      heroStartBtn.addEventListener('click', () => {
+        goToStep(0, true);
+      });
+    }
+
+    // Next step triggers
+    document.querySelectorAll('.next-step-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const consentCheck = document.getElementById('consent-checkbox');
+        if (consentCheck && !consentCheck.checked) {
+          showToast('Please check the voluntary consent box to proceed');
+          consentCheck.focus();
+          return;
+        }
+        if (currentStepIndex < stepModuleIds.length - 1) {
+          goToStep(currentStepIndex + 1, true);
+        }
+      });
+    });
+
+    // Prev step triggers
+    document.querySelectorAll('.prev-step-trigger').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (currentStepIndex > 0) {
+          goToStep(currentStepIndex - 1, true);
+        }
+      });
+    });
+
+    // Stepper pills click
+    document.querySelectorAll('.step-nav-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        const target = parseInt(pill.getAttribute('data-step-target'), 10);
+        if (!isNaN(target)) {
+          goToStep(target, true);
+        }
+      });
+    });
+
+    // Toggle View Mode (Stepped Flow vs View All)
+    const toggleViewBtn = document.getElementById('toggle-view-mode-btn');
+    const viewModeLabel = document.getElementById('view-mode-label');
+    if (toggleViewBtn) {
+      toggleViewBtn.addEventListener('click', () => {
+        isStepMode = !isStepMode;
+        if (viewModeLabel) {
+          viewModeLabel.textContent = isStepMode ? 'Step Flow' : 'View All';
+        }
+        updateStepUI();
+        showToast(isStepMode ? 'Switched to Step-by-Step Flow' : 'All Sections Visible');
+      });
+    }
+
+    // Module G Submit button
+    const modGSubmitBtn = document.getElementById('module-g-submit-btn');
+    if (modGSubmitBtn) {
+      modGSubmitBtn.addEventListener('click', submitQuestionnaire);
+    }
+
+    // Hero soundscape button
+    const heroSoundBtn = document.getElementById('hero-soundscape-btn');
+    if (heroSoundBtn) {
+      heroSoundBtn.addEventListener('click', () => {
+        toggleSoundscape();
+        const lbl = document.getElementById('soundscape-label');
+        if (lbl) {
+          lbl.textContent = state.soundscapeMode ? '432Hz Sound Playing' : 'Calming 432Hz Soundscape';
+        }
+      });
+    }
+
+    // Informational Modals Nav Bindings
+    const modalMap = [
+      { btnId: 'nav-about-btn', modalId: 'about-modal' },
+      { btnId: 'nav-privacy-btn', modalId: 'privacy-modal' },
+      { btnId: 'nav-resources-btn', modalId: 'resources-modal' },
+      { btnId: 'nav-contact-btn', modalId: 'contact-modal' },
+      { btnId: 'modal-self-help-btn', modalId: 'resources-modal' },
+      { btnId: 'modal-campus-btn', modalId: 'resources-modal' }
+    ];
+
+    modalMap.forEach(({ btnId, modalId }) => {
+      const btn = document.getElementById(btnId);
+      const modal = document.getElementById(modalId);
+      if (btn && modal) {
+        btn.addEventListener('click', () => {
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+        });
+      }
+    });
+
+    // Language Toggle Buttons
+    const langBtnEn = document.getElementById('lang-btn-en');
+    const langBtnBn = document.getElementById('lang-btn-bn');
+
+    if (langBtnEn && langBtnBn) {
+      langBtnEn.addEventListener('click', () => {
+        langBtnEn.classList.add('active', 'bg-[#243725]', 'text-white');
+        langBtnEn.classList.remove('text-[#415745]');
+        langBtnBn.classList.remove('active', 'bg-[#243725]', 'text-white');
+        langBtnBn.classList.add('text-[#415745]');
+        document.documentElement.lang = 'en';
+        showToast('Language set to English');
+      });
+
+      langBtnBn.addEventListener('click', () => {
+        langBtnBn.classList.add('active', 'bg-[#243725]', 'text-white');
+        langBtnBn.classList.remove('text-[#415745]');
+        langBtnEn.classList.remove('active', 'bg-[#243725]', 'text-white');
+        langBtnEn.classList.add('text-[#415745]');
+        document.documentElement.lang = 'bn';
+        showToast('বাংলা ভাষা সক্রিয় করা হয়েছে');
+      });
+    }
+
+    // Initialize Stepper Flow at Step 0
+    goToStep(0, false);
+  }
+
   // Initialize
+  setupStepNavigation();
   restoreState();
   setupPebbleGroups();
   setupInputs();

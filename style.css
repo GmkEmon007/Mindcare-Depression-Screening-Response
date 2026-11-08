@@ -7,30 +7,30 @@
    1. Design Tokens & CSS Custom Properties
    -------------------------------------------------------------------------- */
 :root {
-  --color-canvas-bg: #F7F6EF;         /* Warm Calming Ivory/Linen */
+  --color-canvas-bg: #F4F7F2;         /* MindCare Soft Calming Sage Canvas */
   --color-section-bg: #FFFFFF;        /* Pure White Surface */
-  --color-card-surface: #FAF9F3;      /* Soft Ivory Tint Question Card */
-  --color-border-subtle: #E3E5DC;     /* Gentle Botanical Sand Border */
-  --color-border-active: #A8B99A;     /* Secondary Sage Focus Border */
-  --color-text-primary: #34483A;      /* Deep Forest Slate */
-  --color-text-secondary: #5A6F60;    /* Muted Forest Guidance */
-  --color-text-muted: #7F9386;        /* Sage Slate Subtitles */
-  --color-primary: #71866B;           /* Primary Restorative Sage */
-  --color-primary-hover: #5D7258;     /* Deep Sage */
-  --color-secondary: #A8B99A;         /* Secondary Soft Moss */
-  --color-soft-accent: #DCE8D5;       /* Soft Celadon Accent */
-  --color-accent-border: #C6D8BE;     /* Celadon Border */
+  --color-card-surface: #EEF2E8;      /* Soft Celadon Question Card */
+  --color-border-subtle: #D8E3D5;     /* Gentle Botanical Border */
+  --color-border-active: #3E7245;     /* Active Vibrant Green */
+  --color-text-primary: #243725;      /* Deep Forest Slate / Charcoal */
+  --color-text-secondary: #415745;    /* Muted Forest Guidance */
+  --color-text-muted: #657C69;        /* Sage Slate Subtitles */
+  --color-primary: #243725;           /* Primary Dark Forest Green */
+  --color-primary-hover: #1B2B1C;     /* Deep Night Forest */
+  --color-accent: #3E7245;            /* MindCare Vibrant Green Accent */
+  --color-accent-soft: #EEF2E8;       /* Soft Mint Mist */
+  --color-accent-border: #CBDAC8;     /* Mint Border */
 
-  /* Legacy aliases for compatibility */
-  --color-sandstone: #F7F6EF;
+  /* Aliases for backwards compatibility */
+  --color-sandstone: #F4F7F2;
   --color-parchment: #FFFFFF;
-  --color-linen-border: #E3E5DC;
-  --color-terracotta-accent: #71866B;
-  --color-terracotta-primary: #71866B;
-  --color-terracotta-soft: #DCE8D5;
-  --color-espresso: #34483A;
-  --color-espresso-subtle: #7F9386;
-  --color-espresso-text: #34483A;
+  --color-linen-border: #D8E3D5;
+  --color-terracotta-accent: #3E7245;
+  --color-terracotta-primary: #243725;
+  --color-terracotta-soft: #EEF2E8;
+  --color-espresso: #243725;
+  --color-espresso-subtle: #657C69;
+  --color-espresso-text: #243725;
 }
 
 /* --------------------------------------------------------------------------
@@ -51,12 +51,12 @@ html {
 
 body {
   font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
-  background-color: #F7F6EF;
+  background-color: #F4F7F2;
   background-image:
-    radial-gradient(100% 60% at 50% 0%, rgba(220, 232, 213, 0.55) 0%, rgba(247, 246, 239, 0.4) 60%, transparent 100%),
-    radial-gradient(80% 50% at 100% 25%, rgba(232, 239, 229, 0.50) 0%, transparent 70%),
-    radial-gradient(70% 50% at 0% 65%, rgba(243, 239, 230, 0.60) 0%, transparent 70%),
-    radial-gradient(80% 60% at 85% 90%, rgba(220, 232, 213, 0.40) 0%, transparent 70%);
+    radial-gradient(100% 60% at 50% 0%, rgba(220, 235, 215, 0.60) 0%, rgba(244, 247, 242, 0.4) 60%, transparent 100%),
+    radial-gradient(80% 50% at 100% 25%, rgba(230, 240, 226, 0.50) 0%, transparent 70%),
+    radial-gradient(70% 50% at 0% 65%, rgba(240, 245, 238, 0.60) 0%, transparent 70%),
+    radial-gradient(80% 60% at 85% 90%, rgba(220, 235, 215, 0.40) 0%, transparent 70%);
   background-attachment: fixed;
   background-repeat: no-repeat;
   color: var(--color-espresso-text);
@@ -90,13 +90,13 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #CBD6C6;
+  background: #CBDAC8;
   border-radius: 9999px;
   border: 2px solid var(--color-sandstone);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #A8B99A;
+  background: #3E7245;
 }
 
 #zen-progress-bar {
@@ -115,16 +115,16 @@ body {
   cursor: pointer;
   outline: none;
   background-color: #FFFFFF !important;
-  border: 1px solid #E3E5DC !important;
-  color: #34483A !important;
+  border: 1.5px solid #CBDAC8 !important;
+  color: #243725 !important;
 }
 
 .pebble-btn:hover {
   transform: translateY(-1.5px);
-  border-color: #A8B99A !important;
-  background-color: #F3F7F1 !important;
-  color: #71866B !important;
-  box-shadow: 0 4px 12px -2px rgba(113, 134, 107, 0.2) !important;
+  border-color: #3E7245 !important;
+  background-color: #F7FAF5 !important;
+  color: #3E7245 !important;
+  box-shadow: 0 4px 12px -2px rgba(62, 114, 69, 0.18) !important;
 }
 
 .pebble-btn:active {
@@ -132,15 +132,15 @@ body {
 }
 
 .pebble-btn:focus-visible {
-  box-shadow: 0 0 0 3px rgba(113, 134, 107, 0.25) !important;
+  box-shadow: 0 0 0 3px rgba(62, 114, 69, 0.25) !important;
 }
 
-/* Active Pebble State (Botanical Sage #71866B) */
+/* Active Pebble State (MindCare Forest Green #243725) */
 .pebble-btn.active {
-  background-color: #71866B !important;
+  background-color: #243725 !important;
   color: #FFFFFF !important;
-  border-color: #5D7258 !important;
-  box-shadow: 0 4px 14px -1px rgba(113, 134, 107, 0.35) !important;
+  border-color: #1B2B1C !important;
+  box-shadow: 0 4px 14px -1px rgba(36, 55, 37, 0.32) !important;
 }
 
 .pebble-btn.active span,
@@ -150,7 +150,15 @@ body {
 }
 
 .pebble-btn.active .font-bengali {
-  color: #EAF1E7 !important;
+  color: #DCE8D5 !important;
+}
+
+.pebble-btn.active .pebble-radio-dot {
+  border-color: #FFFFFF !important;
+}
+
+.pebble-btn.active .pebble-radio-inner {
+  background-color: #FFFFFF !important;
 }
 
 /* Ripple Micro-Interaction */
@@ -175,17 +183,18 @@ body {
    -------------------------------------------------------------------------- */
 .question-card {
   transition: all 0.25s ease;
-  background-color: #FAF9F3 !important;
-  border: 1px solid #E3E5DC !important;
+  background-color: #EEF2E8 !important;
+  border: 1px solid #D8E3D5 !important;
+  border-radius: 24px !important;
 }
 
 .question-card:hover {
-  border-color: #CBD6C6 !important;
+  border-color: #CBDAC8 !important;
 }
 
 .question-card.answered {
-  border-color: #71866B !important;
-  box-shadow: 0 4px 16px -2px rgba(113, 134, 107, 0.12), 0 2px 6px -1px rgba(52, 72, 58, 0.03) !important;
+  border-color: #3E7245 !important;
+  box-shadow: 0 4px 16px -2px rgba(62, 114, 69, 0.12), 0 2px 6px -1px rgba(36, 55, 37, 0.03) !important;
 }
 
 .question-card.answered .answered-badge {
@@ -757,5 +766,115 @@ input.zen-input:focus,
   section {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+}
+/* MindCare Stepped Questionnaire Flow */
+.module-step-hidden {
+  display: none !important;
+}
+
+.step-fade-in {
+  animation: stepFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes stepFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ==========================================================================
+   MindCare Stepped Questionnaire & Radio Indicator System
+   ========================================================================== */
+.step-nav-pill {
+  border: 1.5px solid #CBDAC8;
+  background-color: #FFFFFF;
+  color: #415745;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.step-nav-pill:hover {
+  background-color: #EEF2E8;
+  color: #243725;
+  border-color: #3E7245;
+}
+
+.step-nav-pill.active {
+  background-color: #243725 !important;
+  color: #FFFFFF !important;
+  border-color: #1B2B1C !important;
+  box-shadow: 0 4px 12px -2px rgba(36, 55, 37, 0.25) !important;
+}
+
+.step-nav-pill.active .pill-dot {
+  background-color: #FFFFFF !important;
+}
+
+.step-nav-pill.completed {
+  background-color: #EEF2E8 !important;
+  color: #3E7245 !important;
+  border-color: #CBDAC8 !important;
+}
+
+.step-nav-pill.completed .pill-dot {
+  background-color: #3E7245 !important;
+}
+
+/* Radio circle inside options in questionnaire (Screen 2) */
+.question-card .pebble-btn::before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  border-radius: 9999px;
+  border: 2px solid #CBDAC8;
+  display: inline-block;
+  margin-right: 8px;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  background-color: transparent;
+}
+
+.question-card .pebble-btn:hover::before {
+  border-color: #3E7245;
+}
+
+.question-card .pebble-btn.active::before {
+  border-color: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  box-shadow: inset 0 0 0 3px #243725 !important;
+}
+
+/* In Likert 5-point and 7-point grids (SD D N A SA or 1-7), hide radio dots */
+.grid-cols-5 .pebble-btn::before,
+.grid-cols-7 .pebble-btn::before,
+.grid-cols-8 .pebble-btn::before {
+  display: none !important;
+}
+
+/* Stepper transition animation */
+.module-step-hidden {
+  display: none !important;
+}
+
+.step-fade-in {
+  animation: stepFadeIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes stepFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
