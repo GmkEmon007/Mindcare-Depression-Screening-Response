@@ -352,47 +352,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileProgress = document.getElementById('mobile-progress-badge');
     if (mobileProgress) mobileProgress.textContent = `${pct}%`;
 
-    // Dynamic Human Connection & Wellbeing Interaction Feedback
-    const studentStateEl = document.getElementById('student-reflection-state');
-    const supportStateEl = document.getElementById('support-connection-state');
-    const humanLeftEl = document.getElementById('bg-human-left');
-    const humanRightEl = document.getElementById('bg-human-right');
-    const supportPill = document.getElementById('support-status-pill');
-
-    if (studentStateEl) {
-      if (answeredCount === 0) {
-        studentStateEl.textContent = 'Reflective Journey (0/54)';
-      } else if (answeredCount <= 18) {
-        studentStateEl.textContent = `Reflecting on Wellbeing (${answeredCount}/54)`;
-      } else if (answeredCount <= 35) {
-        studentStateEl.textContent = `Sharing Academic Journey (${answeredCount}/54)`;
-      } else if (answeredCount <= 47) {
-        studentStateEl.textContent = `Embracing Support (${answeredCount}/54)`;
-      } else {
-        studentStateEl.textContent = `Journey Validated (${answeredCount}/54)`;
-      }
-    }
-
-    if (supportStateEl && humanRightEl) {
-      if (answeredCount >= 36) {
-        humanRightEl.classList.add('empathy-pulse');
-        humanRightEl.style.opacity = '0.90';
-        if (supportPill) {
-          supportPill.classList.remove('bg-white/80');
-          supportPill.classList.add('bg-[#EAF2EC]', 'border-[#2D6A4F]');
-        }
-        supportStateEl.textContent = `Active Peer & Family Support (${answeredCount}/54)`;
-      } else {
-        humanRightEl.classList.remove('empathy-pulse');
-        humanRightEl.style.opacity = '0.60';
-        if (supportPill) {
-          supportPill.classList.add('bg-white/80');
-          supportPill.classList.remove('bg-[#EAF2EC]', 'border-[#2D6A4F]');
-        }
-        supportStateEl.textContent = 'Peer & Family Support';
-      }
-    }
-
     // Update section checkmarks and states in Nav
     updateNavigationModules();
   }
