@@ -61,242 +61,254 @@
 </head>
 
 <body class="bg-[#F8FAF7] text-[#152418] antialiased selection:bg-[#EAF2EC] selection:text-[#152418] min-h-screen relative flex flex-col items-center">
-
-
-
   <!-- ============================================== -->
-  <!-- ============================================== -->
-  <!-- Monochrome Vector Line-Art Background Canvas    -->
-  <!-- Single color #6B8C73, stroke only, zero fills   -->
+  <!-- Redesigned Three-Layer Academic Background Canvas -->
+  <!-- Layer 1: Soft Botanical Leaf Pattern (Side Margins) -->
+  <!-- Layer 2: Abstract Human-Connection Motif (Side-Middles) -->
+  <!-- Pure SVG Vector Line-Art (Outline Only, No Fills, Connected Stems) -->
   <!-- ============================================== -->
   <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden select-none" aria-hidden="true">
 
     <!-- ======================================================== -->
-    <!-- 1. SOFT BOTANICAL LINE ART (Side Margins & Corners)      -->
-    <!-- Pure monochrome outlines — no fills, no washes            -->
+    <!-- LAYER 1: SOFT BOTANICAL LEAF PATTERN (Side Margins)      -->
+    <!-- Every leaf petiole connects seamlessly to the branch     -->
+    <!-- Color: var(--bg-sage-botanical), stroke 1.1-1.3px        -->
     <!-- ======================================================== -->
 
-    <!-- TOP-LEFT: Cascading branch with compound leaves -->
-    <div class="absolute -left-4 -top-4 w-56 sm:w-72 md:w-96 pointer-events-none select-none opacity-[0.22]">
-      <svg viewBox="0 0 400 480" fill="none" class="w-full h-auto" stroke="#6B8C73">
-        <!-- Primary flowing stem -->
-        <path d="M-10 -15 C40 55 100 110 170 155 C230 195 280 240 320 310 C340 350 350 400 345 460" stroke-width="1.6" stroke-linecap="round"/>
-        <!-- Secondary tendril -->
-        <path d="M60 40 C90 55 105 80 95 115" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M200 180 C240 175 265 200 248 235" stroke-width="1.1" stroke-linecap="round"/>
-
-        <!-- Compound leaves — outline only with midrib veins -->
-        <!-- Leaf pair 1 -->
-        <path d="M32 28 C55 8 88 15 96 40 C82 58 48 52 32 28 Z" stroke-width="1.2"/>
-        <path d="M32 28 L72 36" stroke-width="0.7" stroke-linecap="round"/>
-        <path d="M50 20 C42 38 48 56 65 62" stroke-width="0.7" stroke-linecap="round" stroke-dasharray="2 3"/>
-
-        <!-- Leaf pair 2 -->
-        <path d="M75 68 C62 92 72 124 100 130 C116 114 106 82 75 68 Z" stroke-width="1.2"/>
-        <path d="M75 68 L96 108" stroke-width="0.7" stroke-linecap="round"/>
-
-        <!-- Leaf pair 3 -->
-        <path d="M118 100 C142 76 180 80 190 108 C174 128 140 120 118 100 Z" stroke-width="1.2"/>
-        <path d="M118 100 L168 106" stroke-width="0.7" stroke-linecap="round"/>
-        <path d="M138 86 C132 105 140 124 158 130" stroke-width="0.7" stroke-linecap="round" stroke-dasharray="2 3"/>
-
-        <!-- Leaf pair 4 -->
-        <path d="M155 136 C145 164 158 196 188 198 C202 180 190 150 155 136 Z" stroke-width="1.2"/>
-        <path d="M155 136 L180 178" stroke-width="0.7" stroke-linecap="round"/>
-
-        <!-- Leaf pair 5 -->
-        <path d="M198 170 C222 148 260 155 268 182 C250 202 218 194 198 170 Z" stroke-width="1.2"/>
-        <path d="M198 170 L248 178" stroke-width="0.7" stroke-linecap="round"/>
-
-        <!-- Leaf pair 6 -->
-        <path d="M240 205 C232 234 246 266 278 268 C292 250 278 220 240 205 Z" stroke-width="1.2"/>
-        <path d="M240 205 L268 248" stroke-width="0.7" stroke-linecap="round"/>
-
-        <!-- Leaf pair 7 (lower) -->
-        <path d="M275 248 C298 228 334 236 340 264 C322 282 292 274 275 248 Z" stroke-width="1.2"/>
-        <path d="M275 248 L322 258" stroke-width="0.7" stroke-linecap="round"/>
-
-        <!-- Leaf pair 8 -->
-        <path d="M310 290 C300 320 316 352 346 354 C360 336 346 304 310 290 Z" stroke-width="1.2"/>
-        <path d="M310 290 L338 334" stroke-width="0.7" stroke-linecap="round"/>
-
-        <!-- Small accent leaves on secondary tendrils -->
-        <path d="M72 52 C82 44 96 48 98 60 C88 68 74 62 72 52 Z" stroke-width="1"/>
-        <path d="M220 192 C234 186 248 195 246 210 C232 216 220 206 220 192 Z" stroke-width="1"/>
-
-        <!-- Floating accent circles -->
-        <circle cx="140" cy="50" r="4" stroke-width="1"/>
-        <circle cx="290" cy="150" r="6" stroke-width="0.9"/>
-        <circle cx="350" cy="380" r="3.5" stroke-width="0.9"/>
-        <circle cx="108" cy="145" r="2.5" stroke-width="0.8"/>
+    <!-- Left Side Margin Botanical Branch (Cascades down left margin) -->
+    <div class="absolute -left-2 sm:left-1 md:left-3 -top-6 w-48 sm:w-64 md:w-80 lg:w-96 pointer-events-none select-none bg-layer-botanical transition-opacity">
+      <svg viewBox="0 0 240 680" fill="none" class="w-full h-auto">
+        <!-- Main flowing branch stem -->
+        <path d="M -10 -10 Q 25 40 55 95 Q 82 155 96 220 Q 90 290 102 360 Q 124 435 130 510 Q 115 590 95 660 " stroke-width="1.3" stroke-linecap="round"/>
+        <!-- Side branch tendrils -->
+        <g stroke-width="1.2">
+          <path d="M 82 155 L 120 175 L 145 170 " stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M 90 290 L 125 305 L 150 300 " stroke-width="1.2" stroke-linecap="round"/>
+        </g>
+        <!-- Connected leaf blades, petioles & midribs -->
+        <g fill="none">
+          <path d="M 25.0 40.0 L 31.9 45.8 Q 42.7 66.6 68.7 76.6 Q 54.2 52.8 31.9 45.8 M 31.9 45.8 L 68.7 76.6" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 25.0 40.0 L 28.8 31.8 Q 44.0 18.1 46.6 -6.2 Q 29.5 11.3 28.8 31.8 M 28.8 31.8 L 46.6 -6.2" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 55.0 95.0 L 60.8 101.9 Q 68.2 126.2 94.2 141.7 Q 83.5 113.4 60.8 101.9 M 60.8 101.9 L 94.2 141.7" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 55.0 95.0 L 60.2 87.6 Q 78.7 75.9 86.0 50.8 Q 64.8 66.2 60.2 87.6 M 60.2 87.6 L 86.0 50.8" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 82.0 155.0 L 88.7 161.0 Q 99.7 185.1 128.8 197.2 Q 113.8 169.5 88.7 161.0 M 88.7 161.0 L 128.8 197.2" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 82.0 155.0 L 88.0 148.3 Q 108.6 139.0 118.8 114.1 Q 95.2 126.9 88.0 148.3 M 88.0 148.3 L 118.8 114.1" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 96.0 220.0 L 101.2 227.4 Q 106.6 254.3 133.3 273.2 Q 124.6 241.7 101.2 227.4 M 101.2 227.4 L 133.3 273.2" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 96.0 220.0 L 100.2 212.1 Q 118.8 197.4 122.8 169.7 Q 102.0 188.5 100.2 212.1 M 100.2 212.1 L 122.8 169.7" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 90.0 290.0 L 97.1 295.5 Q 109.4 317.8 138.1 327.6 Q 121.7 302.1 97.1 295.5 M 97.1 295.5 L 138.1 327.6" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 90.0 290.0 L 96.7 284.0 Q 117.1 277.0 129.4 254.5 Q 105.7 264.4 96.7 284.0 M 96.7 284.0 L 129.4 254.5" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 102.0 360.0 L 108.0 366.7 Q 116.0 389.8 141.5 403.8 Q 130.1 377.1 108.0 366.7 M 108.0 366.7 L 141.5 403.8" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 102.0 360.0 L 106.8 352.4 Q 123.6 340.6 129.0 316.7 Q 110.0 332.1 106.8 352.4 M 106.8 352.4 L 129.0 316.7" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 124.0 435.0 L 131.3 440.3 Q 143.5 460.3 170.1 468.5 Q 154.0 445.7 131.3 440.3 M 131.3 440.3 L 170.1 468.5" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 124.0 435.0 L 129.8 428.1 Q 147.1 419.1 155.5 397.5 Q 135.6 409.5 129.8 428.1 M 129.8 428.1 L 155.5 397.5" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 130.0 510.0 L 136.5 516.3 Q 144.8 536.1 168.1 546.8 Q 156.6 523.9 136.5 516.3 M 136.5 516.3 L 168.1 546.8" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 130.0 510.0 L 134.2 502.1 Q 148.4 490.2 152.1 468.5 Q 136.1 483.7 134.2 502.1 M 134.2 502.1 L 152.1 468.5" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 115.0 590.0 L 122.6 594.8 Q 133.9 610.7 156.6 616.0 Q 141.9 597.9 122.6 594.8 M 122.6 594.8 L 156.6 616.0" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 115.0 590.0 L 121.4 583.6 Q 137.8 577.1 146.8 558.2 Q 127.9 567.2 121.4 583.6 M 121.4 583.6 L 146.8 558.2" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 95.0 660.0 L 103.6 662.8 Q 117.0 674.0 137.8 673.9 Q 121.0 661.6 103.6 662.8 M 103.6 662.8 L 137.8 673.9" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 120.0 175.0 L 125.4 177.5 Q 136.6 189.9 156.3 191.9 Q 142.1 178.1 125.4 177.5 M 125.4 177.5 L 156.3 191.9" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 145.0 170.0 L 150.8 168.4 Q 165.4 170.7 179.8 160.7 Q 162.3 159.2 150.8 168.4 M 150.8 168.4 L 179.8 160.7" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 125.0 305.0 L 130.2 308.0 Q 139.7 320.4 157.9 324.0 Q 145.7 310.0 130.2 308.0 M 130.2 308.0 L 157.9 324.0" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 150.0 300.0 L 155.6 297.9 Q 169.4 298.8 181.9 288.4 Q 165.6 288.5 155.6 297.9 M 155.6 297.9 L 181.9 288.4" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <!-- Subtle accent nodes -->
+        <circle cx="150" cy="85" r="3.5" stroke-width="1"/>
+        <circle cx="180" cy="235" r="4.5" stroke-width="0.9"/>
+        <circle cx="155" cy="480" r="3" stroke-width="0.9"/>
       </svg>
     </div>
 
-    <!-- TOP-RIGHT: Mirrored cascading branch -->
-    <div class="absolute -right-4 -top-4 w-56 sm:w-72 md:w-96 pointer-events-none select-none opacity-[0.22] scale-x-[-1]">
-      <svg viewBox="0 0 400 480" fill="none" class="w-full h-auto" stroke="#6B8C73">
-        <path d="M-10 -15 C40 55 100 110 170 155 C230 195 280 240 320 310 C340 350 350 400 345 460" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M60 40 C90 55 105 80 95 115" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M200 180 C240 175 265 200 248 235" stroke-width="1.1" stroke-linecap="round"/>
-        <path d="M32 28 C55 8 88 15 96 40 C82 58 48 52 32 28 Z" stroke-width="1.2"/>
-        <path d="M32 28 L72 36" stroke-width="0.7" stroke-linecap="round"/>
-        <path d="M75 68 C62 92 72 124 100 130 C116 114 106 82 75 68 Z" stroke-width="1.2"/>
-        <path d="M75 68 L96 108" stroke-width="0.7" stroke-linecap="round"/>
-        <path d="M118 100 C142 76 180 80 190 108 C174 128 140 120 118 100 Z" stroke-width="1.2"/>
-        <path d="M118 100 L168 106" stroke-width="0.7" stroke-linecap="round"/>
-        <path d="M155 136 C145 164 158 196 188 198 C202 180 190 150 155 136 Z" stroke-width="1.2"/>
-        <path d="M155 136 L180 178" stroke-width="0.7" stroke-linecap="round"/>
-        <path d="M198 170 C222 148 260 155 268 182 C250 202 218 194 198 170 Z" stroke-width="1.2"/>
-        <path d="M198 170 L248 178" stroke-width="0.7" stroke-linecap="round"/>
-        <path d="M240 205 C232 234 246 266 278 268 C292 250 278 220 240 205 Z" stroke-width="1.2"/>
-        <path d="M240 205 L268 248" stroke-width="0.7" stroke-linecap="round"/>
-        <circle cx="140" cy="50" r="4" stroke-width="1"/>
-        <circle cx="290" cy="150" r="6" stroke-width="0.9"/>
+    <!-- Right Side Margin Botanical Branch (Cascades down right margin) -->
+    <div class="absolute -right-2 sm:right-1 md:right-3 -top-6 w-48 sm:w-64 md:w-80 lg:w-96 pointer-events-none select-none bg-layer-botanical transition-opacity">
+      <svg viewBox="0 0 240 680" fill="none" class="w-full h-auto">
+        <!-- Main flowing branch stem -->
+        <path d="M 210 -10 Q 175 40 145 95 Q 118 155 104 220 Q 110 290 98 360 Q 76 435 70 510 Q 85 590 105 660 " stroke-width="1.3" stroke-linecap="round"/>
+        <!-- Side branch tendrils -->
+        <g stroke-width="1.2">
+          <path d="M 118 155 L 80 175 L 55 170 " stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M 110 290 L 75 305 L 50 300 " stroke-width="1.2" stroke-linecap="round"/>
+        </g>
+        <!-- Connected leaf blades, petioles & midribs -->
+        <g fill="none">
+          <path d="M 175.0 40.0 L 168.1 45.8 Q 145.8 52.8 131.3 76.6 Q 157.3 66.6 168.1 45.8 M 168.1 45.8 L 131.3 76.6" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 175.0 40.0 L 171.2 31.8 Q 170.5 11.3 153.4 -6.2 Q 156.0 18.1 171.2 31.8 M 171.2 31.8 L 153.4 -6.2" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 145.0 95.0 L 139.2 101.9 Q 116.5 113.4 105.8 141.7 Q 131.8 126.2 139.2 101.9 M 139.2 101.9 L 105.8 141.7" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 145.0 95.0 L 139.8 87.6 Q 135.2 66.2 114.0 50.8 Q 121.3 75.9 139.8 87.6 M 139.8 87.6 L 114.0 50.8" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 118.0 155.0 L 111.3 161.0 Q 86.2 169.5 71.2 197.2 Q 100.3 185.1 111.3 161.0 M 111.3 161.0 L 71.2 197.2" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 118.0 155.0 L 112.0 148.3 Q 104.8 126.9 81.2 114.1 Q 91.4 139.0 112.0 148.3 M 112.0 148.3 L 81.2 114.1" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 104.0 220.0 L 98.8 227.4 Q 75.4 241.7 66.7 273.2 Q 93.4 254.3 98.8 227.4 M 98.8 227.4 L 66.7 273.2" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 104.0 220.0 L 99.8 212.1 Q 98.0 188.5 77.2 169.7 Q 81.2 197.4 99.8 212.1 M 99.8 212.1 L 77.2 169.7" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 110.0 290.0 L 102.9 295.5 Q 78.3 302.1 61.9 327.6 Q 90.6 317.8 102.9 295.5 M 102.9 295.5 L 61.9 327.6" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 110.0 290.0 L 103.3 284.0 Q 94.3 264.4 70.6 254.5 Q 82.9 277.0 103.3 284.0 M 103.3 284.0 L 70.6 254.5" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 98.0 360.0 L 92.0 366.7 Q 69.9 377.1 58.5 403.8 Q 84.0 389.8 92.0 366.7 M 92.0 366.7 L 58.5 403.8" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 98.0 360.0 L 93.2 352.4 Q 90.0 332.1 71.0 316.7 Q 76.4 340.6 93.2 352.4 M 93.2 352.4 L 71.0 316.7" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 76.0 435.0 L 68.7 440.3 Q 46.0 445.7 29.9 468.5 Q 56.5 460.3 68.7 440.3 M 68.7 440.3 L 29.9 468.5" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 76.0 435.0 L 70.2 428.1 Q 64.4 409.5 44.5 397.5 Q 52.9 419.1 70.2 428.1 M 70.2 428.1 L 44.5 397.5" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 70.0 510.0 L 63.5 516.3 Q 43.4 523.9 31.9 546.8 Q 55.2 536.1 63.5 516.3 M 63.5 516.3 L 31.9 546.8" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 70.0 510.0 L 65.8 502.1 Q 63.9 483.7 47.9 468.5 Q 51.6 490.2 65.8 502.1 M 65.8 502.1 L 47.9 468.5" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 85.0 590.0 L 77.4 594.8 Q 58.1 597.9 43.4 616.0 Q 66.1 610.7 77.4 594.8 M 77.4 594.8 L 43.4 616.0" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 85.0 590.0 L 78.6 583.6 Q 72.1 567.2 53.2 558.2 Q 62.2 577.1 78.6 583.6 M 78.6 583.6 L 53.2 558.2" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 105.0 660.0 L 96.4 662.8 Q 79.0 661.6 62.2 673.9 Q 83.0 674.0 96.4 662.8 M 96.4 662.8 L 62.2 673.9" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 80.0 175.0 L 74.6 177.5 Q 57.9 178.1 43.7 191.9 Q 63.4 189.9 74.6 177.5 M 74.6 177.5 L 43.7 191.9" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 55.0 170.0 L 49.2 168.4 Q 37.7 159.2 20.2 160.7 Q 34.6 170.7 49.2 168.4 M 49.2 168.4 L 20.2 160.7" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 75.0 305.0 L 69.8 308.0 Q 54.3 310.0 42.1 324.0 Q 60.3 320.4 69.8 308.0 M 69.8 308.0 L 42.1 324.0" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 50.0 300.0 L 44.4 297.9 Q 34.4 288.5 18.1 288.4 Q 30.6 298.8 44.4 297.9 M 44.4 297.9 L 18.1 288.4" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <!-- Subtle accent nodes -->
+        <circle cx="90" cy="85" r="3.5" stroke-width="1"/>
+        <circle cx="60" cy="235" r="4.5" stroke-width="0.9"/>
+        <circle cx="85" cy="480" r="3" stroke-width="0.9"/>
       </svg>
     </div>
 
-    <!-- BOTTOM-LEFT: Upward botanical sprig -->
-    <div class="absolute -left-2 bottom-0 w-40 sm:w-56 md:w-72 pointer-events-none select-none opacity-[0.18] scale-y-[-1]">
-      <svg viewBox="0 0 280 380" fill="none" class="w-full h-auto" stroke="#6B8C73">
-        <path d="M-8 -10 C30 60 70 120 85 180 C95 230 80 280 65 360" stroke-width="1.4" stroke-linecap="round"/>
-        <path d="M25 55 C48 38 74 48 78 72 C62 86 34 78 25 55 Z" stroke-width="1.1"/>
-        <path d="M25 55 L58 64" stroke-width="0.7" stroke-linecap="round"/>
-        <path d="M50 108 C34 92 40 66 62 60 C74 76 68 102 50 108 Z" stroke-width="1.1"/>
-        <path d="M50 108 L60 78" stroke-width="0.7" stroke-linecap="round"/>
-        <path d="M68 145 C90 128 118 138 122 164 C106 180 80 172 68 145 Z" stroke-width="1.1"/>
-        <path d="M68 145 L104 156" stroke-width="0.7" stroke-linecap="round"/>
-        <path d="M82 200 C66 185 72 158 94 152 C106 168 98 195 82 200 Z" stroke-width="1.1"/>
-        <path d="M76 260 C98 244 125 255 128 280 C110 295 85 285 76 260 Z" stroke-width="1.1"/>
-        <path d="M76 260 L110 272" stroke-width="0.7" stroke-linecap="round"/>
-        <circle cx="110" cy="100" r="3.5" stroke-width="0.9"/>
-        <circle cx="135" cy="210" r="5" stroke-width="0.9"/>
+    <!-- Lower-Left Margin Secondary Sprig -->
+    <div class="absolute -left-2 bottom-8 w-36 sm:w-52 md:w-64 pointer-events-none select-none bg-layer-botanical opacity-80 scale-y-[-1]">
+      <svg viewBox="0 0 200 360" fill="none" class="w-full h-auto">
+        <path d="M -5 360 C 25 300, 55 240, 68 170 C 76 110, 60 50, 48 -10" stroke-width="1.3" stroke-linecap="round"/>
+        <!-- Connected lower leaves -->
+        <g fill="none" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Leaf 1 -->
+          <path d="M 22 305 L 34 295 Q 52 278 72 284 Q 60 306 34 295 M 34 295 L 72 284"/>
+          <!-- Leaf 2 -->
+          <path d="M 45 250 L 32 242 Q 12 230 18 210 Q 36 218 32 242 M 32 242 L 18 210"/>
+          <!-- Leaf 3 -->
+          <path d="M 62 195 L 75 186 Q 96 170 116 178 Q 102 200 75 186 M 75 186 L 116 178"/>
+          <!-- Leaf 4 -->
+          <path d="M 68 140 L 54 132 Q 36 120 40 102 Q 58 110 54 132 M 54 132 L 40 102"/>
+          <!-- Leaf 5 -->
+          <path d="M 64 85 L 76 76 Q 96 60 115 68 Q 102 88 76 76 M 76 76 L 115 68"/>
+        </g>
+        <circle cx="95" cy="140" r="3" stroke-width="0.9"/>
       </svg>
     </div>
 
-    <!-- BOTTOM-RIGHT: Upward botanical sprig (mirrored) -->
-    <div class="absolute -right-2 bottom-0 w-40 sm:w-56 md:w-72 pointer-events-none select-none opacity-[0.18] -scale-x-100 -scale-y-100">
-      <svg viewBox="0 0 280 380" fill="none" class="w-full h-auto" stroke="#6B8C73">
-        <path d="M-8 -10 C30 60 70 120 85 180 C95 230 80 280 65 360" stroke-width="1.4" stroke-linecap="round"/>
-        <path d="M25 55 C48 38 74 48 78 72 C62 86 34 78 25 55 Z" stroke-width="1.1"/>
-        <path d="M25 55 L58 64" stroke-width="0.7" stroke-linecap="round"/>
-        <path d="M50 108 C34 92 40 66 62 60 C74 76 68 102 50 108 Z" stroke-width="1.1"/>
-        <path d="M68 145 C90 128 118 138 122 164 C106 180 80 172 68 145 Z" stroke-width="1.1"/>
-        <path d="M68 145 L104 156" stroke-width="0.7" stroke-linecap="round"/>
-        <path d="M82 200 C66 185 72 158 94 152 C106 168 98 195 82 200 Z" stroke-width="1.1"/>
-        <circle cx="110" cy="100" r="3.5" stroke-width="0.9"/>
+    <!-- Lower-Right Margin Secondary Sprig -->
+    <div class="absolute -right-2 bottom-8 w-36 sm:w-52 md:w-64 pointer-events-none select-none bg-layer-botanical opacity-80 -scale-x-100 scale-y-[-1]">
+      <svg viewBox="0 0 200 360" fill="none" class="w-full h-auto">
+        <path d="M -5 360 C 25 300, 55 240, 68 170 C 76 110, 60 50, 48 -10" stroke-width="1.3" stroke-linecap="round"/>
+        <g fill="none" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 22 305 L 34 295 Q 52 278 72 284 Q 60 306 34 295 M 34 295 L 72 284"/>
+          <path d="M 45 250 L 32 242 Q 12 230 18 210 Q 36 218 32 242 M 32 242 L 18 210"/>
+          <path d="M 62 195 L 75 186 Q 96 170 116 178 Q 102 200 75 186 M 75 186 L 116 178"/>
+          <path d="M 68 140 L 54 132 Q 36 120 40 102 Q 58 110 54 132 M 54 132 L 40 102"/>
+          <path d="M 64 85 L 76 76 Q 96 60 115 68 Q 102 88 76 76 M 76 76 L 115 68"/>
+        </g>
+        <circle cx="95" cy="140" r="3" stroke-width="0.9"/>
       </svg>
     </div>
 
     <!-- ======================================================== -->
-    <!-- 2. ABSTRACT HUMAN-CONNECTION LINE ART (Page Background)  -->
-    <!-- Pure monochrome continuous one-line illustrations          -->
+    <!-- LAYER 2: ABSTRACT HUMAN-CONNECTION MOTIF (Side-Middles)  -->
+    <!-- Minimal figures, connected circle nodes, flowing lines   -->
+    <!-- Color: var(--bg-sage-human), stroke 1.2-1.4px            -->
     <!-- ======================================================== -->
 
-    <!-- LEFT: Seated student with tangled scribble thought cloud -->
-    <div class="absolute left-1 sm:left-3 md:left-6 lg:left-10 top-[38%] -translate-y-1/2 w-36 sm:w-48 md:w-60 lg:w-72 pointer-events-none select-none opacity-[0.20]">
-      <svg viewBox="0 0 300 380" fill="none" class="w-full h-auto" stroke="#6B8C73">
+    <!-- LEFT-MIDDLE: Seated Contemplative Figure & Connected Thought Nodes -->
+    <div class="hidden sm:block absolute left-1 sm:left-2 md:left-6 lg:left-10 top-[40%] -translate-y-1/2 w-36 sm:w-48 md:w-56 lg:w-68 pointer-events-none select-none bg-layer-human transition-opacity">
+      <svg viewBox="0 0 280 360" fill="none" class="w-full h-auto">
+        <!-- Connected Nodes & Flowing Resonance Lines (Social/Cognitive Support Network) -->
+        <g stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Central node constellation -->
+          <circle cx="140" cy="110" r="5" stroke-width="1.2"/>
+          <circle cx="180" cy="85" r="4" stroke-width="1.1"/>
+          <circle cx="115" cy="75" r="3.5" stroke-width="1"/>
+          <circle cx="210" cy="120" r="4.5" stroke-width="1.1"/>
+          <circle cx="165" cy="150" r="3" stroke-width="1"/>
+          
+          <!-- Node link lines -->
+          <line x1="140" y1="110" x2="180" y2="85" stroke-width="0.9" stroke-dasharray="3 3"/>
+          <line x1="140" y1="110" x2="115" y2="75" stroke-width="0.9" stroke-dasharray="3 3"/>
+          <line x1="180" y1="85" x2="210" y2="120" stroke-width="0.9"/>
+          <line x1="140" y1="110" x2="165" y2="150" stroke-width="0.9"/>
 
-        <!-- Tangled scribble thought cloud — continuous overlapping loops -->
-        <path d="M140 130
-          C125 114 112 92 128 76
-          C144 60 166 68 168 86
-          C170 104 144 118 130 102
-          C116 86 130 64 152 60
-          C174 56 182 78 168 96
-          C154 114 124 106 120 88
-          C116 70 140 56 162 58
-          C184 60 190 82 174 100
-          C158 118 128 110 126 92
-          C124 74 148 62 168 70
-          C188 78 180 106 160 116
-          C140 126 114 108 132 90
-          C150 72 176 88 164 110
-          C152 130 126 122 136 102
-          C146 82 172 96 158 116
-          C144 136 118 118 130 98" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Continuous looping empathy ribbon weaving through the nodes -->
+          <path d="M 90 140 
+                   C 105 120, 120 95, 140 85 
+                   C 165 72, 195 78, 205 98 
+                   C 215 118, 190 135, 165 130 
+                   C 140 125, 128 100, 142 85 
+                   C 156 70, 185 80, 182 105 
+                   C 178 130, 145 138, 125 152 
+                   C 112 162, 102 175, 95 190" stroke-width="1.3"/>
+        </g>
 
-        <!-- Tendril connecting cloud to head -->
-        <path d="M132 130 C122 145 106 155 100 172" stroke-width="1.4" stroke-linecap="round"/>
+        <!-- Minimalist Seated Human Figure (Single-weight line outline) -->
+        <g stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Head tilted forward in thoughtful contemplation -->
+          <path d="M 95 190 C 88 184, 76 186, 70 196 C 64 206, 68 218, 78 222 C 88 226, 98 218, 100 206 C 101 198, 95 190, 95 190 Z"/>
+          <!-- Curved back & spine -->
+          <path d="M 70 200 C 52 210, 36 236, 30 264 C 26 284, 34 300, 52 308"/>
+          <!-- Arms resting across bent knees -->
+          <path d="M 52 232 C 64 246, 86 250, 104 246 C 114 242, 120 254, 110 272 C 100 284, 82 286, 68 280"/>
+          <!-- Bent knees -->
+          <path d="M 88 228 C 102 232, 116 250, 122 270 C 126 288, 118 306, 108 316"/>
+          <path d="M 108 316 L 132 318"/>
+        </g>
 
-        <!-- Student figure — continuous one-line style -->
-        <!-- Head tilted forward, resting on knees -->
-        <path d="M100 172 C92 164 80 166 74 176 C68 186 72 198 82 202 C92 206 102 198 104 186 C105 178 100 172 100 172 Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-
-        <!-- Back curve & spine -->
-        <path d="M74 180 C54 190 36 218 30 248 C26 270 32 290 50 298" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-
-        <!-- Arms hugging knees -->
-        <path d="M56 214 C68 230 92 234 110 228 C122 224 128 238 116 258 C106 272 86 274 72 268" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-
-        <!-- Bent knees & legs -->
-        <path d="M92 210 C108 214 124 232 130 254 C134 272 126 292 116 304" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M116 304 L142 306" stroke-width="1.6" stroke-linecap="round"/>
-
-        <!-- Ground horizon -->
-        <path d="M0 310 C50 306 110 308 170 304 C220 300 270 306 300 304" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
-
-        <!-- Floating accent circles -->
-        <circle cx="195" cy="108" r="5.5" stroke-width="1"/>
-        <circle cx="215" cy="200" r="4" stroke-width="0.9"/>
-        <circle cx="178" cy="260" r="3" stroke-width="0.9"/>
-        <circle cx="56" cy="145" r="3.5" stroke-width="0.9"/>
-        <circle cx="240" cy="155" r="2.5" stroke-width="0.8"/>
+        <!-- Flowing ground wave -->
+        <path d="M 0 320 C 50 316, 110 318, 170 314 C 220 310, 260 316, 280 314" stroke-width="1.2" stroke-linecap="round"/>
+        
+        <!-- Floating node satellite rings -->
+        <circle cx="230" cy="180" r="5" stroke-width="0.9"/>
+        <circle cx="45" cy="150" r="3" stroke-width="0.9"/>
       </svg>
     </div>
 
-    <!-- RIGHT: Three supportive friends with continuous heart line -->
-    <div class="absolute right-1 sm:right-3 md:right-6 lg:right-10 top-[42%] -translate-y-1/2 w-40 sm:w-52 md:w-64 lg:w-80 pointer-events-none select-none opacity-[0.20]">
-      <svg viewBox="0 0 360 400" fill="none" class="w-full h-auto" stroke="#6B8C73">
+    <!-- RIGHT-MIDDLE: Supportive Connected Figures & Heart Loop Motif -->
+    <div class="hidden sm:block absolute right-1 sm:right-2 md:right-6 lg:right-10 top-[44%] -translate-y-1/2 w-40 sm:w-52 md:w-60 lg:w-72 pointer-events-none select-none bg-layer-human transition-opacity">
+      <svg viewBox="0 0 320 380" fill="none" class="w-full h-auto">
+        
+        <!-- Connected Nodes & Flowing Heart Ribbon (Social Support & Mutual Care) -->
+        <g stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Flowing continuous line rising into heart contour -->
+          <path d="M 90 220 
+                   C 125 180, 170 135, 210 102 
+                   C 224 90, 240 86, 250 98 
+                   C 260 110, 256 128, 240 144 
+                   C 224 160, 204 154, 196 140 
+                   C 188 126, 196 106, 212 96 
+                   C 228 86, 248 96, 255 112 
+                   C 262 128, 248 148, 228 165 
+                   C 206 182, 168 202, 135 228" stroke-width="1.3"/>
 
-        <!-- Continuous flowing line rising into heart shape -->
-        <path d="M100 230
-          C140 190 190 140 232 105
-          C248 92 265 88 276 100
-          C288 112 284 132 266 148
-          C248 164 226 158 218 144
-          C210 130 218 110 234 100
-          C250 90 272 100 280 118
-          C288 136 274 158 252 175
-          C228 194 186 215 150 240" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Connected supportive nodes (Pillars of Social Support: Family, Friends, Significant Other) -->
+          <circle cx="210" cy="98" r="4.5" stroke-width="1.1"/>
+          <circle cx="250" cy="98" r="4" stroke-width="1"/>
+          <circle cx="240" cy="144" r="4" stroke-width="1"/>
+          <circle cx="270" cy="175" r="5" stroke-width="1"/>
+          <line x1="250" y1="98" x2="270" y2="175" stroke-width="0.8" stroke-dasharray="2 3"/>
+          <line x1="240" y1="144" x2="270" y2="175" stroke-width="0.8" stroke-dasharray="2 3"/>
+        </g>
 
-        <!-- LEFT FRIEND — longer hair, leaning in -->
-        <path d="M82 200 C70 200 60 212 60 228 C60 246 72 258 86 258 C100 258 110 246 110 228 C110 212 98 200 82 200 Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <!-- Hair flow -->
-        <path d="M62 230 C56 246 64 264 76 272 M102 232 C108 248 100 266 90 272" stroke-width="1.4" stroke-linecap="round"/>
-        <!-- Shoulders & torso -->
-        <path d="M52 310 C56 280 68 268 82 266" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M82 266 C96 268 108 278 116 292" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M42 336 L52 310" stroke-width="1.6" stroke-linecap="round"/>
+        <!-- Minimalist Three Supportive Figures (Linked by single-weight continuous lines) -->
+        <g stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <!-- LEFT FIGURE -->
+          <path d="M 72 195 C 62 195, 52 205, 52 220 C 52 236, 62 248, 74 248 C 86 248, 94 236, 94 220 C 94 205, 84 195, 72 195 Z"/>
+          <path d="M 52 226 C 46 242, 54 258, 64 266 M 90 228 C 96 244, 88 260, 80 266"/>
+          <path d="M 46 295 C 50 270, 60 258, 72 256 M 72 256 C 84 258, 94 268, 102 280"/>
 
-        <!-- CENTER FRIEND — tallest, arms draped over both -->
-        <path d="M160 172 C146 172 136 184 136 200 C136 218 148 230 162 230 C176 230 188 218 188 200 C188 184 176 172 160 172 Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <!-- Curly hair texture -->
-        <path d="M142 180 C138 175 140 168 148 166 M178 180 C182 175 180 168 172 166 M155 170 C155 164 160 160 166 162" stroke-width="1.2" stroke-linecap="round"/>
-        <!-- Shoulders -->
-        <path d="M136 222 C124 232 110 244 100 254" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M188 222 C198 232 212 244 224 254" stroke-width="1.6" stroke-linecap="round"/>
-        <!-- Left arm draped over left friend -->
-        <path d="M128 240 C108 248 86 256 72 272 C66 278 70 284 78 282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <!-- Right arm draped over right friend -->
-        <path d="M192 240 C214 248 236 256 250 272 C256 278 252 284 244 282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <!-- Center torso -->
-        <path d="M124 275 L124 336 M196 275 L196 336" stroke-width="1.6" stroke-linecap="round"/>
+          <!-- CENTER FIGURE (Arms linking both companions) -->
+          <path d="M 145 170 C 132 170, 124 180, 124 195 C 124 212, 134 224, 146 224 C 158 224, 168 212, 168 195 C 168 180, 158 170, 145 170 Z"/>
+          <path d="M 124 215 C 112 224, 100 234, 90 244"/>
+          <path d="M 168 215 C 178 224, 190 234, 202 244"/>
+          <!-- Left linking arm -->
+          <path d="M 116 232 C 98 238, 76 246, 64 260"/>
+          <!-- Right linking arm -->
+          <path d="M 174 232 C 194 238, 216 246, 228 260"/>
+          <!-- Center torso -->
+          <path d="M 114 265 L 114 320 M 178 265 L 178 320"/>
 
-        <!-- RIGHT FRIEND — leaning in -->
-        <path d="M236 204 C224 204 214 216 214 232 C214 248 226 260 238 260 C252 260 262 248 262 232 C262 216 250 204 236 204 Z" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        <!-- Shoulders & torso -->
-        <path d="M208 290 C218 278 230 268 244 266 C258 268 272 282 276 310" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M276 310 L284 336" stroke-width="1.6" stroke-linecap="round"/>
+          <!-- RIGHT FIGURE -->
+          <path d="M 215 198 C 204 198, 196 208, 196 222 C 196 238, 206 248, 218 248 C 230 248, 238 238, 238 222 C 238 208, 228 198, 215 198 Z"/>
+          <path d="M 192 278 C 200 268, 210 258, 222 256 C 234 258, 246 270, 250 295"/>
+        </g>
 
-        <!-- Ground horizon -->
-        <path d="M20 340 C90 336 180 338 260 334 C310 332 340 336 360 334" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+        <!-- Base ground wave -->
+        <path d="M 20 324 C 80 320, 160 322, 230 318 C 275 316, 305 320, 320 318" stroke-width="1.2" stroke-linecap="round"/>
 
-        <!-- Floating accent circles -->
-        <circle cx="300" cy="200" r="6" stroke-width="1"/>
-        <circle cx="205" cy="135" r="4" stroke-width="0.9"/>
-        <circle cx="30" cy="270" r="5" stroke-width="0.9"/>
-        <circle cx="320" cy="125" r="3" stroke-width="0.8"/>
-        <circle cx="115" cy="150" r="3.5" stroke-width="0.9"/>
+        <!-- Connected orbital circle node -->
+        <circle cx="28" cy="255" r="4" stroke-width="0.9"/>
+        <circle cx="280" cy="130" r="3.5" stroke-width="0.9"/>
       </svg>
     </div>
 
@@ -2635,99 +2647,95 @@
     <!-- 3. VARENDRA UNIVERSITY ARCHITECTURAL LINE ART (Placement: Footer) -->
     <!-- ============================================================= -->
     <footer id="page-footer" class="mt-16 pt-12 pb-8 border-t border-[#E2E8DF] relative text-center space-y-8 select-none">
-      <!-- Varendra University Landmark — Monochrome Architectural Line Art -->
-      <div class="w-full max-w-2xl mx-auto px-4" aria-label="Varendra University Permanent Campus Landmark">
-        <svg viewBox="0 0 720 200" fill="none" class="w-full h-auto" stroke="#6B8C73" aria-hidden="true">
+      <!-- ============================================================= -->
+      <!-- LAYER 3: VARENDRA UNIVERSITY ARCHITECTURAL LINE ART (Footer)    -->
+      <!-- Simplified clean outline of permanent campus landmark, no fills -->
+      <!-- Color: var(--bg-sage-vu), stroke 1.1-1.3px                      -->
+      <!-- ============================================================= -->
+      <div class="w-full max-w-2xl mx-auto px-4 bg-layer-vu transition-opacity" aria-label="Varendra University Permanent Campus Landmark">
+        <svg viewBox="0 0 720 180" fill="none" class="w-full h-auto" stroke="currentColor" aria-hidden="true">
 
-          <!-- Rolling hills horizon -->
-          <path d="M0 185 Q120 162 240 175 Q360 188 480 172 Q600 158 720 178" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
-          <path d="M0 192 Q180 170 360 185 Q540 198 720 185" stroke-width="0.9" stroke-linecap="round" opacity="0.35"/>
+          <!-- Rolling hills ground line (Bottom edge anchor) -->
+          <path d="M0 166 Q140 144 280 158 Q420 172 560 156 Q640 148 720 162" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M0 174 Q180 154 360 168 Q540 180 720 170" stroke-width="0.9" stroke-linecap="round" stroke-dasharray="4 3"/>
 
-          <!-- LEFT TREE CLUSTER -->
-          <!-- Tree 1 — Canopy outline -->
-          <path d="M58 176 C54 158 40 150 48 134 C56 118 74 122 78 134 C86 126 98 132 96 146 C102 154 96 168 88 176" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M72 176 L72 146 M72 162 L62 154 M72 156 L82 150" stroke-width="1" stroke-linecap="round"/>
-          <!-- Tree 2 -->
-          <path d="M100 176 C96 162 86 156 92 142 C98 128 112 132 116 142 C124 136 134 142 132 154 C138 160 132 172 126 176" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M112 176 L112 152" stroke-width="1" stroke-linecap="round"/>
-          <!-- Tree 3 (smaller) -->
-          <path d="M136 176 C132 164 124 158 130 148 C136 138 148 142 150 148 C156 144 164 150 162 158 C166 164 162 172 156 176" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Campus Trees - Left Group -->
+          <path d="M58 158 C54 142 42 136 48 122 C55 108 72 110 76 122 C84 116 94 122 92 134 C98 140 94 152 86 158" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M70 158 L70 132 M70 145 L62 138 M70 140 L78 135" stroke-width="0.9" stroke-linecap="round"/>
+          <path d="M98 158 C94 146 86 140 90 128 C96 116 108 118 112 128 C118 122 128 128 126 138 C130 144 126 154 120 158" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M108 158 L108 136" stroke-width="0.8" stroke-linecap="round"/>
 
-          <!-- RIGHT TREE CLUSTER -->
-          <path d="M560 176 C556 162 546 156 552 142 C558 128 572 132 576 142 C584 136 594 142 592 154 C598 160 592 172 586 176" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M572 176 L572 152" stroke-width="1" stroke-linecap="round"/>
-          <path d="M598 176 C594 158 580 150 588 134 C596 118 614 122 618 134 C626 126 638 132 636 146 C642 154 636 168 628 176" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M612 176 L612 146 M612 162 L602 154 M612 156 L622 150" stroke-width="1" stroke-linecap="round"/>
-          <path d="M644 176 C640 164 632 158 638 148 C644 138 656 142 658 148 C664 144 672 150 670 158 C674 164 670 172 664 176" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Campus Trees - Right Group -->
+          <path d="M570 158 C566 146 558 140 562 128 C568 116 580 118 584 128 C590 122 600 128 598 138 C602 144 598 154 592 158" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M580 158 L580 136" stroke-width="0.8" stroke-linecap="round"/>
+          <path d="M608 158 C604 142 592 136 598 122 C605 108 622 110 626 122 C634 116 644 122 642 134 C648 140 644 152 636 158" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M620 158 L620 132 M620 145 L612 138 M620 140 L628 135" stroke-width="0.9" stroke-linecap="round"/>
 
-          <!-- CAMPUS BUILDING — Pure line art, no fills -->
+          <!-- Varendra University Campus Main Building (Clean Geometric Outline, No Fills) -->
           <!-- Left angular entrance wing -->
-          <path d="M175 176 L175 124 L202 108 L228 121 L228 176" stroke-width="1.3" stroke-linejoin="round"/>
-          <line x1="202" y1="108" x2="202" y2="176" stroke-width="1"/>
-          <line x1="186" y1="135" x2="186" y2="170" stroke-width="0.9"/>
-          <line x1="216" y1="135" x2="216" y2="170" stroke-width="0.9"/>
+          <path d="M175 158 L175 112 L202 98 L228 110 L228 158" stroke-width="1.3" stroke-linejoin="round"/>
+          <line x1="202" y1="98" x2="202" y2="158" stroke-width="0.9"/>
+          <line x1="186" y1="120" x2="186" y2="152" stroke-width="0.8"/>
+          <line x1="216" y1="120" x2="216" y2="152" stroke-width="0.8"/>
 
           <!-- Central multi-level atrium & main hall -->
-          <rect x="228" y="90" width="145" height="86" rx="1" stroke-width="1.4"/>
-          <!-- Parapet cornice -->
-          <line x1="226" y1="90" x2="375" y2="90" stroke-width="1.5"/>
-          <line x1="226" y1="94" x2="375" y2="94" stroke-width="0.8" opacity="0.6"/>
+          <rect x="228" y="80" width="145" height="78" rx="1" stroke-width="1.3"/>
+          <line x1="226" y1="80" x2="375" y2="80" stroke-width="1.4"/>
+          <line x1="226" y1="84" x2="375" y2="84" stroke-width="0.8"/>
 
-          <!-- Glass panel mullions — 3 bays -->
-          <rect x="240" y="102" width="32" height="68" stroke-width="1.1"/>
-          <rect x="284" y="102" width="32" height="68" stroke-width="1.1"/>
-          <rect x="328" y="102" width="32" height="68" stroke-width="1.1"/>
-          <!-- Horizontal dividers in each bay -->
-          <line x1="240" y1="120" x2="272" y2="120" stroke-width="0.8"/>
-          <line x1="240" y1="140" x2="272" y2="140" stroke-width="0.8"/>
-          <line x1="240" y1="156" x2="272" y2="156" stroke-width="0.8"/>
-          <line x1="284" y1="120" x2="316" y2="120" stroke-width="0.8"/>
-          <line x1="284" y1="140" x2="316" y2="140" stroke-width="0.8"/>
-          <line x1="284" y1="156" x2="316" y2="156" stroke-width="0.8"/>
-          <line x1="328" y1="120" x2="360" y2="120" stroke-width="0.8"/>
-          <line x1="328" y1="140" x2="360" y2="140" stroke-width="0.8"/>
-          <line x1="328" y1="156" x2="360" y2="156" stroke-width="0.8"/>
+          <!-- Atrium glass facade mullions (3 bays) -->
+          <rect x="240" y="92" width="32" height="60" stroke-width="1"/>
+          <rect x="284" y="92" width="32" height="60" stroke-width="1"/>
+          <rect x="328" y="92" width="32" height="60" stroke-width="1"/>
+          <!-- Floor dividers -->
+          <line x1="240" y1="108" x2="272" y2="108" stroke-width="0.8"/>
+          <line x1="240" y1="126" x2="272" y2="126" stroke-width="0.8"/>
+          <line x1="240" y1="142" x2="272" y2="142" stroke-width="0.8"/>
+          <line x1="284" y1="108" x2="316" y2="108" stroke-width="0.8"/>
+          <line x1="284" y1="126" x2="316" y2="126" stroke-width="0.8"/>
+          <line x1="284" y1="142" x2="316" y2="142" stroke-width="0.8"/>
+          <line x1="328" y1="108" x2="360" y2="108" stroke-width="0.8"/>
+          <line x1="328" y1="126" x2="360" y2="126" stroke-width="0.8"/>
+          <line x1="328" y1="142" x2="360" y2="142" stroke-width="0.8"/>
 
           <!-- Right 3-story classroom wing (perspective) -->
-          <path d="M373 98 L520 110 L520 176 L373 176 Z" stroke-width="1.3" stroke-linejoin="round"/>
-          <!-- Floor bands -->
-          <line x1="373" y1="126" x2="520" y2="134" stroke-width="1"/>
-          <line x1="373" y1="152" x2="520" y2="156" stroke-width="1"/>
-          <!-- Window grid — 5 columns x 3 floors -->
-          <rect x="383" y="106" width="16" height="14" stroke-width="0.9"/>
-          <rect x="408" y="108" width="16" height="14" stroke-width="0.9"/>
-          <rect x="435" y="110" width="16" height="14" stroke-width="0.9"/>
-          <rect x="462" y="112" width="16" height="14" stroke-width="0.9"/>
-          <rect x="490" y="114" width="16" height="14" stroke-width="0.9"/>
-          <rect x="383" y="132" width="16" height="14" stroke-width="0.9"/>
-          <rect x="408" y="134" width="16" height="14" stroke-width="0.9"/>
-          <rect x="435" y="136" width="16" height="14" stroke-width="0.9"/>
-          <rect x="462" y="138" width="16" height="14" stroke-width="0.9"/>
-          <rect x="490" y="140" width="16" height="14" stroke-width="0.9"/>
-          <rect x="383" y="158" width="16" height="14" stroke-width="0.9"/>
-          <rect x="408" y="160" width="16" height="14" stroke-width="0.9"/>
-          <rect x="435" y="161" width="16" height="14" stroke-width="0.9"/>
-          <rect x="462" y="162" width="16" height="14" stroke-width="0.9"/>
-          <rect x="490" y="163" width="16" height="14" stroke-width="0.9"/>
+          <path d="M373 88 L520 98 L520 158 L373 158 Z" stroke-width="1.3" stroke-linejoin="round"/>
+          <line x1="373" y1="112" x2="520" y2="120" stroke-width="0.9"/>
+          <line x1="373" y1="136" x2="520" y2="140" stroke-width="0.9"/>
+          <!-- Window grid -->
+          <rect x="383" y="94" width="16" height="12" stroke-width="0.8"/>
+          <rect x="408" y="96" width="16" height="12" stroke-width="0.8"/>
+          <rect x="435" y="98" width="16" height="12" stroke-width="0.8"/>
+          <rect x="462" y="100" width="16" height="12" stroke-width="0.8"/>
+          <rect x="490" y="102" width="16" height="12" stroke-width="0.8"/>
+          <rect x="383" y="118" width="16" height="12" stroke-width="0.8"/>
+          <rect x="408" y="120" width="16" height="12" stroke-width="0.8"/>
+          <rect x="435" y="122" width="16" height="12" stroke-width="0.8"/>
+          <rect x="462" y="124" width="16" height="12" stroke-width="0.8"/>
+          <rect x="490" y="126" width="16" height="12" stroke-width="0.8"/>
+          <rect x="383" y="142" width="16" height="12" stroke-width="0.8"/>
+          <rect x="408" y="143" width="16" height="12" stroke-width="0.8"/>
+          <rect x="435" y="144" width="16" height="12" stroke-width="0.8"/>
+          <rect x="462" y="145" width="16" height="12" stroke-width="0.8"/>
+          <rect x="490" y="146" width="16" height="12" stroke-width="0.8"/>
 
-          <!-- Front entrance canopy & steps -->
-          <path d="M276 168 L326 168 L336 178 L266 178 Z" stroke-width="1.2" stroke-linejoin="round"/>
-          <line x1="276" y1="168" x2="276" y2="178" stroke-width="1.1"/>
-          <line x1="326" y1="168" x2="326" y2="178" stroke-width="1.1"/>
-          <!-- Entrance door -->
-          <rect x="292" y="152" width="18" height="16" rx="1" stroke-width="1.1"/>
+          <!-- Front canopy & portal -->
+          <path d="M276 150 L326 150 L336 160 L266 160 Z" stroke-width="1.1" stroke-linejoin="round"/>
+          <line x1="276" y1="150" x2="276" y2="160" stroke-width="1"/>
+          <line x1="326" y1="150" x2="326" y2="160" stroke-width="1"/>
+          <rect x="292" y="136" width="18" height="14" rx="1" stroke-width="1"/>
 
-          <!-- Roundabout driveway -->
-          <ellipse cx="301" cy="184" rx="38" ry="8" stroke-width="1.1"/>
-          <ellipse cx="301" cy="184" rx="20" ry="4.5" stroke-width="0.9" opacity="0.7"/>
-          <!-- Approach roads -->
-          <path d="M263 184 C235 188 195 192 155 196" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
-          <path d="M339 184 C365 188 410 192 460 196" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+          <!-- Front Roundabout Driveway -->
+          <ellipse cx="301" cy="165" rx="36" ry="7" stroke-width="1"/>
+          <ellipse cx="301" cy="165" rx="18" ry="3.5" stroke-width="0.8"/>
+          <path d="M265 165 C240 168, 200 172, 160 175" stroke-width="0.9" stroke-linecap="round"/>
+          <path d="M337 165 C360 168, 400 172, 440 175" stroke-width="0.9" stroke-linecap="round"/>
 
-          <!-- Campus baseline -->
-          <line x1="30" y1="178" x2="690" y2="178" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+          <!-- Base horizon line -->
+          <line x1="20" y1="160" x2="700" y2="160" stroke-width="1.2" stroke-linecap="round"/>
         </svg>
       </div>
+
 
 
       <!-- Institutional Attribution & University Identity -->
