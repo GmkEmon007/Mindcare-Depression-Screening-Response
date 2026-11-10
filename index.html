@@ -853,23 +853,27 @@
             <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• অ্যাসাইনমেন্ট, প্রজেক্ট, প্রেজেন্টেশন, ক্লাস,
               পরীক্ষা বা একসাথে অনেক পড়াশোনার চাপ ।</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="c1" data-readout="c1-readout">
-              <button type="button" data-label="SD — Strongly Disagree (সম্পূর্ণ অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree (অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral (নিরপেক্ষ)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree (সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree (সম্পূর্ণ সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="c1" id="select-c1" data-dropdown-question="c1" data-readout="c1-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="c1-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="c1-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -885,23 +889,27 @@
             <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• ভালো CGPA/রেজাল্ট করার চাপ, বাবা-মা বা শিক্ষকের
               প্রত্যাশা পূরণের চাপ, ফেল করার ভয় বা অন্যদের সঙ্গে প্রতিযোগিতা ।</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="c2" data-readout="c2-readout">
-              <button type="button" data-label="SD — Strongly Disagree (সম্পূর্ণ অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree (অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral (নিরপেক্ষ)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree (সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree (সম্পূর্ণ সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="c2" id="select-c2" data-dropdown-question="c2" data-readout="c2-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="c2-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="c2-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -917,23 +925,27 @@
             <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• সময়মতো ক্লাস করা, অ্যাসাইনমেন্ট/প্রজেক্ট শেষ
               করা, পরীক্ষার প্রস্তুতি নেওয়া, নিয়মিত পড়াশোনা করা বা ডেডলাইন মেনে চলতে সমস্যা হওয়া ।</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="c3" data-readout="c3-readout">
-              <button type="button" data-label="SD — Strongly Disagree (সম্পূর্ণ অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree (অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral (নিরপেক্ষ)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree (সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree (সম্পূর্ণ সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="c3" id="select-c3" data-dropdown-question="c3" data-readout="c3-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="c3-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="c3-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -949,23 +961,27 @@
             <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• সেমিস্টার পরীক্ষা, কুইজ, ক্লাস টেস্ট,
               অ্যাসাইনমেন্ট, প্রেজেন্টেশন, ভাইভা বা প্রজেক্ট মূল্যায়নের কারণে চাপ অনুভব করা ।</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="c4" data-readout="c4-readout">
-              <button type="button" data-label="SD — Strongly Disagree (সম্পূর্ণ অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree (অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral (নিরপেক্ষ)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree (সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree (সম্পূর্ণ সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="c4" id="select-c4" data-dropdown-question="c4" data-readout="c4-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="c4-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="c4-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -978,23 +994,27 @@
             <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমি আমার বর্তমান একাডেমিক পারফরম্যান্স নিয়ে সন্তুষ্ট
               ।)</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="c5" data-readout="c5-readout">
-              <button type="button" data-label="SD — Strongly Disagree (সম্পূর্ণ অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree (অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral (নিরপেক্ষ)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree (সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree (সম্পূর্ণ সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="c5" id="select-c5" data-dropdown-question="c5" data-readout="c5-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="c5-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="c5-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -1009,23 +1029,27 @@
             <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• ক্লাসের পড়া ঠিকমতো অনুসরণ করতে না পারা, পড়া/কাজ
               জমে যাওয়া, ডেডলাইন মিস করা বা সহপাঠীদের তুলনায় পিছিয়ে পড়ার চিন্তা ।</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="c6" data-readout="c6-readout">
-              <button type="button" data-label="SD — Strongly Disagree (সম্পূর্ণ অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree (অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral (নিরপেক্ষ)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree (সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree (সম্পূর্ণ সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="c6" id="select-c6" data-dropdown-question="c6" data-readout="c6-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="c6-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="c6-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -1041,23 +1065,27 @@
             <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• আপনার রেজাল্ট ভবিষ্যৎ চাকরি, উচ্চশিক্ষা,
               ক্যারিয়ার বা ভবিষ্যতের সুযোগ নিয়ে আপনার আত্মবিশ্বাসকে প্রভাবিত করে কি না ।</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="c7" data-readout="c7-readout">
-              <button type="button" data-label="SD — Strongly Disagree (সম্পূর্ণ অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree (অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral (নিরপেক্ষ)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree (সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree (সম্পূর্ণ সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="c7" id="select-c7" data-dropdown-question="c7" data-readout="c7-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="c7-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="c7-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -1073,23 +1101,27 @@
             <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• আপনি যে বিষয়/বিভাগে পড়ছেন সেটি আপনার পছন্দ,
               আগ্রহ, প্রত্যাশা, সক্ষমতা বা ভবিষ্যৎ ক্যারিয়ারের সঙ্গে কতটা সামঞ্জস্যপূর্ণ ।</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="c8" data-readout="c8-readout">
-              <button type="button" data-label="SD — Strongly Disagree (সম্পূর্ণ অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree (অসম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral (নিরপেক্ষ)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree (সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree (সম্পূর্ণ সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="c8" id="select-c8" data-dropdown-question="c8" data-readout="c8-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="c8-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="c8-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -1184,23 +1216,27 @@
             <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমি নিশ্চিত নই যে আমার বর্তমান পড়াশোনা আমাকে আমার
               কাঙ্ক্ষিত ক্যারিয়ার গড়তে সাহায্য করবে কি না।)</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="d1" data-readout="d1-readout">
-              <button type="button" data-label="SD — Strongly Disagree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree (সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="d1" id="select-d1" data-dropdown-question="d1" data-readout="d1-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="d1-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="d1-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -1214,23 +1250,27 @@
             <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(ভবিষ্যতে উপযুক্ত চাকরি পাওয়া, লক্ষ্য অর্জন করা এবং
               পর্যাপ্ত আয় করা নিয়ে চিন্তিত ।)</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="d2" data-readout="d2-readout">
-              <button type="button" data-label="SD — Strongly Disagree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree (সম্পূর্ণ সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="d2" id="select-d2" data-dropdown-question="d2" data-readout="d2-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="d2-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="d2-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -1244,23 +1284,27 @@
             <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(পড়াশোনা বা ব্যক্তিগত কাজে কত ঘন ঘন AI টুল ব্যবহার
               করেন?)</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="d3" data-readout="d3-readout">
-              <button type="button" data-label="Never (কখনো না)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">Never</button>
-              <button type="button" data-label="Rarely (কদাচিৎ)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">Rarely</button>
-              <button type="button" data-label="Occas. (মাঝে মাঝে)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">Occas.</button>
-              <button type="button" data-label="Often (প্রায়ই)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">Often</button>
-              <button type="button" data-label="Daily (প্রতিদিন)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">Daily</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="d3" id="select-d3" data-dropdown-question="d3" data-readout="d3-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select frequency (ব্যবহারের মাত্রা নির্বাচন করুন)...</option>
+                <option value="Never">Never (কখনো না)</option>
+                <option value="Rarely">Rarely (কদাচিৎ)</option>
+                <option value="Occasionally">Occasionally (মাঝে মাঝে)</option>
+                <option value="Often">Often (প্রায়ই)</option>
+                <option value="Daily">Daily (প্রতিদিন)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="d3-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="d3-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -1274,23 +1318,27 @@
             <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(AI ভবিষ্যৎ কর্মজীবনে চাকরির সুযোগ কমাতে পারে বলে কতটা
               উদ্বিগ্ন?)</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="d4" data-readout="d4-readout">
-              <button type="button" data-label="None (একেবারেই না)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">None</button>
-              <button type="button" data-label="Slight (সামান্য)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">Slight</button>
-              <button type="button" data-label="Moderate (মাঝারি)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">Moderate</button>
-              <button type="button" data-label="Very (অনেক বেশি)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">Very</button>
-              <button type="button" data-label="Extreme (চরম উদ্বেগ)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">Extreme</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="d4" id="select-d4" data-dropdown-question="d4" data-readout="d4-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select concern level (উদ্বেগের মাত্রা নির্বাচন করুন)...</option>
+                <option value="None">None / No Concern (একেবারেই না)</option>
+                <option value="Slight Concern">Slight Concern (সামান্য উদ্বেগ)</option>
+                <option value="Moderate Concern">Moderate Concern (মাঝারি উদ্বেগ)</option>
+                <option value="Very Concerned">Very Concerned (অনেক বেশি উদ্বেগ)</option>
+                <option value="Extremely Concerned">Extremely Concerned (চরম উদ্বেগ)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="d4-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="d4-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -2268,15 +2316,25 @@
             <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(গত ৬ মাসে আপনি কি কোনো বড় ধরনের মানসিক চাপ সৃষ্টিকারী
               ঘটনার সম্মুখীন হয়েছেন?)</p>
           </div>
-          <div class="grid grid-cols-2 gap-3" data-pebble-group data-question="g1">
-            <button type="button"
-              class="pebble-btn flex items-center justify-center py-2.5 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold">
-              হ্যাঁ (Yes)
-            </button>
-            <button type="button"
-              class="pebble-btn flex items-center justify-center py-2.5 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold">
-              না (No)
-            </button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="g1" id="select-g1" data-dropdown-question="g1" data-readout="g1-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select option (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Yes">হ্যাঁ (Yes - Experienced major stressful life event)</option>
+                <option value="No">না (No - Did not experience any major stressful event)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="g1-readout" class="font-bold text-[#152418]">—</span>
+            </div>
           </div>
         </div>
 
@@ -2302,23 +2360,27 @@
             <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আর্থিক বিষয় নিয়ে চিন্তা আমাকে প্রতিদিন মানসিক চাপ দেয়
               ।)</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="g3" data-readout="g3-readout">
-              <button type="button" data-label="SD — Strongly Disagree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree (সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="g3" id="select-g3" data-dropdown-question="g3" data-readout="g3-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="g3-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="g3-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -2332,23 +2394,27 @@
             <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আর্থিক সমস্যাগুলো পড়াশোনায় মনোযোগে বাধা সৃষ্টি করে ।)
             </p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="g4" data-readout="g4-readout">
-              <button type="button" data-label="SD — Strongly Disagree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral (নিরপেক্ষ)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="g4" id="select-g4" data-dropdown-question="g4" data-readout="g4-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="g4-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="g4-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -2360,23 +2426,27 @@
             <h3 class="text-sm font-bold text-[#152418]">G5. I am satisfied with my current living environment.</h3>
             <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমি আমার বর্তমান বসবাসের পরিবেশ নিয়ে সন্তুষ্ট ।)</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="g5" data-readout="g5-readout">
-              <button type="button" data-label="SD — Strongly Disagree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree (সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="g5" id="select-g5" data-dropdown-question="g5" data-readout="g5-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="g5-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="g5-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>
@@ -2390,23 +2460,27 @@
             <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(শব্দ, ভিড় বা পর্যাপ্ত পড়ার জায়গা না থাকা পড়াশোনায়
               বাধা দেয় ।)</p>
           </div>
-          <div class="space-y-2">
-            <div class="grid grid-cols-5 gap-1.5" data-pebble-group data-question="g6" data-readout="g6-readout">
-              <button type="button" data-label="SD — Strongly Disagree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SD</button>
-              <button type="button" data-label="D — Disagree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">D</button>
-              <button type="button" data-label="N — Neutral"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">N</button>
-              <button type="button" data-label="A — Agree"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">A</button>
-              <button type="button" data-label="SA — Strongly Agree (সম্পূর্ণ সম্মত)"
-                class="pebble-btn py-2 px-1 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-bold text-center">SA</button>
+          <div class="space-y-2 pt-1">
+            <div class="relative group">
+              <select name="g6" id="select-g6" data-dropdown-question="g6" data-readout="g6-readout"
+                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-semibold text-[#152418] cursor-pointer transition-all shadow-xs">
+                <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
+                <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
+                <option value="Disagree">Disagree (অসম্মত)</option>
+                <option value="Neutral">Neutral (নিরপেক্ষ)</option>
+                <option value="Agree">Agree (সম্মত)</option>
+                <option value="Strongly Agree">Strongly Agree (সম্পূর্ণ সম্মত)</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+              </div>
             </div>
-            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1">
-              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span>
-                Selected:</span>
-              <span id="g6-readout" class="font-semibold">—</span>
+            <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
+              <span class="flex items-center gap-1 font-medium">
+                <span class="material-symbols-outlined text-sm">check_circle</span>
+                Selected:
+              </span>
+              <span id="g6-readout" class="font-bold text-[#152418]">—</span>
             </div>
           </div>
         </div>

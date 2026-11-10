@@ -391,37 +391,45 @@ body {
   color: #EAF2EC !important;
 }
 
-/* Dedicated Radio Dot Indicator for PHQ-9 and Structured Questions */
+/* Section B (PHQ-9) Clean Option Buttons (No radio circle dot, matching other sections) */
 [data-phq] .pebble-btn {
   display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
-  justify-content: flex-start !important;
-  text-align: left !important;
-  padding: 10px 14px !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 12px 10px !important;
   border-radius: 14px !important;
+  min-height: 48px;
 }
 
-[data-phq] .pebble-btn::before {
-  content: '';
-  width: 16px;
-  height: 16px;
-  border-radius: 9999px;
-  border: 2px solid #C8DCCF;
-  display: inline-block;
-  margin-right: 10px;
-  flex-shrink: 0;
-  transition: all 0.2s ease;
-  background-color: #FFFFFF;
+/* Question Card Custom Dropdown Styling for Modules C, D, G */
+.question-dropdown {
+  background-color: #F8FAF7;
+  color: #152418;
+  border: 1.5px solid #E2E8DF;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: inherit;
 }
 
-[data-phq] .pebble-btn:hover::before {
+.question-dropdown:hover {
   border-color: #2D6A4F;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 8px -1px rgba(45, 106, 79, 0.12);
 }
 
-[data-phq] .pebble-btn.active::before {
-  border-color: #FFFFFF !important;
-  background-color: #FFFFFF !important;
-  box-shadow: inset 0 0 0 3px #152418 !important;
+.question-dropdown:focus {
+  border-color: #2D6A4F;
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.2);
+}
+
+.question-dropdown option {
+  padding: 10px 14px;
+  background-color: #FFFFFF;
+  color: #152418;
+  font-size: 14px;
 }
 
 /* Ripple Micro-Interaction */

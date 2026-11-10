@@ -60,6 +60,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
         });
+
+        // Restore dropdown questions (Sections C, D, G)
+        document.querySelectorAll('select[data-dropdown-question]').forEach(select => {
+          const q = select.getAttribute('data-dropdown-question');
+          if (state.likertScores && state.likertScores[q]) {
+            select.value = state.likertScores[q];
+            const readoutId = select.getAttribute('data-readout');
+            if (readoutId && select.selectedIndex >= 0) {
+              const readoutEl = document.getElementById(readoutId);
+              if (readoutEl) readoutEl.textContent = select.options[select.selectedIndex].text;
+            }
+            const parentCard = select.closest('.question-card');
+            if (parentCard) {
+              parentCard.classList.add('border-[#2D6A4F]', 'bg-[#F9FCFA]', 'answered');
+            }
+          }
+        });
       }
     } catch (e) {
       console.warn('Could not restore saved session', e);
@@ -188,6 +205,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+  // Dropdown Questions Controller (Sections C, D, G)
+  function setupDropdownQuestions() {
+    const dropdowns = document.querySelectorAll('select[data-dropdown-question]');
+    dropdowns.forEach(select => {
+      const q = select.getAttribute('data-dropdown-question');
+      const readoutId = select.getAttribute('data-readout');
+      const readoutEl = readoutId ? document.getElementById(readoutId) : null;
+      const parentCard = select.closest('.question-card');
+
+      select.addEventListener('change', () => {
+        const val = select.value;
+        const selectedText = select.options[select.selectedIndex]?.text || val;
+
+        state.likertScores[q] = val;
+        state.answeredQuestions.add(q);
+
+        if (readoutEl) {
+          readoutEl.textContent = selectedText;
+        }
+
+        if (parentCard) {
+          if (val) {
+            parentCard.classList.add('border-[#2D6A4F]', 'bg-[#F9FCFA]', 'answered');
+          } else {
+            parentCard.classList.remove('border-[#2D6A4F]', 'bg-[#F9FCFA]', 'answered');
+          }
+        }
+
+        updateProgress();
+        saveState();
+      });
+    });
+  }
+
   // 4. Highlight Scoring Guide Column on Choice
   function highlightGuide(btn) {
     const val = btn.getAttribute('data-value') || btn.innerText.trim();
@@ -308,6 +360,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-pebble-group]').forEach(group => {
       const q = group.getAttribute('data-question');
       if (q && group.querySelector('.pebble-btn.active')) {
+        questionKeys.add(q);
+      }
+    });
+
+    // Check all dropdown questions (Sections C, D, G)
+    document.querySelectorAll('select[data-dropdown-question]').forEach(select => {
+      const q = select.getAttribute('data-dropdown-question');
+      if (q && select.value && select.value.trim() !== '') {
         questionKeys.add(q);
       }
     });
@@ -1482,6 +1542,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupStepNavigation();
   restoreState();
   setupPebbleGroups();
+  setupDropdownQuestions();
   setupInputs();
   updatePhq9Score();
   updateProgress();
