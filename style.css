@@ -582,3 +582,75 @@ input.zen-input:focus,
     page-break-inside: avoid;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Lush Botanical Leaves 2D/3D Breeze Sway Animations
+   -------------------------------------------------------------------------- */
+@keyframes leaf-sway-3d-left {
+  0%, 100% {
+    transform: perspective(1000px) rotate(0deg) rotateY(0deg) translateY(0);
+  }
+  50% {
+    transform: perspective(1000px) rotate(2.2deg) rotateY(4deg) translateY(-6px) scale(1.015);
+  }
+}
+
+@keyframes leaf-sway-3d-right {
+  0%, 100% {
+    transform: perspective(1000px) rotate(0deg) rotateY(0deg) translateY(0);
+  }
+  50% {
+    transform: perspective(1000px) rotate(-2.2deg) rotateY(-4deg) translateY(-5px) scale(1.015);
+  }
+}
+
+@keyframes leaf-sway-3d-bottom-left {
+  0%, 100% {
+    transform: perspective(1000px) rotate(0deg) translateY(0);
+  }
+  50% {
+    transform: perspective(1000px) rotate(-1.5deg) translateY(4px);
+  }
+}
+
+@keyframes leaf-sway-3d-bottom-right {
+  0%, 100% {
+    transform: perspective(1000px) rotate(0deg) translateY(0);
+  }
+  50% {
+    transform: perspective(1000px) rotate(1.5deg) translateY(4px);
+  }
+}
+
+.leaf-sway-tl {
+  transform-origin: 5% 5%;
+  animation: leaf-sway-3d-left 9s ease-in-out infinite;
+  will-change: transform;
+}
+
+.leaf-sway-tr {
+  transform-origin: 95% 5%;
+  animation: leaf-sway-3d-right 10.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.leaf-sway-bl {
+  transform-origin: 5% 95%;
+  animation: leaf-sway-3d-bottom-left 11s ease-in-out infinite;
+  will-change: transform;
+}
+
+.leaf-sway-br {
+  transform-origin: 95% 95%;
+  animation: leaf-sway-3d-bottom-right 11.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaf-sway-tl,
+  .leaf-sway-tr,
+  .leaf-sway-bl,
+  .leaf-sway-br {
+    animation: none !important;
+  }
+}

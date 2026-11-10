@@ -1362,7 +1362,123 @@ document.addEventListener('DOMContentLoaded', () => {
     goToStep(0, false);
   }
 
+
+  // ==========================================================================
+  // Falling Snow & Crystalline Particle Engine (2D/3D Drift from Leaves)
+  // ==========================================================================
+  function initSnowCanvas() {
+    const canvas = document.getElementById('snow-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }, { passive: true });
+
+    // Optimal particle count for smooth 60fps across all screens
+    const flakeCount = Math.min(85, Math.max(45, Math.floor(window.innerWidth / 18)));
+    const flakes = [];
+
+    class Flake {
+      constructor(initY = false) {
+        this.reset(initY);
+      }
+      reset(initY = false) {
+        // 3D perspective depth layer (0.35 distant to 1.3 close)
+        this.z = 0.35 + Math.random() * 0.95;
+        this.r = (1.2 + Math.random() * 2.6) * this.z;
+        this.alpha = (0.28 + Math.random() * 0.45) * Math.min(1, this.z);
+
+        // 50% of snowflakes spawn directly from the lush green leaves at top corners
+        if (Math.random() < 0.5) {
+          if (Math.random() < 0.5) {
+            // Left corner leaf cluster
+            this.x = Math.random() * (width * 0.32);
+          } else {
+            // Right corner leaf cluster
+            this.x = width - Math.random() * (width * 0.32);
+          }
+          this.y = initY ? Math.random() * height : -10 - Math.random() * 40;
+        } else {
+          this.x = Math.random() * width;
+          this.y = initY ? Math.random() * height : -10 - Math.random() * 20;
+        }
+
+        // Falling velocity scaled by 3D depth
+        this.vy = (0.7 + Math.random() * 1.3) * this.z;
+        this.angle = Math.random() * Math.PI * 2;
+        this.spin = (Math.random() - 0.5) * 0.035;
+        this.windFactor = 0.5 + Math.random() * 0.9;
+      }
+
+      update(time, mouseOffset) {
+        this.angle += this.spin;
+        // Natural 3D horizontal flutter / drift
+        const drift = Math.sin(this.angle + time * 0.001) * this.windFactor;
+        this.x += drift + mouseOffset * (this.z * 0.22);
+        this.y += this.vy;
+
+        // Wrap around smoothly when leaving screen bounds
+        if (this.y > height + 10 || this.x < -20 || this.x > width + 20) {
+          this.reset(false);
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+        ctx.shadowColor = 'rgba(214, 235, 222, 0.5)';
+        ctx.shadowBlur = this.z > 0.9 ? 4 : 1.5;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < flakeCount; i++) {
+      flakes.push(new Flake(true));
+    }
+
+    let mouseOffset = 0;
+    let targetMouseOffset = 0;
+    window.addEventListener('mousemove', (e) => {
+      const norm = (e.clientX / width - 0.5) * 2;
+      targetMouseOffset = norm * 0.7;
+    }, { passive: true });
+
+    let animId;
+    function animate(timestamp) {
+      ctx.clearRect(0, 0, width, height);
+      mouseOffset += (targetMouseOffset - mouseOffset) * 0.05;
+
+      for (let i = 0; i < flakes.length; i++) {
+        flakes[i].update(timestamp, mouseOffset);
+        flakes[i].draw();
+      }
+      animId = requestAnimationFrame(animate);
+    }
+
+    animId = requestAnimationFrame(animate);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animId);
+      } else {
+        animId = requestAnimationFrame(animate);
+      }
+    });
+  }
+
   // Initialize
+  initSnowCanvas();
   setupStepNavigation();
   restoreState();
   setupPebbleGroups();
