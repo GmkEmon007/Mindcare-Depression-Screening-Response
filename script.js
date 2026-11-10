@@ -1004,7 +1004,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const remainingCount = unansweredCards.length;
       const firstUnanswered = unansweredCards[0];
 
-      showToast(`⚠️ অনুগ্রহ করে সব প্রশ্নের উত্তর দিন (Please answer all questions before submitting — ${remainingCount} remaining)`);
+      showToast(`⚠️ অনুগ্রহ করে সব প্রশ্নের উত্তর সম্পন্ন করুন (Please complete all questions — আরও ${remainingCount}টি বাকি)`);
       
       const parentModule = firstUnanswered.closest('section');
       if (parentModule && isStepMode) {
