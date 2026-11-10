@@ -4,56 +4,56 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   0. Background Decorative Layer Theming Tokens (Easily Tunable)
+   0. Animated Botanical Leaves & Human Wellbeing Interactions
    -------------------------------------------------------------------------- */
-:root {
-  --bg-sage-botanical: #B7C9B0;
-  --bg-sage-botanical-opacity: 0.35;
-  --bg-sage-human: #9DB8A8;
-  --bg-sage-human-opacity: 0.28;
-  --bg-sage-vu: #8FA89B;
-  --bg-sage-vu-opacity: 0.28;
-}
-
-/* Background Decorative Utility Classes */
-.bg-layer-botanical {
-  stroke: var(--bg-sage-botanical);
-  opacity: var(--bg-sage-botanical-opacity);
-}
-
-.bg-layer-human {
-  stroke: var(--bg-sage-human);
-  opacity: var(--bg-sage-human-opacity);
-}
-
-.bg-layer-vu {
-  stroke: var(--bg-sage-vu);
-  opacity: var(--bg-sage-vu-opacity);
-}
-
-/* Responsive Scaling & Opacity Rules */
-@media (max-width: 1024px) {
-  :root {
-    --bg-sage-botanical-opacity: 0.26;
-    --bg-sage-human-opacity: 0.20;
-    --bg-sage-vu-opacity: 0.24;
+@keyframes leaf-sway-left {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0) scale(1);
+  }
+  50% {
+    transform: rotate(1.4deg) translateY(-4px) scale(1.01);
   }
 }
 
-@media (max-width: 640px) {
-  :root {
-    --bg-sage-botanical-opacity: 0.18;
-    --bg-sage-human-opacity: 0;
-    --bg-sage-vu-opacity: 0.22;
+@keyframes leaf-sway-right {
+  0%, 100% {
+    transform: rotate(0deg) translateY(0) scale(1);
   }
+  50% {
+    transform: rotate(-1.4deg) translateY(-4px) scale(1.01);
+  }
+}
+
+@keyframes empathy-glow {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0 rgba(45, 106, 79, 0));
+  }
+  50% {
+    transform: scale(1.02);
+    filter: drop-shadow(0 4px 12px rgba(45, 106, 79, 0.18));
+  }
+}
+
+.leaf-breeze-left {
+  transform-origin: 15% 10%;
+  animation: leaf-sway-left 8.5s ease-in-out infinite;
+}
+
+.leaf-breeze-right {
+  transform-origin: 85% 10%;
+  animation: leaf-sway-right 9.5s ease-in-out infinite;
+}
+
+.empathy-pulse {
+  animation: empathy-glow 4.5s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bg-layer-botanical,
-  .bg-layer-human,
-  .bg-layer-vu {
+  .leaf-breeze-left,
+  .leaf-breeze-right,
+  .empathy-pulse {
     animation: none !important;
-    transition: none !important;
   }
 }
 
