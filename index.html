@@ -192,16 +192,19 @@
         <span class="hidden sm:inline text-sm sm:text-base font-bold text-[#152418] leading-none tracking-tight">MindCare</span>
       </a>
 
-      <!-- Mobile Center Trigger (< md) -->
-      <div class="flex md:hidden items-center justify-between gap-2 flex-1">
+      <!-- Mobile Center Module Name Trigger (< md) -->
+      <div class="flex md:hidden items-center justify-center flex-1 min-w-0 px-1">
         <button type="button" id="mobile-module-trigger" aria-label="Open survey module directory"
-          class="flex items-center gap-1.5 text-xs font-semibold text-[#152418] hover:text-[#2D6A4F] transition-colors py-1.5 px-3 rounded-full bg-[#F0F5EE] border border-[#E2E8DF] active:scale-95 shadow-xs min-h-[36px]">
-          <span id="mobile-current-module-name">all module</span>
-          <span class="material-symbols-outlined text-[15px] text-[#2D6A4F] leading-none">chevron_right</span>
+          class="flex items-center justify-center gap-1.5 text-xs font-semibold text-[#152418] hover:text-[#2D6A4F] transition-colors py-1.5 px-3.5 rounded-full bg-[#F0F5EE] border border-[#E2E8DF] active:scale-95 shadow-xs min-h-[36px] max-w-[200px]">
+          <span id="mobile-current-module-name" class="truncate">all module</span>
+          <span class="material-symbols-outlined text-[15px] text-[#2D6A4F] leading-none shrink-0">expand_more</span>
         </button>
+      </div>
 
+      <!-- Mobile Right Grid Button (< md) -->
+      <div class="flex md:hidden items-center shrink-0">
         <button type="button" id="mobile-grid-btn" aria-label="Open all survey sections"
-          class="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-[#F0F5EE] text-[#3A4F3F] border border-[#E2E8DF] flex items-center justify-center transition-all active:scale-95 shadow-xs shrink-0">
+          class="w-8 h-8 rounded-full bg-[#F0F5EE] text-[#3A4F3F] border border-[#E2E8DF] flex items-center justify-center transition-all active:scale-95 shadow-xs shrink-0">
           <span class="material-symbols-outlined text-[17px]">grid_view</span>
         </button>
       </div>
