@@ -32,55 +32,9 @@ body {
 }
 
 :root {
-  --bg-sage-botanical: #B7C9B0;
-  --bg-sage-botanical-opacity: 0.35;
-  --bg-sage-human: #9DB8A8;
-  --bg-sage-human-opacity: 0.28;
-  --bg-sage-vu: #8FA89B;
-  --bg-sage-vu-opacity: 0.28;
 }
 
-/* Background Decorative Utility Classes */
-.bg-layer-botanical {
-  stroke: var(--bg-sage-botanical);
-  opacity: var(--bg-sage-botanical-opacity);
-}
 
-.bg-layer-human {
-  stroke: var(--bg-sage-human);
-  opacity: var(--bg-sage-human-opacity);
-}
-
-.bg-layer-vu {
-  stroke: var(--bg-sage-vu);
-  opacity: var(--bg-sage-vu-opacity);
-}
-
-/* Responsive Scaling & Opacity Rules */
-@media (max-width: 1024px) {
-  :root {
-    --bg-sage-botanical-opacity: 0.26;
-    --bg-sage-human-opacity: 0.20;
-    --bg-sage-vu-opacity: 0.24;
-  }
-}
-
-@media (max-width: 640px) {
-  :root {
-    --bg-sage-botanical-opacity: 0.18;
-    --bg-sage-human-opacity: 0;
-    --bg-sage-vu-opacity: 0.22;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bg-layer-botanical,
-  .bg-layer-human,
-  .bg-layer-vu {
-    animation: none !important;
-    transition: none !important;
-  }
-}
 
 /* --------------------------------------------------------------------------
    1. Design Tokens & CSS Custom Properties
