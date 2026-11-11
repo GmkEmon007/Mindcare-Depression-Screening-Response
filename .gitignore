@@ -1,9 +1,9 @@
 # Environment folder and private configurations
-env/
 .env
 .env.*
-env.js
 config.env
+!env/
+!env/env.js
 
 # Scratch and test files
 scratch/

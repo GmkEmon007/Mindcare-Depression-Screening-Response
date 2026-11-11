@@ -2733,7 +2733,12 @@
   
 
   <!-- External Script -->
-  <!-- Environment Configuration (git-ignored) -->
+  <!-- Environment Configuration & Fallback -->
+  <script>
+    window.__ENV__ = window.__ENV__ || {
+      GOOGLE_SHEET_URL: "https://script.google.com/macros/s/AKfycbzrRBpzcMPyE3raNlznDZgBd98gVpufz2V0tEFh0CTJQfU4BDt4zPhVONvnDQuFFn4O/exec"
+    };
+  </script>
   <script src="env/env.js"></script>
   <!-- Main Application Script -->
   <script src="script.js"></script>

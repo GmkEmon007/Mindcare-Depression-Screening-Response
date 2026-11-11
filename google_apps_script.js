@@ -30,9 +30,10 @@ function doPost(e) {
   lock.tryLock(15000);
 
   try {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName("Responses") || ss.getActiveSheet() || ss.getSheets()[0];
 
-    // Parse incoming POST body (supports JSON payload or URL-encoded form data)
+    // Parse incoming POST body (supports JSON payload, URL-encoded form data, or hidden form postData)
     var rawData = {};
     if (e && e.postData && e.postData.contents) {
       try {
@@ -41,7 +42,15 @@ function doPost(e) {
         rawData = e.parameter || {};
       }
     } else if (e && e.parameter) {
-      rawData = e.parameter;
+      if (e.parameter.postData) {
+        try {
+          rawData = JSON.parse(e.parameter.postData);
+        } catch (pErr) {
+          rawData = e.parameter;
+        }
+      } else {
+        rawData = e.parameter;
+      }
     }
 
     // Standard column ordering for academic and ML research analysis
@@ -96,20 +105,25 @@ function doPost(e) {
       "G1", "G3", "G4", "G5", "G6"
     ];
 
-    // If the sheet is empty, automatically create and format the header row
-    if (sheet.getLastRow() === 0) {
+    // If the sheet is empty or has no columns, automatically create and format the header row
+    var lastRow = sheet.getLastRow();
+    var lastCol = sheet.getLastColumn();
+
+    if (lastRow === 0 || lastCol === 0) {
+      sheet.clear();
       sheet.appendRow(standardColumns);
 
       var headerRange = sheet.getRange(1, 1, 1, standardColumns.length);
       headerRange.setFontWeight("bold");
-      headerRange.setBackground("#F3EDE2"); // Warm Terracotta tint
-      headerRange.setFontColor("#1C140E");
+      headerRange.setBackground("#EAF2EC");
+      headerRange.setFontColor("#152418");
       headerRange.setHorizontalAlignment("center");
       sheet.setFrozenRows(1);
+      lastCol = standardColumns.length;
     }
 
     // Read current headers from row 1
-    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    var headers = sheet.getRange(1, 1, 1, Math.max(1, sheet.getLastColumn())).getValues()[0];
 
     // Build the row data aligned to existing headers
     var row = headers.map(function (colName) {
@@ -125,7 +139,7 @@ function doPost(e) {
     return ContentService.createTextOutput(JSON.stringify({
       result: "success",
       row: sheet.getLastRow(),
-      token: rawData.Anonymous_Token || ""
+      token: rawData.Anonymous_Token || rawData["Submission ID"] || ""
     })).setMimeType(ContentService.MimeType.JSON);
 
   } catch (error) {
@@ -139,6 +153,24 @@ function doPost(e) {
 }
 
 function doGet(e) {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName("Responses") || ss.getActiveSheet() || ss.getSheets()[0];
+    var totalRows = sheet.getLastRow();
+    var totalCols = sheet.getLastColumn();
+    var sheetName = sheet.getName();
+    
+    if (e && e.parameter && (e.parameter.status || e.parameter.check)) {
+      return ContentService.createTextOutput(JSON.stringify({
+        status: "active",
+        sheetName: sheetName,
+        totalRows: totalRows,
+        totalCols: totalCols,
+        timestamp: new Date().toISOString()
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+  } catch (err) {}
+
   return ContentService.createTextOutput(
     "VU Research Webhook is active! Send a POST request to submit questionnaire responses."
   ).setMimeType(ContentService.MimeType.TEXT);
