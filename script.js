@@ -412,6 +412,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileProgress = document.getElementById('mobile-progress-badge');
     if (mobileProgress) mobileProgress.textContent = `${pct}%`;
 
+    // Dynamic Student Reflection Interaction State (Left Companion Graphic)
+    const studentStateEl = document.getElementById('student-reflection-state');
+    if (studentStateEl) {
+      if (answeredCount === 0) {
+        studentStateEl.textContent = 'Reflective Journey (0/54)';
+      } else if (answeredCount <= 18) {
+        studentStateEl.textContent = `Reflecting on Wellbeing (${answeredCount}/54)`;
+      } else if (answeredCount <= 35) {
+        studentStateEl.textContent = `Sharing Academic Journey (${answeredCount}/54)`;
+      } else if (answeredCount <= 47) {
+        studentStateEl.textContent = `Embracing Support (${answeredCount}/54)`;
+      } else {
+        studentStateEl.textContent = `Journey Validated (${answeredCount}/54)`;
+      }
+    }
+
     // Update section checkmarks and states in Nav
     updateNavigationModules();
   }

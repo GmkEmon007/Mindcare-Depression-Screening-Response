@@ -6,6 +6,31 @@
 /* --------------------------------------------------------------------------
    0. Background Decorative Layer Theming Tokens (Easily Tunable)
    -------------------------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   Global 1px Typography Scaling (Balanced Readability & Clinical Hierarchy)
+   -------------------------------------------------------------------------- */
+html {
+  font-size: 17px; /* +1px increase globally across all rem units (text-xs, text-sm, text-base, etc.) */
+}
+
+body {
+  font-size: 15px; /* +1px increase over standard 14px */
+}
+
+/* Explicit pixel tokens scaled up by 1px */
+.text-\[10px\] {
+  font-size: 11px !important;
+}
+
+.text-\[11px\] {
+  font-size: 12px !important;
+}
+
+.text-\[13px\] {
+  font-size: 14px !important;
+}
+
 :root {
   --bg-sage-botanical: #B7C9B0;
   --bg-sage-botanical-opacity: 0.35;
@@ -411,6 +436,7 @@ body {
   outline: none;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: inherit;
+  font-weight: 450;
 }
 
 .question-dropdown:hover {
@@ -429,7 +455,8 @@ body {
   padding: 10px 14px;
   background-color: #FFFFFF;
   color: #152418;
-  font-size: 14px;
+  font-size: 14.5px;
+  font-weight: 400;
 }
 
 /* Ripple Micro-Interaction */
