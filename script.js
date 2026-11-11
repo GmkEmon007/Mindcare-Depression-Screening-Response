@@ -158,7 +158,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
           // Card Answered State
           if (parentCard) {
-            parentCard.classList.add('answered');
+            if (isCardAnswered(parentCard)) {
+              parentCard.classList.add('answered');
+              parentCard.classList.remove('highlight-unanswered');
+            } else {
+              parentCard.classList.remove('answered');
+            }
           }
 
           // Record Score & State
@@ -229,6 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (parentCard) {
           if (val) {
             parentCard.classList.add('border-[#2D6A4F]', 'bg-[#F9FCFA]', 'answered');
+            parentCard.classList.remove('highlight-unanswered');
           } else {
             parentCard.classList.remove('border-[#2D6A4F]', 'bg-[#F9FCFA]', 'answered');
           }
@@ -270,18 +276,29 @@ document.addEventListener('DOMContentLoaded', () => {
   function setupInputs() {
     const inputs = document.querySelectorAll('input:not([type="checkbox"]), select');
     inputs.forEach(inp => {
-      inp.addEventListener('input', () => {
+      const handleInput = () => {
         if (inp.id) {
           state.inputs[inp.id] = inp.value;
           if (inp.value.trim() !== '') {
             state.answeredQuestions.add(inp.id);
-            const parent = inp.closest('.question-card');
-            if (parent) parent.classList.add('answered');
+          } else {
+            state.answeredQuestions.delete(inp.id);
+          }
+        }
+        const parent = inp.closest('.question-card');
+        if (parent) {
+          if (isCardAnswered(parent)) {
+            parent.classList.add('answered');
+            parent.classList.remove('highlight-unanswered');
+          } else {
+            parent.classList.remove('answered');
           }
         }
         updateProgress();
         saveState();
-      });
+      };
+      inp.addEventListener('input', handleInput);
+      inp.addEventListener('change', handleInput);
     });
   }
 
@@ -354,44 +371,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 7. Calculate Progress Across 54 Items (0% to 100%)
   function updateProgress() {
-    const questionKeys = new Set();
-
-    // Check all pebble button groups
-    document.querySelectorAll('[data-pebble-group]').forEach(group => {
-      const q = group.getAttribute('data-question');
-      if (q && group.querySelector('.pebble-btn.active')) {
-        questionKeys.add(q);
+    const allCards = document.querySelectorAll('.question-card');
+    let answeredCount = 0;
+    allCards.forEach(card => {
+      if (isCardAnswered(card)) {
+        answeredCount++;
       }
     });
 
-    // Check all dropdown questions (Sections C, D, G)
-    document.querySelectorAll('select[data-dropdown-question]').forEach(select => {
-      const q = select.getAttribute('data-dropdown-question');
-      if (q && select.value && select.value.trim() !== '') {
-        questionKeys.add(q);
-      }
-    });
-
-    // Check Input A1 (Age)
-    const ageEl = document.getElementById('input-age');
-    if (ageEl && ageEl.value.trim() !== '') questionKeys.add('a1');
-
-    // Check Input A2 (Height: ft or in)
-    const ftEl = document.getElementById('input-height-ft');
-    const inEl = document.getElementById('input-height-in');
-    if ((ftEl && ftEl.value.trim() !== '') || (inEl && inEl.value.trim() !== '')) {
-      questionKeys.add('a2');
-    }
-
-    // Check Input A4 (Weight)
-    const wtEl = document.getElementById('input-weight');
-    if (wtEl && wtEl.value.trim() !== '') questionKeys.add('a4');
-
-    // Check Input G2 (Income)
-    const incEl = document.getElementById('input-income');
-    if (incEl && incEl.value.trim() !== '') questionKeys.add('g2');
-
-    const answeredCount = Math.min(TOTAL_CHECKPOINTS, questionKeys.size);
     const pct = Math.round((answeredCount / TOTAL_CHECKPOINTS) * 100);
 
     // Slim top progress bar
@@ -411,7 +398,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const mobileProgress = document.getElementById('mobile-progress-badge');
     if (mobileProgress) mobileProgress.textContent = `${pct}%`;
-
 
     // Update section checkmarks and states in Nav
     updateNavigationModules();
@@ -449,9 +435,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const section = document.getElementById(`module-${m.id}`);
       let isCompleted = false;
       if (section) {
-        const groups = section.querySelectorAll('[data-pebble-group]');
-        if (groups.length > 0) {
-          isCompleted = Array.from(groups).every(g => g.querySelector('.pebble-btn.active'));
+        const cards = section.querySelectorAll('.question-card');
+        if (cards.length > 0) {
+          isCompleted = Array.from(cards).every(card => isCardAnswered(card));
         }
       }
 
@@ -522,33 +508,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7b. Check If Question Card Is Completed
+  // 7b. Check If Question Card Is Completed (Strict Validation for All 54 Items)
   function isCardAnswered(card) {
     if (!card) return true;
 
-    // 1. Pebble Button Group
-    const group = card.querySelector('[data-pebble-group]');
-    if (group) {
-      return group.querySelector('.pebble-btn.active') !== null;
+    // 1. Special Check for Card A7 (Academic Year & Semester - both required)
+    const yearGroup = card.querySelector('[data-question="a7_year"]');
+    const semesterSelect = card.querySelector('#select-semester');
+    if (yearGroup && semesterSelect) {
+      const yearSelected = yearGroup.querySelector('.pebble-btn.active') !== null;
+      const semesterSelected = semesterSelect.value.trim() !== '';
+      return yearSelected && semesterSelected;
     }
 
-    // 2. Input A1 (Age)
+    // 2. Input A1 (Age: 15-65)
     const ageInput = card.querySelector('#input-age');
     if (ageInput) {
-      return ageInput.value.trim() !== '';
+      const val = ageInput.value.trim();
+      const num = parseInt(val, 10);
+      return val !== '' && !isNaN(num) && num >= 15 && num <= 65;
     }
 
-    // 3. Input A2 (Height: ft or in)
+    // 3. Input A2 (Height: ft required between 3-7)
     const ftInput = card.querySelector('#input-height-ft');
-    const inInput = card.querySelector('#input-height-in');
-    if (ftInput || inInput) {
-      return (ftInput && ftInput.value.trim() !== '') || (inInput && inInput.value.trim() !== '');
+    if (ftInput) {
+      const ftVal = ftInput.value.trim();
+      const ftNum = parseInt(ftVal, 10);
+      return ftVal !== '' && !isNaN(ftNum) && ftNum >= 3 && ftNum <= 7;
     }
 
-    // 4. Input A4 (Weight)
+    // 4. Input A4 (Weight: 30-180 kg)
     const weightInput = card.querySelector('#input-weight');
     if (weightInput) {
-      return weightInput.value.trim() !== '';
+      const val = weightInput.value.trim();
+      const num = parseInt(val, 10);
+      return val !== '' && !isNaN(num) && num >= 30 && num <= 180;
     }
 
     // 5. Input G2 (Income)
@@ -557,8 +551,20 @@ document.addEventListener('DOMContentLoaded', () => {
       return incomeInput.value.trim() !== '';
     }
 
-    // Generic fallback for any other text/number input or select inside card
-    const anyInput = card.querySelector('input:not([type="checkbox"]), select');
+    // 6. Pebble Button Group (A3, A5, A6, B1-B9, E1-E8, F1-F12)
+    const group = card.querySelector('[data-pebble-group]');
+    if (group) {
+      return group.querySelector('.pebble-btn.active') !== null;
+    }
+
+    // 7. Dropdown Select Questions (C1-C8, D1-D4, G1, G3-G6)
+    const select = card.querySelector('select');
+    if (select) {
+      return select.value.trim() !== '';
+    }
+
+    // Generic fallback for any other text/number input
+    const anyInput = card.querySelector('input:not([type="checkbox"])');
     if (anyInput) {
       return anyInput.value.trim() !== '';
     }
@@ -566,7 +572,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   }
 
-  // Get all currently unanswered question cards in document order
+  // Get all currently unanswered question cards across entire survey
   function getUnansweredCards() {
     const allCards = document.querySelectorAll('.question-card');
     const unanswered = [];
@@ -578,13 +584,73 @@ document.addEventListener('DOMContentLoaded', () => {
     return unanswered;
   }
 
+  // Get unanswered question cards within a specific section/module
+  function getUnansweredCardsInSection(sectionEl) {
+    if (!sectionEl) return [];
+    const cards = sectionEl.querySelectorAll('.question-card');
+    const unanswered = [];
+    cards.forEach(card => {
+      if (!isCardAnswered(card)) {
+        unanswered.push(card);
+      }
+    });
+    return unanswered;
+  }
+
+  // Gatekeeper: Validate that all prior sections are complete before navigating forward
+  function canProceedToStep(targetIndex) {
+    if (targetIndex <= currentStepIndex) return true;
+
+    for (let i = 0; i < targetIndex; i++) {
+      const secId = stepModuleIds[i];
+      const secEl = document.getElementById(secId);
+
+      if (secId === 'module-a') {
+        const consentCheck = document.getElementById('consent-checkbox');
+        if (consentCheck && !consentCheck.checked) {
+          showToast('⚠️ অনুগ্রহ করে প্রথমে সম্মতি বক্সে টিক দিন (Please agree to voluntary consent first)');
+          goToStep(0, false);
+          consentCheck.focus();
+          const consentParent = consentCheck.closest('.consent-box') || consentCheck.parentElement;
+          if (consentParent) {
+            consentParent.classList.add('ring-2', 'ring-red-500', 'p-2', 'rounded-xl');
+            consentParent.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => consentParent.classList.remove('ring-2', 'ring-red-500', 'p-2', 'rounded-xl'), 3000);
+          }
+          return false;
+        }
+      }
+
+      if (secEl) {
+        const unanswered = getUnansweredCardsInSection(secEl);
+        if (unanswered.length > 0) {
+          goToStep(i, false);
+          const first = unanswered[0];
+          first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          first.classList.add('highlight-unanswered');
+          setTimeout(() => first.classList.remove('highlight-unanswered'), 3500);
+
+          const focusable = first.querySelector('input:not([type="checkbox"]), select, .pebble-btn');
+          if (focusable) {
+            setTimeout(() => focusable.focus(), 350);
+          }
+
+          const modTitle = stepModuleTitles[i] || `Section ${secId.replace('module-', '').toUpperCase()}`;
+          showToast(`⚠️ অনুগ্রহ করে প্রথমে ${modTitle} এর সকল প্রশ্নের উত্তর সম্পন্ন করুন (${unanswered.length}টি প্রশ্ন বাকি)`);
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
   // 8. Smart "Next Unanswered" Navigation
   function jumpToNextUnanswered() {
     const unanswered = getUnansweredCards();
     if (unanswered.length > 0) {
       const card = unanswered[0];
       const parentModule = card.closest('section');
-      if (parentModule && isStepMode) {
+      if (parentModule) {
         const modId = parentModule.getAttribute('id');
         const targetStepIdx = stepModuleIds.indexOf(modId);
         if (targetStepIdx !== -1) {
@@ -686,13 +752,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.mobile-waypoint-link').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const href = link.getAttribute('href');
-        const target = document.querySelector(href);
-        closeDrawer();
-        if (target) {
-          setTimeout(() => {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 150);
+        const modKey = link.getAttribute('data-module');
+        if (modKey) {
+          const modId = `module-${modKey}`;
+          const targetStepIdx = stepModuleIds.indexOf(modId);
+          if (targetStepIdx !== -1) {
+            closeDrawer();
+            if (canProceedToStep(targetStepIdx)) {
+              goToStep(targetStepIdx, true);
+            }
+          }
         }
       });
     });
@@ -1005,10 +1074,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const remainingCount = unansweredCards.length;
       const firstUnanswered = unansweredCards[0];
 
-      showToast(`⚠️ অনুগ্রহ করে সব প্রশ্নের উত্তর সম্পন্ন করুন (Please complete all questions — আরও ${remainingCount}টি বাকি)`);
+      showToast(`⚠️ অনুগ্রহ করে সব প্রশ্নের উত্তর সম্পন্ন করুন (Please answer all 54 questions — আরও ${remainingCount}টি বাকি)`);
       
       const parentModule = firstUnanswered.closest('section');
-      if (parentModule && isStepMode) {
+      if (parentModule) {
         const modId = parentModule.getAttribute('id');
         const targetStepIdx = stepModuleIds.indexOf(modId);
         if (targetStepIdx !== -1) {
@@ -1026,7 +1095,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const submitBtn = document.getElementById('submit-btn');
+    const submitBtn = document.getElementById('submit-btn') || document.getElementById('module-g-submit-btn');
     const origHtml = submitBtn ? submitBtn.innerHTML : '';
     if (submitBtn) {
       submitBtn.disabled = true;
@@ -1072,7 +1141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function setupModal() {
     const reviewBtn = document.getElementById('review-btn');
-    const submitBtn = document.getElementById('submit-btn');
+    const submitBtn = document.getElementById('submit-btn') || document.getElementById('module-g-submit-btn');
     const floatingReview = document.getElementById('floating-review-btn');
     const floatingSubmit = document.getElementById('floating-submit-btn');
     const modal = document.getElementById('reflection-modal');
@@ -1294,7 +1363,9 @@ document.addEventListener('DOMContentLoaded', () => {
           const modId = `module-${modKey}`;
           const targetStepIdx = stepModuleIds.indexOf(modId);
           if (targetStepIdx !== -1) {
-            goToStep(targetStepIdx, true);
+            if (canProceedToStep(targetStepIdx)) {
+              goToStep(targetStepIdx, true);
+            }
           }
         }
       });
@@ -1308,36 +1379,75 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Next step triggers
+    // Next step triggers: STRICT MANDATORY VALIDATION OF CURRENT SECTION
     document.querySelectorAll('.next-step-trigger').forEach(btn => {
       btn.addEventListener('click', () => {
-        const consentCheck = document.getElementById('consent-checkbox');
-        if (consentCheck && !consentCheck.checked) {
-          showToast('Please check the voluntary consent box to proceed');
-          consentCheck.focus();
-          return;
+        const currentSec = btn.closest('section') || document.getElementById(stepModuleIds[currentStepIndex]);
+
+        // 1. If in Module A, voluntary consent must be checked first
+        if (currentSec && currentSec.id === 'module-a') {
+          const consentCheck = document.getElementById('consent-checkbox');
+          if (consentCheck && !consentCheck.checked) {
+            showToast('⚠️ অনুগ্রহ করে সম্মতি বক্সে টিক দিন (Please agree to voluntary consent to proceed)');
+            consentCheck.focus();
+            const consentParent = consentCheck.closest('.consent-box') || consentCheck.parentElement;
+            if (consentParent) {
+              consentParent.classList.add('ring-2', 'ring-red-500', 'p-2', 'rounded-xl');
+              consentParent.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              setTimeout(() => consentParent.classList.remove('ring-2', 'ring-red-500', 'p-2', 'rounded-xl'), 3000);
+            }
+            return;
+          }
         }
-        if (currentStepIndex < stepModuleIds.length - 1) {
-          goToStep(currentStepIndex + 1, true);
+
+        // 2. Validate all questions in the current section
+        if (currentSec) {
+          const unanswered = getUnansweredCardsInSection(currentSec);
+          if (unanswered.length > 0) {
+            const firstUnanswered = unanswered[0];
+            firstUnanswered.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            firstUnanswered.classList.add('highlight-unanswered');
+            setTimeout(() => firstUnanswered.classList.remove('highlight-unanswered'), 3500);
+
+            const focusable = firstUnanswered.querySelector('input:not([type="checkbox"]), select, .pebble-btn');
+            if (focusable) {
+              setTimeout(() => focusable.focus(), 350);
+            }
+
+            showToast(`⚠️ পরবর্তী সেকশনে যাওয়ার আগে এই সেকশনের সকল প্রশ্নের উত্তর দিন (${unanswered.length}টি প্রশ্ন বাকি / ${unanswered.length} remaining)`);
+            return;
+          }
+        }
+
+        // 3. Current section complete! Move forward
+        const currentIdx = currentSec ? stepModuleIds.indexOf(currentSec.id) : currentStepIndex;
+        const nextIdx = (currentIdx !== -1 ? currentIdx : currentStepIndex) + 1;
+        if (nextIdx < stepModuleIds.length) {
+          goToStep(nextIdx, true);
         }
       });
     });
 
-    // Prev step triggers
+    // Prev step triggers (always permitted to review earlier answers)
     document.querySelectorAll('.prev-step-trigger').forEach(btn => {
       btn.addEventListener('click', () => {
-        if (currentStepIndex > 0) {
-          goToStep(currentStepIndex - 1, true);
+        const currentSec = btn.closest('section') || document.getElementById(stepModuleIds[currentStepIndex]);
+        const currentIdx = currentSec ? stepModuleIds.indexOf(currentSec.id) : currentStepIndex;
+        const prevIdx = (currentIdx !== -1 ? currentIdx : currentStepIndex) - 1;
+        if (prevIdx >= 0) {
+          goToStep(prevIdx, true);
         }
       });
     });
 
-    // Stepper pills click
+    // Stepper pills click: Validate prior steps before jumping forward
     document.querySelectorAll('.step-nav-pill').forEach(pill => {
       pill.addEventListener('click', () => {
         const target = parseInt(pill.getAttribute('data-step-target'), 10);
         if (!isNaN(target)) {
-          goToStep(target, true);
+          if (canProceedToStep(target)) {
+            goToStep(target, true);
+          }
         }
       });
     });

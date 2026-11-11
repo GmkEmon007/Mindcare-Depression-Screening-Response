@@ -62,8 +62,113 @@
 
 <body class="bg-[#F8FAF7] text-[#152418] antialiased selection:bg-[#EAF2EC] selection:text-[#152418] min-h-screen relative flex flex-col items-center">
 
-<!-- Master Layout Container (Figma 1280px Master) (Figma 1280px Master) -->
-  <div class="w-full max-w-[1280px] px-4 sm:px-6 lg:px-8 pt-2 sm:pt-3 pb-8 md:pb-12 space-y-8 sm:space-y-10">
+  <!-- ==========================================================================
+       TRANQUIL NATURE CANVAS & SUBTLE BOTANICAL BACKDROP (Atmospheric Background)
+       Behind all content (z-0) — completely non-intrusive, zero text obstruction
+       ========================================================================== -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none" aria-hidden="true">
+    <!-- Gentle snowfall particle canvas -->
+    <canvas id="snowfall-canvas" class="w-full h-full opacity-65"></canvas>
+
+    <!-- Refined, delicate botanical foliage framing corners gracefully -->
+    <!-- Top-left dainty evergreen branch -->
+    <div id="botanical-canopy-tl" class="absolute -top-3 -left-3 w-[105px] sm:w-[160px] md:w-[210px] lg:w-[260px] opacity-35 sm:opacity-50 leaf-sway-tl origin-top-left transition-opacity duration-700">
+      <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto drop-shadow-[0_8px_20px_rgba(21,36,24,0.08)]">
+        <!-- Main Branch -->
+        <path d="M-10 -10 C40 30 110 65 190 85 C235 95 270 102 290 110" stroke="#1B4332" stroke-width="3.5" stroke-linecap="round" />
+        <path d="M30 20 C60 70 105 125 140 170" stroke="#1B4332" stroke-width="2" stroke-linecap="round" />
+        <path d="M90 50 C120 90 160 130 195 160" stroke="#1B4332" stroke-width="1.8" stroke-linecap="round" />
+
+        <!-- Leaf Blade 1 (Fluttering) -->
+        <g class="leaf-flutter-1">
+          <path d="M15 10 C45 45 70 95 60 140 C50 125 32 95 24 65 C18 45 15 22 15 10 Z" fill="#2D6A4F" />
+          <path d="M18 18 C38 60 55 100 52 135" stroke="#74C69D" stroke-width="1" opacity="0.6" />
+          <!-- Sparkling dew crystal -->
+          <circle cx="60" cy="140" r="2.5" fill="#FFFFFF" class="leaf-glint" />
+        </g>
+
+        <!-- Leaf Blade 2 (Fluttering) -->
+        <g class="leaf-flutter-2">
+          <path d="M55 35 C100 30 160 50 195 90 C160 105 115 105 85 90 C65 75 58 52 55 35 Z" fill="#1B4332" />
+          <path d="M62 42 C110 55 155 75 188 88" stroke="#95D5B2" stroke-width="1" opacity="0.65" />
+          <circle cx="195" cy="90" r="2.5" fill="#FFFFFF" class="leaf-glint" />
+        </g>
+
+        <!-- Leaf Blade 3 (Cascading & Fluttering) -->
+        <g class="leaf-flutter-3">
+          <path d="M95 65 C130 100 160 150 148 195 C130 175 115 135 108 105 C100 85 98 72 95 65 Z" fill="#2D6A4F" />
+          <path d="M98 72 C120 110 140 155 142 188" stroke="#74C69D" stroke-width="1" opacity="0.6" />
+        </g>
+
+        <!-- Leaf Blade 4 (Forward Tender Leaflet) -->
+        <g class="leaf-flutter-1">
+          <path d="M140 72 C185 72 235 100 255 130 C225 140 180 135 155 115 C140 100 138 85 140 72 Z" fill="#40916C" />
+          <path d="M145 78 C185 95 220 115 248 126" stroke="#D8EEDB" stroke-width="1" opacity="0.75" />
+          <circle cx="255" cy="130" r="3" fill="#FFFFFF" class="leaf-glint" />
+        </g>
+
+        <!-- Distal Leaflet Tip -->
+        <path d="M205 88 C245 92 280 108 290 130 C265 136 235 125 215 110 C208 102 205 95 205 88 Z" fill="#2D6A4F" />
+      </svg>
+    </div>
+
+    <!-- Top-right dainty evergreen branch -->
+    <div id="botanical-canopy-tr" class="absolute -top-3 -right-3 w-[105px] sm:w-[160px] md:w-[210px] lg:w-[260px] opacity-35 sm:opacity-50 leaf-sway-tr origin-top-right transition-opacity duration-700">
+      <svg viewBox="0 0 320 260" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto drop-shadow-[0_8px_20px_rgba(21,36,24,0.08)]">
+        <!-- Main Branch -->
+        <path d="M330 -10 C280 30 210 65 130 85 C85 95 50 102 30 110" stroke="#1B4332" stroke-width="3.5" stroke-linecap="round" />
+        <path d="M290 20 C260 70 215 125 180 170" stroke="#1B4332" stroke-width="2" stroke-linecap="round" />
+        <path d="M230 50 C200 90 160 130 125 160" stroke="#1B4332" stroke-width="1.8" stroke-linecap="round" />
+
+        <!-- Leaf Blade 1 (Fluttering) -->
+        <g class="leaf-flutter-1">
+          <path d="M305 10 C275 45 250 95 260 140 C270 125 288 95 296 65 C302 45 305 22 305 10 Z" fill="#2D6A4F" />
+          <path d="M302 18 C282 60 265 100 268 135" stroke="#74C69D" stroke-width="1" opacity="0.6" />
+          <circle cx="260" cy="140" r="2.5" fill="#FFFFFF" class="leaf-glint" />
+        </g>
+
+        <!-- Leaf Blade 2 (Fluttering) -->
+        <g class="leaf-flutter-2">
+          <path d="M265 35 C220 30 160 50 125 90 C160 105 205 105 235 90 C255 75 262 52 265 35 Z" fill="#1B4332" />
+          <path d="M258 42 C210 55 165 75 132 88" stroke="#95D5B2" stroke-width="1" opacity="0.65" />
+          <circle cx="125" cy="90" r="2.5" fill="#FFFFFF" class="leaf-glint" />
+        </g>
+
+        <!-- Leaf Blade 3 (Cascading) -->
+        <g class="leaf-flutter-3">
+          <path d="M225 65 C190 100 160 150 172 195 C190 175 205 135 212 105 C220 85 222 72 225 65 Z" fill="#2D6A4F" />
+          <path d="M222 72 C200 110 180 155 178 188" stroke="#74C69D" stroke-width="1" opacity="0.6" />
+        </g>
+
+        <!-- Leaf Blade 4 (Forward Tender Leaflet) -->
+        <g class="leaf-flutter-1">
+          <path d="M180 72 C135 72 85 100 65 130 C95 140 140 135 165 115 C180 100 182 85 180 72 Z" fill="#40916C" />
+          <path d="M175 78 C135 95 100 115 72 126" stroke="#D8EEDB" stroke-width="1" opacity="0.75" />
+          <circle cx="65" cy="130" r="3" fill="#FFFFFF" class="leaf-glint" />
+        </g>
+
+        <!-- Distal Leaflet Tip -->
+        <path d="M115 88 C75 92 40 108 30 130 C55 136 85 125 105 110 C112 102 115 95 115 88 Z" fill="#2D6A4F" />
+      </svg>
+    </div>
+
+    <!-- Soft ambient botanical side accents in far gutters -->
+    <div class="absolute top-[45%] -left-5 w-16 md:w-20 opacity-[0.25] leaf-float-left hidden xl:block">
+      <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+        <path d="M-5 45 C25 15 70 15 105 38 C75 60 30 68 -5 45 Z" fill="#2D6A4F" />
+        <path d="M0 45 C30 35 70 35 95 38" stroke="#FFFFFF" stroke-width="1" opacity="0.4" />
+      </svg>
+    </div>
+    <div class="absolute top-[68%] -right-5 w-16 md:w-20 opacity-[0.25] leaf-float-right hidden xl:block">
+      <svg viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+        <path d="M125 45 C95 15 50 15 15 38 C45 60 90 68 125 45 Z" fill="#1B4332" />
+        <path d="M120 45 C90 35 50 35 25 38" stroke="#FFFFFF" stroke-width="1" opacity="0.4" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Master Layout Container (Figma 1280px Master) -->
+  <div class="w-full max-w-[1280px] px-4 sm:px-6 lg:px-8 pt-2 sm:pt-3 pb-8 md:pb-12 space-y-5 sm:space-y-6 relative z-10">
 
         <!-- ============================================== -->
     <!-- NAV - MindCare Brand Navigation (Mockup Screen 1) -->
@@ -75,31 +180,28 @@
     <!-- NAV - MindCare Garden Stations Navigator -->
     <!-- ============================================== -->
     <nav id="garden-nav" aria-label="Survey Modules"
-      class="relative md:sticky md:top-2 z-40 bg-[#FFFFFF]/95 backdrop-blur-md rounded-full px-4 py-2.5 sm:px-5 sm:py-3 border border-[#E2E8DF] shadow-[0_4px_20px_-2px_rgba(21,36,24,0.06)] flex items-center justify-between gap-4 transition-all duration-300">
+      class="sticky top-2 z-40 bg-[#FFFFFF]/95 backdrop-blur-md rounded-full px-3.5 py-2 sm:px-5 sm:py-3 border border-[#E2E8DF] shadow-[0_4px_20px_-2px_rgba(21,36,24,0.06)] flex items-center justify-between gap-2 sm:gap-4 transition-all duration-300">
 
       <!-- Brand Logo on Left -->
-      <a href="#hero-banner" class="flex items-center gap-2.5 group select-none shrink-0">
+      <a href="#hero-banner" aria-label="MindCare" class="flex items-center gap-2.5 group select-none shrink-0">
         <div class="w-8 h-8 rounded-full bg-[#EAF2EC] border border-[#C8DCCF] flex items-center justify-center text-[#2D6A4F] shrink-0 shadow-xs group-hover:scale-105 transition-transform">
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C11.5 4 9.5 7.5 7 9C4.5 10.5 2 11 2 12C2 15 5 18 12 21C19 18 22 15 22 12C22 11 19.5 10.5 17 9C14.5 7.5 12.5 4 12 2M12 5.5C13.5 7.8 15.5 10 18.5 11.2C19.5 11.6 20 12.2 20 12.5C19.5 14.5 16.5 16.8 12 19C7.5 16.8 4.5 14.5 4 12.5C4 12.2 4.5 11.6 5.5 11.2C8.5 10 10.5 7.8 12 5.5Z"/>
           </svg>
         </div>
-        <div class="hidden sm:block">
-          <span class="text-sm font-bold text-[#152418] leading-none block">MindCare</span>
-          <span class="text-[10px] text-[#6B8070] font-medium leading-none block mt-0.5">VU Research</span>
-        </div>
+        <span class="hidden sm:inline text-sm sm:text-base font-bold text-[#152418] leading-none tracking-tight">MindCare</span>
       </a>
 
       <!-- Mobile Center Trigger (< md) -->
       <div class="flex md:hidden items-center justify-between gap-2 flex-1">
         <button type="button" id="mobile-module-trigger" aria-label="Open survey module directory"
-          class="flex items-center gap-1.5 text-xs font-semibold text-[#152418] hover:text-[#2D6A4F] transition-colors py-1.5 px-3.5 rounded-full bg-[#F0F5EE] border border-[#E2E8DF] active:scale-95 shadow-xs">
+          class="flex items-center gap-1.5 text-xs font-semibold text-[#152418] hover:text-[#2D6A4F] transition-colors py-1.5 px-3 rounded-full bg-[#F0F5EE] border border-[#E2E8DF] active:scale-95 shadow-xs min-h-[36px]">
           <span id="mobile-current-module-name">all module</span>
           <span class="material-symbols-outlined text-[15px] text-[#2D6A4F] leading-none">chevron_right</span>
         </button>
 
         <button type="button" id="mobile-grid-btn" aria-label="Open all survey sections"
-          class="w-8 h-8 rounded-full bg-[#F0F5EE] text-[#3A4F3F] border border-[#E2E8DF] flex items-center justify-center transition-all active:scale-95 shadow-xs">
+          class="w-9 h-9 sm:w-8 sm:h-8 rounded-full bg-[#F0F5EE] text-[#3A4F3F] border border-[#E2E8DF] flex items-center justify-center transition-all active:scale-95 shadow-xs shrink-0">
           <span class="material-symbols-outlined text-[17px]">grid_view</span>
         </button>
       </div>
@@ -149,7 +251,8 @@
         </a>
       </div>
 
-
+      <!-- Minimalist Real-Time Completion Progress Line -->
+      <div id="zen-progress-bar" class="absolute bottom-0 left-6 right-6 h-[2px] bg-[#2D6A4F] rounded-full transition-all duration-300 pointer-events-none opacity-80" style="width: 0%;"></div>
     </nav>
 
     <!-- ============================================== -->
@@ -159,10 +262,10 @@
     <!-- HERO - Formal Academic Protocol & Mindful Space -->
     <!-- ============================================== -->
     <header id="hero-banner"
-      class="bg-white border border-[#E2E8DF] rounded-[32px] sm:rounded-[36px] p-6 sm:p-9 md:p-11 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_12px_36px_-6px_rgba(21,36,24,0.05)] relative overflow-hidden transition-all duration-300">
+      class="bg-white border border-[#E2E8DF] rounded-[28px] sm:rounded-[32px] p-5 sm:p-7 md:p-9 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_12px_36px_-6px_rgba(21,36,24,0.05)] relative overflow-hidden transition-all duration-300">
 
-      <!-- Top Badges / Research Clearance -->
-      <div class="flex flex-wrap items-center gap-2 text-xs mb-5 sm:mb-6">
+      <!-- Top Badges / Research Clearance & Winter Ambiance Pill -->
+      <div class="hidden sm:flex flex-wrap items-center gap-2 text-xs mb-5 sm:mb-6">
         <span
           class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#152418] text-white font-semibold text-[11px] sm:text-xs shadow-xs">
           <span class="material-symbols-outlined text-[14px] leading-none text-[#2D6A4F]">school</span>
@@ -178,13 +281,18 @@
           <span class="w-1.5 h-1.5 rounded-full bg-[#2D6A4F] animate-ping"></span>
           5–8 Min Confidential Flow
         </span>
+        <button type="button" id="ambient-snow-toggle" aria-label="Toggle ambient winter breeze"
+          class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F3F7F2] text-[#2D6A4F] border border-[#C8DCCF] font-semibold text-[11px] hover:bg-[#EAF2EC] transition-colors ml-auto sm:ml-0">
+          <span class="material-symbols-outlined text-[14px] leading-none text-[#2D6A4F]">ac_unit</span>
+          <span id="ambient-snow-status">Winter Ambiance</span>
+        </button>
       </div>
 
-      <div class="mb-4">
+      <div class="mb-5 text-center md:text-left w-full">
         <h1
-          class="text-2xl sm:text-3xl md:text-[34px] lg:text-[36px] xl:text-[38px] leading-[1.28] sm:leading-[1.3] font-serif font-normal text-[#152418] tracking-tight w-full">
+          class="text-2xl sm:text-3xl md:text-[34px] lg:text-[36px] xl:text-[38px] leading-[1.28] sm:leading-[1.3] font-serif font-normal text-[#152418] tracking-tight w-full text-center md:text-left">
           An Explainable Machine Learning Framework for <span
-            class="italic font-serif text-[#2D6A4F]">Context-Aware Depression Screening</span> and Personalized Student Support among University Students in Bangladesh
+            class="font-serif italic font-semibold text-[#2D6A4F] underline decoration-[#2D6A4F] underline-offset-4 decoration-[1.5px]">Context-Aware Depression Screening</span> and Personalized Student Support among University Students in Bangladesh
         </h1>
       </div>
 
@@ -214,14 +322,14 @@
             <input type="checkbox" id="consent-checkbox" class="custom-checkbox shrink-0 mt-0.5" checked>
             <p class="text-xs sm:text-sm leading-relaxed text-[#152418]">
               <span class="font-medium group-hover:text-[#2D6A4F] transition-colors">I voluntarily consent to participate in this confidential wellbeing screening study.</span>
-              <span class="font-bengali text-[#6B8070] ml-1.5">(আমি এই গবেষণায় স্বেচ্ছায় অংশগ্রহণ করতে সম্মত।)</span>
+              <span class="font-bengali text-[#3A4F3F] ml-1.5">(আমি এই গবেষণায় স্বেচ্ছায় অংশগ্রহণ করতে সম্মত।)</span>
             </p>
           </label>
         </div>
       </div>
     </header>
 
-    <section id="module-a" class="bg-white border border-[#E2E8DF] rounded-[28px] sm:rounded-[36px] p-6 sm:p-9 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-8">
+    <section id="module-a" class="bg-white border border-[#E2E8DF] rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-5 sm:space-y-6">
 
       <!-- Module Header -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E2E8DF]/70">
@@ -246,7 +354,7 @@
         <div
           class="question-card rounded-2xl p-5 border border-[#E2E8DF] shadow-sm flex flex-col justify-between space-y-4 relative">
           <label for="input-age" class="text-xs font-bold text-[#152418]">
-            A1. Age <span class="font-bengali text-[#6B8070] font-normal">(বয়স):</span>
+            A1. Age <span class="font-bengali text-[#3A4F3F] font-normal">(বয়স):</span>
           </label>
           <div class="flex items-center gap-3">
             <input type="number" id="input-age" min="15" max="65" placeholder=""
@@ -259,7 +367,7 @@
         <div
           class="question-card rounded-2xl p-5 border border-[#E2E8DF] shadow-sm flex flex-col justify-between space-y-4 relative">
           <label class="text-xs font-bold text-[#152418]">
-            A2. Height <span class="font-bengali text-[#6B8070] font-normal">(উচ্চতা):</span>
+            A2. Height <span class="font-bengali text-[#3A4F3F] font-normal">(উচ্চতা):</span>
           </label>
           <div class="grid grid-cols-2 gap-3">
             <div class="flex items-center gap-2">
@@ -279,23 +387,23 @@
         <div
           class="question-card rounded-2xl p-5 border border-[#E2E8DF] shadow-sm flex flex-col justify-between space-y-4 relative">
           <div class="text-xs font-bold text-[#152418]">
-            A3. Sex <span class="font-bengali text-[#6B8070] font-normal">(লিঙ্গ):</span>
+            A3. Sex <span class="font-bengali text-[#3A4F3F] font-normal">(লিঙ্গ):</span>
           </div>
           <div class="grid grid-cols-3 gap-2" data-pebble-group data-question="a3">
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">Male</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">পুরুষ</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">পুরুষ</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">Female</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">নারী</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">নারী</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">Other</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">অন্যান্য</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">অন্যান্য</span>
             </button>
           </div>
         </div>
@@ -305,7 +413,7 @@
         <div
           class="question-card rounded-2xl p-5 border border-[#E2E8DF] shadow-sm flex flex-col justify-between space-y-4 relative">
           <label for="input-weight" class="text-xs font-bold text-[#152418]">
-            A4. Weight <span class="font-bengali text-[#6B8070] font-normal">(ওজন):</span>
+            A4. Weight <span class="font-bengali text-[#3A4F3F] font-normal">(ওজন):</span>
           </label>
           <div class="flex items-center gap-3">
             <input type="number" id="input-weight" min="30" max="180" placeholder=""
@@ -318,18 +426,18 @@
         <div
           class="question-card rounded-2xl p-5 border border-[#E2E8DF] shadow-sm flex flex-col justify-between space-y-4 relative">
           <div class="text-xs font-bold text-[#152418]">
-            A5. University Type <span class="font-bengali text-[#6B8070] font-normal">(বিশ্ববিদ্যালয়ের ধরন):</span>
+            A5. University Type <span class="font-bengali text-[#3A4F3F] font-normal">(বিশ্ববিদ্যালয়ের ধরন):</span>
           </div>
           <div class="grid grid-cols-2 gap-2" data-pebble-group data-question="a5">
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">Public</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">সরকারি</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">সরকারি</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">Private</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">বেসরকারি</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">বেসরকারি</span>
             </button>
           </div>
         </div>
@@ -338,18 +446,18 @@
         <div
           class="question-card rounded-2xl p-5 border border-[#E2E8DF] shadow-sm flex flex-col justify-between space-y-4 relative">
           <div class="text-xs font-bold text-[#152418]">
-            A6. Living Arrangement <span class="font-bengali text-[#6B8070] font-normal">(বসবাসের ব্যবস্থা):</span>
+            A6. Living Arrangement <span class="font-bengali text-[#3A4F3F] font-normal">(বসবাসের ব্যবস্থা):</span>
           </div>
           <div class="grid grid-cols-2 gap-2" data-pebble-group data-question="a6">
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">With family</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">পরিবারের সাথে</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">পরিবারের সাথে</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">Without family</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">পরিবার ছাড়া</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">পরিবার ছাড়া</span>
             </button>
           </div>
         </div>
@@ -359,46 +467,51 @@
       <div
         class="question-card rounded-2xl p-5 sm:p-6 border border-[#E2E8DF] shadow-sm space-y-4 relative !mt-5">
         <div class="text-xs font-bold text-[#152418]">
-          A7. Academic Year &amp; Semester <span class="font-bengali text-[#6B8070] font-normal">(শিক্ষাবর্ষ ও সেমিস্টার):</span>
+          A7. Academic Year &amp; Semester <span class="font-bengali text-[#3A4F3F] font-normal">(শিক্ষাবর্ষ ও সেমিস্টার):</span>
         </div>
 
         <!-- Academic Year Pebble Options -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" data-pebble-group data-question="a7_year">
           <button type="button"
             class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
-            <span class="font-bold">1st Year</span><span class="font-bengali text-[#6B8070] text-[11px] ml-1.5">/ ১ম বর্ষ</span>
+            <span class="font-bold">1st Year</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ ১ম বর্ষ</span>
           </button>
           <button type="button"
             class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
-            <span class="font-bold">2nd Year</span><span class="font-bengali text-[#6B8070] text-[11px] ml-1.5">/ ২য় বর্ষ</span>
+            <span class="font-bold">2nd Year</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ ২য় বর্ষ</span>
           </button>
           <button type="button"
             class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
-            <span class="font-bold">3rd Year</span><span class="font-bengali text-[#6B8070] text-[11px] ml-1.5">/ ৩য় বর্ষ</span>
+            <span class="font-bold">3rd Year</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ ৩য় বর্ষ</span>
           </button>
           <button type="button"
             class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
-            <span class="font-bold">4th Year</span><span class="font-bengali text-[#6B8070] text-[11px] ml-1.5">/ ৪র্থ বর্ষ</span>
+            <span class="font-bold">4th Year</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ ৪র্থ বর্ষ</span>
           </button>
         </div>
 
         <!-- Select Semester (with Label on Top) -->
         <div class="space-y-2 pt-1">
           <label for="select-semester" class="text-xs font-bold text-[#152418] block">
-            Select Semester: <span class="font-bengali text-[#6B8070] font-normal">(সেমিস্টার নির্বাচন করুন):</span>
+            Select Semester: <span class="font-bengali text-[#3A4F3F] font-normal">(সেমিস্টার নির্বাচন করুন):</span>
           </label>
-          <select id="select-semester"
-            class="zen-input w-full px-4 py-3 text-xs font-medium cursor-pointer !rounded-[20px]">
-            <option value="" disabled selected>Select Semester / সেমিস্টার নির্বাচন করুন</option>
-            <option value="1">1st Semester / ১ম সেমিস্টার</option>
-            <option value="2">2nd Semester / ২য় সেমিস্টার</option>
-            <option value="3">3rd Semester / ৩য় সেমিস্টার</option>
-            <option value="4">4th Semester / ৪র্থ সেমিস্টার</option>
-            <option value="5">5th Semester / ৫ম সেমিস্টার</option>
-            <option value="6">6th Semester / ৬ষ্ঠ সেমিস্টার</option>
-            <option value="7">7th Semester / ৭ম সেমিস্টার</option>
-            <option value="8">8th Semester / ৮ম সেমিস্টার</option>
-          </select>
+          <div class="relative group">
+            <select id="select-semester"
+              class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+              <option value="" disabled selected>Select Semester / সেমিস্টার নির্বাচন করুন</option>
+              <option value="1">1st Semester / ১ম সেমিস্টার</option>
+              <option value="2">2nd Semester / ২য় সেমিস্টার</option>
+              <option value="3">3rd Semester / ৩য় সেমিস্টার</option>
+              <option value="4">4th Semester / ৪র্থ সেমিস্টার</option>
+              <option value="5">5th Semester / ৫ম সেমিস্টার</option>
+              <option value="6">6th Semester / ৬ষ্ঠ সেমিস্টার</option>
+              <option value="7">7th Semester / ৭ম সেমিস্টার</option>
+              <option value="8">8th Semester / ৮ম সেমিস্টার</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
+              <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
+            </div>
+          </div>
         </div>
       </div>
     
@@ -416,11 +529,12 @@
     <!-- ============================================== -->
     <!-- MODULE B: PHQ-9 Mindful Self-Inquiry (Node 187:261) -->
     <!-- ============================================== -->
-    <section id="module-b" class="bg-white border border-[#E2E8DF] rounded-[28px] sm:rounded-[36px] p-6 sm:p-9 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-8">
+    <section id="module-b" class="bg-white border border-[#E2E8DF] rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-5 sm:space-y-6">
 
-      <!-- Module Header -->
+      <!-- Module Header with Highlighted Clinical Timeframe Banner on Right Side -->
       <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#E2E8DF]/70">
-        <div class="flex items-center gap-3.5">
+        <!-- Left: Module B Title -->
+        <div class="flex items-center gap-3.5 shrink-0">
           <div
             class="w-11 h-11 rounded-2xl bg-[#FFFFFF] border border-[#E2E8DF] flex items-center justify-center text-[#2D6A4F] shadow-sm">
             <span class="material-symbols-outlined text-2xl">spa</span>
@@ -433,12 +547,18 @@
           </div>
         </div>
 
-        <div class="phq-instruction-highlight">
-          <div class="text-xs sm:text-[13px] font-semibold text-[#3A4F3F] leading-snug">
-            Over the last 2 weeks, how often have you been bothered by any of the following problems?
+        <!-- Right: Highlighted Clinical Timeframe Banner -->
+        <div class="bg-[#EAF2EC] border border-[#2D6A4F]/30 rounded-2xl px-4 py-2.5 sm:px-5 sm:py-3 flex items-center gap-3 shadow-xs max-w-xl">
+          <div class="w-8 h-8 rounded-xl bg-[#2D6A4F] text-white flex items-center justify-center shrink-0 shadow-xs">
+            <span class="material-symbols-outlined text-lg leading-none">schedule</span>
           </div>
-          <div class="font-bengali text-xs sm:text-[13px] font-medium text-[#2D6A4F] mt-1 leading-snug">
-            গত দুই সপ্তাহে আপনি কত ঘন ঘন নিচের সমস্যাগুলোতে ভুগেছেন?
+          <div class="space-y-0.5">
+            <p class="text-xs sm:text-[13px] font-bold text-[#152418] leading-tight">
+              Over the last 2 weeks, how often have you been bothered by any of the following problems?
+            </p>
+            <p class="font-bengali text-xs sm:text-[12.5px] font-semibold text-[#2D6A4F] leading-tight">
+              (গত দুই সপ্তাহে আপনি কত ঘন ঘন নিচের সমস্যাগুলোতে ভুগেছেন?)
+            </p>
           </div>
         </div>
       </div>
@@ -452,7 +572,7 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <h3 class="text-sm font-bold text-[#152418]">B1. Little interest or pleasure in doing things</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(কোনো কাজ করায় কম আগ্রহ বা আনন্দ পাওয়া)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(কোনো কাজ করায় কম আগ্রহ বা আনন্দ পাওয়া)</p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">nature</span>
           </div>
@@ -482,7 +602,7 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <h3 class="text-sm font-bold text-[#152418]">B2. Feeling down, depressed, or hopeless</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(মনমরা, বিষণ্ণ অথবা আশাহীন বোধ করা)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(মনমরা, বিষণ্ণ অথবা আশাহীন বোধ করা)</p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">rainy</span>
           </div>
@@ -513,7 +633,7 @@
             <div>
               <h3 class="text-sm font-bold text-[#152418]">B3. Trouble falling or staying asleep, or sleeping too much
               </h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(ঘুমাতে সমস্যা হওয়া, বারবার ঘুম ভেঙে যাওয়া, অথবা অতিরিক্ত ঘুমানো)
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(ঘুমাতে সমস্যা হওয়া, বারবার ঘুম ভেঙে যাওয়া, অথবা অতিরিক্ত ঘুমানো)
               </p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">nights_stay</span>
@@ -544,7 +664,7 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <h3 class="text-sm font-bold text-[#152418]">B4. Feeling tired or having little energy</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(ক্লান্তি অনুভব করা বা শরীরে শক্তির অভাব বোধ করা)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(ক্লান্তি অনুভব করা বা শরীরে শক্তির অভাব বোধ করা)</p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">battery_charging_full</span>
           </div>
@@ -574,7 +694,7 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <h3 class="text-sm font-bold text-[#152418]">B5. Poor appetite or overeating</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(ক্ষুধামন্দা বা অতিরিক্ত খাওয়া)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(ক্ষুধামন্দা বা অতিরিক্ত খাওয়া)</p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">restaurant</span>
           </div>
@@ -605,7 +725,7 @@
             <div>
               <h3 class="text-sm font-bold text-[#152418]">B6. Feeling bad about yourself, or that you are a failure
               </h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(নিজের সম্পর্কে হীনমন্যতা বোধ করা, বা নিজেকে ব্যর্থ মনে করা)
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(নিজের সম্পর্কে হীনমন্যতা বোধ করা, বা নিজেকে ব্যর্থ মনে করা)
               </p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">sentiment_dissatisfied</span>
@@ -636,7 +756,7 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <h3 class="text-sm font-bold text-[#152418]">B7. Trouble concentrating on things</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(কোনো কাজে (যেমন পড়াশোনা বা পত্রিকা পড়া) মনোযোগ দিতে সমস্যা হওয়া)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(কোনো কাজে (যেমন পড়াশোনা বা পত্রিকা পড়া) মনোযোগ দিতে সমস্যা হওয়া)</p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">center_focus_strong</span>
           </div>
@@ -666,7 +786,7 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <h3 class="text-sm font-bold text-[#152418]">B8. Moving or speaking so slowly or being restless</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(ধীরগতিতে চলাফেরা বা কথা বলা যা অন্যরা লক্ষ্য করেছে, অথবা অতিরিক্ত অস্থির ও চঞ্চল থাকা)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(ধীরগতিতে চলাফেরা বা কথা বলা যা অন্যরা লক্ষ্য করেছে, অথবা অতিরিক্ত অস্থির ও চঞ্চল থাকা)</p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">motion_photos_on</span>
           </div>
@@ -700,7 +820,7 @@
             <h3 class="text-sm font-bold text-[#2D6A4F]">
               B9. Thoughts that you would be better off dead or of hurting yourself in some way
             </h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">
               (মরে যাওয়াই ভালো এমন চিন্তাভাবনা, বা নিজেকে কোনোভাবে আঘাত করার চিন্তা)
             </p>
           </div>
@@ -741,7 +861,7 @@
     <!-- ============================================== -->
     <!-- MODULE C: Academic Rhythms & CGPA Anxiety (Node 187:492) -->
     <!-- ============================================== -->
-    <section id="module-c" class="bg-white border border-[#E2E8DF] rounded-[28px] sm:rounded-[36px] p-6 sm:p-9 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-8">
+    <section id="module-c" class="bg-white border border-[#E2E8DF] rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-5 sm:space-y-6">
 
       <!-- Module Header -->
       <div class="flex items-center gap-3.5 pb-4 border-b border-[#E2E8DF]/70">
@@ -766,15 +886,15 @@
           class="question-card rounded-2xl p-5 border border-[#E2E8DF] shadow-sm flex flex-col justify-between space-y-4 relative">
           <div>
             <h3 class="text-sm font-bold text-[#152418]">C1. I feel overwhelmed by my academic workload.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমি আমার পড়াশোনার চাপ সামলাতে গিয়ে অতিরিক্ত দিশেহারা
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমি আমার পড়াশোনার চাপ সামলাতে গিয়ে অতিরিক্ত দিশেহারা
               বোধ করি।)</p>
-            <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• অ্যাসাইনমেন্ট, প্রজেক্ট, প্রেজেন্টেশন, ক্লাস,
+            <p class="text-[11px] text-[#3A4F3F]/80 mt-1 font-bengali">• অ্যাসাইনমেন্ট, প্রজেক্ট, প্রেজেন্টেশন, ক্লাস,
               পরীক্ষা বা একসাথে অনেক পড়াশোনার চাপ।</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="c1" id="select-c1" data-dropdown-question="c1" data-readout="c1-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -802,14 +922,14 @@
           <div>
             <h3 class="text-sm font-bold text-[#152418]">C2. I feel significant pressure to achieve good academic
               results.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমি ভালো একাডেমিক ফলাফল অর্জন করার জন্য চাপ অনুভব করি।)</p>
-            <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• ভালো CGPA/রেজাল্ট করার চাপ, বাবা-মা বা শিক্ষকের
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমি ভালো একাডেমিক ফলাফল অর্জন করার জন্য চাপ অনুভব করি।)</p>
+            <p class="text-[11px] text-[#3A4F3F]/80 mt-1 font-bengali">• ভালো CGPA/রেজাল্ট করার চাপ, বাবা-মা বা শিক্ষকের
               প্রত্যাশা পূরণের চাপ, ফেল করার ভয় বা অন্যদের সঙ্গে প্রতিযোগিতা।</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="c2" id="select-c2" data-dropdown-question="c2" data-readout="c2-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -837,15 +957,15 @@
           <div>
             <h3 class="text-sm font-bold text-[#152418]">C3. I struggle to manage my academic tasks within the available
               time.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমি নির্ধারিত সময়ের মধ্যে আমার একাডেমিক দায়িত্বগুলো
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমি নির্ধারিত সময়ের মধ্যে আমার একাডেমিক দায়িত্বগুলো
               সামলাতে অসুবিধা বোধ করি।)</p>
-            <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• সময়মতো ক্লাস করা, অ্যাসাইনমেন্ট/প্রজেক্ট শেষ
+            <p class="text-[11px] text-[#3A4F3F]/80 mt-1 font-bengali">• সময়মতো ক্লাস করা, অ্যাসাইনমেন্ট/প্রজেক্ট শেষ
               করা, পরীক্ষার প্রস্তুতি নেওয়া, নিয়মিত পড়াশোনা করা বা ডেডলাইন মেনে চলতে সমস্যা হওয়া।</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="c3" id="select-c3" data-dropdown-question="c3" data-readout="c3-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -873,15 +993,15 @@
           <div>
             <h3 class="text-sm font-bold text-[#152418]">C4. Examinations and academic assessments cause me considerable
               stress.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(পরীক্ষা ও অন্যান্য একাডেমিক মূল্যায়ন আমাকে
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(পরীক্ষা ও অন্যান্য একাডেমিক মূল্যায়ন আমাকে
               উল্লেখযোগ্য মানসিক চাপ দেয়।)</p>
-            <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• সেমিস্টার পরীক্ষা, কুইজ, ক্লাস টেস্ট,
+            <p class="text-[11px] text-[#3A4F3F]/80 mt-1 font-bengali">• সেমিস্টার পরীক্ষা, কুইজ, ক্লাস টেস্ট,
               অ্যাসাইনমেন্ট, প্রেজেন্টেশন, ভাইভা বা প্রজেক্ট মূল্যায়নের কারণে চাপ অনুভব করা।</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="c4" id="select-c4" data-dropdown-question="c4" data-readout="c4-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -908,12 +1028,12 @@
           class="question-card rounded-2xl p-5 border border-[#E2E8DF] shadow-sm flex flex-col justify-between space-y-4 relative">
           <div>
             <h3 class="text-sm font-bold text-[#152418]">C5. I am satisfied with my current academic performance.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমি আমার বর্তমান একাডেমিক পারফরম্যান্স নিয়ে সন্তুষ্ট।)</p>
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমি আমার বর্তমান একাডেমিক পারফরম্যান্স নিয়ে সন্তুষ্ট।)</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="c5" id="select-c5" data-dropdown-question="c5" data-readout="c5-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -940,15 +1060,15 @@
           class="question-card rounded-2xl p-5 border border-[#E2E8DF] shadow-sm flex flex-col justify-between space-y-4 relative">
           <div>
             <h3 class="text-sm font-bold text-[#152418]">C6. I am worried about falling behind in my studies.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমি আমার পড়াশোনায় পিছিয়ে পড়া নিয়ে উদ্বিগ্ন থাকি।)
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমি আমার পড়াশোনায় পিছিয়ে পড়া নিয়ে উদ্বিগ্ন থাকি।)
             </p>
-            <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• ক্লাসের পড়া ঠিকমতো অনুসরণ করতে না পারা, পড়া/কাজ
+            <p class="text-[11px] text-[#3A4F3F]/80 mt-1 font-bengali">• ক্লাসের পড়া ঠিকমতো অনুসরণ করতে না পারা, পড়া/কাজ
               জমে যাওয়া, ডেডলাইন মিস করা বা সহপাঠীদের তুলনায় পিছিয়ে পড়ার চিন্তা।</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="c6" id="select-c6" data-dropdown-question="c6" data-readout="c6-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -976,15 +1096,15 @@
           <div>
             <h3 class="text-sm font-bold text-[#152418]">C7. I feel that my academic performance affects my confidence
               about my future.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমি মনে করি আমার একাডেমিক পারফরম্যান্স আমার ভবিষ্যৎ
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমি মনে করি আমার একাডেমিক পারফরম্যান্স আমার ভবিষ্যৎ
               সম্পর্কে আত্মবিশ্বাসকে প্রভাবিত করে।)</p>
-            <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• আপনার রেজাল্ট ভবিষ্যৎ চাকরি, উচ্চশিক্ষা,
+            <p class="text-[11px] text-[#3A4F3F]/80 mt-1 font-bengali">• আপনার রেজাল্ট ভবিষ্যৎ চাকরি, উচ্চশিক্ষা,
               ক্যারিয়ার বা ভবিষ্যতের সুযোগ নিয়ে আপনার আত্মবিশ্বাসকে প্রভাবিত করে কি না।</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="c7" id="select-c7" data-dropdown-question="c7" data-readout="c7-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -1012,15 +1132,15 @@
           <div>
             <h3 class="text-sm font-bold text-[#152418]">C8. I am satisfied with the department/program I am currently
               studying in.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমি বর্তমানে যে বিভাগ/প্রোগ্রামে পড়াশোনা করছি, তা
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমি বর্তমানে যে বিভাগ/প্রোগ্রামে পড়াশোনা করছি, তা
               নিয়ে আমি সন্তুষ্ট।)</p>
-            <p class="text-[11px] text-[#6B8070]/80 mt-1 font-bengali">• আপনি যে বিষয়/বিভাগে পড়ছেন সেটি আপনার পছন্দ,
+            <p class="text-[11px] text-[#3A4F3F]/80 mt-1 font-bengali">• আপনি যে বিষয়/বিভাগে পড়ছেন সেটি আপনার পছন্দ,
               আগ্রহ, প্রত্যাশা, সক্ষমতা বা ভবিষ্যৎ ক্যারিয়ারের সঙ্গে কতটা সামঞ্জস্যপূর্ণ।</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="c8" id="select-c8" data-dropdown-question="c8" data-readout="c8-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -1059,7 +1179,7 @@
     <!-- ============================================== -->
     <!-- MODULE D: Future Horizons & AI Disruption (Node 187:803) -->
     <!-- ============================================== -->
-    <section id="module-d" class="bg-white border border-[#E2E8DF] rounded-[28px] sm:rounded-[36px] p-6 sm:p-9 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-8">
+    <section id="module-d" class="bg-white border border-[#E2E8DF] rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-5 sm:space-y-6">
 
       <!-- Module Header -->
       <div class="flex items-center gap-3.5 pb-4 border-b border-[#E2E8DF]/70">
@@ -1085,13 +1205,13 @@
           <div>
             <h3 class="text-sm font-bold text-[#152418]">D1. I am not sure if my current education will help me achieve
               the career I want.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমি নিশ্চিত নই যে আমার বর্তমান পড়াশোনা আমাকে আমার
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমি নিশ্চিত নই যে আমার বর্তমান পড়াশোনা আমাকে আমার
               কাঙ্ক্ষিত ক্যারিয়ার গড়তে সাহায্য করবে কি না।)</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="d1" id="select-d1" data-dropdown-question="d1" data-readout="d1-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -1119,13 +1239,13 @@
           <div>
             <h3 class="text-sm font-bold text-[#152418]">D2. Worried about getting a suitable job, career goals, and
               earning enough money.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(ভবিষ্যতে উপযুক্ত চাকরি পাওয়া, লক্ষ্য অর্জন করা এবং
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(ভবিষ্যতে উপযুক্ত চাকরি পাওয়া, লক্ষ্য অর্জন করা এবং
               পর্যাপ্ত আয় করা নিয়ে চিন্তিত।)</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="d2" id="select-d2" data-dropdown-question="d2" data-readout="d2-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -1153,13 +1273,13 @@
           <div>
             <h3 class="text-sm font-bold text-[#152418]">D3. How often do you use Artificial Intelligence (AI) tools for
               academic/personal activities?</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(পড়াশোনা বা ব্যক্তিগত কাজে কত ঘন ঘন AI টুল ব্যবহার
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(পড়াশোনা বা ব্যক্তিগত কাজে কত ঘন ঘন AI টুল ব্যবহার
               করেন?)</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="d3" id="select-d3" data-dropdown-question="d3" data-readout="d3-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select frequency (ব্যবহারের মাত্রা নির্বাচন করুন)...</option>
                 <option value="Never">Never (কখনোই না)</option>
                 <option value="Rarely">Rarely (কদাচিৎ / খুব কম)</option>
@@ -1187,13 +1307,13 @@
           <div>
             <h3 class="text-sm font-bold text-[#152418]">D4. How concerned are you that AI may reduce or change job
               opportunities in your future?</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(AI ভবিষ্যৎ কর্মজীবনে চাকরির সুযোগ কমাতে পারে বলে কতটা
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(AI ভবিষ্যৎ কর্মজীবনে চাকরির সুযোগ কমাতে পারে বলে কতটা
               উদ্বিগ্ন?)</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="d4" id="select-d4" data-dropdown-question="d4" data-readout="d4-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select concern level (উদ্বেগের মাত্রা নির্বাচন করুন)...</option>
                 <option value="None">None / No Concern (একেবারেই উদ্বিগ্ন নই)</option>
                 <option value="Slight Concern">Slight Concern (সামান্য উদ্বিগ্ন)</option>
@@ -1232,7 +1352,7 @@
     <!-- ============================================== -->
     <!-- MODULE E: Health & Lifestyle Rhythms (Node 187:990) -->
     <!-- ============================================== -->
-    <section id="module-e" class="bg-white border border-[#E2E8DF] rounded-[28px] sm:rounded-[36px] p-6 sm:p-9 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-8">
+    <section id="module-e" class="bg-white border border-[#E2E8DF] rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-5 sm:space-y-6">
 
       <!-- Module Header -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E2E8DF]/70">
@@ -1261,7 +1381,7 @@
               <span class="text-[10px] uppercase tracking-wider font-bold text-[#2D6A4F] block mb-0.5">SLEEP
                 RHYTHM</span>
               <h3 class="text-sm font-bold text-[#152418]">E1. What time do you usually sleep?</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(সাধারণত আপনি কখন ঘুমাতে যান?)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(সাধারণত আপনি কখন ঘুমাতে যান?)</p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">bedtime</span>
           </div>
@@ -1269,22 +1389,22 @@
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Before 10 PM</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">রাত ১০টার আগে</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">রাত ১০টার আগে</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">10 PM–12 AM</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">রাত ১০টা–১২টা</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">রাত ১০টা–১২টা</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">12 AM–2 AM</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">রাত ১২টা–২টা</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">রাত ১২টা–২টা</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">After 2 AM</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">রাত ২টার পরে</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">রাত ২টার পরে</span>
             </button>
           </div>
         </div>
@@ -1297,7 +1417,7 @@
               <span class="text-[10px] uppercase tracking-wider font-bold text-[#2D6A4F] block mb-0.5">MORNING
                 RHYTHM</span>
               <h3 class="text-sm font-bold text-[#152418]">E2. What time do you usually wake up?</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(সাধারণত আপনি কখন ঘুম থেকে ওঠেন?)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(সাধারণত আপনি কখন ঘুম থেকে ওঠেন?)</p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">wb_sunny</span>
           </div>
@@ -1305,22 +1425,22 @@
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Before 5 AM</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">ভোর ৫টার আগে</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">ভোর ৫টার আগে</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">5–7 AM</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">সকাল ৫টা–৭টা</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">সকাল ৫টা–৭টা</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">7–9 AM</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">সকাল ৭টা–৯টা</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">সকাল ৭টা–৯টা</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">After 9 AM</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">সকাল ৯টার পরে</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">সকাল ৯টার পরে</span>
             </button>
           </div>
         </div>
@@ -1333,7 +1453,7 @@
               <span class="text-[10px] uppercase tracking-wider font-bold text-[#2D6A4F] block mb-0.5">PHYSICAL
                 RHYTHM</span>
               <h3 class="text-sm font-bold text-[#152418]">E3. How often do you exercise?</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(কত ঘন ঘন ব্যায়াম বা শারীরিক কসরত করেন?)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(কত ঘন ঘন ব্যায়াম বা শারীরিক কসরত করেন?)</p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">fitness_center</span>
           </div>
@@ -1341,22 +1461,22 @@
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Never</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">কখনো না</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">কখনো না</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">1–2 days/week</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">সপ্তাহে ১–২ দিন</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">সপ্তাহে ১–২ দিন</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">3–4 days/week</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">সপ্তাহে ৩–৪ দিন</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">সপ্তাহে ৩–৪ দিন</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">5+ days/week</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">সপ্তাহে ৫ দিন বা বেশি</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">সপ্তাহে ৫ দিন বা বেশি</span>
             </button>
           </div>
           <div class="flex items-center gap-2 pt-2 border-t border-[#E2E8DF]/70 text-xs text-[#6B8070]">
@@ -1376,7 +1496,7 @@
               <span class="text-[10px] uppercase tracking-wider font-bold text-[#2D6A4F] block mb-0.5">DIGITAL
                 RHYTHM</span>
               <h3 class="text-sm font-bold text-[#152418]">E4. How many hours do you use social media each day?</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(প্রতিদিন কত ঘণ্টা সামাজিক যোগাযোগমাধ্যম ব্যবহার করেন?)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(প্রতিদিন কত ঘণ্টা সামাজিক যোগাযোগমাধ্যম ব্যবহার করেন?)</p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">devices</span>
           </div>
@@ -1384,22 +1504,22 @@
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Less than 1 hr</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">১ ঘণ্টার কম</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">১ ঘণ্টার কম</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">1–3 hours</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">১–৩ ঘণ্টা</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">১–৩ ঘণ্টা</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">3–5 hours</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">৩–৫ ঘণ্টা</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">৩–৫ ঘণ্টা</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">&gt; 5 hours</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">৫ ঘণ্টার বেশি</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">৫ ঘণ্টার বেশি</span>
             </button>
           </div>
         </div>
@@ -1412,7 +1532,7 @@
               <span
                 class="text-[10px] uppercase tracking-wider font-bold text-[#2D6A4F] block mb-0.5">NOURISHMENT</span>
               <h3 class="text-sm font-bold text-[#152418]">E5. How would you rate your eating habits?</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আপনার দৈনন্দিন খাদ্যাভ্যাস কেমন?)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আপনার দৈনন্দিন খাদ্যাভ্যাস কেমন?)</p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">restaurant</span>
           </div>
@@ -1420,22 +1540,22 @@
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Very unhealthy</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">অত্যন্ত অস্বাস্থ্যকর</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">অত্যন্ত অস্বাস্থ্যকর</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Unhealthy</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">অস্বাস্থ্যকর</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">অস্বাস্থ্যকর</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Healthy</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">স্বাস্থ্যকর</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">স্বাস্থ্যকর</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Very healthy</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">অত্যন্ত স্বাস্থ্যকর</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">অত্যন্ত স্বাস্থ্যকর</span>
             </button>
           </div>
         </div>
@@ -1448,7 +1568,7 @@
               <span
                 class="text-[10px] uppercase tracking-wider font-bold text-[#2D6A4F] block mb-0.5">CONSUMPTION</span>
               <h3 class="text-sm font-bold text-[#152418]">E6. How often do you use cigarettes / alcohol?</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আপনি কত ঘন ঘন সিগারেট, অ্যালকোহল দ্রব্য ব্যবহার
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আপনি কত ঘন ঘন সিগারেট, অ্যালকোহল দ্রব্য ব্যবহার
                 করেন?)</p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">smoking_rooms</span>
@@ -1457,22 +1577,22 @@
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Never</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">কখনো না</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">কখনো না</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Used before</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">অতীতে করেছি, এখন করি না</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">অতীতে করেছি, এখন করি না</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Sometimes</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">মাঝে মাঝে</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">মাঝে মাঝে</span>
             </button>
             <button type="button"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Frequently</span>
-              <span class="font-bengali text-[10px] text-[#6B8070]">নিয়মিত</span>
+              <span class="font-bengali text-[10px] text-[#3A4F3F]">নিয়মিত</span>
             </button>
           </div>
         </div>
@@ -1486,7 +1606,7 @@
                 HEALTH</span>
               <h3 class="text-sm font-bold text-[#152418]">E7. Do you have any disability or long-term physical problem?
               </h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আপনার কি কোনো প্রতিবন্ধকতা বা দীর্ঘমেয়াদি শারীরিক
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আপনার কি কোনো প্রতিবন্ধকতা বা দীর্ঘমেয়াদি শারীরিক
                 সমস্যা আছে?)</p>
             </div>
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">accessible</span>
@@ -1499,12 +1619,12 @@
             <button type="button"
               class="pebble-btn w-full flex items-center justify-between py-2.5 px-4 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-left">
               <span>Yes, but does not affect daily life <span
-                  class="font-bengali text-[#6B8070] block sm:inline">(হ্যাঁ, তবে দৈনন্দিন জীবনে প্রভাব ফেলে
+                  class="font-bengali text-[#3A4F3F] block sm:inline">(হ্যাঁ, তবে দৈনন্দিন জীবনে প্রভাব ফেলে
                   না)</span></span>
             </button>
             <button type="button"
               class="pebble-btn w-full flex items-center justify-between py-2.5 px-4 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-left">
-              <span>Yes, and it affects daily life <span class="font-bengali text-[#6B8070] block sm:inline">(হ্যাঁ, এবং
+              <span>Yes, and it affects daily life <span class="font-bengali text-[#3A4F3F] block sm:inline">(হ্যাঁ, এবং
                   দৈনন্দিন জীবনে প্রভাব ফেলে)</span></span>
             </button>
           </div>
@@ -1519,7 +1639,7 @@
                 SUPPORT</span>
               <h3 class="text-sm font-bold text-[#152418]">E8. Have you ever been formally diagnosed with a mental
                 health condition by a professional?</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আপনার কি কখনো কোনো পেশাদার দ্বারা মানসিক
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আপনার কি কখনো কোনো পেশাদার দ্বারা মানসিক
                 স্বাস্থ্যগত সমস্যার চিকিৎসা বা রোগ নির্ণয় করা হয়েছে?)</p>
               <p class="text-[11px] text-[#6B8070]/80 mt-1">• e.g., Anxiety, depression, OCD, or bipolar disorder</p>
             </div>
@@ -1536,7 +1656,7 @@
             </button>
           </div>
           <div class="space-y-1.5 pt-2 border-t border-[#E2E8DF]/70">
-            <label class="text-xs text-[#6B8070] font-bengali block">If yes, please specify condition (যদি হ্যাঁ হয়,
+            <label class="text-xs text-[#3A4F3F] font-bengali block">If yes, please specify condition (যদি হ্যাঁ হয়,
               নির্দিষ্ট করুন):</label>
             <input type="text" placeholder="e.g., Generalized Anxiety Disorder, Depression..."
               class="zen-input w-full px-4 !h-11 !rounded-[20px] text-xs">
@@ -1560,7 +1680,7 @@
     <!-- ============================================== -->
     <!-- MODULE F: The Social Support (MSPSS) (Node 187:1265) -->
     <!-- ============================================== -->
-    <section id="module-f" class="bg-white border border-[#E2E8DF] rounded-[28px] sm:rounded-[36px] p-6 sm:p-9 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-8">
+    <section id="module-f" class="bg-white border border-[#E2E8DF] rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-5 sm:space-y-6">
 
       <!-- Module Header -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E2E8DF]/70">
@@ -1599,44 +1719,44 @@
             <span
               class="w-5 h-5 rounded-full bg-[#DCE8D5] text-[#2D6A4F] inline-flex items-center justify-center text-[10px] font-bold mb-1">1</span>
             <div class="font-bold text-[#152418] text-[11px] leading-tight">Very Strongly<br class="hidden sm:inline"> Disagree</div>
-            <div class="font-bengali text-[9px] text-[#6B8070] mt-0.5">সম্পূর্ণভাবে অসম্মত</div>
+            <div class="font-bengali text-[9px] text-[#3A4F3F] mt-0.5">সম্পূর্ণভাবে অসম্মত</div>
           </div>
           <div data-guide-val="2" class="guide-card p-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
             <span
               class="w-5 h-5 rounded-full bg-[#DCE8D5] text-[#2D6A4F] inline-flex items-center justify-center text-[10px] font-bold mb-1">2</span>
             <div class="font-bold text-[#152418] text-[11px] leading-tight">Strongly<br class="hidden sm:inline"> Disagree</div>
-            <div class="font-bengali text-[9px] text-[#6B8070] mt-0.5">দৃঢ়ভাবে অসম্মত</div>
+            <div class="font-bengali text-[9px] text-[#3A4F3F] mt-0.5">দৃঢ়ভাবে অসম্মত</div>
           </div>
           <div data-guide-val="3" class="guide-card p-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
             <span
               class="w-5 h-5 rounded-full bg-[#DCE8D5] text-[#2D6A4F] inline-flex items-center justify-center text-[10px] font-bold mb-1">3</span>
             <div class="font-bold text-[#152418] text-[11px] leading-tight">Mildly Disagree</div>
-            <div class="font-bengali text-[9px] text-[#6B8070] mt-0.5">কিছুটা অসম্মত</div>
+            <div class="font-bengali text-[9px] text-[#3A4F3F] mt-0.5">কিছুটা অসম্মত</div>
           </div>
           <div data-guide-val="4" class="guide-card p-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
             <span
               class="w-5 h-5 rounded-full bg-[#DCE8D5] text-[#2D6A4F] inline-flex items-center justify-center text-[10px] font-bold mb-1">4</span>
             <div class="font-bold text-[#152418] text-[11px] leading-tight">Neutral</div>
-            <div class="font-bengali text-[9px] text-[#6B8070] mt-0.5">নিরপেক্ষ</div>
+            <div class="font-bengali text-[9px] text-[#3A4F3F] mt-0.5">নিরপেক্ষ</div>
           </div>
           <div data-guide-val="5" class="guide-card p-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
             <span
               class="w-5 h-5 rounded-full bg-[#DCE8D5] text-[#2D6A4F] inline-flex items-center justify-center text-[10px] font-bold mb-1">5</span>
             <div class="font-bold text-[#152418] text-[11px] leading-tight">Mildly Agree</div>
-            <div class="font-bengali text-[9px] text-[#6B8070] mt-0.5">কিছুটা সম্মত</div>
+            <div class="font-bengali text-[9px] text-[#3A4F3F] mt-0.5">কিছুটা সম্মত</div>
           </div>
           <div data-guide-val="6" class="guide-card p-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
             <span
               class="w-5 h-5 rounded-full bg-[#DCE8D5] text-[#2D6A4F] inline-flex items-center justify-center text-[10px] font-bold mb-1">6</span>
             <div class="font-bold text-[#152418] text-[11px] leading-tight">Strongly Agree</div>
-            <div class="font-bengali text-[9px] text-[#6B8070] mt-0.5">দৃঢ়ভাবে সম্মত</div>
+            <div class="font-bengali text-[9px] text-[#3A4F3F] mt-0.5">দৃঢ়ভাবে সম্মত</div>
           </div>
           <div data-guide-val="7"
             class="guide-card p-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs col-span-2 sm:col-span-1">
             <span
               class="w-5 h-5 rounded-full bg-[#DCE8D5] text-[#2D6A4F] inline-flex items-center justify-center text-[10px] font-bold mb-1">7</span>
             <div class="font-bold text-[#152418] text-[11px] leading-tight">Very Strongly<br class="hidden sm:inline"> Agree</div>
-            <div class="font-bengali text-[9px] text-[#6B8070] mt-0.5">সম্পূর্ণভাবে সম্মত</div>
+            <div class="font-bengali text-[9px] text-[#3A4F3F] mt-0.5">সম্পূর্ণভাবে সম্মত</div>
           </div>
         </div>
       </div>
@@ -1651,7 +1771,7 @@
             <div>
               <h3 class="text-sm font-bold text-[#152418]">F1. There is a special person who is around when I am in
                 need.</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমার প্রয়োজনে সব সময় একজন পাশে আছে বলে মনে করি।)
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমার প্রয়োজনে সব সময় একজন পাশে আছে বলে মনে করি।)
               </p>
             </div>
             <span
@@ -1690,7 +1810,7 @@
             <div>
               <h3 class="text-sm font-bold text-[#152418]">F2. There is a special person with whom I can share joys and
                 sorrows.</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমার সুখ-দুঃখের কথা বলার জন্য একজন মানুষ আছেন।)
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমার সুখ-দুঃখের কথা বলার জন্য একজন মানুষ আছেন।)
               </p>
             </div>
             <span
@@ -1728,7 +1848,7 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <h3 class="text-sm font-bold text-[#152418]">F3. My family really tries to help me.</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমার পরিবার সব সময় আমাকে সাহায্য করার চেষ্টা করে।)
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমার পরিবার সব সময় আমাকে সাহায্য করার চেষ্টা করে।)
               </p>
             </div>
             <span
@@ -1766,7 +1886,7 @@
             <div>
               <h3 class="text-sm font-bold text-[#152418]">F4. I get the emotional help &amp; support I need from my
                 family.</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমার অনুভূতিমূলক (মানসিক) সাহায্য প্রয়োজন হলে
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমার অনুভূতিমূলক (মানসিক) সাহায্য প্রয়োজন হলে
                 পরিবার থেকে পেয়ে থাকি।)</p>
             </div>
             <span
@@ -1804,7 +1924,7 @@
             <div>
               <h3 class="text-sm font-bold text-[#152418]">F5. I have a special person who is a real source of comfort
                 to me.</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(পরিবারে একজন বিশেষ মানুষ আছে যার কাছে আমি নিরাপদ
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(পরিবারে একজন বিশেষ মানুষ আছে যার কাছে আমি নিরাপদ
                 (আরাম) বোধ করি, যিনি প্রকৃতপক্ষে আমার জীবন সহজে সাহায্য করেন।)</p>
             </div>
             <span
@@ -1842,7 +1962,7 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <h3 class="text-sm font-bold text-[#152418]">F6. My friends really try to help me.</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমার বন্ধুরা সত্যিই আমাকে সাহায্য করার চেষ্টা করে।)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমার বন্ধুরা সত্যিই আমাকে সাহায্য করার চেষ্টা করে।)</p>
             </div>
             <span
               class="hidden sm:inline-block px-2.5 py-1 rounded-full bg-[#F0FDF4] text-[#15803D] border border-[#BBF7D0] text-[10px] font-medium shrink-0">Friends</span>
@@ -1878,7 +1998,7 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <h3 class="text-sm font-bold text-[#152418]">F7. I can count on my friends when things go wrong.</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(যখন সময় খারাপ যায়, তখন আমার বন্ধুদের সাহায্য নিতে
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(যখন সময় খারাপ যায়, তখন আমার বন্ধুদের সাহায্য নিতে
                 পারি।)</p>
             </div>
             <span
@@ -1915,7 +2035,7 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <h3 class="text-sm font-bold text-[#152418]">F8. I can talk about my problems with my family.</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমার সমস্যা নিয়ে আমার পরিবারের সাথে আলাপ করতে পারি।)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমার সমস্যা নিয়ে আমার পরিবারের সাথে আলাপ করতে পারি।)</p>
             </div>
             <span
               class="hidden sm:inline-block px-2.5 py-1 rounded-full bg-[#FEF3C7] text-[#B45309] border border-[#FDE68A] text-[10px] font-medium shrink-0">Family</span>
@@ -1952,7 +2072,7 @@
             <div>
               <h3 class="text-sm font-bold text-[#152418]">F9. I have friends with whom I can share my joys and sorrows.
               </h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমার বেশ কিছু বন্ধু আছে, যাদের সাথে সুখ-দুঃখের আলাপ
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমার বেশ কিছু বন্ধু আছে, যাদের সাথে সুখ-দুঃখের আলাপ
                 করতে পারি।)</p>
             </div>
             <span
@@ -1990,7 +2110,7 @@
             <div>
               <h3 class="text-sm font-bold text-[#152418]">F10. There is a special person in my life who cares about my
                 feelings.</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমার জীবনে বিশেষ একজন ব্যক্তি আছে বলে মনে করি, যিনি
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমার জীবনে বিশেষ একজন ব্যক্তি আছে বলে মনে করি, যিনি
                 আমার অনুভূতিগুলোর যত্ন নেন।)</p>
             </div>
             <span
@@ -2028,7 +2148,7 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <h3 class="text-sm font-bold text-[#152418]">F11. My family is willing to help me make decisions.</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(সিদ্ধান্ত গ্রহণে আমার পরিবার আমাকে সাহায্য করে।)
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(সিদ্ধান্ত গ্রহণে আমার পরিবার আমাকে সাহায্য করে।)
               </p>
             </div>
             <span
@@ -2065,7 +2185,7 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <h3 class="text-sm font-bold text-[#152418]">F12. I can talk about my problems with my friends.</h3>
-              <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমার সমস্যা নিয়ে আমার বন্ধুদের সাথে আলাপ করতে পারি।)</p>
+              <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমার সমস্যা নিয়ে আমার বন্ধুদের সাথে আলাপ করতে পারি।)</p>
             </div>
             <span
               class="hidden sm:inline-block px-2.5 py-1 rounded-full bg-[#F0FDF4] text-[#15803D] border border-[#BBF7D0] text-[10px] font-medium shrink-0">Friends</span>
@@ -2112,7 +2232,7 @@
     <!-- ============================================== -->
     <!-- MODULE G: Environmental & Financial Stressors (Node 187:1712) -->
     <!-- ============================================== -->
-    <section id="module-g" class="bg-white border border-[#E2E8DF] rounded-[28px] sm:rounded-[36px] p-6 sm:p-9 md:p-10 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-8">
+    <section id="module-g" class="bg-white border border-[#E2E8DF] rounded-[24px] sm:rounded-[32px] p-5 sm:p-7 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.02),0_10px_30px_-6px_rgba(21,36,24,0.04)] space-y-5 sm:space-y-6">
 
       <!-- Module Header -->
       <div class="flex items-center gap-3.5 pb-4 border-b border-[#E2E8DF]/70">
@@ -2132,26 +2252,24 @@
       <!-- 2 Columns Grid for Questions G1–G6 -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
-        <!-- G1: Stressful Events -->
+        <!-- G1: Stressful Events (Option Buttons) -->
         <div
           class="question-card rounded-2xl p-5 border border-[#E2E8DF] shadow-sm flex flex-col justify-between space-y-4 relative">
           <div>
-            <h3 class="text-sm font-bold text-[#152418]">G1. Have you experienced any major stressful life events during
-              the last 6 months?</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(গত ৬ মাসে আপনি কি কোনো বড় ধরনের মানসিক চাপ সৃষ্টিকারী
-              ঘটনার সম্মুখীন হয়েছেন?)</p>
+            <h3 class="text-sm font-bold text-[#152418]">G1. Have you experienced any major stressful life events during the last 6 months?</h3>
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(গত ৬ মাসে আপনি কি কোনো বড় ধরনের মানসিক চাপ সৃষ্টিকারী ঘটনার সম্মুখীন হয়েছেন?)</p>
+            <p class="text-[11px] text-[#3A4F3F]/80 mt-1 font-bengali">• যেমন: পরিবার বা প্রিয়জনের অসুস্থতা/বিচ্ছেদ, তীব্র আর্থিক সংকট বা বড় কোনো দুর্ঘটনা।</p>
           </div>
           <div class="space-y-2 pt-1">
-            <div class="relative group">
-              <select name="g1" id="select-g1" data-dropdown-question="g1" data-readout="g1-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
-                <option value="" disabled selected>Select option (বিকল্প নির্বাচন করুন)...</option>
-                <option value="Yes">হ্যাঁ (Yes — বড় কোনো মানসিক চাপ সৃষ্টিকারী ঘটনার সম্মুখীন হয়েছি)</option>
-                <option value="No">না (No — এমন কোনো ঘটনার সম্মুখীন হইনি)</option>
-              </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#2D6A4F] group-hover:translate-y-0.5 transition-transform">
-                <span class="material-symbols-outlined text-2xl">arrow_drop_down</span>
-              </div>
+            <div class="grid grid-cols-2 gap-3" data-pebble-group data-question="g1" data-readout="g1-readout">
+              <button type="button" data-value="Yes" data-label="Yes (হ্যাঁ — চাপ সৃষ্টিকারী ঘটনার সম্মুখীন হয়েছি)"
+                class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-semibold hover:border-[#2D6A4F] transition-all">
+                <span class="font-bold">Yes</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ হ্যাঁ</span>
+              </button>
+              <button type="button" data-value="No" data-label="No (না — এমন কোনো ঘটনার সম্মুখীন হইনি)"
+                class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs font-semibold hover:border-[#2D6A4F] transition-all">
+                <span class="font-bold">No</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ না</span>
+              </button>
             </div>
             <div class="flex items-center justify-between text-xs text-[#2D6A4F] pt-1 px-1">
               <span class="flex items-center gap-1 font-medium">
@@ -2168,7 +2286,7 @@
           class="question-card rounded-2xl p-5 border border-[#E2E8DF] shadow-sm flex flex-col justify-between space-y-4 relative">
           <div>
             <h3 class="text-sm font-bold text-[#152418]">G2. Family Monthly Income (Tk)?</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(পারিবারিক মাসিক আয় - টাকায়):</p>
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(পারিবারিক মাসিক আয় - টাকায়):</p>
           </div>
           <div class="flex items-center gap-3">
             <span class="zen-unit-badge px-4 text-base font-bold text-[#2D6A4F]">৳</span>
@@ -2182,12 +2300,12 @@
           class="question-card rounded-2xl p-5 border border-[#E2E8DF] shadow-sm flex flex-col justify-between space-y-4 relative">
           <div>
             <h3 class="text-sm font-bold text-[#152418]">G3. Financial concerns cause me daily stress.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আর্থিক বিষয় নিয়ে চিন্তা আমাকে প্রতিদিন মানসিক চাপ দেয়।)</p>
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আর্থিক বিষয় নিয়ে চিন্তা আমাকে প্রতিদিন মানসিক চাপ দেয়।)</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="g3" id="select-g3" data-dropdown-question="g3" data-readout="g3-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -2215,13 +2333,13 @@
           <div>
             <h3 class="text-sm font-bold text-[#152418]">G4. Financial difficulties interfere with my concentration on
               studies.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আর্থিক সমস্যাগুলো পড়াশোনায় মনোযোগে বাধা সৃষ্টি করে।)
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আর্থিক সমস্যাগুলো পড়াশোনায় মনোযোগে বাধা সৃষ্টি করে।)
             </p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="g4" id="select-g4" data-dropdown-question="g4" data-readout="g4-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -2248,12 +2366,12 @@
           class="question-card rounded-2xl p-5 border border-[#E2E8DF] shadow-sm flex flex-col justify-between space-y-4 relative">
           <div>
             <h3 class="text-sm font-bold text-[#152418]">G5. I am satisfied with my current living environment.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(আমি আমার বর্তমান বসবাসের পরিবেশ নিয়ে সন্তুষ্ট।)</p>
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(আমি আমার বর্তমান বসবাসের পরিবেশ নিয়ে সন্তুষ্ট।)</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="g5" id="select-g5" data-dropdown-question="g5" data-readout="g5-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -2281,13 +2399,13 @@
           <div>
             <h3 class="text-sm font-bold text-[#152418]">G6. Noise, crowding, or inadequate study space interfere with
               my studies.</h3>
-            <p class="font-bengali text-xs text-[#6B8070] mt-0.5">(শব্দ, ভিড় বা পর্যাপ্ত পড়ার জায়গা না থাকা পড়াশোনায়
+            <p class="font-bengali text-xs text-[#3A4F3F] mt-0.5">(শব্দ, ভিড় বা পর্যাপ্ত পড়ার জায়গা না থাকা পড়াশোনায়
               বাধা দেয়।)</p>
           </div>
           <div class="space-y-2 pt-1">
             <div class="relative group">
               <select name="g6" id="select-g6" data-dropdown-question="g6" data-readout="g6-readout"
-                class="question-dropdown w-full appearance-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
+                class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
                 <option value="" disabled selected>Select response (বিকল্প নির্বাচন করুন)...</option>
                 <option value="Strongly Disagree">Strongly Disagree (সম্পূর্ণ অসম্মত)</option>
                 <option value="Disagree">Disagree (অসম্মত)</option>
@@ -2581,10 +2699,12 @@
   <script src="env/env.js"></script>
   <!-- Main Application Script -->
   <script src="script.js"></script>
+  <!-- Atmospheric Botanical & 2D/3D Animation Engine (Hallmark Anti-Slop Compliant) -->
+  <script src="animations.js"></script>
 
   <!-- About Modal -->
   <div id="about-modal" class="fixed inset-0 z-50 bg-[#152418]/60 backdrop-blur-xs hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-[#E2E8DF] shadow-2xl space-y-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-[#E2E8DF] shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between pb-3 border-b border-[#E2E8DF]">
         <div class="flex items-center gap-2.5">
           <span class="material-symbols-outlined text-[#2D6A4F]">school</span>
@@ -2606,7 +2726,7 @@
 
   <!-- Privacy Modal -->
   <div id="privacy-modal" class="fixed inset-0 z-50 bg-[#152418]/60 backdrop-blur-xs hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-[#E2E8DF] shadow-2xl space-y-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-[#E2E8DF] shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between pb-3 border-b border-[#E2E8DF]">
         <div class="flex items-center gap-2.5">
           <span class="material-symbols-outlined text-[#2D6A4F]">verified_user</span>
@@ -2627,7 +2747,7 @@
 
   <!-- Resources Modal -->
   <div id="resources-modal" class="fixed inset-0 z-50 bg-[#152418]/60 backdrop-blur-xs hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-[#E2E8DF] shadow-2xl space-y-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-[#E2E8DF] shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between pb-3 border-b border-[#E2E8DF]">
         <div class="flex items-center gap-2.5">
           <span class="material-symbols-outlined text-[#2D6A4F]">support_agent</span>
@@ -2659,7 +2779,7 @@
 
   <!-- Contact Modal -->
   <div id="contact-modal" class="fixed inset-0 z-50 bg-[#152418]/60 backdrop-blur-xs hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-[#E2E8DF] shadow-2xl space-y-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-[#E2E8DF] shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between pb-3 border-b border-[#E2E8DF]">
         <div class="flex items-center gap-2.5">
           <span class="material-symbols-outlined text-[#2D6A4F]">mail</span>
@@ -2784,6 +2904,7 @@
       </nav>
     </div>
   </div>
+
 
 </body>
 

@@ -7,7 +7,7 @@
 ---
 
 ### 🌐 Live Platform Preview
-**GitHub Pages:** [https://gmkemon007.github.io/Depression-Screening-Response/](https://gmkemon007.github.io/Depression-Screening-Response/)
+**GitHub Pages:** [https://gmkemon007.github.io/Mindcare-Depression-Screening-Response/](https://gmkemon007.github.io/Depression-Screening-Response/)
 
 ---
 
