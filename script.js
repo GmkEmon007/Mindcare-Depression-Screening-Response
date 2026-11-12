@@ -279,10 +279,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const handleInput = () => {
         if (inp.id) {
           state.inputs[inp.id] = inp.value;
-          if (inp.value.trim() !== '') {
-            state.answeredQuestions.add(inp.id);
-          } else {
-            state.answeredQuestions.delete(inp.id);
+          const isOptionalSub = (inp.id === 'input-exercise-min' || inp.id === 'input-e8-condition');
+          if (!isOptionalSub) {
+            if (inp.value.trim() !== '') {
+              state.answeredQuestions.add(inp.id);
+            } else {
+              state.answeredQuestions.delete(inp.id);
+            }
           }
         }
         const parent = inp.closest('.question-card');
@@ -893,6 +896,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const htIn = document.getElementById('input-height-in')?.value?.trim() || state.inputs['input-height-in'] || '';
     const formattedHeight = (htFt || htIn) ? `${htFt}'${htIn}"` : '';
 
+    const ageVal = document.getElementById('input-age')?.value?.trim() || state.inputs['input-age'] || '';
+    const weightVal = document.getElementById('input-weight')?.value?.trim() || state.inputs['input-weight'] || '';
+    const uniTypeVal = state.likertScores['a5'] || '';
+    const genderVal = state.likertScores['a3'] || '';
+    const livingVal = state.likertScores['a6'] || '';
+
+    const studyYearVal = state.likertScores['a7_year'] || '';
+    const semRaw = document.getElementById('select-semester')?.value?.trim() || state.inputs['select-semester'] || '';
+    const semLabel = semRaw ? (['1st Semester', '2nd Semester', '3rd Semester', '4th Semester', '5th Semester', '6th Semester', '7th Semester', '8th Semester'][parseInt(semRaw, 10) - 1] || semRaw) : '';
+
+    const incomeVal = document.getElementById('input-income')?.value?.trim() || state.inputs['input-income'] || '';
+    const exerciseMinVal = document.getElementById('input-exercise-min')?.value?.trim() || state.inputs['input-exercise-min'] || '';
+    const conditionDetailVal = document.getElementById('input-e8-condition')?.value?.trim() || state.inputs['input-e8-condition'] || '';
+
     return {
       // Compatibility with Google Sheet headers:
       'Submission ID': token,
@@ -909,14 +926,14 @@ document.addEventListener('DOMContentLoaded', () => {
       'A7': state.phq9Scores['b7'] !== undefined ? state.phq9Scores['b7'] : '',
       'A8': state.phq9Scores['b8'] !== undefined ? state.phq9Scores['b8'] : '',
       'A9': state.phq9Scores['b9'] !== undefined ? state.phq9Scores['b9'] : '',
-      'B1_Age': document.getElementById('input-age')?.value?.trim() || state.inputs['input-age'] || '',
+      'B1_Age': ageVal,
       'B2_Height': formattedHeight,
-      'B3_Weight': document.getElementById('input-weight')?.value?.trim() || state.inputs['input-weight'] || '',
-      'B4_Gender': state.likertScores['a3'] || '',
-      'B5_Semester': document.getElementById('select-semester')?.value?.trim() || state.inputs['select-semester'] || '',
-      'B6_Year': state.likertScores['a7_year'] || '',
-      'B7_UniType': 'Varendra University',
-      'B8_Living': state.likertScores['a6'] || '',
+      'B3_Weight': weightVal,
+      'B4_Gender': genderVal,
+      'B5_Semester': semRaw,
+      'B6_Year': studyYearVal,
+      'B7_UniType': uniTypeVal || 'Varendra University',
+      'B8_Living': livingVal,
       'C1': state.likertScores['c1'] || '',
       'C2': state.likertScores['c2'] || '',
       'C3': state.likertScores['c3'] || '',
@@ -930,7 +947,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'E1_Sleep': state.likertScores['e1'] || '',
       'E2_Wake': state.likertScores['e2'] || '',
       'E3_Exercise': state.likertScores['e3'] || '',
-      'E3_Minutes': state.inputs['input-exercise-min'] || 30,
+      'E3_Minutes': exerciseMinVal || 30,
       'E4_SocialMedia': state.likertScores['e4'] || '',
       'E5_Eating': state.likertScores['e5'] || '',
       'E6_Substance': state.likertScores['e6'] || '',
@@ -943,8 +960,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'F6': state.likertScores['f6'] || '',
       'F7': state.likertScores['f7'] || '',
       'F8': state.likertScores['f8'] || '',
-      'G1_Finance': document.getElementById('input-income')?.value?.trim() || state.inputs['input-income'] || '',
-      'G2': state.likertScores['g2'] || state.likertScores['g1'] || '',
+      'G1_Finance': incomeVal,
+      'G2': state.likertScores['g2'] || incomeVal || '',
       'G3': state.likertScores['g3'] || '',
       'G4': state.likertScores['g4'] || '',
       'G5': state.likertScores['g5'] || '',
@@ -959,16 +976,40 @@ document.addEventListener('DOMContentLoaded', () => {
       Total_Answered: state.answeredQuestions.size,
 
       // Demographics
-      A1_Age: document.getElementById('input-age')?.value?.trim() || state.inputs['input-age'] || '',
+      A1_Age: ageVal,
       A2_Height_Ft: htFt,
       A2_Height_In: htIn,
-      A3_Gender: state.likertScores['a3'] || '',
-      A4_Weight_Kg: document.getElementById('input-weight')?.value?.trim() || state.inputs['input-weight'] || '',
-      A5_Relationship_Status: state.likertScores['a5'] || '',
-      A6_Living_Arrangement: state.likertScores['a6'] || '',
-      A7_Semester: document.getElementById('select-semester')?.value?.trim() || state.inputs['select-semester'] || '',
-      A7_Study_Year: state.likertScores['a7_year'] || '',
-      A8_Family_Monthly_Income: document.getElementById('input-income')?.value?.trim() || state.inputs['input-income'] || '',
+      A3_Gender: genderVal,
+      A4_Weight_Kg: weightVal,
+      A5_Relationship_Status: uniTypeVal,
+      A5_University_Type: uniTypeVal,
+      University_Type: uniTypeVal,
+      A6_Living_Arrangement: livingVal,
+
+      // A7 Academic Year & Study Year (All requested and common spellings)
+      A7_Study_Year: studyYearVal,
+      A7_Academic_Year: studyYearVal,
+      'a7_acdemic year': studyYearVal,
+      'a7_academic year': studyYearVal,
+      'a7_academic_year': studyYearVal,
+      Academic_Year: studyYearVal,
+      Study_Year: studyYearVal,
+
+      // A7 Semester (All requested and common spellings)
+      A7_Semester: semRaw,
+      A7_shemester: semRaw,
+      'A7_shemester': semRaw,
+      'a7_shemester': semRaw,
+      'a7_semester': semRaw,
+      Semester: semRaw,
+      Semester_Label: semLabel,
+
+      // Family Monthly Income (Dual-mapped: supports both Section A legacy column & Section G column)
+      A8_Family_Monthly_Income: incomeVal,
+      G2_Family_Monthly_Income: incomeVal,
+      G2_Monthly_Income: incomeVal,
+      Family_Monthly_Income: incomeVal,
+      Monthly_Income: incomeVal,
 
       // Module B: PHQ-9
       B1_Anhedonia: state.phq9Scores['b1'] !== undefined ? state.phq9Scores['b1'] : '',
@@ -1003,11 +1044,17 @@ document.addEventListener('DOMContentLoaded', () => {
       E1: state.likertScores['e1'] || '',
       E2: state.likertScores['e2'] || '',
       E3: state.likertScores['e3'] || '',
+      E3_Duration_Min: exerciseMinVal,
+      E3_Minutes: exerciseMinVal,
+      E3_Duration: exerciseMinVal,
       E4: state.likertScores['e4'] || '',
       E5: state.likertScores['e5'] || '',
       E6: state.likertScores['e6'] || '',
       E7: state.likertScores['e7'] || '',
       E8: state.likertScores['e8'] || '',
+      E8_Condition_Details: conditionDetailVal,
+      E8_Condition: conditionDetailVal,
+      E8_Specified_Condition: conditionDetailVal,
 
       // Module F: MSPSS
       F1: state.likertScores['f1'] || '',
@@ -1029,6 +1076,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Module G: Hearth & Earth
       G1: state.likertScores['g1'] || '',
+      G2: incomeVal,
       G3: state.likertScores['g3'] || '',
       G4: state.likertScores['g4'] || '',
       G5: state.likertScores['g5'] || '',

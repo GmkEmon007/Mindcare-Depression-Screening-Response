@@ -66,11 +66,10 @@ function doPost(e) {
       "A2_Height_In",
       "A3_Gender",
       "A4_Weight_Kg",
-      "A5_Relationship_Status",
+      "A5_University_Type",
       "A6_Living_Arrangement",
+      "A7_Academic_Year",
       "A7_Semester",
-      "A7_Study_Year",
-      "A8_Family_Monthly_Income",
 
       // Module B: PHQ-9 Depression Index (0-3 each)
       "B1_Anhedonia",
@@ -91,8 +90,8 @@ function doPost(e) {
       // Module D: Future Anxiety & AI Outlook (D1 - D4)
       "D1", "D2", "D3", "D4",
 
-      // Module E: Rest, Sleep & Vitality (E1 - E8)
-      "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8",
+      // Module E: Rest, Sleep & Vitality (E1 - E8 + duration & condition)
+      "E1", "E2", "E3", "E3_Duration_Min", "E4", "E5", "E6", "E7", "E8", "E8_Condition_Details",
 
       // Module F: MSPSS Social Support (F1 - F12)
       "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
@@ -102,7 +101,7 @@ function doPost(e) {
       "MSPSS_Total_Mean",
 
       // Module G: Hearth & Earth
-      "G1", "G3", "G4", "G5", "G6"
+      "G1", "G2_Family_Monthly_Income", "G3", "G4", "G5", "G6"
     ];
 
     // If the sheet is empty or has no columns, automatically create and format the header row
@@ -125,13 +124,46 @@ function doPost(e) {
     // Read current headers from row 1
     var headers = sheet.getRange(1, 1, 1, Math.max(1, sheet.getLastColumn())).getValues()[0];
 
-    // Build the row data aligned to existing headers
+    // Build the row data aligned to existing headers with smart alias resolution
     var row = headers.map(function (colName) {
-      var val = rawData[colName];
-      if (val === undefined || val === null) {
-        return "";
+      if (!colName) return "";
+      var trimmed = String(colName).trim();
+
+      // Direct exact match
+      if (rawData[trimmed] !== undefined && rawData[trimmed] !== null && rawData[trimmed] !== "") {
+        return rawData[trimmed];
       }
-      return val;
+
+      // Smart normalized match (case-insensitive, ignoring underscores, spaces, hyphens)
+      var normCol = trimmed.toLowerCase().replace(/[\s_-]+/g, "");
+      for (var key in rawData) {
+        var normKey = key.toLowerCase().replace(/[\s_-]+/g, "");
+        if (normCol === normKey && rawData[key] !== undefined && rawData[key] !== null && rawData[key] !== "") {
+          return rawData[key];
+        }
+      }
+
+      // Specialized cross-aliases for historical/varied survey headers
+      if (normCol === "a7semester" || normCol === "a7shemester" || normCol === "semester" || normCol === "shemester") {
+        return rawData.A7_Semester || rawData.A7_shemester || rawData.Semester || "";
+      }
+      if (normCol === "a7academicyear" || normCol === "a7acdemicyear" || normCol === "a7studyyear" || normCol === "academicyear" || normCol === "studyyear") {
+        return rawData.A7_Academic_Year || rawData.A7_Study_Year || rawData.Academic_Year || "";
+      }
+      if (normCol === "g2familymonthlyincome" || normCol === "a8familymonthlyincome" || normCol === "familymonthlyincome" || normCol === "monthlyincome" || normCol === "g2") {
+        return rawData.G2_Family_Monthly_Income || rawData.A8_Family_Monthly_Income || rawData.Monthly_Income || "";
+      }
+      if (normCol === "e3durationmin" || normCol === "e3minutes" || normCol === "e3duration" || normCol === "exerciseduration") {
+        return rawData.E3_Duration_Min || rawData.E3_Minutes || "";
+      }
+      if (normCol === "e8conditiondetails" || normCol === "e8condition" || normCol === "diagnosedcondition") {
+        return rawData.E8_Condition_Details || rawData.E8_Condition || "";
+      }
+      if (normCol === "a5relationshipstatus" || normCol === "a5universitytype" || normCol === "universitytype") {
+        return rawData.A5_University_Type || rawData.A5_Relationship_Status || "";
+      }
+
+      return rawData[trimmed] !== undefined && rawData[trimmed] !== null ? rawData[trimmed] : "";
     });
 
     sheet.appendRow(row);
