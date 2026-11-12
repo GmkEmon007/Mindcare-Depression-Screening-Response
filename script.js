@@ -15,6 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const STORAGE_KEY = 'vu_research_warm_terracotta_data_v3';
   const TOTAL_CHECKPOINTS = 54;
 
+  const stepModuleIds = ['module-a', 'module-b', 'module-c', 'module-d', 'module-e', 'module-f', 'module-g'];
+  const stepModuleTitles = [
+    'Demographic & Background Information',
+    'PHQ-9 Mental Wellbeing Screening',
+    'Academic Experience & Study Environment',
+    'Future Outlook & AI Sentiment',
+    'Rest, Sleep & Vitality',
+    'Social Support & Connections (MSPSS)',
+    'Living Environment, Earth & Hearth'
+  ];
+
   let state = {
     phq9Scores: {},
     likertScores: {},
@@ -611,10 +622,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (secId === 'module-a') {
         const consentCheck = document.getElementById('consent-checkbox');
         if (consentCheck && !consentCheck.checked) {
-          showToast('⚠️ অনুগ্রহ করে প্রথমে সম্মতি বক্সে টিক দিন (Please agree to voluntary consent first)');
+          const consentParent = consentCheck.closest('.consent-box') || consentCheck.parentElement;
+          showValidationAlert(1, consentParent, 'Consent Required', '⚠️ অনুগ্রহ করে প্রথমে সম্মতি বক্সে টিক দিন (Please agree to voluntary consent first)');
           goToStep(0, false);
           consentCheck.focus();
-          const consentParent = consentCheck.closest('.consent-box') || consentCheck.parentElement;
           if (consentParent) {
             consentParent.classList.add('ring-2', 'ring-red-500', 'p-2', 'rounded-xl');
             consentParent.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -639,7 +650,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
 
           const modTitle = stepModuleTitles[i] || `Section ${secId.replace('module-', '').toUpperCase()}`;
-          showToast(`⚠️ অনুগ্রহ করে প্রথমে ${modTitle} এর সকল প্রশ্নের উত্তর সম্পন্ন করুন (${unanswered.length}টি প্রশ্ন বাকি)`);
+          showValidationAlert(unanswered.length, first, 'Section Incomplete', `⚠️ অনুগ্রহ করে প্রথমে ${modTitle} এর সকল প্রশ্নের উত্তর সম্পন্ন করুন (${unanswered.length}টি প্রশ্ন বাকি)`);
           return false;
         }
       }
@@ -1151,12 +1162,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const consentCheck = document.getElementById('consent-checkbox');
     if (consentCheck && !consentCheck.checked) {
-      showToast('অনুগ্রহ করে সম্মতি বক্সে টিক দিন (Please agree to voluntary consent)');
-      consentCheck.focus();
       const consentParent = consentCheck.closest('.consent-box') || consentCheck.parentElement;
-      consentParent.classList.add('ring-2', 'ring-red-400', 'p-1', 'rounded-lg');
-      consentParent.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      setTimeout(() => consentParent.classList.remove('ring-2', 'ring-red-400', 'p-1', 'rounded-lg'), 2500);
+      showValidationAlert(1, consentParent, 'Consent Required', 'অনুগ্রহ করে প্রথমে সম্মতি বক্সে টিক দিন (Please agree to voluntary consent first)');
+      consentCheck.focus();
+      if (consentParent) {
+        consentParent.classList.add('ring-2', 'ring-red-400', 'p-1', 'rounded-lg');
+        consentParent.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => consentParent.classList.remove('ring-2', 'ring-red-400', 'p-1', 'rounded-lg'), 2500);
+      }
       return;
     }
 
@@ -1166,7 +1179,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const remainingCount = unansweredCards.length;
       const firstUnanswered = unansweredCards[0];
 
-      showToast(`⚠️ অনুগ্রহ করে সব প্রশ্নের উত্তর সম্পন্ন করুন (Please answer all 54 questions — আরও ${remainingCount}টি বাকি)`);
+      showValidationAlert(remainingCount, firstUnanswered);
       
       const parentModule = firstUnanswered.closest('section');
       if (parentModule) {
@@ -1281,10 +1294,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (reviewBtn) {
       reviewBtn.addEventListener('click', () => {
         if (consentCheck && !consentCheck.checked) {
-          showToast('অনুগ্রহ করে সম্মতি বক্সে টিক দিন (Please agree to consent)');
+          const consentParent = consentCheck.closest('.consent-box') || consentCheck.parentElement;
+          showValidationAlert(1, consentParent, 'Consent Required', 'অনুগ্রহ করে প্রথমে সম্মতি বক্সে টিক দিন (Please agree to consent first)');
           consentCheck.focus();
-          consentCheck.parentElement.classList.add('ring-2', 'ring-red-400', 'p-1', 'rounded-lg');
-          setTimeout(() => consentCheck.parentElement.classList.remove('ring-2', 'ring-red-400', 'p-1', 'rounded-lg'), 2500);
+          if (consentParent) {
+            consentParent.classList.add('ring-2', 'ring-red-400', 'p-1', 'rounded-lg');
+            setTimeout(() => consentParent.classList.remove('ring-2', 'ring-red-400', 'p-1', 'rounded-lg'), 2500);
+          }
           return;
         }
         openReflectionModal();
@@ -1400,22 +1416,150 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast('Downloaded response JSON file');
   }
 
-  // 14. Toast Notification Utility
+  // 14. Toast Notification Utility (Wide & Mobile-Responsive)
   function showToast(msg) {
     let toast = document.getElementById('zen-toast');
     if (!toast) {
       toast = document.createElement('div');
       toast.id = 'zen-toast';
-      toast.className = 'fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[#152418] text-white px-5 py-2.5 rounded-full text-xs font-medium shadow-xl transition-all duration-300 opacity-0 pointer-events-none border border-[#2D6A4F]';
+      toast.className = 'fixed bottom-4 sm:bottom-6 left-3 right-3 sm:left-1/2 sm:-translate-x-1/2 sm:w-auto sm:max-w-lg mx-auto z-50 bg-[#152418] text-white px-5 py-3 rounded-2xl sm:rounded-full text-xs sm:text-sm font-medium shadow-2xl transition-all duration-300 opacity-0 pointer-events-none border border-[#2D6A4F] text-center flex items-center justify-center gap-2';
       document.body.appendChild(toast);
     }
-    toast.textContent = msg;
+    toast.innerHTML = msg;
     toast.classList.remove('opacity-0', 'pointer-events-none');
     toast.classList.add('opacity-100');
-    setTimeout(() => {
+    if (window._toastTimer) clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(() => {
       toast.classList.remove('opacity-100');
       toast.classList.add('opacity-0', 'pointer-events-none');
-    }, 2800);
+    }, 3200);
+  }
+
+  // 14b. Mobile-Optimized Stretched Validation Alert Banner
+  function showValidationAlert(remainingCount, firstUnansweredCard, customTitle, customMessage) {
+    let alertEl = document.getElementById('zen-validation-alert');
+    if (!alertEl) {
+      alertEl = document.createElement('div');
+      alertEl.id = 'zen-validation-alert';
+      alertEl.setAttribute('role', 'alert');
+      alertEl.setAttribute('aria-live', 'assertive');
+      alertEl.className = 'fixed bottom-3 sm:bottom-6 left-3 right-3 sm:left-1/2 sm:-translate-x-1/2 sm:w-full sm:max-w-xl z-50 transition-all duration-300 transform translate-y-8 opacity-0 pointer-events-none';
+      document.body.appendChild(alertEl);
+    }
+
+    // Determine target module / section name
+    let sectionInfo = '';
+    if (firstUnansweredCard) {
+      const parentSec = firstUnansweredCard.closest('section');
+      if (parentSec) {
+        const secId = parentSec.getAttribute('id');
+        const idx = stepModuleIds.indexOf(secId);
+        if (idx !== -1 && stepModuleTitles[idx]) {
+          sectionInfo = stepModuleTitles[idx];
+        }
+      }
+    }
+
+    const titleText = customTitle || 'Incomplete Questionnaire';
+    const countBadge = remainingCount > 1 
+      ? `${remainingCount} Remaining / ${remainingCount}টি বাকি`
+      : '1 Item Missing / ১টি বাকি';
+    const helperMsg = customMessage || (
+      sectionInfo 
+        ? `অনুগ্রহ করে জমা দেওয়ার আগে সকল প্রশ্নের উত্তর সম্পন্ন করুন (পরবর্তী: ${sectionInfo})`
+        : 'অনুগ্রহ করে জমা দেওয়ার আগে সকল ৫৪টি প্রশ্নের উত্তর সম্পন্ন করুন।'
+    );
+
+    alertEl.innerHTML = `
+      <div class="w-full bg-[#152418] text-white rounded-2xl sm:rounded-3xl p-4 sm:p-5 shadow-[0_20px_50px_-8px_rgba(21,36,24,0.75)] border-2 border-[#2D6A4F] flex flex-col gap-3">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-2.5 sm:gap-3">
+            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#2D6A4F]/30 text-[#E29578] flex items-center justify-center shrink-0 border border-[#2D6A4F]">
+              <span class="material-symbols-outlined text-xl sm:text-2xl">assignment_late</span>
+            </div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <h4 class="text-sm font-bold tracking-tight text-white">${titleText}</h4>
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#E29578] text-[#152418]">
+                  ${countBadge}
+                </span>
+              </div>
+              <p class="text-xs text-[#C8DCCF] font-bengali mt-0.5 leading-snug">
+                ${helperMsg}
+              </p>
+            </div>
+          </div>
+          <button type="button" id="zen-alert-close-btn" class="text-[#A3B899] hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors shrink-0" aria-label="Dismiss alert">
+            <span class="material-symbols-outlined text-lg sm:text-xl">close</span>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2 pt-1 border-t border-white/10">
+          <button type="button" id="zen-alert-jump-btn" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#2D6A4F] to-[#1F4D36] hover:from-[#357a5b] hover:to-[#255b40] text-white text-xs sm:text-sm font-bold shadow-md flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+            <span class="material-symbols-outlined text-base">my_location</span>
+            <span>Jump to Question / অনুত্তরিত প্রশ্নে যান</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    `;
+
+    // Mobile tactile vibration
+    try {
+      if (navigator.vibrate) navigator.vibrate([40, 50, 40]);
+    } catch (_) {}
+
+    // Reveal alert with smooth transition
+    alertEl.classList.remove('translate-y-8', 'opacity-0', 'pointer-events-none');
+    alertEl.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+
+    // Close button handler
+    const closeBtn = alertEl.querySelector('#zen-alert-close-btn');
+    if (closeBtn) {
+      closeBtn.onclick = () => hideValidationAlert();
+    }
+
+    // Jump button handler
+    const jumpBtn = alertEl.querySelector('#zen-alert-jump-btn');
+    if (jumpBtn) {
+      jumpBtn.onclick = () => {
+        hideValidationAlert();
+        if (firstUnansweredCard) {
+          const parentModule = firstUnansweredCard.closest('section');
+          if (parentModule) {
+            const modId = parentModule.getAttribute('id');
+            const targetStepIdx = stepModuleIds.indexOf(modId);
+            if (targetStepIdx !== -1) {
+              goToStep(targetStepIdx, false);
+            }
+          }
+          firstUnansweredCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          firstUnansweredCard.classList.add('highlight-unanswered');
+          setTimeout(() => firstUnansweredCard.classList.remove('highlight-unanswered'), 3500);
+
+          const focusable = firstUnansweredCard.querySelector('input:not([type="checkbox"]), select, .pebble-btn');
+          if (focusable) {
+            setTimeout(() => focusable.focus(), 350);
+          }
+        } else {
+          jumpToNextUnanswered();
+        }
+      };
+    }
+
+    // Auto-dismiss after 8 seconds
+    if (window._validationAlertTimer) clearTimeout(window._validationAlertTimer);
+    window._validationAlertTimer = setTimeout(() => {
+      hideValidationAlert();
+    }, 8000);
+  }
+
+  function hideValidationAlert() {
+    const alertEl = document.getElementById('zen-validation-alert');
+    if (alertEl) {
+      alertEl.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+      alertEl.classList.add('translate-y-8', 'opacity-0', 'pointer-events-none');
+    }
   }
 
   // 15. Bind Event Handlers
@@ -1442,17 +1586,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // MINDCARE STEPPED QUESTIONNAIRE & INTERACTION SYSTEM (Mockup Screen 1, 2, 3)
   // ==========================================================================
-  const stepModuleIds = ['module-a', 'module-b', 'module-c', 'module-d', 'module-e', 'module-f', 'module-g'];
-  const stepModuleTitles = [
-    'Demographic & Background Information',
-    'PHQ-9 Mental Wellbeing Screening',
-    'Academic Experience & Study Environment',
-    'Future Outlook & AI Sentiment',
-    'Rest, Sleep & Vitality',
-    'Social Support & Connections (MSPSS)',
-    'Living Environment, Earth & Hearth'
-  ];
-
   let currentStepIndex = 0;
   let isStepMode = false;
 
@@ -1518,9 +1651,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentSec && currentSec.id === 'module-a') {
           const consentCheck = document.getElementById('consent-checkbox');
           if (consentCheck && !consentCheck.checked) {
-            showToast('⚠️ অনুগ্রহ করে সম্মতি বক্সে টিক দিন (Please agree to voluntary consent to proceed)');
-            consentCheck.focus();
             const consentParent = consentCheck.closest('.consent-box') || consentCheck.parentElement;
+            showValidationAlert(1, consentParent, 'Consent Required', '⚠️ অনুগ্রহ করে সম্মতি বক্সে টিক দিন (Please agree to voluntary consent to proceed)');
+            consentCheck.focus();
             if (consentParent) {
               consentParent.classList.add('ring-2', 'ring-red-500', 'p-2', 'rounded-xl');
               consentParent.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1544,7 +1677,7 @@ document.addEventListener('DOMContentLoaded', () => {
               setTimeout(() => focusable.focus(), 350);
             }
 
-            showToast(`⚠️ পরবর্তী সেকশনে যাওয়ার আগে এই সেকশনের সকল প্রশ্নের উত্তর দিন (${unanswered.length}টি প্রশ্ন বাকি / ${unanswered.length} remaining)`);
+            showValidationAlert(unanswered.length, firstUnanswered, 'Section Incomplete', `⚠️ পরবর্তী সেকশনে যাওয়ার আগে এই সেকশনের সকল প্রশ্নের উত্তর দিন (${unanswered.length}টি প্রশ্ন বাকি)`);
             return;
           }
         }

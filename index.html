@@ -57,7 +57,7 @@
     };
   </script>
 
-  <link rel="stylesheet" href="style.css?v=2.3">
+  <link rel="stylesheet" href="style.css?v=2.4">
 </head>
 
 <body class="bg-[#F8FAF7] text-[#152418] antialiased selection:bg-[#EAF2EC] selection:text-[#152418] min-h-screen relative flex flex-col items-center">
@@ -2231,7 +2231,7 @@
           </div>
           <div class="flex items-center gap-3">
             <span class="zen-unit-badge px-4 text-base font-bold text-[#2D6A4F]">৳</span>
-            <input type="text" id="input-income" placeholder="" class="zen-input flex-1 font-bold !rounded-[20px]">
+            <input type="number" id="input-income" min="0" step="500" placeholder="e.g. 35000" class="zen-input flex-1 font-bold !rounded-[20px]">
             <span class="zen-unit-badge">BDT / <span class="font-bengali">টাকা</span></span>
           </div>
         </div>
@@ -2557,23 +2557,132 @@
           <span class="material-symbols-outlined text-base">close</span>
         </button>
       </div>
-      <!-- Modal Header Graphic -->
-      <div class="text-center pt-1 space-y-2">
-        <img src="assets/thank-you-heart.jpg" alt="MindCare Thank you badge"
-          class="w-28 sm:w-36 mx-auto object-contain drop-shadow-sm mb-3">
-        
-        <h2 id="modal-title" class="text-3xl sm:text-4xl font-extrabold text-[#152418] tracking-tight">
-          Thank you!
+      <!-- Modal Header: Text "Thank you" (Clean Academic Sanctuary Typography) -->
+      <div class="text-center pt-2 pb-1 space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAF2EC] text-[#2D6A4F] text-[11px] font-bold tracking-wide uppercase">
+          <span class="material-symbols-outlined text-[15px]">verified</span>
+          <span>Evaluation &amp; Reflection Summary</span>
+        </div>
+        <h2 id="modal-title" class="text-3xl sm:text-4xl md:text-[38px] font-serif font-normal text-[#152418] tracking-tight">
+          Thank you
         </h2>
-        <p class="text-sm sm:text-base font-semibold text-[#152418] mt-1.5">
-          Your responses have been submitted successfully.
+        <p class="font-bengali text-xs sm:text-sm text-[#3A4F3F] max-w-lg mx-auto leading-relaxed">
+          আপনার মূল্যবান মতামতের জন্য আন্তরিক ধন্যবাদ। নিচে আপনার মানসিক সুস্থতার প্রতিফলন ও ক্লিনিক্যাল স্কোর পর্যবেক্ষণ দেওয়া হলো।
         </p>
-        <p class="text-xs sm:text-sm text-[#3A4F3F] max-w-md mx-auto mt-1 leading-relaxed">
-          Your wellbeing matters. If you ever feel overwhelmed, please reach out for support.
+        <p class="text-[11px] sm:text-xs text-[#6B8070] max-w-md mx-auto">
+          Confidential Research Participation • CIR Protocol #VU/ERC/2026/042
         </p>
       </div>
 
-      <!-- 3 Resource Cards (Direct Match to Screen 3) -->
+      <!-- Prominent Score Cards: PHQ-9 & MSPSS (Front & Center) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- PHQ-9 Depression Index Card -->
+        <div class="bg-gradient-to-b from-[#FFFFFF] to-[#F8FAF7] p-5 rounded-2xl border border-[#C8DCCF] shadow-xs space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-xl bg-[#EAF2EC] text-[#2D6A4F] flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-lg">psychology</span>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase tracking-wider font-bold text-[#2D6A4F] block">CLINICAL INDEX</span>
+                <h4 class="text-sm font-bold text-[#152418]">PHQ-9 Depression Score</h4>
+              </div>
+            </div>
+            <span class="text-[11px] font-medium text-[#6B8070] bg-white px-2 py-0.5 rounded-full border border-[#E2E8DF]">Max 27</span>
+          </div>
+
+          <div class="flex items-baseline justify-between pt-1">
+            <span id="modal-phq-score" class="text-3xl sm:text-4xl font-serif font-bold text-[#152418]">0 / 27</span>
+            <div id="modal-phq-severity" class="px-3 py-1 rounded-full text-xs font-bold bg-[#EAF2EC] text-[#2D6A4F] border border-[#C8DCCF]">
+              Minimal (নগণ্য)
+            </div>
+          </div>
+
+          <div class="space-y-1.5 pt-1">
+            <div class="w-full h-2 rounded-full bg-[#E2E8DF] overflow-hidden">
+              <div id="modal-phq-bar" class="h-full severity-bar rounded-full bg-[#2D6A4F] transition-all duration-500" style="width: 0%;"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-[#6B8070] pt-0.5 font-medium">
+              <span>0 Minimal</span>
+              <span>5 Mild</span>
+              <span>10 Mod</span>
+              <span>15 Mod.Severe</span>
+              <span>20+ Severe</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MSPSS Social Support Scale Card -->
+        <div class="bg-gradient-to-b from-[#FFFFFF] to-[#F8FAF7] p-5 rounded-2xl border border-[#C8DCCF] shadow-xs space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-xl bg-[#EAF2EC] text-[#2D6A4F] flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-lg">diversity_1</span>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase tracking-wider font-bold text-[#2D6A4F] block">SOCIAL SCALE</span>
+                <h4 class="text-sm font-bold text-[#152418]">MSPSS Social Support</h4>
+              </div>
+            </div>
+            <span class="text-[11px] font-medium text-[#6B8070] bg-white px-2 py-0.5 rounded-full border border-[#E2E8DF]">Scale 1–7</span>
+          </div>
+
+          <div class="flex items-baseline justify-between pt-1">
+            <span id="modal-mspss-score" class="text-3xl sm:text-4xl font-serif font-bold text-[#152418]">0.0 / 7.0</span>
+            <span class="text-xs font-semibold text-[#2D6A4F] px-2.5 py-0.5 rounded-full bg-[#EAF2EC]">Support Index</span>
+          </div>
+
+          <div class="space-y-2 text-[11px] pt-1">
+            <div>
+              <div class="flex items-center justify-between text-[#3A4F3F] mb-1">
+                <span>Significant Other (বিশেষ সঙ্গী):</span>
+                <span id="modal-mspss-so" class="font-bold text-[#152418]">-</span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-[#E2E8DF] overflow-hidden">
+                <div id="modal-mspss-so-bar" class="h-full rounded-full bg-[#2D6A4F] transition-all duration-500" style="width: 0%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between text-[#3A4F3F] mb-1">
+                <span>Family (পরিবার):</span>
+                <span id="modal-mspss-fam" class="font-bold text-[#152418]">-</span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-[#E2E8DF] overflow-hidden">
+                <div id="modal-mspss-fam-bar" class="h-full rounded-full bg-[#2D6A4F] transition-all duration-500" style="width: 0%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex items-center justify-between text-[#3A4F3F] mb-1">
+                <span>Friends (বন্ধু-বান্ধব):</span>
+                <span id="modal-mspss-fri" class="font-bold text-[#152418]">-</span>
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-[#E2E8DF] overflow-hidden">
+                <div id="modal-mspss-fri-bar" class="h-full rounded-full bg-[#2D6A4F] transition-all duration-500" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Anonymous Research Token Card -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-[#F8FAF7] border border-[#C8DCCF] text-xs">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-white border border-[#C8DCCF] flex items-center justify-center text-[#2D6A4F] shrink-0">
+            <span class="material-symbols-outlined text-lg">fingerprint</span>
+          </div>
+          <div>
+            <span class="text-[#6B8070] block text-[11px]">Anonymous Cryptographic Token (গোপনীয় রিসার্চ টোকেন):</span>
+            <code id="modal-crypto-token" class="font-mono font-bold text-sm text-[#152418]">VU-7a8b9c0d</code>
+          </div>
+        </div>
+        <button type="button" id="copy-token-btn"
+          class="px-3.5 py-1.5 rounded-full bg-white hover:bg-[#EAF2EC] text-[#2D6A4F] border border-[#C8DCCF] text-xs font-bold transition-all shadow-2xs self-start sm:self-auto flex items-center gap-1.5 active:scale-95">
+          <span class="material-symbols-outlined text-[15px]">content_copy</span>
+          <span>Copy Token</span>
+        </button>
+      </div>
+
+      <!-- 3 Resource Cards (Helpline, Self-Help, On Campus) -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <!-- 1. Helpline -->
         <a href="tel:16363"
@@ -2582,7 +2691,7 @@
             <span class="material-symbols-outlined text-xl">call</span>
           </div>
           <div>
-            <span class="text-[11px] text-[#6B8070] block leading-tight">Mental Health Helpline</span>
+            <span class="text-[11px] text-[#6B8070] block leading-tight">24/7 Crisis Helpline</span>
             <span class="text-sm font-bold text-[#152418] group-hover:text-[#2D6A4F] font-mono">16363</span>
           </div>
         </a>
@@ -2615,112 +2724,26 @@
       <!-- Reassurance Pill -->
       <div class="flex justify-center">
         <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#F8FAF7] border border-[#C8DCCF] text-xs font-bold text-[#152418]">
-          <span>♡</span> Take care. You're not alone. <span>♡</span>
+          <span class="text-[#2D6A4F]">♡</span> Take care. You're not alone. (আপনি একা নন) <span class="text-[#2D6A4F]">♡</span>
         </div>
       </div>
-
-      <!-- Collapsible Research Details / Scores -->
-      <details class="group bg-[#F8FAF7] border border-[#E2E8DF] rounded-2xl p-4 transition-all">
-        <summary class="flex items-center justify-between cursor-pointer font-bold text-xs sm:text-[13px] text-[#152418] select-none">
-          <span class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-[#2D6A4F] text-base">insights</span>
-            <span>View Clinical Assessment &amp; Research Index (PHQ-9 &amp; MSPSS)</span>
-          </span>
-          <span class="material-symbols-outlined text-[#6B8070] group-open:rotate-180 transition-transform">expand_more</span>
-        </summary>
-        
-        <div class="pt-4 space-y-4">
-          <!-- Anonymous Research Hash Token Pill -->
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 rounded-xl bg-white border border-[#E2E8DF] text-xs">
-            <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-base text-[#2D6A4F]">fingerprint</span>
-              <span class="text-[#6B8070]">Anonymous Research Token:</span>
-              <code id="modal-crypto-token" class="font-mono font-bold text-[#152418] bg-[#F8FAF7] px-2 py-0.5 rounded border border-[#C8DCCF]">VU-7a8b9c0d</code>
-            </div>
-            <button type="button" id="copy-token-btn"
-              class="px-3 py-1 rounded-full bg-white hover:bg-[#F8FAF7] text-[#2D6A4F] border border-[#E2E8DF] text-[11px] font-bold self-start sm:self-auto transition-all">
-              Copy Token
-            </button>
-          </div>
-
-          <!-- Score Cards: PHQ-9 & MSPSS -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <!-- PHQ-9 Card with Severity Gauge -->
-            <div class="bg-white p-4 rounded-xl border border-[#E2E8DF] space-y-2.5">
-              <div class="flex items-center justify-between text-xs">
-                <span class="font-bold text-[#2D6A4F] uppercase tracking-wider">PHQ-9 Depression Index</span>
-                <span class="text-[11px] text-[#6B8070]">Max 27</span>
-              </div>
-              <div class="flex items-baseline gap-2">
-                <span id="modal-phq-score" class="text-2xl font-bold text-[#152418]">0 / 27</span>
-              </div>
-              <div id="modal-phq-severity" class="text-xs font-semibold text-[#2D6A4F]">
-                Minimal (নগণ্য)
-              </div>
-              <div class="w-full h-2 rounded-full bg-[#F8FAF7] overflow-hidden">
-                <div id="modal-phq-bar" class="h-full severity-bar rounded-full bg-[#2D6A4F]" style="width: 0%;"></div>
-              </div>
-              <div class="flex justify-between text-[10px] text-[#6B8070] pt-0.5">
-                <span>0 Minimal</span>
-                <span>10 Mod</span>
-                <span>20 Severe</span>
-              </div>
-            </div>
-
-            <!-- MSPSS Support Card -->
-            <div class="bg-white p-4 rounded-xl border border-[#E2E8DF] space-y-2.5">
-              <div class="flex items-center justify-between text-xs">
-                <span class="font-bold text-[#2D6A4F] uppercase tracking-wider">MSPSS Social Support</span>
-                <span class="text-[11px] text-[#6B8070]">Scale 1–7</span>
-              </div>
-              <div class="flex items-baseline gap-2">
-                <span id="modal-mspss-score" class="text-2xl font-bold text-[#152418]">0.0 / 7.0</span>
-                <span class="text-xs font-semibold text-[#2D6A4F]">Support Index</span>
-              </div>
-              <div class="space-y-1 text-[11px]">
-                <div class="flex items-center justify-between text-[#6B8070]">
-                  <span>Significant Other:</span>
-                  <span id="modal-mspss-so" class="font-bold text-[#152418]">-</span>
-                </div>
-                <div class="w-full h-1.5 rounded-full bg-[#F8FAF7] overflow-hidden">
-                  <div id="modal-mspss-so-bar" class="h-full rounded-full bg-[#2D6A4F]" style="width: 0%;"></div>
-                </div>
-                <div class="flex items-center justify-between text-[#6B8070]">
-                  <span>Family:</span>
-                  <span id="modal-mspss-fam" class="font-bold text-[#152418]">-</span>
-                </div>
-                <div class="w-full h-1.5 rounded-full bg-[#F8FAF7] overflow-hidden">
-                  <div id="modal-mspss-fam-bar" class="h-full rounded-full bg-[#2D6A4F]" style="width: 0%;"></div>
-                </div>
-                <div class="flex items-center justify-between text-[#6B8070]">
-                  <span>Friends:</span>
-                  <span id="modal-mspss-fri" class="font-bold text-[#152418]">-</span>
-                </div>
-                <div class="w-full h-1.5 rounded-full bg-[#F8FAF7] overflow-hidden">
-                  <div id="modal-mspss-fri-bar" class="h-full rounded-full bg-[#2D6A4F]" style="width: 0%;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </details>
 
       <!-- Action Buttons -->
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-3 border-t border-[#E2E8DF]">
         <div class="flex items-center gap-2">
           <button type="button" id="export-json-btn"
-            class="px-4 py-2.5 rounded-full bg-[#FFFFFF] border border-[#E2E8DF] text-xs font-bold text-[#152418] hover:bg-[#F8FAF7] flex items-center gap-1.5 transition-all">
+            class="px-4 py-2.5 rounded-full bg-[#FFFFFF] border border-[#E2E8DF] text-xs font-bold text-[#152418] hover:bg-[#F8FAF7] flex items-center gap-1.5 transition-all active:scale-95">
             <span class="material-symbols-outlined text-sm">download</span>
             Export JSON
           </button>
           <button type="button" onclick="window.print()"
-            class="px-4 py-2.5 rounded-full bg-[#FFFFFF] border border-[#E2E8DF] text-xs font-bold text-[#152418] hover:bg-[#F8FAF7] flex items-center gap-1.5 transition-all">
+            class="px-4 py-2.5 rounded-full bg-[#FFFFFF] border border-[#E2E8DF] text-xs font-bold text-[#152418] hover:bg-[#F8FAF7] flex items-center gap-1.5 transition-all active:scale-95">
             <span class="material-symbols-outlined text-sm">print</span>
             Print Summary
           </button>
         </div>
         <button type="button" onclick="document.getElementById('reflection-modal').classList.add('hidden')"
-          class="px-7 py-2.5 rounded-full bg-[#152418] hover:bg-[#1B2B1C] text-white text-xs font-bold shadow-md transition-all">
+          class="px-7 py-2.5 rounded-full bg-[#152418] hover:bg-[#1B2B1C] text-white text-xs font-bold shadow-md transition-all active:scale-95">
           Done &amp; Close
         </button>
       </div>
@@ -2739,11 +2762,11 @@
       GOOGLE_SHEET_URL: "https://script.google.com/macros/s/AKfycbzrRBpzcMPyE3raNlznDZgBd98gVpufz2V0tEFh0CTJQfU4BDt4zPhVONvnDQuFFn4O/exec"
     };
   </script>
-  <script src="env/env.js?v=2.3"></script>
+  <script src="env/env.js?v=2.4"></script>
   <!-- Main Application Script -->
-  <script src="script.js?v=2.3"></script>
+  <script src="script.js?v=2.4"></script>
   <!-- Atmospheric Botanical & 2D/3D Animation Engine (Hallmark Anti-Slop Compliant) -->
-  <script src="animations.js?v=2.3"></script>
+  <script src="animations.js?v=2.4"></script>
 
   <!-- About Modal -->
   <div id="about-modal" class="fixed inset-0 z-50 bg-[#152418]/60 backdrop-blur-xs hidden items-center justify-center p-4">
