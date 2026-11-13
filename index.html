@@ -57,7 +57,7 @@
     };
   </script>
 
-  <link rel="stylesheet" href="style.css?v=2.8">
+  <link rel="stylesheet" href="style.css?v=2.9">
 </head>
 
 <body class="bg-[#F8FAF7] text-[#152418] antialiased selection:bg-[#EAF2EC] selection:text-[#152418] min-h-screen relative flex flex-col items-center">
@@ -393,17 +393,17 @@
             A3. Sex <span class="font-bengali text-[#3A4F3F] font-normal">(লিঙ্গ):</span>
           </div>
           <div class="grid grid-cols-3 gap-2" data-pebble-group data-question="a3">
-            <button type="button"
+            <button type="button" data-value="Male" data-label="Male"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">Male</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">পুরুষ</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="Female" data-label="Female"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">Female</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">নারী</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="Other" data-label="Other"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">Other</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">অন্যান্য</span>
@@ -432,12 +432,12 @@
             A5. University Type <span class="font-bengali text-[#3A4F3F] font-normal">(বিশ্ববিদ্যালয়ের ধরন):</span>
           </div>
           <div class="grid grid-cols-2 gap-2" data-pebble-group data-question="a5">
-            <button type="button"
+            <button type="button" data-value="Public" data-label="Public"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">Public</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">সরকারি</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="Private" data-label="Private"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">Private</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">বেসরকারি</span>
@@ -452,12 +452,12 @@
             A6. Living Arrangement <span class="font-bengali text-[#3A4F3F] font-normal">(বসবাসের ব্যবস্থা):</span>
           </div>
           <div class="grid grid-cols-2 gap-2" data-pebble-group data-question="a6">
-            <button type="button"
+            <button type="button" data-value="With family" data-label="With family"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">With family</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">পরিবারের সাথে</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="Without family" data-label="Without family"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">Without family</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">পরিবার ছাড়া</span>
@@ -1350,22 +1350,22 @@
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">bedtime</span>
           </div>
           <div class="grid grid-cols-2 gap-2" data-pebble-group data-question="e1">
-            <button type="button"
+            <button type="button" data-value="Before 10 PM" data-label="Before 10 PM"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Before 10 PM</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">রাত ১০টার আগে</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="10 PM–12 AM" data-label="10 PM–12 AM"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">10 PM–12 AM</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">রাত ১০টা–১২টা</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="12 AM–2 AM" data-label="12 AM–2 AM"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">12 AM–2 AM</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">রাত ১২টা–২টা</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="After 2 AM" data-label="After 2 AM"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">After 2 AM</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">রাত ২টার পরে</span>
@@ -1386,22 +1386,22 @@
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">wb_sunny</span>
           </div>
           <div class="grid grid-cols-2 gap-2" data-pebble-group data-question="e2">
-            <button type="button"
+            <button type="button" data-value="Before 5 AM" data-label="Before 5 AM"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Before 5 AM</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">ভোর ৫টার আগে</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="5–7 AM" data-label="5–7 AM"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">5–7 AM</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">সকাল ৫টা–৭টা</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="7–9 AM" data-label="7–9 AM"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">7–9 AM</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">সকাল ৭টা–৯টা</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="After 9 AM" data-label="After 9 AM"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">After 9 AM</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">সকাল ৯টার পরে</span>
@@ -1468,22 +1468,22 @@
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">devices</span>
           </div>
           <div class="grid grid-cols-2 gap-2" data-pebble-group data-question="e4">
-            <button type="button"
+            <button type="button" data-value="Less than 1 hr" data-label="Less than 1 hr"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Less than 1 hr</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">১ ঘণ্টার কম</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="1–3 hours" data-label="1–3 hours"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">1–3 hours</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">১–৩ ঘণ্টা</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="3–5 hours" data-label="3–5 hours"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">3–5 hours</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">৩–৫ ঘণ্টা</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="> 5 hours" data-label="> 5 hours"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">&gt; 5 hours</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">৫ ঘণ্টার বেশি</span>
@@ -1504,22 +1504,22 @@
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">restaurant</span>
           </div>
           <div class="grid grid-cols-2 gap-2" data-pebble-group data-question="e5">
-            <button type="button"
+            <button type="button" data-value="Very unhealthy" data-label="Very unhealthy"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Very unhealthy</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">অত্যন্ত অস্বাস্থ্যকর</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="Unhealthy" data-label="Unhealthy"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Unhealthy</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">অস্বাস্থ্যকর</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="Healthy" data-label="Healthy"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Healthy</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">স্বাস্থ্যকর</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="Very healthy" data-label="Very healthy"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Very healthy</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">অত্যন্ত স্বাস্থ্যকর</span>
@@ -1541,22 +1541,22 @@
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">smoking_rooms</span>
           </div>
           <div class="grid grid-cols-2 gap-2" data-pebble-group data-question="e6">
-            <button type="button"
+            <button type="button" data-value="Never" data-label="Never"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Never</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">কখনো না</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="Used before" data-label="Used before"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Used before</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">অতীতে করেছি, এখন করি না</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="Sometimes" data-label="Sometimes"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Sometimes</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">মাঝে মাঝে</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="Frequently" data-label="Frequently"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Frequently</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">নিয়মিত</span>
@@ -1579,17 +1579,17 @@
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">accessible</span>
           </div>
           <div class="space-y-2" data-pebble-group data-question="e7">
-            <button type="button"
+            <button type="button" data-value="No" data-label="No"
               class="pebble-btn w-full flex items-center justify-between py-2.5 px-4 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-left">
               <span class="font-bold">No (না)</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="Yes, but does not affect daily life" data-label="Yes, but does not affect daily life"
               class="pebble-btn w-full flex items-center justify-between py-2.5 px-4 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-left">
               <span>Yes, but does not affect daily life <span
                   class="font-bengali text-[#3A4F3F] block sm:inline">(হ্যাঁ, তবে দৈনন্দিন জীবনে প্রভাব ফেলে
                   না)</span></span>
             </button>
-            <button type="button"
+            <button type="button" data-value="Yes, and it affects daily life" data-label="Yes, and it affects daily life"
               class="pebble-btn w-full flex items-center justify-between py-2.5 px-4 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-left">
               <span>Yes, and it affects daily life <span class="font-bengali text-[#3A4F3F] block sm:inline">(হ্যাঁ, এবং
                   দৈনন্দিন জীবনে প্রভাব ফেলে)</span></span>
@@ -2770,11 +2770,11 @@
       GOOGLE_SHEET_URL: "https://script.google.com/macros/s/AKfycbzrRBpzcMPyE3raNlznDZgBd98gVpufz2V0tEFh0CTJQfU4BDt4zPhVONvnDQuFFn4O/exec"
     };
   </script>
-  <script src="env/env.js?v=2.8"></script>
+  <script src="env/env.js?v=2.9"></script>
   <!-- Main Application Script -->
-  <script src="script.js?v=2.8"></script>
+  <script src="script.js?v=2.9"></script>
   <!-- Atmospheric Botanical & 2D/3D Animation Engine (Hallmark Anti-Slop Compliant) -->
-  <script src="animations.js?v=2.8"></script>
+  <script src="animations.js?v=2.9"></script>
 
   <!-- About Modal -->
   <div id="about-modal" class="fixed inset-0 z-50 bg-[#152418]/60 backdrop-blur-xs hidden items-center justify-center p-4">

@@ -34,6 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
     soundscapeMode: false
   };
 
+  // Pure English Value Normalizer (strips Bengali characters & formatting artifacts)
+  function toEnglishOnly(val) {
+    if (val === undefined || val === null) return '';
+    let str = String(val).trim();
+    str = str.replace(/[\u0980-\u09FF]+/g, '');
+    str = str.replace(/\([\s,.\-–—]*\)/g, '');
+    str = str.replace(/\[[\s,.\-–—]*\]/g, '');
+    str = str.replace(/[\/\-–—]\s*$/g, '');
+    str = str.replace(/^\s*[\/\-–—]/g, '');
+    str = str.replace(/\s+/g, ' ').trim();
+    return str;
+  }
+
   // 1. Restore State from LocalStorage
   function restoreState() {
     try {
@@ -263,12 +276,13 @@ document.addEventListener('DOMContentLoaded', () => {
               state.phq9Scores[questionId] = val;
               updatePhq9Score();
             } else {
-              const val = btn.getAttribute('data-value') || label;
-              state.likertScores[questionId] = val;
+              const val = btn.getAttribute('data-value') || toEnglishOnly(btn.querySelector('.font-bold')?.innerText || label);
+              const cleanEnglishVal = toEnglishOnly(val);
+              state.likertScores[questionId] = cleanEnglishVal;
               if (questionId === 'a7_year') {
                 const hiddenYear = document.getElementById('input-academic-year');
-                if (hiddenYear) hiddenYear.value = val;
-                state.inputs['input-academic-year'] = val;
+                if (hiddenYear) hiddenYear.value = cleanEnglishVal;
+                state.inputs['input-academic-year'] = cleanEnglishVal;
               }
             }
           }
@@ -1464,6 +1478,13 @@ document.addEventListener('DOMContentLoaded', () => {
       'E8_condition_details'
     ];
     setAllKeyVariants(payload, e8ConditionAliases, conditionDetailVal);
+
+    // Guarantee that all text payload fields (except timestamps) are 100% pure English
+    Object.keys(payload).forEach(key => {
+      if (typeof payload[key] === 'string' && key !== 'Timestamp') {
+        payload[key] = toEnglishOnly(payload[key]);
+      }
+    });
 
     return payload;
   }
