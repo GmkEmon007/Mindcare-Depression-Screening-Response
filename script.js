@@ -286,6 +286,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
+
+    // 3. Card A7 (Academic Year & Semester Badges - Both Mandatory)
+    const a7YearBadge = document.getElementById('a7-year-badge');
+    const a7SemBadge = document.getElementById('a7-semester-badge');
+    const a7CardBadge = document.getElementById('a7-card-status-badge');
+    const semesterSelect = document.getElementById('select-semester');
+
+    const yearVal = getSelectedStudyYear();
+    const semVal = semesterSelect?.value?.trim() || state.inputs['select-semester'] || '';
+    const semText = semesterSelect && semesterSelect.selectedIndex > 0
+      ? semesterSelect.options[semesterSelect.selectedIndex].text.split('/')[0].trim()
+      : '';
+
+    // 1. Year Badge Feedback
+    if (a7YearBadge) {
+      if (yearVal) {
+        a7YearBadge.className = 'inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-xs transition-all duration-200';
+        a7YearBadge.innerHTML = `<span class="material-symbols-outlined text-[13px] leading-none text-emerald-700">check_circle</span> <span>✓ ${yearVal} (নির্বাচিত)</span>`;
+      } else {
+        a7YearBadge.className = 'inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-300 transition-all duration-200';
+        a7YearBadge.innerHTML = `<span class="material-symbols-outlined text-[13px] leading-none text-amber-600">info</span> <span>Required / আবশ্যক</span>`;
+      }
+    }
+
+    // 2. Semester Badge Feedback
+    if (a7SemBadge) {
+      if (semVal) {
+        a7SemBadge.className = 'inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-xs transition-all duration-200';
+        a7SemBadge.innerHTML = `<span class="material-symbols-outlined text-[13px] leading-none text-emerald-700">check_circle</span> <span>✓ ${semText || ('Semester ' + semVal)} (নির্বাচিত)</span>`;
+      } else {
+        a7SemBadge.className = 'inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-300 transition-all duration-200';
+        a7SemBadge.innerHTML = `<span class="material-symbols-outlined text-[13px] leading-none text-amber-600">info</span> <span>Required / আবশ্যক</span>`;
+      }
+    }
+
+    // 3. Overall Card A7 Status Badge Feedback
+    if (a7CardBadge) {
+      if (yearVal && semVal) {
+        a7CardBadge.className = 'inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-xs transition-all duration-200';
+        a7CardBadge.innerHTML = `<span class="material-symbols-outlined text-[13px] leading-none text-emerald-700">check_circle</span> <span>✓ Completed / উভয়টি সম্পন্ন</span>`;
+      } else {
+        let label = 'Both Required / উভয়টি আবশ্যক';
+        if (yearVal && !semVal) {
+          label = 'Semester Missing / সেমিস্টার নির্বাচন করুন';
+        } else if (!yearVal && semVal) {
+          label = 'Year Missing / শিক্ষাবর্ষ নির্বাচন করুন';
+        }
+        a7CardBadge.className = 'inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-300 transition-all duration-200';
+        a7CardBadge.innerHTML = `<span class="material-symbols-outlined text-[13px] leading-none text-amber-600">info</span> <span>${label}</span>`;
+      }
+    }
   }
 
   // Auto-Advance & Scroll-Assist Engine
@@ -602,6 +653,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateProgress();
         saveState();
+
+        // If semester dropdown was changed but academic year is still missing, focus year buttons
+        if (inp.id === 'select-semester' && parent) {
+          const yearVal = getSelectedStudyYear();
+          if (!yearVal) {
+            const firstYearBtn = parent.querySelector('[data-question="a7_year"] .pebble-btn');
+            if (firstYearBtn) setTimeout(() => firstYearBtn.focus(), 150);
+          }
+        }
 
         // On selection change (e.g. dropdown, or completion of input on blur/change), auto-advance
         if (e && e.type === 'change' && parent && isCardAnswered(parent)) {
@@ -1050,7 +1110,23 @@ document.addEventListener('DOMContentLoaded', () => {
       card.scrollIntoView({ behavior: 'smooth', block: 'center' });
       card.classList.add('highlight-unanswered');
       setTimeout(() => card.classList.remove('highlight-unanswered'), 3000);
-      const focusable = card.querySelector('input:not([type="checkbox"]), select, .pebble-btn');
+      let focusable;
+      if (card.querySelector('[data-question="a7_year"]')) {
+        const yearVal = getSelectedStudyYear();
+        const semSelect = card.querySelector('#select-semester');
+        if (!yearVal) {
+          focusable = card.querySelector('[data-question="a7_year"] .pebble-btn');
+        } else if (semSelect && !semSelect.value.trim()) {
+          focusable = semSelect;
+        }
+      } else if (card.querySelector('[data-question="e3"] .pebble-btn.active')) {
+        focusable = card.querySelector('#input-exercise-min:not([disabled])');
+      } else if (card.querySelector('[data-question="e8"] .pebble-btn.active')) {
+        focusable = card.querySelector('#input-e8-condition:not([disabled])');
+      }
+      if (!focusable) {
+        focusable = card.querySelector('input:not([type="checkbox"]):not([type="hidden"]):not([disabled]), select:not([disabled]), .pebble-btn');
+      }
       if (focusable) {
         setTimeout(() => focusable.focus(), 400);
       }
@@ -1790,7 +1866,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const remainingCount = unansweredCards.length;
       const firstUnanswered = unansweredCards[0];
 
-      showValidationAlert(remainingCount, firstUnanswered);
+      // Custom context alert for Question A7
+      if (firstUnanswered.querySelector('[data-question="a7_year"]')) {
+        const yearVal = getSelectedStudyYear();
+        const semSelect = firstUnanswered.querySelector('#select-semester');
+        const semVal = semSelect?.value?.trim();
+        let customA7Msg = '';
+        if (!yearVal && !semVal) {
+          customA7Msg = 'A7 requires both Academic Year & Semester. Both are mandatory. (A7-এ শিক্ষাবর্ষ ও সেমিস্টার উভয়টি পূরণ করা বাধ্যতামূলক)';
+        } else if (!yearVal) {
+          customA7Msg = 'Please select your Academic Year in Question A7. (A7-এ আপনার শিক্ষাবর্ষ নির্বাচন করা বাধ্যতামূলক)';
+        } else if (!semVal) {
+          customA7Msg = 'Please select your Semester in Question A7. (A7-এ আপনার সেমিস্টার নির্বাচন করা বাধ্যতামূলক)';
+        }
+        showValidationAlert(remainingCount, firstUnanswered, 'A7 Mandatory Missing', customA7Msg);
+      } else {
+        showValidationAlert(remainingCount, firstUnanswered);
+      }
       
       const parentModule = firstUnanswered.closest('section');
       if (parentModule) {
@@ -1805,16 +1897,52 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => firstUnanswered.classList.remove('highlight-unanswered'), 3500);
 
       let focusable;
-      if (firstUnanswered.querySelector('[data-question="e3"] .pebble-btn.active')) {
+      if (firstUnanswered.querySelector('[data-question="a7_year"]')) {
+        const yearVal = getSelectedStudyYear();
+        const semSelect = firstUnanswered.querySelector('#select-semester');
+        if (!yearVal) {
+          focusable = firstUnanswered.querySelector('[data-question="a7_year"] .pebble-btn');
+        } else if (semSelect && !semSelect.value.trim()) {
+          focusable = semSelect;
+        }
+      } else if (firstUnanswered.querySelector('[data-question="e3"] .pebble-btn.active')) {
         focusable = firstUnanswered.querySelector('#input-exercise-min:not([disabled])');
       } else if (firstUnanswered.querySelector('[data-question="e8"] .pebble-btn.active')) {
         focusable = firstUnanswered.querySelector('#input-e8-condition:not([disabled])');
       }
       if (!focusable) {
-        focusable = firstUnanswered.querySelector('input:not([type="checkbox"]):not([disabled]), select, .pebble-btn');
+        focusable = firstUnanswered.querySelector('input:not([type="checkbox"]):not([type="hidden"]):not([disabled]), select:not([disabled]), .pebble-btn');
       }
       if (focusable) {
         setTimeout(() => focusable.focus(), 400);
+      }
+      return;
+    }
+
+    // Explicit Mandatory Safeguard: Question A7 (Academic Year & Semester)
+    const studyYearVal = getSelectedStudyYear();
+    const semRaw = document.getElementById('select-semester')?.value?.trim() || state.inputs['select-semester'] || '';
+    if (!studyYearVal || !semRaw) {
+      const a7Card = document.getElementById('card-a7') || document.querySelector('[data-question="a7_year"]')?.closest('.question-card');
+      if (a7Card) {
+        a7Card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        a7Card.classList.add('highlight-unanswered');
+        setTimeout(() => a7Card.classList.remove('highlight-unanswered'), 3500);
+
+        let missingText = '';
+        let targetEl = null;
+        if (!studyYearVal && !semRaw) {
+          missingText = 'Both Academic Year and Semester are mandatory in Question A7 before submitting. (A7-এ শিক্ষাবর্ষ ও সেমিস্টার উভয়টি আবশ্যক)';
+          targetEl = a7Card.querySelector('.pebble-btn');
+        } else if (!studyYearVal) {
+          missingText = 'Please select your Academic Year in Question A7. (A7-এ শিক্ষাবর্ষ নির্বাচন করা আবশ্যক)';
+          targetEl = a7Card.querySelector('.pebble-btn');
+        } else {
+          missingText = 'Please select your Semester in Question A7. (A7-এ সেমিস্টার নির্বাচন করা আবশ্যক)';
+          targetEl = a7Card.querySelector('#select-semester');
+        }
+        if (targetEl) setTimeout(() => targetEl.focus(), 350);
+        showValidationAlert(1, a7Card, 'A7 Mandatory Missing / আবশ্যক', missingText);
       }
       return;
     }
@@ -2157,13 +2285,21 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(() => firstUnansweredCard.classList.remove('highlight-unanswered'), 3500);
 
           let focusable;
-          if (firstUnansweredCard.querySelector('[data-question="e3"] .pebble-btn.active')) {
+          if (firstUnansweredCard.querySelector('[data-question="a7_year"]')) {
+            const yearVal = getSelectedStudyYear();
+            const semSelect = firstUnansweredCard.querySelector('#select-semester');
+            if (!yearVal) {
+              focusable = firstUnansweredCard.querySelector('[data-question="a7_year"] .pebble-btn');
+            } else if (semSelect && !semSelect.value.trim()) {
+              focusable = semSelect;
+            }
+          } else if (firstUnansweredCard.querySelector('[data-question="e3"] .pebble-btn.active')) {
             focusable = firstUnansweredCard.querySelector('#input-exercise-min:not([disabled])');
           } else if (firstUnansweredCard.querySelector('[data-question="e8"] .pebble-btn.active')) {
             focusable = firstUnansweredCard.querySelector('#input-e8-condition:not([disabled])');
           }
           if (!focusable) {
-            focusable = firstUnansweredCard.querySelector('input:not([type="checkbox"]):not([disabled]), select, .pebble-btn');
+            focusable = firstUnansweredCard.querySelector('input:not([type="checkbox"]):not([type="hidden"]):not([disabled]), select:not([disabled]), .pebble-btn');
           }
           if (focusable) {
             setTimeout(() => focusable.focus(), 350);
@@ -2450,7 +2586,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500);
 
         // Focus first actionable field
-        const focusTarget = unansweredCard.querySelector('.pebble-btn, input:not([disabled]), select:not([disabled])');
+        let focusTarget;
+        if (unansweredCard.querySelector('[data-question="a7_year"]')) {
+          const yearVal = getSelectedStudyYear();
+          const semSelect = unansweredCard.querySelector('#select-semester');
+          if (!yearVal) {
+            focusTarget = unansweredCard.querySelector('[data-question="a7_year"] .pebble-btn');
+          } else if (semSelect && !semSelect.value.trim()) {
+            focusTarget = semSelect;
+          }
+        } else if (unansweredCard.querySelector('[data-question="e3"] .pebble-btn.active')) {
+          focusTarget = unansweredCard.querySelector('#input-exercise-min:not([disabled])');
+        } else if (unansweredCard.querySelector('[data-question="e8"] .pebble-btn.active')) {
+          focusTarget = unansweredCard.querySelector('#input-e8-condition:not([disabled])');
+        }
+        if (!focusTarget) {
+          focusTarget = unansweredCard.querySelector('.pebble-btn, input:not([type="checkbox"]):not([type="hidden"]):not([disabled]), select:not([disabled])');
+        }
         if (focusTarget) {
           try {
             focusTarget.focus({ preventScroll: true });

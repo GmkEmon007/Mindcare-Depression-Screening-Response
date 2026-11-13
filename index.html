@@ -57,7 +57,7 @@
     };
   </script>
 
-  <link rel="stylesheet" href="style.css?v=3.0">
+  <link rel="stylesheet" href="style.css?v=3.1">
 </head>
 
 <body class="bg-[#F8FAF7] text-[#152418] antialiased selection:bg-[#EAF2EC] selection:text-[#152418] min-h-screen relative flex flex-col items-center">
@@ -466,41 +466,74 @@
         </div>
       </div>
 
-      <!-- Row 3: A7 Full Width (Academic Year & Semester) -->
-      <div
+      <!-- Row 3: A7 Full Width (Academic Year & Semester - BOTH MANDATORY) -->
+      <div id="card-a7"
         class="question-card rounded-2xl p-5 sm:p-6 border border-[#E2E8DF] shadow-sm space-y-4 relative !mt-5">
-        <div class="text-xs font-bold text-[#152418]">
-          A7. Academic Year &amp; Semester <span class="font-bengali text-[#3A4F3F] font-normal">(শিক্ষাবর্ষ ও সেমিস্টার):</span>
+        
+        <!-- Header with Both Required Badge -->
+        <div class="flex items-center justify-between flex-wrap gap-2 pb-2 border-b border-[#E2E8DF]/70">
+          <div>
+            <span class="text-[10px] uppercase tracking-wider font-bold text-[#2D6A4F] block mb-0.5">ACADEMIC STANDING (MANDATORY)</span>
+            <h3 class="text-xs sm:text-sm font-bold text-[#152418]">
+              A7. Academic Year &amp; Semester <span class="font-bengali text-[#3A4F3F] font-normal">(শিক্ষাবর্ষ ও সেমিস্টার):</span>
+            </h3>
+          </div>
+          <span id="a7-card-status-badge" class="inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-300 transition-all shadow-xs">
+            <span class="material-symbols-outlined text-[13px] leading-none text-amber-600">info</span>
+            <span>Both Required / উভয়টি আবশ্যক</span>
+          </span>
         </div>
 
-        <!-- Academic Year Pebble Options -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" data-pebble-group data-question="a7_year">
-          <button type="button" data-value="1st Year" data-label="1st Year"
-            class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
-            <span class="font-bold">1st Year</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ ১ম বর্ষ</span>
-          </button>
-          <button type="button" data-value="2nd Year" data-label="2nd Year"
-            class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
-            <span class="font-bold">2nd Year</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ ২য় বর্ষ</span>
-          </button>
-          <button type="button" data-value="3rd Year" data-label="3rd Year"
-            class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
-            <span class="font-bold">3rd Year</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ ৩য় বর্ষ</span>
-          </button>
-          <button type="button" data-value="4th Year" data-label="4th Year"
-            class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
-            <span class="font-bold">4th Year</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ ৪র্থ বর্ষ</span>
-          </button>
-        </div>
-        <input type="hidden" id="input-academic-year" name="academic-year" value="">
+        <!-- Sub-Question 1: Academic Year (Mandatory) -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between flex-wrap gap-1.5">
+            <span class="text-xs font-bold text-[#152418] flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-[#EAF2EC] text-[#2D6A4F] inline-flex items-center justify-center text-[10px] font-bold">1</span>
+              <span>Academic Year <span class="font-bengali text-[#3A4F3F] font-normal">(শিক্ষাবর্ষ নির্বাচন করুন):</span></span>
+            </span>
+            <span id="a7-year-badge" class="inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-300 transition-all">
+              <span class="material-symbols-outlined text-[13px] leading-none text-amber-600">info</span>
+              <span>Required / আবশ্যক</span>
+            </span>
+          </div>
 
-        <!-- Select Semester (with Label on Top) -->
-        <div class="space-y-2 pt-1">
-          <label for="select-semester" class="text-xs font-bold text-[#152418] block">
-            Select Semester: <span class="font-bengali text-[#3A4F3F] font-normal">(সেমিস্টার নির্বাচন করুন):</span>
-          </label>
+          <!-- Academic Year Pebble Options -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" data-pebble-group data-question="a7_year">
+            <button type="button" data-value="1st Year" data-label="1st Year"
+              class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
+              <span class="font-bold">1st Year</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ ১ম বর্ষ</span>
+            </button>
+            <button type="button" data-value="2nd Year" data-label="2nd Year"
+              class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
+              <span class="font-bold">2nd Year</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ ২য় বর্ষ</span>
+            </button>
+            <button type="button" data-value="3rd Year" data-label="3rd Year"
+              class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
+              <span class="font-bold">3rd Year</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ ৩য় বর্ষ</span>
+            </button>
+            <button type="button" data-value="4th Year" data-label="4th Year"
+              class="pebble-btn flex items-center justify-center py-3 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
+              <span class="font-bold">4th Year</span><span class="font-bengali text-[#3A4F3F] text-[11px] ml-1.5">/ ৪র্থ বর্ষ</span>
+            </button>
+          </div>
+          <input type="hidden" id="input-academic-year" name="academic-year" value="">
+        </div>
+
+        <!-- Sub-Question 2: Select Semester (Mandatory) -->
+        <div class="space-y-2 pt-2 border-t border-[#E2E8DF]/70">
+          <div class="flex items-center justify-between flex-wrap gap-1.5">
+            <label for="select-semester" class="text-xs font-bold text-[#152418] flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-[#EAF2EC] text-[#2D6A4F] inline-flex items-center justify-center text-[10px] font-bold">2</span>
+              <span>Semester <span class="font-bengali text-[#3A4F3F] font-normal">(সেমিস্টার নির্বাচন করুন):</span></span>
+            </label>
+            <span id="a7-semester-badge" class="inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-300 transition-all">
+              <span class="material-symbols-outlined text-[13px] leading-none text-amber-600">info</span>
+              <span>Required / আবশ্যক</span>
+            </span>
+          </div>
+
           <div class="relative group">
-            <select id="select-semester"
+            <select id="select-semester" required
               class="question-dropdown w-full appearance-none bg-none bg-[#F8FAF7] hover:bg-white focus:bg-white border-2 border-[#E2E8DF] hover:border-[#2D6A4F] focus:border-[#2D6A4F] focus:ring-4 focus:ring-[#2D6A4F]/10 rounded-2xl py-3 px-4 pr-11 text-xs sm:text-sm font-normal text-[#152418] cursor-pointer transition-all shadow-xs">
               <option value="" disabled selected>Select Semester / সেমিস্টার নির্বাচন করুন</option>
               <option value="1">1st Semester / ১ম সেমিস্টার</option>
@@ -2770,11 +2803,11 @@
       GOOGLE_SHEET_URL: "https://script.google.com/macros/s/AKfycbzrRBpzcMPyE3raNlznDZgBd98gVpufz2V0tEFh0CTJQfU4BDt4zPhVONvnDQuFFn4O/exec"
     };
   </script>
-  <script src="env/env.js?v=3.0"></script>
+  <script src="env/env.js?v=3.1"></script>
   <!-- Main Application Script -->
-  <script src="script.js?v=3.0"></script>
+  <script src="script.js?v=3.1"></script>
   <!-- Atmospheric Botanical & 2D/3D Animation Engine (Hallmark Anti-Slop Compliant) -->
-  <script src="animations.js?v=3.0"></script>
+  <script src="animations.js?v=3.1"></script>
 
   <!-- About Modal -->
   <div id="about-modal" class="fixed inset-0 z-50 bg-[#152418]/60 backdrop-blur-xs hidden items-center justify-center p-4">
