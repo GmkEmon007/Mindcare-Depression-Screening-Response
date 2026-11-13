@@ -1041,3 +1041,31 @@ header#hero-banner .w-9 {
   transition: all 0.3s ease;
 }
 
+/* ==========================================================================
+   Selected Option Readout — Mobile-Optimized Unified Typography
+   Enforces identical compact font size (11px) across all 29 question readouts
+   (C1–C8, D1–D4, F1–F12, G1, G3–G6) to ensure optimal legibility & prevent
+   awkward text overflows on mobile viewports.
+   ========================================================================== */
+.selected-option-readout,
+[id$="-readout"] {
+  font-size: 11px !important;
+  line-height: 1.35 !important;
+  font-weight: 600 !important;
+  color: #2D6A4F !important;
+  text-align: right !important;
+  word-break: break-word !important;
+  max-width: 72% !important;
+  display: inline-block !important;
+  letter-spacing: -0.01em !important;
+}
+
+@media (min-width: 640px) {
+  .selected-option-readout,
+  [id$="-readout"] {
+    font-size: 11px !important;
+    max-width: 80% !important;
+  }
+}
+
+
