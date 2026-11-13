@@ -1005,3 +1005,39 @@ header#hero-banner .w-9 {
   background-color: #D4E8D8;
   color: #0E1F13;
 }
+
+/* ==========================================================================
+   Floating Chatbot Progress Tracker & Micro-Physics
+   ========================================================================== */
+#floating-chatbot-tracker button {
+  box-shadow: 0 8px 24px rgba(21, 36, 24, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.2) !important;
+}
+
+#floating-chatbot-tracker button:hover {
+  box-shadow: 0 12px 32px rgba(45, 106, 79, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
+}
+
+#floating-chatbot-tracker button:active {
+  transform: scale(0.95);
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(82, 183, 136, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(82, 183, 136, 0);
+  }
+}
+
+.chatbot-completed {
+  animation: pulseGlow 2.2s infinite ease-in-out;
+}
+
+/* Card Auto-Advance Subtle Focus Highlight */
+.card-focus-assist {
+  outline: 2px solid rgba(45, 106, 79, 0.45);
+  box-shadow: 0 0 0 4px rgba(82, 183, 136, 0.15) !important;
+  transition: all 0.3s ease;
+}
+

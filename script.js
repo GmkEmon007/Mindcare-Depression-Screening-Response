@@ -219,6 +219,165 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
+
+    // Refresh visual completion badges
+    updateSubfieldFeedback();
+  }
+
+  // Update soft emerald completion feedback checkmark badge for sub-fields
+  function updateSubfieldFeedback() {
+    // 1. E3 Duration Badge
+    const e3Group = document.querySelector('[data-question="e3"]');
+    const minInput = document.getElementById('input-exercise-min');
+    const e3Badge = document.getElementById('e3-duration-badge');
+
+    if (e3Group && minInput && e3Badge) {
+      const activeBtn = e3Group.querySelector('.pebble-btn.active');
+      if (!activeBtn) {
+        e3Badge.classList.add('hidden');
+      } else {
+        const val = (activeBtn.getAttribute('data-value') || activeBtn.innerText.trim()).toLowerCase();
+        const isNever = val.includes('never') || val.includes('কখনো না');
+        if (isNever) {
+          e3Badge.classList.add('hidden');
+        } else {
+          e3Badge.classList.remove('hidden');
+          const minVal = minInput.value.trim();
+          const num = parseInt(minVal, 10);
+          const isValid = minVal !== '' && !isNaN(num) && num > 0 && num <= 360;
+
+          if (isValid) {
+            e3Badge.className = 'inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-xs transition-all duration-200';
+            e3Badge.innerHTML = '<span class="material-symbols-outlined text-[13px] leading-none text-emerald-700">check_circle</span> <span>✓ Completed / সম্পন্ন (' + num + ' min)</span>';
+          } else {
+            e3Badge.className = 'inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-300 transition-all duration-200';
+            e3Badge.innerHTML = '<span class="material-symbols-outlined text-[13px] leading-none text-amber-600">info</span> <span>Required / আবশ্যক</span>';
+          }
+        }
+      }
+    }
+
+    // 2. E8 Condition Badge
+    const e8Group = document.querySelector('[data-question="e8"]');
+    const condInput = document.getElementById('input-e8-condition');
+    const e8Badge = document.getElementById('e8-condition-badge');
+
+    if (e8Group && condInput && e8Badge) {
+      const activeBtn = e8Group.querySelector('.pebble-btn.active');
+      if (!activeBtn) {
+        e8Badge.classList.add('hidden');
+      } else {
+        const val = (activeBtn.getAttribute('data-value') || activeBtn.innerText.trim()).toLowerCase();
+        const isYes = val.includes('yes') || val.includes('হ্যাঁ');
+        if (!isYes) {
+          e8Badge.classList.add('hidden');
+        } else {
+          e8Badge.classList.remove('hidden');
+          const condVal = condInput.value.trim();
+          const isValid = condVal.length > 0;
+
+          if (isValid) {
+            e8Badge.className = 'inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-xs transition-all duration-200';
+            e8Badge.innerHTML = '<span class="material-symbols-outlined text-[13px] leading-none text-emerald-700">check_circle</span> <span>✓ Completed / সম্পন্ন</span>';
+          } else {
+            e8Badge.className = 'inline-flex items-center gap-1 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-300 transition-all duration-200';
+            e8Badge.innerHTML = '<span class="material-symbols-outlined text-[13px] leading-none text-amber-600">info</span> <span>Required / আবশ্যক</span>';
+          }
+        }
+      }
+    }
+  }
+
+  // Auto-Advance & Scroll-Assist Engine
+  let autoAdvanceTimer = null;
+
+  function handleAutoAdvance(parentCard, questionId, clickedBtn) {
+    if (!parentCard) return;
+
+    // Check conditional sub-input requirements:
+    // A7: If semester is not selected yet, focus semester dropdown instead of scrolling away
+    if (questionId === 'a7_year') {
+      const semesterSelect = parentCard.querySelector('#select-semester');
+      if (semesterSelect && !semesterSelect.value.trim()) {
+        setTimeout(() => semesterSelect.focus(), 150);
+        return;
+      }
+    }
+
+    // E3: If exercise frequency is not "never", minutes input is required
+    if (questionId === 'e3') {
+      const val = (clickedBtn.getAttribute('data-value') || clickedBtn.innerText.trim()).toLowerCase();
+      const isNever = val.includes('never') || val.includes('কখনো না');
+      if (!isNever) {
+        const minInput = document.getElementById('input-exercise-min');
+        if (minInput && !minInput.value.trim()) {
+          setTimeout(() => minInput.focus(), 150);
+        }
+        return;
+      }
+    }
+
+    // E8: If condition answer is "yes", condition details input is required
+    if (questionId === 'e8') {
+      const val = (clickedBtn.getAttribute('data-value') || clickedBtn.innerText.trim()).toLowerCase();
+      const isYes = val.includes('yes') || val.includes('হ্যাঁ');
+      if (isYes) {
+        const condInput = document.getElementById('input-e8-condition');
+        if (condInput && !condInput.value.trim()) {
+          setTimeout(() => condInput.focus(), 150);
+        }
+        return;
+      }
+    }
+
+    // If current card is answered, trigger smooth 200ms auto-advance
+    if (isCardAnswered(parentCard)) {
+      triggerAutoAdvance(parentCard);
+    }
+  }
+
+  function triggerAutoAdvance(currentCard) {
+    clearTimeout(autoAdvanceTimer);
+    autoAdvanceTimer = setTimeout(() => {
+      const allCards = Array.from(document.querySelectorAll('.question-card'));
+      const currIdx = allCards.indexOf(currentCard);
+      if (currIdx === -1) return;
+
+      // Find next unanswered card forward
+      let nextCard = allCards.slice(currIdx + 1).find(c => !isCardAnswered(c));
+
+      // If all following cards are answered, look back from beginning
+      if (!nextCard) {
+        nextCard = allCards.find(c => !isCardAnswered(c));
+      }
+
+      if (nextCard && nextCard !== currentCard) {
+        // Handle step mode if enabled
+        if (typeof isStepMode !== 'undefined' && isStepMode && typeof stepModuleIds !== 'undefined') {
+          const parentSec = nextCard.closest('section[id^="module-"]');
+          if (parentSec) {
+            const stepIdx = stepModuleIds.indexOf(parentSec.id);
+            if (stepIdx !== -1 && stepIdx !== currentStepIndex && typeof goToStep === 'function') {
+              goToStep(stepIdx, false);
+            }
+          }
+        }
+
+        nextCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Gentle assistance focus highlight
+        nextCard.classList.add('card-focus-assist');
+        setTimeout(() => {
+          nextCard.classList.remove('card-focus-assist');
+        }, 1200);
+      } else if (!nextCard) {
+        // All 54 questions answered! Smooth scroll to submit button
+        const submitBtn = document.getElementById('module-g-submit-btn');
+        if (submitBtn) {
+          submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    }, 200);
   }
 
   // 3. Pebble Radio Group Controller
@@ -320,6 +479,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
           updateProgress();
           saveState();
+
+          // Auto-advance & scroll-assist for single-choice pebble selections
+          if (!isMulti && parentCard) {
+            handleAutoAdvance(parentCard, questionId, btn);
+          }
         });
 
         // Keyboard Navigation (Arrow Keys)
@@ -377,6 +541,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         updateProgress();
         saveState();
+
+        if (val && parentCard && isCardAnswered(parentCard)) {
+          triggerAutoAdvance(parentCard);
+        }
       });
     });
   }
@@ -411,7 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function setupInputs() {
     const inputs = document.querySelectorAll('input:not([type="checkbox"]), select');
     inputs.forEach(inp => {
-      const handleInput = () => {
+      const handleInput = (e) => {
         if (inp.id) {
           state.inputs[inp.id] = inp.value;
           const isOptionalSub = (inp.id === 'input-exercise-min' || inp.id === 'input-e8-condition');
@@ -434,9 +602,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateProgress();
         saveState();
+
+        // On selection change (e.g. dropdown, or completion of input on blur/change), auto-advance
+        if (e && e.type === 'change' && parent && isCardAnswered(parent)) {
+          triggerAutoAdvance(parent);
+        }
       };
       inp.addEventListener('input', handleInput);
       inp.addEventListener('change', handleInput);
+
+      // Advance when user presses Enter key in an input
+      inp.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const parent = inp.closest('.question-card');
+          if (parent && isCardAnswered(parent)) {
+            e.preventDefault();
+            triggerAutoAdvance(parent);
+          }
+        }
+      });
     });
   }
 
@@ -536,6 +720,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const mobileProgress = document.getElementById('mobile-progress-badge');
     if (mobileProgress) mobileProgress.textContent = `${pct}%`;
+
+    // Floating Chatbot Progress Tracker (Bottom-Right)
+    const chatbotPctText = document.getElementById('chatbot-percentage-text');
+    const chatbotCircle = document.getElementById('chatbot-progress-circle');
+    const chatbotCount = document.getElementById('chatbot-answered-count');
+    const chatbotBtn = document.getElementById('chatbot-progress-btn');
+    const chatbotStatus = document.getElementById('chatbot-status-label');
+
+    if (chatbotPctText) {
+      chatbotPctText.textContent = `${pct}%`;
+    }
+    if (chatbotCount) {
+      chatbotCount.textContent = answeredCount;
+    }
+    if (chatbotCircle) {
+      const circumference = 125.66; // 2 * PI * 20
+      const offset = circumference - (circumference * pct) / 100;
+      chatbotCircle.style.strokeDashoffset = Math.max(0, offset);
+    }
+    if (chatbotBtn) {
+      chatbotBtn.setAttribute('aria-label', `Survey Progress: ${pct}% completed (${answeredCount} of ${TOTAL_CHECKPOINTS} answered). Click to jump to next question.`);
+      chatbotBtn.setAttribute('title', `Survey Progress: ${pct}% completed (${answeredCount} of ${TOTAL_CHECKPOINTS} answered). Click to jump to next question.`);
+      if (pct === 100) {
+        if (chatbotStatus) chatbotStatus.textContent = 'DONE';
+        chatbotBtn.classList.add('chatbot-completed', 'border-emerald-400');
+      } else {
+        if (chatbotStatus) chatbotStatus.textContent = 'MindCare';
+        chatbotBtn.classList.remove('chatbot-completed', 'border-emerald-400');
+      }
+    }
+
+    // Update subfield inline completion feedback badges (E3 & E8)
+    updateSubfieldFeedback();
 
     // Update section checkmarks and states in Nav
     updateNavigationModules();
@@ -2206,6 +2423,51 @@ document.addEventListener('DOMContentLoaded', () => {
     goToStep(0, false);
   }
 
+  // 8. Chatbot Floating Progress Button Controller (Bottom-Right)
+  function setupChatbotTracker() {
+    const chatbotBtn = document.getElementById('chatbot-progress-btn');
+    if (!chatbotBtn) return;
+
+    chatbotBtn.addEventListener('click', () => {
+      const allCards = Array.from(document.querySelectorAll('.question-card'));
+      const unansweredCard = allCards.find(card => !isCardAnswered(card));
+
+      if (unansweredCard) {
+        if (typeof isStepMode !== 'undefined' && isStepMode && typeof stepModuleIds !== 'undefined') {
+          const parentSec = unansweredCard.closest('section[id^="module-"]');
+          if (parentSec) {
+            const stepIdx = stepModuleIds.indexOf(parentSec.id);
+            if (stepIdx !== -1 && stepIdx !== currentStepIndex && typeof goToStep === 'function') {
+              goToStep(stepIdx, false);
+            }
+          }
+        }
+
+        unansweredCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        unansweredCard.classList.add('card-focus-assist');
+        setTimeout(() => {
+          unansweredCard.classList.remove('card-focus-assist');
+        }, 1500);
+
+        // Focus first actionable field
+        const focusTarget = unansweredCard.querySelector('.pebble-btn, input:not([disabled]), select:not([disabled])');
+        if (focusTarget) {
+          try {
+            focusTarget.focus({ preventScroll: true });
+          } catch (e) {}
+        }
+      } else {
+        // All 54 completed! Scroll to submit button
+        const submitBtn = document.getElementById('module-g-submit-btn');
+        if (submitBtn) {
+          submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          submitBtn.classList.add('ring-4', 'ring-emerald-400');
+          setTimeout(() => submitBtn.classList.remove('ring-4', 'ring-emerald-400'), 1500);
+        }
+      }
+    });
+  }
+
 
   // ==========================================================================
   setupStepNavigation();
@@ -2219,4 +2481,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupScrollSpy();
   setupModal();
   setupMobileDrawer();
+  setupChatbotTracker();
+  updateSubfieldFeedback();
 });
