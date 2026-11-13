@@ -317,7 +317,7 @@ function createMindCareDashboard() {
     }
   }
   dash.setTabColor("#2D6A4F");
-  dash.showGridlines(true);
+  dash.setHiddenGridlines(false);
 
   // Column Widths
   dash.setColumnWidth(1, 24);  // A spacer
