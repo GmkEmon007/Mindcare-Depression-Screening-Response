@@ -95,6 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
           }
         });
+
+        // Synchronize conditional states for E3 and E8 based on restored selections
+        syncConditionalFields();
       }
     } catch (e) {
       console.warn('Could not restore saved session', e);
@@ -126,6 +129,77 @@ document.addEventListener('DOMContentLoaded', () => {
     ripple.style.top = `${event.clientY - rect.top - size / 2}px`;
     button.appendChild(ripple);
     setTimeout(() => ripple.remove(), 600);
+  }
+
+  // Synchronize dependent / conditional inputs for E3 (exercise duration) and E8 (condition details)
+  function syncConditionalFields() {
+    // 1. Question E3 (Exercise Frequency vs Duration)
+    const e3Group = document.querySelector('[data-question="e3"]');
+    const minInput = document.getElementById('input-exercise-min');
+    const e3Badge = document.getElementById('e3-duration-badge');
+    const e3Container = document.getElementById('e3-duration-container');
+
+    if (e3Group && minInput) {
+      const activeBtn = e3Group.querySelector('.pebble-btn.active');
+      if (!activeBtn) {
+        minInput.disabled = true;
+        minInput.classList.add('opacity-40', 'cursor-not-allowed', 'bg-[#ECEFEA]');
+        if (e3Badge) e3Badge.classList.add('hidden');
+        if (e3Container) e3Container.classList.add('opacity-50');
+      } else {
+        const val = (activeBtn.getAttribute('data-value') || activeBtn.innerText.trim()).toLowerCase();
+        const isNever = val.includes('never') || val.includes('কখনো না');
+        if (isNever) {
+          minInput.value = '';
+          minInput.disabled = true;
+          minInput.placeholder = 'N/A';
+          minInput.classList.add('opacity-40', 'cursor-not-allowed', 'bg-[#ECEFEA]');
+          if (e3Badge) e3Badge.classList.add('hidden');
+          if (e3Container) e3Container.classList.add('opacity-50');
+          state.inputs['input-exercise-min'] = '';
+        } else {
+          minInput.disabled = false;
+          minInput.placeholder = '30';
+          minInput.classList.remove('opacity-40', 'cursor-not-allowed', 'bg-[#ECEFEA]');
+          if (e3Badge) e3Badge.classList.remove('hidden');
+          if (e3Container) e3Container.classList.remove('opacity-50');
+        }
+      }
+    }
+
+    // 2. Question E8 (Diagnosed Condition vs Details)
+    const e8Group = document.querySelector('[data-question="e8"]');
+    const condInput = document.getElementById('input-e8-condition');
+    const e8Badge = document.getElementById('e8-condition-badge');
+    const e8Container = document.getElementById('e8-condition-container');
+
+    if (e8Group && condInput) {
+      const activeBtn = e8Group.querySelector('.pebble-btn.active');
+      if (!activeBtn) {
+        condInput.disabled = true;
+        condInput.classList.add('opacity-40', 'cursor-not-allowed', 'bg-[#ECEFEA]');
+        if (e8Badge) e8Badge.classList.add('hidden');
+        if (e8Container) e8Container.classList.add('opacity-50');
+      } else {
+        const val = (activeBtn.getAttribute('data-value') || activeBtn.innerText.trim()).toLowerCase();
+        const isYes = val.includes('yes') || val.includes('হ্যাঁ');
+        if (!isYes) {
+          condInput.value = '';
+          condInput.disabled = true;
+          condInput.placeholder = 'N/A (None)';
+          condInput.classList.add('opacity-40', 'cursor-not-allowed', 'bg-[#ECEFEA]');
+          if (e8Badge) e8Badge.classList.add('hidden');
+          if (e8Container) e8Container.classList.add('opacity-50');
+          state.inputs['input-e8-condition'] = '';
+        } else {
+          condInput.disabled = false;
+          condInput.placeholder = 'e.g., Generalized Anxiety Disorder, Depression...';
+          condInput.classList.remove('opacity-40', 'cursor-not-allowed', 'bg-[#ECEFEA]');
+          if (e8Badge) e8Badge.classList.remove('hidden');
+          if (e8Container) e8Container.classList.remove('opacity-50');
+        }
+      }
+    }
   }
 
   // 3. Pebble Radio Group Controller
@@ -174,16 +248,6 @@ document.addEventListener('DOMContentLoaded', () => {
             readoutEl.textContent = label;
           }
 
-          // Card Answered State
-          if (parentCard) {
-            if (isCardAnswered(parentCard)) {
-              parentCard.classList.add('answered');
-              parentCard.classList.remove('highlight-unanswered');
-            } else {
-              parentCard.classList.remove('answered');
-            }
-          }
-
           // Record Score & State
           if (questionId) {
             state.answeredQuestions.add(questionId);
@@ -195,6 +259,34 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
               const val = btn.getAttribute('data-value') || label;
               state.likertScores[questionId] = val;
+            }
+          }
+
+          // Dynamic field synchronization for E3 & E8
+          if (questionId === 'e3' || questionId === 'e8') {
+            syncConditionalFields();
+            if (questionId === 'e3') {
+              const val = (btn.getAttribute('data-value') || label).toLowerCase();
+              if (!val.includes('never') && !val.includes('কখনো না')) {
+                const minInput = document.getElementById('input-exercise-min');
+                if (minInput && !minInput.value) setTimeout(() => minInput.focus(), 150);
+              }
+            } else if (questionId === 'e8') {
+              const val = (btn.getAttribute('data-value') || label).toLowerCase();
+              if (val.includes('yes') || val.includes('হ্যাঁ')) {
+                const condInput = document.getElementById('input-e8-condition');
+                if (condInput && !condInput.value) setTimeout(() => condInput.focus(), 150);
+              }
+            }
+          }
+
+          // Card Answered State
+          if (parentCard) {
+            if (isCardAnswered(parentCard)) {
+              parentCard.classList.add('answered');
+              parentCard.classList.remove('highlight-unanswered');
+            } else {
+              parentCard.classList.remove('answered');
             }
           }
 
@@ -540,6 +632,39 @@ document.addEventListener('DOMContentLoaded', () => {
       const yearSelected = yearGroup.querySelector('.pebble-btn.active') !== null;
       const semesterSelected = semesterSelect.value.trim() !== '';
       return yearSelected && semesterSelected;
+    }
+
+    // 1b. Special Check for Card E3 (Exercise Frequency & Duration)
+    const e3Group = card.querySelector('[data-question="e3"]');
+    if (e3Group) {
+      const activeBtn = e3Group.querySelector('.pebble-btn.active');
+      if (!activeBtn) return false;
+      const val = (activeBtn.getAttribute('data-value') || activeBtn.innerText.trim()).toLowerCase();
+      const isNever = val.includes('never') || val.includes('কখনো না');
+      if (isNever) {
+        return true; // Never selected: duration minute is NOT required
+      }
+      // 1-2, 3-4, or 5+ days/week selected: duration minute IS strictly required!
+      const minInput = card.querySelector('#input-exercise-min');
+      if (!minInput) return false;
+      const minVal = minInput.value.trim();
+      const num = parseInt(minVal, 10);
+      return minVal !== '' && !isNaN(num) && num > 0;
+    }
+
+    // 1c. Special Check for Card E8 (Diagnosed Condition & Details)
+    const e8Group = card.querySelector('[data-question="e8"]');
+    if (e8Group) {
+      const activeBtn = e8Group.querySelector('.pebble-btn.active');
+      if (!activeBtn) return false;
+      const val = (activeBtn.getAttribute('data-value') || activeBtn.innerText.trim()).toLowerCase();
+      const isYes = val.includes('yes') || val.includes('হ্যাঁ');
+      if (!isYes) {
+        return true; // No selected: condition details NOT required
+      }
+      // Yes selected: condition details MUST be provided!
+      const condInput = card.querySelector('#input-e8-condition');
+      return !!(condInput && condInput.value.trim().length > 0);
     }
 
     // 2. Input A1 (Age: 15-65)
@@ -931,8 +1056,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const semLabel = semRaw ? (['1st Semester', '2nd Semester', '3rd Semester', '4th Semester', '5th Semester', '6th Semester', '7th Semester', '8th Semester'][parseInt(semRaw, 10) - 1] || semRaw) : '';
 
     const incomeVal = document.getElementById('input-income')?.value?.trim() || state.inputs['input-income'] || '';
-    const exerciseMinVal = document.getElementById('input-exercise-min')?.value?.trim() || state.inputs['input-exercise-min'] || '';
-    const conditionDetailVal = document.getElementById('input-e8-condition')?.value?.trim() || state.inputs['input-e8-condition'] || '';
+
+    const e3Val = state.likertScores['e3'] || '';
+    const isE3Never = (e3Val.toLowerCase().includes('never') || e3Val.includes('কখনো না'));
+    const rawExerciseMin = document.getElementById('input-exercise-min')?.value?.trim() || state.inputs['input-exercise-min'] || '';
+    const exerciseMinVal = isE3Never ? '0' : rawExerciseMin;
+
+    const e8Val = state.likertScores['e8'] || '';
+    const isE8Yes = (e8Val.toLowerCase().includes('yes') || e8Val.includes('হ্যাঁ'));
+    const rawCondition = document.getElementById('input-e8-condition')?.value?.trim() || state.inputs['input-e8-condition'] || '';
+    const conditionDetailVal = isE8Yes ? rawCondition : '';
 
     return {
       // Compatibility with Google Sheet headers:
@@ -970,8 +1103,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'D2': state.likertScores['d2'] || '',
       'E1_Sleep': state.likertScores['e1'] || '',
       'E2_Wake': state.likertScores['e2'] || '',
-      'E3_Exercise': state.likertScores['e3'] || '',
-      'E3_Minutes': exerciseMinVal || 30,
+      'E3_Exercise': e3Val || state.likertScores['e3'] || '',
+      'E3_Minutes': exerciseMinVal !== '' ? exerciseMinVal : (isE3Never ? '0' : ''),
       'E4_SocialMedia': state.likertScores['e4'] || '',
       'E5_Eating': state.likertScores['e5'] || '',
       'E6_Substance': state.likertScores['e6'] || '',
@@ -1233,7 +1366,15 @@ document.addEventListener('DOMContentLoaded', () => {
       firstUnanswered.classList.add('highlight-unanswered');
       setTimeout(() => firstUnanswered.classList.remove('highlight-unanswered'), 3500);
 
-      const focusable = firstUnanswered.querySelector('input:not([type="checkbox"]), select, .pebble-btn');
+      let focusable;
+      if (firstUnanswered.querySelector('[data-question="e3"] .pebble-btn.active')) {
+        focusable = firstUnanswered.querySelector('#input-exercise-min:not([disabled])');
+      } else if (firstUnanswered.querySelector('[data-question="e8"] .pebble-btn.active')) {
+        focusable = firstUnanswered.querySelector('#input-e8-condition:not([disabled])');
+      }
+      if (!focusable) {
+        focusable = firstUnanswered.querySelector('input:not([type="checkbox"]):not([disabled]), select, .pebble-btn');
+      }
       if (focusable) {
         setTimeout(() => focusable.focus(), 400);
       }
@@ -1577,7 +1718,15 @@ document.addEventListener('DOMContentLoaded', () => {
           firstUnansweredCard.classList.add('highlight-unanswered');
           setTimeout(() => firstUnansweredCard.classList.remove('highlight-unanswered'), 3500);
 
-          const focusable = firstUnansweredCard.querySelector('input:not([type="checkbox"]), select, .pebble-btn');
+          let focusable;
+          if (firstUnansweredCard.querySelector('[data-question="e3"] .pebble-btn.active')) {
+            focusable = firstUnansweredCard.querySelector('#input-exercise-min:not([disabled])');
+          } else if (firstUnansweredCard.querySelector('[data-question="e8"] .pebble-btn.active')) {
+            focusable = firstUnansweredCard.querySelector('#input-e8-condition:not([disabled])');
+          }
+          if (!focusable) {
+            focusable = firstUnansweredCard.querySelector('input:not([type="checkbox"]):not([disabled]), select, .pebble-btn');
+          }
           if (focusable) {
             setTimeout(() => focusable.focus(), 350);
           }
@@ -1843,6 +1992,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupPebbleGroups();
   setupDropdownQuestions();
   setupInputs();
+  syncConditionalFields();
   updatePhq9Score();
   updateProgress();
   setupScrollSpy();

@@ -57,7 +57,7 @@
     };
   </script>
 
-  <link rel="stylesheet" href="style.css?v=2.6">
+  <link rel="stylesheet" href="style.css?v=2.7">
 </head>
 
 <body class="bg-[#F8FAF7] text-[#152418] antialiased selection:bg-[#EAF2EC] selection:text-[#152418] min-h-screen relative flex flex-col items-center">
@@ -1421,31 +1421,34 @@
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">fitness_center</span>
           </div>
           <div class="grid grid-cols-2 gap-2" data-pebble-group data-question="e3">
-            <button type="button"
+            <button type="button" data-value="Never" data-label="Never"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">Never</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">কখনো না</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="1–2 days/week" data-label="1–2 days/week"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">1–2 days/week</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">সপ্তাহে ১–২ দিন</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="3–4 days/week" data-label="3–4 days/week"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">3–4 days/week</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">সপ্তাহে ৩–৪ দিন</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="5+ days/week" data-label="5+ days/week"
               class="pebble-btn flex flex-col items-center justify-center py-2.5 px-2 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs text-center">
               <span class="font-bold">5+ days/week</span>
               <span class="font-bengali text-[10px] text-[#3A4F3F]">সপ্তাহে ৫ দিন বা বেশি</span>
             </button>
           </div>
-          <div class="flex items-center gap-2 pt-2 border-t border-[#E2E8DF]/70 text-xs text-[#6B8070]">
-            <span>If yes, duration in minutes (প্রতি সেশনের সময় মিনিটে):</span>
+          <div id="e3-duration-container" class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-2 border-t border-[#E2E8DF]/70 text-xs text-[#6B8070] transition-opacity duration-300">
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <span>If yes, duration in minutes (প্রতি সেশনের সময় মিনিটে):</span>
+              <span id="e3-duration-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#EAF2EC] text-[#2D6A4F] hidden">Required / আবশ্যক</span>
+            </div>
             <div class="inline-flex items-center gap-1.5">
-              <input type="number" id="input-exercise-min" name="input-exercise-min" min="0" max="360" placeholder="30" class="zen-input w-20 text-center !h-10 !rounded-[20px]">
+              <input type="number" id="input-exercise-min" name="input-exercise-min" min="1" max="360" placeholder="30" class="zen-input w-24 text-center !h-10 !rounded-[20px]">
               <span class="zen-unit-badge px-3 text-xs !h-10 !rounded-[20px]">min</span>
             </div>
           </div>
@@ -1609,18 +1612,22 @@
             <span class="material-symbols-outlined text-lg text-[#2D6A4F]">psychology</span>
           </div>
           <div class="grid grid-cols-2 gap-2" data-pebble-group data-question="e8">
-            <button type="button"
+            <button type="button" data-value="Yes" data-label="Yes"
               class="pebble-btn flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">Yes (হ্যাঁ)</span>
             </button>
-            <button type="button"
+            <button type="button" data-value="No" data-label="No"
               class="pebble-btn flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-[#F8FAF7] border border-[#E2E8DF] text-xs">
               <span class="font-bold">No (না)</span>
             </button>
           </div>
-          <div class="space-y-1.5 pt-2 border-t border-[#E2E8DF]/70">
-            <label class="text-xs text-[#3A4F3F] font-bengali block">If yes, please specify condition (যদি হ্যাঁ হয়,
-              নির্দিষ্ট করুন):</label>
+          <div id="e8-condition-container" class="space-y-1.5 pt-2 border-t border-[#E2E8DF]/70 transition-opacity duration-300">
+            <div class="flex items-center justify-between flex-wrap gap-1">
+              <label for="input-e8-condition" class="text-xs text-[#3A4F3F] font-bengali block">
+                If yes, please specify condition (যদি হ্যাঁ হয়, নির্দিষ্ট করুন):
+              </label>
+              <span id="e8-condition-badge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#EAF2EC] text-[#2D6A4F] hidden">Required / আবশ্যক</span>
+            </div>
             <input type="text" id="input-e8-condition" name="input-e8-condition" placeholder="e.g., Generalized Anxiety Disorder, Depression..."
               class="zen-input w-full px-4 !h-11 !rounded-[20px] text-xs">
           </div>
@@ -2762,11 +2769,11 @@
       GOOGLE_SHEET_URL: "https://script.google.com/macros/s/AKfycbzrRBpzcMPyE3raNlznDZgBd98gVpufz2V0tEFh0CTJQfU4BDt4zPhVONvnDQuFFn4O/exec"
     };
   </script>
-  <script src="env/env.js?v=2.6"></script>
+  <script src="env/env.js?v=2.7"></script>
   <!-- Main Application Script -->
-  <script src="script.js?v=2.6"></script>
+  <script src="script.js?v=2.7"></script>
   <!-- Atmospheric Botanical & 2D/3D Animation Engine (Hallmark Anti-Slop Compliant) -->
-  <script src="animations.js?v=2.6"></script>
+  <script src="animations.js?v=2.7"></script>
 
   <!-- About Modal -->
   <div id="about-modal" class="fixed inset-0 z-50 bg-[#152418]/60 backdrop-blur-xs hidden items-center justify-center p-4">
