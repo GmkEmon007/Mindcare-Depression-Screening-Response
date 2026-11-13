@@ -55,7 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
         Object.entries(state.likertScores).forEach(([q, val]) => {
           const group = document.querySelector(`[data-question="${q}"]`);
           if (group) {
-            const btn = group.querySelector(`[data-value="${val}"], [data-label="${val}"]`);
+            let btn = group.querySelector(`[data-value="${val}"], [data-label="${val}"]`);
+            if (!btn) {
+              btn = Array.from(group.querySelectorAll('.pebble-btn')).find(b => {
+                const bText = b.innerText.trim();
+                const bVal = b.getAttribute('data-value') || '';
+                return bText === val || bVal === val || bText.includes(val) || (typeof val === 'string' && val.includes(bVal));
+              });
+            }
             if (btn) {
               group.querySelectorAll('.pebble-btn').forEach(b => b.classList.remove('active'));
               btn.classList.add('active');
@@ -913,7 +920,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const genderVal = state.likertScores['a3'] || '';
     const livingVal = state.likertScores['a6'] || '';
 
-    const studyYearVal = state.likertScores['a7_year'] || '';
+    let studyYearVal = state.likertScores['a7_year'] || '';
+    if (!studyYearVal) {
+      const activeYearBtn = document.querySelector('[data-question="a7_year"] .pebble-btn.active');
+      if (activeYearBtn) {
+        studyYearVal = activeYearBtn.getAttribute('data-value') || activeYearBtn.getAttribute('data-label') || activeYearBtn.querySelector('.font-bold')?.innerText.trim() || activeYearBtn.innerText.trim();
+      }
+    }
     const semRaw = document.getElementById('select-semester')?.value?.trim() || state.inputs['select-semester'] || '';
     const semLabel = semRaw ? (['1st Semester', '2nd Semester', '3rd Semester', '4th Semester', '5th Semester', '6th Semester', '7th Semester', '8th Semester'][parseInt(semRaw, 10) - 1] || semRaw) : '';
 
@@ -998,20 +1011,47 @@ document.addEventListener('DOMContentLoaded', () => {
       A6_Living_Arrangement: livingVal,
 
       // A7 Academic Year & Study Year (All requested and common spellings)
-      A7_Study_Year: studyYearVal,
-      A7_Academic_Year: studyYearVal,
+      'A7_Acdemic year': studyYearVal,
+      'A7_Acdemic Year': studyYearVal,
+      'A7_acdemic year': studyYearVal,
       'a7_acdemic year': studyYearVal,
+      'a7_Acdemic year': studyYearVal,
+      'A7_Acdemic_year': studyYearVal,
+      'A7_Acdemic_Year': studyYearVal,
+      'a7_acdemic_year': studyYearVal,
+      'A7_Academic year': studyYearVal,
+      'A7_Academic Year': studyYearVal,
+      'A7_academic year': studyYearVal,
       'a7_academic year': studyYearVal,
+      'A7_Academic_Year': studyYearVal,
+      'A7_academic_year': studyYearVal,
       'a7_academic_year': studyYearVal,
+      A7_Academic_Year: studyYearVal,
+      A7_Study_Year: studyYearVal,
+      'A7_Study Year': studyYearVal,
+      'A7_Study_year': studyYearVal,
+      'a7_study_year': studyYearVal,
+      'a7_study year': studyYearVal,
+      A7_Year: studyYearVal,
+      'A7_Year': studyYearVal,
+      'A7_year': studyYearVal,
+      'a7_year': studyYearVal,
       Academic_Year: studyYearVal,
+      'Academic Year': studyYearVal,
+      'Acdemic Year': studyYearVal,
+      'Acdemic year': studyYearVal,
       Study_Year: studyYearVal,
+      'Study Year': studyYearVal,
 
       // A7 Semester (All requested and common spellings)
-      A7_Semester: semRaw,
-      A7_shemester: semRaw,
       'A7_shemester': semRaw,
+      'A7_Shemester': semRaw,
+      'A7_Semester': semRaw,
+      'A7_semester': semRaw,
       'a7_shemester': semRaw,
       'a7_semester': semRaw,
+      A7_Semester: semRaw,
+      A7_shemester: semRaw,
       Semester: semRaw,
       Semester_Label: semLabel,
 
