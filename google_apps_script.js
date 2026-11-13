@@ -129,7 +129,10 @@ function doPost(e) {
       if (!colName) return "";
       var trimmed = String(colName).trim();
 
-      // Direct exact match
+      // Direct exact match (both raw and trimmed)
+      if (rawData[colName] !== undefined && rawData[colName] !== null && rawData[colName] !== "") {
+        return rawData[colName];
+      }
       if (rawData[trimmed] !== undefined && rawData[trimmed] !== null && rawData[trimmed] !== "") {
         return rawData[trimmed];
       }
@@ -145,10 +148,10 @@ function doPost(e) {
 
       // Specialized cross-aliases for historical/varied survey headers
       if (normCol === "a7semester" || normCol === "a7shemester" || normCol === "semester" || normCol === "shemester") {
-        return rawData.A7_Semester || rawData.A7_shemester || rawData.Semester || "";
+        return rawData.A7_shemester || rawData.A7_Semester || rawData.A7_Shemester || rawData.Semester || "";
       }
-      if (normCol === "a7academicyear" || normCol === "a7acdemicyear" || normCol === "a7studyyear" || normCol === "academicyear" || normCol === "studyyear") {
-        return rawData["A7_Acdemic year"] || rawData["a7_acdemic year"] || rawData.A7_Academic_Year || rawData.A7_Study_Year || rawData.Academic_Year || "";
+      if (normCol === "a7academicyear" || normCol === "a7acdemicyear" || normCol === "a7studyyear" || normCol === "academicyear" || normCol === "studyyear" || normCol === "a7year" || normCol === "acdemic" || normCol === "year") {
+        return rawData["A7_Acdemic year"] || rawData["A7_Acdemic Year"] || rawData["a7_acdemic year"] || rawData.A7_Academic_Year || rawData.A7_Study_Year || rawData.Academic_Year || "";
       }
       if (normCol === "g2familymonthlyincome" || normCol === "a8familymonthlyincome" || normCol === "familymonthlyincome" || normCol === "monthlyincome" || normCol === "g2") {
         return rawData.G2_Family_Monthly_Income || rawData.A8_Family_Monthly_Income || rawData.Monthly_Income || "";

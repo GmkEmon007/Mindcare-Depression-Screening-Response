@@ -79,6 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
+        // Restore hidden academic year input
+        if (state.likertScores && state.likertScores['a7_year']) {
+          const hiddenYear = document.getElementById('input-academic-year');
+          if (hiddenYear) hiddenYear.value = state.likertScores['a7_year'];
+        }
+
         // Restore dropdown questions (Sections C, D, G)
         document.querySelectorAll('select[data-dropdown-question]').forEach(select => {
           const q = select.getAttribute('data-dropdown-question');
@@ -259,6 +265,11 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
               const val = btn.getAttribute('data-value') || label;
               state.likertScores[questionId] = val;
+              if (questionId === 'a7_year') {
+                const hiddenYear = document.getElementById('input-academic-year');
+                if (hiddenYear) hiddenYear.value = val;
+                state.inputs['input-academic-year'] = val;
+              }
             }
           }
 
@@ -629,7 +640,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const yearGroup = card.querySelector('[data-question="a7_year"]');
     const semesterSelect = card.querySelector('#select-semester');
     if (yearGroup && semesterSelect) {
-      const yearSelected = yearGroup.querySelector('.pebble-btn.active') !== null;
+      const yearSelected = yearGroup.querySelector('.pebble-btn.active') !== null ||
+        Boolean(document.getElementById('input-academic-year')?.value.trim()) ||
+        Boolean(state.likertScores['a7_year']);
       const semesterSelected = semesterSelect.value.trim() !== '';
       return yearSelected && semesterSelected;
     }
@@ -1025,6 +1038,96 @@ document.addEventListener('DOMContentLoaded', () => {
     ? window.__ENV__.GOOGLE_SHEET_URL
     : DEFAULT_GOOGLE_SHEET_URL;
 
+  // Helper to reliably extract and normalize Study Year across state, inputs, and active DOM
+  function getSelectedStudyYear() {
+    let raw = state.likertScores['a7_year'] || '';
+    if (!raw) {
+      const hiddenInp = document.getElementById('input-academic-year');
+      if (hiddenInp && hiddenInp.value) raw = hiddenInp.value;
+    }
+    if (!raw) {
+      const activeBtn = document.querySelector('[data-question="a7_year"] .pebble-btn.active, [data-question="a7_year"] [aria-checked="true"]');
+      if (activeBtn) {
+        raw = activeBtn.getAttribute('data-value') || activeBtn.getAttribute('data-label') || activeBtn.querySelector('.font-bold')?.textContent.trim() || activeBtn.textContent.trim();
+      }
+    }
+    if (!raw) return '';
+    const clean = String(raw).trim();
+    const lower = clean.toLowerCase();
+    if (lower.includes('1st') || lower.includes('১ম') || lower === '1') return '1st Year';
+    if (lower.includes('2nd') || lower.includes('২য়') || lower === '2') return '2nd Year';
+    if (lower.includes('3rd') || lower.includes('৩য়') || lower === '3') return '3rd Year';
+    if (lower.includes('4th') || lower.includes('৪র্থ') || lower === '4') return '4th Year';
+    return clean;
+  }
+
+  // Helper to register all permutations of key (spaces, case, trimming, trailing spaces)
+  function setAllKeyVariants(obj, baseKeys, value) {
+    if (value === undefined || value === null) return;
+    const valStr = String(value);
+    baseKeys.forEach(base => {
+      if (!base) return;
+      const b = String(base);
+      const bTrim = b.trim();
+      
+      // 1. Direct variations
+      obj[b] = valStr;
+      obj[bTrim] = valStr;
+      
+      // 2. Whitespace padding variations
+      obj[bTrim + ' '] = valStr;
+      obj[bTrim + '  '] = valStr;
+      obj[' ' + bTrim] = valStr;
+      obj['  ' + bTrim] = valStr;
+      obj[' ' + bTrim + ' '] = valStr;
+      obj[bTrim + '\r'] = valStr;
+      obj[bTrim + '\n'] = valStr;
+      obj[bTrim + '\r\n'] = valStr;
+      
+      // 3. Spacing variations (single space, double space between words)
+      const singleSpaced = bTrim.replace(/\s+/g, ' ');
+      obj[singleSpaced] = valStr;
+      obj[singleSpaced + ' '] = valStr;
+      obj[' ' + singleSpaced] = valStr;
+      obj[bTrim.replace(/\s+/g, '  ')] = valStr;
+      obj[bTrim.replace(/\s+/g, '  ') + ' '] = valStr;
+      obj[bTrim.replace(/\s+/g, '_')] = valStr;
+      obj[bTrim.replace(/\s+/g, '_') + ' '] = valStr;
+      obj[bTrim.replace(/[\s_-]+/g, '_')] = valStr;
+      obj[bTrim.replace(/[\s_-]+/g, '')] = valStr;
+      
+      // 4. Normalized alphanumeric
+      const normKey = bTrim.toLowerCase().replace(/[\s_-]+/g, '');
+      obj[normKey] = valStr;
+      obj[normKey + ' '] = valStr;
+      
+      // 5. Case variations
+      obj[bTrim.toLowerCase()] = valStr;
+      obj[bTrim.toLowerCase() + ' '] = valStr;
+      obj[' ' + bTrim.toLowerCase()] = valStr;
+      obj[bTrim.toLowerCase().replace(/\s+/g, ' ')] = valStr;
+      obj[bTrim.toLowerCase().replace(/\s+/g, '  ')] = valStr;
+      obj[bTrim.toLowerCase().replace(/\s+/g, '_')] = valStr;
+      obj[bTrim.toLowerCase().replace(/[\s_-]+/g, '_')] = valStr;
+      
+      obj[bTrim.toUpperCase()] = valStr;
+      obj[bTrim.toUpperCase() + ' '] = valStr;
+      obj[' ' + bTrim.toUpperCase()] = valStr;
+      obj[bTrim.toUpperCase().replace(/\s+/g, '_')] = valStr;
+      
+      // 6. Title / Capitalized word variations
+      const titleKey = bTrim.replace(/\b\w/g, c => c.toUpperCase());
+      obj[titleKey] = valStr;
+      obj[titleKey + ' '] = valStr;
+      obj[' ' + titleKey] = valStr;
+      obj[titleKey.replace(/\s+/g, ' ')] = valStr;
+      obj[titleKey.replace(/\s+/g, ' ') + ' '] = valStr;
+      obj[titleKey.replace(/\s+/g, '  ')] = valStr;
+      obj[titleKey.replace(/\s+/g, '_')] = valStr;
+      obj[titleKey.replace(/[\s_-]+/g, '_')] = valStr;
+    });
+  }
+
   // Build research payload aligned with Google Sheet columns
   function buildSubmissionPayload(token) {
     const phq = updatePhq9Score() || { total: 0, severity: 'Minimal' };
@@ -1045,13 +1148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const genderVal = state.likertScores['a3'] || '';
     const livingVal = state.likertScores['a6'] || '';
 
-    let studyYearVal = state.likertScores['a7_year'] || '';
-    if (!studyYearVal) {
-      const activeYearBtn = document.querySelector('[data-question="a7_year"] .pebble-btn.active');
-      if (activeYearBtn) {
-        studyYearVal = activeYearBtn.getAttribute('data-value') || activeYearBtn.getAttribute('data-label') || activeYearBtn.querySelector('.font-bold')?.innerText.trim() || activeYearBtn.innerText.trim();
-      }
-    }
+    const studyYearVal = getSelectedStudyYear();
     const semRaw = document.getElementById('select-semester')?.value?.trim() || state.inputs['select-semester'] || '';
     const semLabel = semRaw ? (['1st Semester', '2nd Semester', '3rd Semester', '4th Semester', '5th Semester', '6th Semester', '7th Semester', '8th Semester'][parseInt(semRaw, 10) - 1] || semRaw) : '';
 
@@ -1067,7 +1164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rawCondition = document.getElementById('input-e8-condition')?.value?.trim() || state.inputs['input-e8-condition'] || '';
     const conditionDetailVal = isE8Yes ? rawCondition : '';
 
-    return {
+    const payload = {
       // Compatibility with Google Sheet headers:
       'Submission ID': token,
       'Timestamp': new Date().toISOString(),
@@ -1266,6 +1363,109 @@ document.addEventListener('DOMContentLoaded', () => {
       G5: state.likertScores['g5'] || '',
       G6: state.likertScores['g6'] || ''
     };
+
+    // Exhaustive mapping for Academic Year (covers ALL column headers with spaces, capitalization, typos, trailing spaces)
+    const academicYearAliases = [
+      'A7_Acdemic year',
+      'A7_Acdemic Year',
+      'A7_acdemic year',
+      'a7_acdemic year',
+      'a7_Acdemic year',
+      'A7_Acdemic_year',
+      'A7_Acdemic_Year',
+      'a7_acdemic_year',
+      'A7_Acdemic',
+      'A7_acdemic',
+      'A7_Academic year',
+      'A7_Academic Year',
+      'A7_academic year',
+      'a7_academic year',
+      'A7_Academic_Year',
+      'A7_academic_year',
+      'a7_academic_year',
+      'A7_Academic',
+      'A7_academic',
+      'A7_Study_Year',
+      'A7_Study Year',
+      'A7_Study_year',
+      'a7_study_year',
+      'a7_study year',
+      'A7_Year',
+      'A7_year',
+      'a7_year',
+      'A7 Year',
+      'A7',
+      'Academic Year',
+      'Academic_Year',
+      'Acdemic Year',
+      'Acdemic year',
+      'Study Year',
+      'Study_Year',
+      'Year'
+    ];
+    setAllKeyVariants(payload, academicYearAliases, studyYearVal);
+
+    // Also map numeric digit of study year
+    const numYear = studyYearVal.replace(/[^0-9]/g, '');
+    if (numYear) {
+      payload['A7_Year_Number'] = numYear;
+      payload['Year_Number'] = numYear;
+    }
+
+    // Exhaustive mapping for Semester (covers all spellings, cases, trailing spaces)
+    const semesterAliases = [
+      'A7_shemester',
+      'A7_Shemester',
+      'a7_shemester',
+      'A7_shemester_label',
+      'A7_Semester',
+      'A7_semester',
+      'a7_semester',
+      'A7_Semester_Label',
+      'Semester',
+      'Shemester',
+      'Semester_Label'
+    ];
+    setAllKeyVariants(payload, semesterAliases, semRaw);
+    payload['Semester_Label'] = semLabel;
+    payload['A7_Semester_Label'] = semLabel;
+    payload['A7_shemester_label'] = semLabel;
+
+    // Exhaustive mapping for Income
+    const incomeAliases = [
+      'G2_Family_Monthly_Income',
+      'G2_Monthly_Income',
+      'A8_Family_Monthly_Income',
+      'Family_Monthly_Income',
+      'Monthly_Income',
+      'Monthly Income',
+      'G2'
+    ];
+    setAllKeyVariants(payload, incomeAliases, incomeVal);
+
+    // Exhaustive mapping for E3 duration
+    const e3DurationAliases = [
+      'E3_Duration_Min',
+      'E3_Duration',
+      'E3_Minutes',
+      'E3 Duration Min',
+      'E3 Duration',
+      'E3_duration_min'
+    ];
+    setAllKeyVariants(payload, e3DurationAliases, exerciseMinVal);
+
+    // Exhaustive mapping for E8 condition details
+    const e8ConditionAliases = [
+      'E8_Condition_Details',
+      'E8_Condition',
+      'E8_Specified_Condition',
+      'E8 Condition Details',
+      'E8 Condition',
+      'E8_condition_details'
+    ];
+    setAllKeyVariants(payload, e8ConditionAliases, conditionDetailVal);
+
+    return payload;
   }
 
   // Open Mindful Reflection Modal
