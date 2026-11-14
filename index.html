@@ -57,7 +57,7 @@
     };
   </script>
 
-  <link rel="stylesheet" href="style.css?v=3.2">
+  <link rel="stylesheet" href="style.css?v=3.3">
 </head>
 
 <body class="bg-[#F8FAF7] text-[#152418] antialiased selection:bg-[#EAF2EC] selection:text-[#152418] min-h-screen relative flex flex-col items-center">
@@ -2803,11 +2803,11 @@
       GOOGLE_SHEET_URL: "https://script.google.com/macros/s/AKfycbzrRBpzcMPyE3raNlznDZgBd98gVpufz2V0tEFh0CTJQfU4BDt4zPhVONvnDQuFFn4O/exec"
     };
   </script>
-  <script src="env/env.js?v=3.2"></script>
+  <script src="env/env.js?v=3.3"></script>
   <!-- Main Application Script -->
-  <script src="script.js?v=3.2"></script>
+  <script src="script.js?v=3.3"></script>
   <!-- Atmospheric Botanical & 2D/3D Animation Engine (Hallmark Anti-Slop Compliant) -->
-  <script src="animations.js?v=3.2"></script>
+  <script src="animations.js?v=3.3"></script>
 
   <!-- About Modal -->
   <div id="about-modal" class="fixed inset-0 z-50 bg-[#152418]/60 backdrop-blur-xs hidden items-center justify-center p-4">
@@ -3045,10 +3045,9 @@
           class="transition-all duration-500 ease-out" />
       </svg>
 
-      <!-- Center Content: Percentage & Micro Badge -->
-      <div class="relative z-10 flex flex-col items-center justify-center leading-none text-center pointer-events-none">
-        <span id="chatbot-percentage-text" class="text-[12px] font-black font-mono text-emerald-400 tracking-tight">0%</span>
-        <span id="chatbot-status-label" class="text-[8px] uppercase tracking-wider text-[#A3B899] font-bold mt-0.5">MindCare</span>
+      <!-- Center Content: Only Percentage (Centered & Highly Legible) -->
+      <div class="relative z-10 flex items-center justify-center text-center pointer-events-none w-full h-full">
+        <span id="chatbot-percentage-text" class="text-[14px] sm:text-[15px] font-black font-mono text-emerald-300 tracking-tight leading-none select-none">0%</span>
       </div>
 
       <!-- Pulse Dot on Top-Right Corner -->

@@ -781,12 +781,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileProgress = document.getElementById('mobile-progress-badge');
     if (mobileProgress) mobileProgress.textContent = `${pct}%`;
 
-    // Floating Chatbot Progress Tracker (Bottom-Right)
+    // Floating Chatbot Progress Tracker (Bottom-Right) - Pure Percentage & Micro-Feedback
     const chatbotPctText = document.getElementById('chatbot-percentage-text');
     const chatbotCircle = document.getElementById('chatbot-progress-circle');
     const chatbotCount = document.getElementById('chatbot-answered-count');
     const chatbotBtn = document.getElementById('chatbot-progress-btn');
-    const chatbotStatus = document.getElementById('chatbot-status-label');
+    const chatbotPulseDot = document.getElementById('chatbot-pulse-dot');
 
     if (chatbotPctText) {
       chatbotPctText.textContent = `${pct}%`;
@@ -803,11 +803,19 @@ document.addEventListener('DOMContentLoaded', () => {
       chatbotBtn.setAttribute('aria-label', `Survey Progress: ${pct}% completed (${answeredCount} of ${TOTAL_CHECKPOINTS} answered). Click to jump to next question.`);
       chatbotBtn.setAttribute('title', `Survey Progress: ${pct}% completed (${answeredCount} of ${TOTAL_CHECKPOINTS} answered). Click to jump to next question.`);
       if (pct === 100) {
-        if (chatbotStatus) chatbotStatus.textContent = 'DONE';
         chatbotBtn.classList.add('chatbot-completed', 'border-emerald-400');
+        if (chatbotCircle) chatbotCircle.setAttribute('stroke', '#4ADE80');
+        if (chatbotPulseDot) {
+          chatbotPulseDot.className = 'absolute -top-1 -right-1 w-4 h-4 bg-emerald-400 text-[#0E1A11] rounded-full border-2 border-[#152418] flex items-center justify-center shadow-xs text-[10px] font-black leading-none';
+          chatbotPulseDot.innerHTML = '✓';
+        }
       } else {
-        if (chatbotStatus) chatbotStatus.textContent = 'MindCare';
         chatbotBtn.classList.remove('chatbot-completed', 'border-emerald-400');
+        if (chatbotCircle) chatbotCircle.setAttribute('stroke', '#52B788');
+        if (chatbotPulseDot) {
+          chatbotPulseDot.className = 'absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-[#152418] flex items-center justify-center shadow-xs';
+          chatbotPulseDot.innerHTML = '<span class="w-1.5 h-1.5 bg-white rounded-full"></span>';
+        }
       }
     }
 
