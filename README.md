@@ -7,7 +7,7 @@
 ---
 
 ### 🌐 Live Platform Preview
-**GitHub Pages:** [https://gmkemon007.github.io/Mindcare-Depression-Screening-Response/](https://gmkemon007.github.io/Depression-Screening-Response/)
+**GitHub Pages:** [https://gmkemon007.github.io/Mindcare-Depression-Screening-Response/](https://gmkemon007.github.io/Mindcare-Depression-Screening-Response/)
 
 ---
 
@@ -33,11 +33,13 @@
 ## 📁 File Structure
 
 ```
-final q/
+Mindcare-Depression-Screening-Response/
 ├── index.html        # Complete questionnaire structure with bilingual Bengali & English typography
-├── style.css         # Clinical sanctuary color system, pebble micro-interactions, and animations
-├── script.js         # Real-time PHQ-9 scoring engine, Web Audio 432Hz synthesizer, and local storage
-├── assets/           # Curated design graphics, character illustrations, and logo mark
+├── style.css         # Clinical sanctuary color system, mobile typography, and animations
+├── script.js         # Real-time PHQ-9 & MSPSS scoring engine, validation, and submission
+├── animations.js     # Atmospheric botanical particles, 2D/3D breathing orb, and micro-physics
+├── env/
+│   └── env.js        # Google Sheets webhook configuration
 └── README.md         # Documentation and research protocol overview
 ```
 

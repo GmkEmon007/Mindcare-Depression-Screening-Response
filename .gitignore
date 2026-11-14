@@ -5,6 +5,9 @@ config.env
 !env/
 !env/env.js
 
+# Google Apps Script (local private backend script)
+google_apps_script.js
+
 # Scratch and test files
 scratch/
 *.tmp
