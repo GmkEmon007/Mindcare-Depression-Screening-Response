@@ -2,8 +2,8 @@
 .env
 .env.*
 config.env
-!env/
-!env/env.js
+env/
+env/*
 
 # Google Apps Script (local private backend script)
 google_apps_script.js

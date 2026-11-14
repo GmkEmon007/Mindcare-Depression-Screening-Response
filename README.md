@@ -38,8 +38,6 @@ Mindcare-Depression-Screening-Response/
 ├── style.css         # Clinical sanctuary color system, mobile typography, and animations
 ├── script.js         # Real-time PHQ-9 & MSPSS scoring engine, validation, and submission
 ├── animations.js     # Atmospheric botanical particles, 2D/3D breathing orb, and micro-physics
-├── env/
-│   └── env.js        # Google Sheets webhook configuration
 └── README.md         # Documentation and research protocol overview
 ```
 
