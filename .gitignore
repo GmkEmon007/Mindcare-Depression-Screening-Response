@@ -1,0 +1,21 @@
+# Environment folder and private configurations
+.env
+.env.*
+config.env
+env/
+env/*
+
+# Google Apps Script (local private backend script)
+google_apps_script.js
+
+# Scratch and test files
+scratch/
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
+# Dependencies and build outputs
+node_modules/
+dist/
+build/
