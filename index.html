@@ -57,7 +57,7 @@
     };
   </script>
 
-  <link rel="stylesheet" href="style.css?v=3.4">
+  <link rel="stylesheet" href="style.css?v=3.5">
 </head>
 
 <body class="bg-[#F8FAF7] text-[#152418] antialiased selection:bg-[#EAF2EC] selection:text-[#152418] min-h-screen relative flex flex-col items-center">
@@ -2607,12 +2607,17 @@
         <h2 id="modal-title" class="text-3xl sm:text-4xl md:text-[38px] font-serif font-normal text-[#152418] tracking-tight">
           Thank you
         </h2>
-        <p class="font-bengali text-xs sm:text-sm text-[#3A4F3F] max-w-lg mx-auto leading-relaxed">
+        <p id="modal-subtitle-text" class="font-bengali text-xs sm:text-sm text-[#3A4F3F] max-w-lg mx-auto leading-relaxed">
           আপনার মূল্যবান মতামতের জন্য আন্তরিক ধন্যবাদ। নিচে আপনার মানসিক সুস্থতার প্রতিফলন ও ক্লিনিক্যাল স্কোর পর্যবেক্ষণ দেওয়া হলো।
         </p>
         <p class="text-[11px] sm:text-xs text-[#6B8070] max-w-md mx-auto">
           Confidential Research Participation • CIR Protocol #VU/ERC/2026/042
         </p>
+      </div>
+
+      <!-- Real-Time Submission Status Card -->
+      <div id="modal-submission-banner" class="rounded-2xl p-3.5 sm:p-4 flex items-center justify-between gap-3 text-xs border border-[#C8DCCF] bg-[#EAF2EC] transition-all">
+        <!-- Populated dynamically by openReflectionModal -->
       </div>
 
       <!-- Prominent Score Cards: PHQ-9 & MSPSS (Front & Center) -->
@@ -2783,10 +2788,17 @@
             Print Summary
           </button>
         </div>
-        <button type="button" onclick="document.getElementById('reflection-modal').classList.add('hidden')"
-          class="px-7 py-2.5 rounded-full bg-[#152418] hover:bg-[#1B2B1C] text-white text-xs font-bold shadow-md transition-all active:scale-95">
-          Done &amp; Close
-        </button>
+        <div class="flex items-center gap-2 justify-end">
+          <button type="button" id="modal-submit-btn"
+            class="px-5 py-2.5 rounded-full bg-[#2D6A4F] hover:bg-[#1B4332] text-white text-xs font-bold flex items-center gap-1.5 shadow-md hover:shadow-lg transition-all active:scale-95">
+            <span class="material-symbols-outlined text-[17px] text-emerald-300">send</span>
+            <span id="modal-submit-btn-text">Submit to Google Sheets</span>
+          </button>
+          <button type="button" onclick="document.getElementById('reflection-modal').classList.add('hidden')"
+            class="px-6 py-2.5 rounded-full bg-[#152418] hover:bg-[#1B2B1C] text-white text-xs font-bold shadow-md transition-all active:scale-95">
+            Done &amp; Close
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -2798,9 +2810,9 @@
 
   <!-- External Script -->
   <!-- Main Application Script -->
-  <script src="script.js?v=3.4"></script>
+  <script src="script.js?v=3.5"></script>
   <!-- Atmospheric Botanical & 2D/3D Animation Engine (Hallmark Anti-Slop Compliant) -->
-  <script src="animations.js?v=3.4"></script>
+  <script src="animations.js?v=3.5"></script>
 
   <!-- About Modal -->
   <div id="about-modal" class="fixed inset-0 z-50 bg-[#152418]/60 backdrop-blur-xs hidden items-center justify-center p-4">

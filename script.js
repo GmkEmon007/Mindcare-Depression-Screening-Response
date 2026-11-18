@@ -1803,8 +1803,11 @@ document.addEventListener('DOMContentLoaded', () => {
     return payload;
   }
 
+  // Track research submission status across lifecycle
+  let hasSubmitted = false;
+
   // Open Mindful Reflection Modal
-  function openReflectionModal() {
+  function openReflectionModal(isFromSubmit = false) {
     const modal = document.getElementById('reflection-modal');
     if (!modal) return;
 
@@ -1815,9 +1818,67 @@ document.addEventListener('DOMContentLoaded', () => {
         .map(b => b.toString(16).padStart(2, '0')).join('');
       tokenEl.textContent = token;
     }
+    const currentToken = tokenEl ? tokenEl.textContent.trim() : '';
 
     updatePhq9Score();
     calculateMspssBreakdown();
+
+    // Update modal header & status banner dynamically
+    const modalTitle = document.getElementById('modal-title');
+    const modalSubTitle = document.getElementById('modal-subtitle-text');
+    const modalStatusBanner = document.getElementById('modal-submission-banner');
+    const modalSubmitBtn = document.getElementById('modal-submit-btn');
+    const modalSubmitBtnText = document.getElementById('modal-submit-btn-text');
+
+    if (hasSubmitted) {
+      if (modalTitle) modalTitle.textContent = 'Thank you';
+      if (modalSubTitle) {
+        modalSubTitle.textContent = 'আপনার মূল্যবান মতামতের জন্য আন্তরিক ধন্যবাদ। আপনার প্রতিক্রিয়া সফলভাবে ক্লাউড ডেটাবেজে সংরক্ষিত হয়েছে।';
+      }
+      if (modalStatusBanner) {
+        modalStatusBanner.className = 'rounded-2xl p-3.5 sm:p-4 flex items-center justify-between gap-3 text-xs bg-[#EAF2EC] border border-[#C8DCCF] text-[#152418] transition-all';
+        modalStatusBanner.innerHTML = `
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-[#2D6A4F] text-white flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-lg">check_circle</span>
+            </span>
+            <div>
+              <span class="font-bold text-[#2D6A4F] block text-xs">Response Successfully Saved to Google Sheet</span>
+              <span class="text-[11px] text-[#3A4F3F]">Anonymous Research Token: <code class="font-mono font-bold">${currentToken}</code></span>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#2D6A4F] text-white shrink-0">Saved ✓</span>
+        `;
+      }
+      if (modalSubmitBtn) {
+        modalSubmitBtn.classList.add('hidden');
+      }
+    } else {
+      if (modalTitle) modalTitle.textContent = 'Review & Reflection';
+      if (modalSubTitle) {
+        modalSubTitle.textContent = 'নিচে আপনার মানসিক সুস্থতার খসড়া প্রতিফলন দেওয়া হলো। ডেটাবেজে জমা দিতে "Submit to Google Sheets" বোতামে চাপুন।';
+      }
+      if (modalStatusBanner) {
+        const remaining = getUnansweredCards().length;
+        modalStatusBanner.className = 'rounded-2xl p-3.5 sm:p-4 flex items-center justify-between gap-3 text-xs bg-[#FEF3C7] border border-[#FDE68A] text-[#92400E] transition-all';
+        modalStatusBanner.innerHTML = `
+          <div class="flex items-center gap-2.5">
+            <span class="w-8 h-8 rounded-xl bg-[#F59E0B] text-white flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-lg">info</span>
+            </span>
+            <div>
+              <span class="font-bold text-[#B45309] block text-xs">Draft Preview Mode — Not Yet Saved to Google Sheets</span>
+              <span class="text-[11px] text-[#78350F]">${remaining > 0 ? `⚠️ ${remaining} question(s) still remaining to complete` : 'All 54 questions completed — ready to submit'}</span>
+            </div>
+          </div>
+          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#F59E0B] text-white shrink-0">Draft Only</span>
+        `;
+      }
+      if (modalSubmitBtn) {
+        modalSubmitBtn.classList.remove('hidden');
+        if (modalSubmitBtnText) modalSubmitBtnText.textContent = 'Submit to Google Sheets Now';
+      }
+    }
 
     modal.classList.remove('hidden');
     modal.classList.add('flex');
@@ -1870,6 +1931,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const consentCheck = document.getElementById('consent-checkbox');
     if (consentCheck && !consentCheck.checked) {
+      const modal = document.getElementById('reflection-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
       const consentParent = consentCheck.closest('.consent-box') || consentCheck.parentElement;
       showValidationAlert(1, consentParent, 'Consent Required', 'অনুগ্রহ করে প্রথমে সম্মতি বক্সে টিক দিন (Please agree to voluntary consent first)');
       consentCheck.focus();
@@ -1884,6 +1950,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // STRICT VALIDATION: The participant must answer every single question before submitting
     const unansweredCards = getUnansweredCards();
     if (unansweredCards.length > 0) {
+      const modal = document.getElementById('reflection-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
       const remainingCount = unansweredCards.length;
       const firstUnanswered = unansweredCards[0];
 
@@ -2039,14 +2110,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
+    hasSubmitted = true;
     if (submitBtn) {
       submitBtn.innerHTML = '<span class="material-symbols-outlined text-[17px] text-[#52B788]">verified</span> Submitted';
       submitBtn.classList.remove('bg-[#2563EB]', 'bg-[#2D3A28]', 'bg-[#0F172A]');
       submitBtn.classList.add('bg-emerald-900');
     }
 
-    showToast('✓ Questionnaire response successfully recorded! Review reflections below.');
-    openReflectionModal();
+    const floatingSubmit = document.getElementById('floating-submit-btn');
+    if (floatingSubmit) {
+      floatingSubmit.innerHTML = '<span class="material-symbols-outlined text-sm text-[#52B788]">verified</span> Submitted';
+      floatingSubmit.classList.add('bg-emerald-900');
+    }
+
+    showToast('✓ Questionnaire response successfully recorded in database!');
+    openReflectionModal(true);
     isSubmitting = false;
   }
 
@@ -2083,6 +2161,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (submitBtn) {
       submitBtn.addEventListener('click', submitQuestionnaire);
+    }
+
+    const modalSubmitBtn = document.getElementById('modal-submit-btn');
+    if (modalSubmitBtn) {
+      modalSubmitBtn.addEventListener('click', () => {
+        submitQuestionnaire();
+      });
     }
 
     if (floatingSubmit) {
